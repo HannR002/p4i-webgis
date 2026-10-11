@@ -58,6 +58,7 @@ next-env.d.ts
 *.pfx
 
 service-account*.json
+service_account*.json
 credentials*.json
 google-credentials*.json
 gcp-service-account*.json
