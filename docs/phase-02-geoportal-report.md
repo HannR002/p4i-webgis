@@ -141,8 +141,12 @@ Branch Phase 02 berangkat dari commit lokal yang telah direview itu. Jangan meng
 PR ke main hanya memuat UI Phase 02: parent Phase 01 juga masuk sampai sinkronisasi/merge benar terjadi.
 Diff khusus Phase 02 dapat diperiksa terhadap `35f9848`.
 
-Git push dry-run berhasil. Status push dan percobaan PR dicatat pada deskripsi PR/deliverable
-akhir. GitHub API saat preflight mengembalikan Forbidden. Tidak ada merge otomatis atau force push.
+Commit implementasi `45c15fd` berhasil di-push ke `origin/feat/phase-02-geoportal-ux`.
+Percobaan aktual `gh pr create --draft --base main --head feat/phase-02-geoportal-ux`
+mengembalikan `Post https://api.github.com/graphql: Forbidden` (exit 1); tidak ada PR yang dibuat.
+Gunakan [halaman pembuatan PR yang diberikan GitHub](https://github.com/HannR002/p4i-webgis/pull/new/feat/phase-02-geoportal-ux)
+dan [deskripsi siap pakai](phase-02-pr.md). Branch remote dapat direview tanpa PR.
+Tidak ada merge otomatis atau force push.
 
 - Data tetap fixture; GEE/LLM nyata, scientific validation dan map persistence DB masih pending.
 - Public project list staging tetap 200; boundary request tetap 500/PGRST202 pada regresi.

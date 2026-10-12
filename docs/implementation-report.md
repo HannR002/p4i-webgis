@@ -12,7 +12,7 @@ Node 22 lint/typecheck/build and **81 tests / 19 files pass**. Chromium smoke co
 sizes; Axe reports zero violations across seven routes × desktop/mobile. See
 [Phase 02 report](phase-02-geoportal-report.md) for route inventory, evidence and remaining limits.
 Remote main did not contain Phase 01 at verification; this branch carries its local commit as a
-parent. GitHub API preflight was Forbidden; do not assume a PR or merge occurred from this report.
+parent. Implementation 45c15fd was pushed on the feature branch. Actual draft PR creation returned GraphQL Forbidden; no PR or merge occurred.
 
 ## Previous status — Phase 01, 12 October 2026
 

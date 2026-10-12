@@ -25,6 +25,8 @@ Remote main was still dfe412c at task start; Phase 01 (35f9848) existed locally,
 assumed merged baseline. This branch includes that parent plus Phase 02. Review the UI-specific
 diff against 35f9848, and reconcile Phase 01 before treating this as a Phase 02-only PR.
 
-GitHub API preflight returned Forbidden. This file is prepared PR content; an opened PR is claimed
-only if creation succeeds. No merge, force push, deployment, database migration, paid service or
+Implementation commit 45c15fd was pushed successfully to origin/feat/phase-02-geoportal-ux.
+The actual draft PR creation command failed with GraphQL Forbidden; no PR was opened.
+[Create the PR on GitHub](https://github.com/HannR002/p4i-webgis/pull/new/feat/phase-02-geoportal-ux).
+This file is prepared PR content. No merge, force push, deployment, database migration, paid service or
 production data change is part of this change. Real data/GEE/LLM and account happy-path QA remain pending.
