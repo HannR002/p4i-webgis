@@ -1,3 +1,22 @@
+# Phase 02 interactive review
+
+Use branch `feat/phase-02-geoportal-ux` for the current UI, based on Phase 01 local commit `35f9848`.
+See [Phase 02 route inventory and evidence](phase-02-geoportal-report.md) and
+[prepared PR content](phase-02-pr.md). Remote main did not yet contain Phase 01 at verification;
+preserve local edits when reconciling the feature branch.
+
+Use the existing lockfile with Node 22. Run `npm ci`, enable `GIS_DEMO_MODE=true` only in a local
+development environment, then `npm run dev`. Begin at `/spatial/home`. Home search opens the
+Webmap catalog; selecting a map opens the same Leaflet engine in the workspace. Try keyboard
+panel tabs/center sampling, legend collapse, local save/load, Copilot and PNG/PDF export.
+Demo never becomes a real scientific result; production refuses fixture data.
+
+The cloud onboarding UI does not support interactive localhost links. Screenshots show the
+actual app, and local browser startup provides full interaction. Do not infer that workspace
+file links are downloadable chat attachments. Browser-generated map downloads are tested.
+
+The older transfer instructions below apply to the original Phase 01 patch only.
+
 # Reviewing the new portal
 
 The onboarding UI has no public localhost preview. Cloud screenshots are static review artifacts,

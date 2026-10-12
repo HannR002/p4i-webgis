@@ -53,6 +53,13 @@ export default function WorkspaceMapContent({ tool, onInspect, onMeasure }: Prop
   const [lat, lng] = recipe.viewport.center;
   const zoom = recipe.viewport.zoom;
   useEffect(() => {
+    const element = map.getContainer();
+    element.setAttribute('aria-label', 'Peta interaktif P4I. Gunakan panah untuk menggeser dan tombol plus atau minus untuk zoom.');
+    const observer = new ResizeObserver(() => map.invalidateSize({ pan: false }));
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [map]);
+  useEffect(() => {
     // React Leaflet creates Pane styles once; update the actual panes after reordering.
     recipe.layers.filter((l) => l.visible).forEach((layer, index) => {
       const pane = map.getPane(`workspace-${layer.id}`);

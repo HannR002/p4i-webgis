@@ -1,6 +1,20 @@
 # P4I Spatial Analytics implementation report
 
-## Current status — Phase 01, 12 October 2026
+## Current status — Phase 02, 13 October 2026
+
+The functioning geoportal now has consistent Home/Webmap/Data/Help/workspace UI, genuine renderer
+previews, honest availability labels, filter/retry/empty states and accessible desktop/mobile
+navigation. Keyboard tabs, center sampling, collapsible legend/panel, map resize, title/description
+editing, loading guards and Copilot panel persistence are implemented. Existing analysis/export
+capabilities remain available through the existing engine and routes.
+
+Node 22 lint/typecheck/build and **81 tests / 19 files pass**. Chromium smoke covers five viewport
+sizes; Axe reports zero violations across seven routes × desktop/mobile. See
+[Phase 02 report](phase-02-geoportal-report.md) for route inventory, evidence and remaining limits.
+Remote main did not contain Phase 01 at verification; this branch carries its local commit as a
+parent. GitHub API preflight was Forbidden; do not assume a PR or merge occurred from this report.
+
+## Previous status — Phase 01, 12 October 2026
 
 The previous uncommitted implementation was reconciled in the correct repository and carried
 into `feat/phase-01-stabilization`, based on `dfe412c`. Independent baseline verification confirmed
