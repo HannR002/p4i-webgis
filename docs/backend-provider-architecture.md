@@ -1,5 +1,15 @@
 # Backend provider architecture and security review
 
+## GIS workspace extension
+
+The new map workspace preserves database/auth repositories. `lib/server/gis` adds a separate
+dataset/vector/pixel provider boundary; `lib/server/ai` contains a vendor-neutral planner. Shared
+MapRecipe/raster types contain no Supabase queries or Earth Engine objects. GIS endpoints derive
+permissions from the existing server identity and entitlement checks, not request roles or JWT
+user-editable metadata. Explicit development fixtures are refused in production. No migrations,
+production changes or uploads were performed. See [Copilot architecture](ai-gis-copilot-architecture.md)
+and [raster/pixel contracts](raster-pixel-analysis.md) for current capabilities and unavailable adapters.
+
 Review date: 16 September 2026. The database and production environment were not modified. SQL
 `007_security_hardening.sql` is a review artifact only and has not been executed.
 

@@ -113,6 +113,16 @@ Nilai di `config/floodRiskModel.ts` adalah **TEMPORARY defaults**, bukan fakta i
 
 ## Environment variables
 
+### New map workspace integration
+
+`/spatial/viewer` records provisional AHP configuration in a validated MapRecipe and reuses the
+existing flood panel/API. Synthetic AOIs never set authoritative `activeBoundaryId` or trigger GEE.
+Copilot can assemble thematic layers but cannot manufacture flood scores. Missing WLC criteria
+in the original viewer now render neutrally instead of using feature-name-derived fallbacks;
+aggregate flood AOI scores are not assigned to unrelated polygons. See [raster/pixel contracts](raster-pixel-analysis.md)
+and [map builder](map-builder-architecture.md). Thresholds remain `TODO(P4I-GIS-VALIDATION)`.
+No database migrations or real-data imports were run for this workspace implementation.
+
 Jangan prefix credential dengan `NEXT_PUBLIC_` dan jangan commit nilainya.
 
 | Variable | Kegunaan |

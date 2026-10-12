@@ -1,0 +1,8 @@
+{
+  "catalog": "200 / unavailable",
+  "/api/gis/pixel": 503,
+  "/api/gis/copilot": 503,
+  "/api/ai-recommendation": 503,
+  "/api/gis/vector/demo-boundaries": 503,
+  "/api/gis/tiles/demo-rainfall/12/3227/2066": 503
+}

@@ -7,7 +7,7 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 const SAATY_SCALE = [9, 8, 7, 6, 5, 4, 3, 2, 1, 1/2, 1/3, 1/4, 1/5, 1/6, 1/7, 1/8, 1/9];
 const SAATY_LABELS = ['9:1', '8:1', '7:1', '6:1', '5:1', '4:1', '3:1', '2:1', '1:1', '1:2', '1:3', '1:4', '1:5', '1:6', '1:7', '1:8', '1:9'];
 
-export default function AhpSimulatorPanel() {
+export default function AhpSimulatorPanel({ standalone = false }: { standalone?: boolean } = {}) {
   const {
     activeProjectId,
     activeBoundaryId,
@@ -19,7 +19,7 @@ export default function AhpSimulatorPanel() {
     isCrValid,
   } = useMapStore();
 
-  if (!activeProjectId && !activeBoundaryId) return null;
+  if (!standalone && !activeProjectId && !activeBoundaryId) return null;
 
   const data = [
     { name: 'Bencana', value: derivedWeights.bencana, color: '#ef4444' },
@@ -95,6 +95,7 @@ export default function AhpSimulatorPanel() {
             type="range"
             min="0" max="16" step="1"
             value={getIndex(pairwiseValues.bencanaVsKesuburan)}
+            aria-label="Perbandingan Bencana dan Kesuburan"
             onChange={(e) => handleSliderChange('bencanaVsKesuburan', e.target.value)}
             className="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-slate-600"
           />
@@ -111,6 +112,7 @@ export default function AhpSimulatorPanel() {
             type="range"
             min="0" max="16" step="1"
             value={getIndex(pairwiseValues.bencanaVsKepadatan)}
+            aria-label="Perbandingan Bencana dan Kepadatan"
             onChange={(e) => handleSliderChange('bencanaVsKepadatan', e.target.value)}
             className="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-slate-600"
           />
@@ -127,6 +129,7 @@ export default function AhpSimulatorPanel() {
             type="range"
             min="0" max="16" step="1"
             value={getIndex(pairwiseValues.kesuburanVsKepadatan)}
+            aria-label="Perbandingan Kesuburan dan Kepadatan"
             onChange={(e) => handleSliderChange('kesuburanVsKepadatan', e.target.value)}
             className="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-slate-600"
           />
@@ -147,10 +150,10 @@ export default function AhpSimulatorPanel() {
           </span>
         </div>
 
-        {floodAnalysisResult && (
+        {!standalone && floodAnalysisResult && (
           <div className="rounded-lg border border-cyan-200 bg-cyan-50 p-2 text-[10px] text-cyan-800">
             Skor banjir aktif <strong>{floodAnalysisResult.score.toFixed(1)}</strong> digunakan sebagai
-            nilai kriteria bencana fallback pada WLC untuk AOI terpilih.
+            konteks analisis AOI terpilih. WLC hanya dihitung jika data seluruh kriteria tersedia.
           </div>
         )}
       </div>
