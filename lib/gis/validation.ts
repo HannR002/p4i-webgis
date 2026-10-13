@@ -6,6 +6,8 @@ import type {
   PixelSample,
 } from './contracts';
 import { DEMO_AOIS } from './catalog';
+import { parseAnalysisConfiguration } from './analysisConfiguration';
+import { calculatePreferences } from '../../utils/analysisPreferences';
 
 export class GisInputError extends Error {}
 export function record(v: unknown): v is Record<string, unknown> {
@@ -207,6 +209,8 @@ export function parseRecipe(
       !record(a) ||
       a.method !== 'ahp-wlc' ||
       a.provisional !== true ||
+      (a.weightMethod !== undefined &&
+        !['ahp', 'manual-wlc'].includes(String(a.weightMethod))) ||
       !finite(a.cr, 0, 100) ||
       !record(a.weights) ||
       Object.keys(a.weights).some(
@@ -225,6 +229,41 @@ export function parseRecipe(
       throw new GisInputError('Bobot harus berjumlah satu');
   }
   // Select known fields: URLs, code, embedded geometry and credentials cannot enter the recipe.
+  const analysisConfiguration =
+    v.analysisConfiguration === undefined
+      ? undefined
+      : parseAnalysisConfiguration(v.analysisConfiguration, catalog);
+  if (
+    analysisConfiguration &&
+    ['ahp-smce', 'wlc'].includes(analysisConfiguration.analysisType)
+  ) {
+    const expectedMethod =
+      analysisConfiguration.analysisType === 'wlc' ? 'manual-wlc' : 'ahp';
+    if (
+      !record(v.analysis) ||
+      !record(v.analysis.weights) ||
+      (v.analysis.weightMethod ?? 'ahp') !== expectedMethod ||
+      !['bencana', 'kesuburan', 'kepadatan'].every(
+        (key) =>
+          record(v.analysis) &&
+          record(v.analysis.weights) &&
+          Math.abs(
+            Number(v.analysis.weights[key]) -
+              analysisConfiguration.weights[key],
+          ) < 1e-9,
+      )
+    )
+      throw new GisInputError('Bobot resep tidak sesuai konfigurasi aktif');
+    const expectedCr =
+      analysisConfiguration.analysisType === 'ahp-smce'
+        ? Math.max(
+            0,
+            calculatePreferences(analysisConfiguration.parameters.pairwise).cr,
+          )
+        : 0;
+    if (Math.abs(Number(v.analysis.cr) - expectedCr) > 1e-9)
+      throw new GisInputError('CR resep tidak sesuai matriks konfigurasi');
+  }
   const checked = v as unknown as MapRecipe; // Every consumed field was checked above.
   return {
     schemaVersion: 1,
@@ -274,9 +313,13 @@ export function parseRecipe(
           },
           cr: checked.analysis.cr,
           provisional: true,
+          ...(checked.analysis.weightMethod
+            ? { weightMethod: checked.analysis.weightMethod }
+            : {}),
         }
       : null,
     provenance: checked.provenance,
+    ...(analysisConfiguration ? { analysisConfiguration } : {}),
   };
 }
 function validPeriod(v: unknown): boolean {

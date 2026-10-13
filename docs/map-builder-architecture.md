@@ -1,5 +1,9 @@
 # Declarative map workspace
 
+Phase 04 adds optional MapRecipe.analysisConfiguration and analysis.weightMethod within schema 1.
+The same validated [configuration model](gis-analysis-configuration.md) provides reproducible settings,
+local named storage, history and export; no second map or analysis engine is created.
+
 `lib/gis/contracts.ts` defines MapDocument/MapRecipe, MapViewport, MapLayerConfiguration and
 MapLegend. Schema version 1 contains identity, title, description, basemap, viewport, dataset
 identities, visibility/opacity/style, AOI identity, legend, optional provisional AHP metadata and

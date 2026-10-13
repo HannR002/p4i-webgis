@@ -25,8 +25,11 @@ export function assertRecipeAccess(
   catalog: readonly Dataset[],
   context: GisContext,
 ): void {
-  for (const l of recipe.layers) {
-    const d = catalog.find((d) => d.id === l.datasetId);
+  for (const id of new Set([
+    ...recipe.layers.map((l) => l.datasetId),
+    ...(recipe.analysisConfiguration?.inputDatasetIds ?? []),
+  ])) {
+    const d = catalog.find((d) => d.id === id);
     if (!d || !canAccessDataset(d, context))
       throw new GisPermissionError('Akses dataset ditolak');
   }

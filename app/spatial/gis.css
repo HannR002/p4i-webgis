@@ -1776,3 +1776,111 @@
 .gis-raster-result p {
   font-size: 12px;
 }
+
+.gis-analysis-configuration {
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 1px solid var(--gis-border);
+  border-radius: 12px;
+  background: var(--gis-bg, #f8fafc);
+  overflow-wrap: anywhere;
+}
+.gis-config-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+.gis-analysis-configuration label {
+  display: grid;
+  gap: 0.3rem;
+  margin: 0.65rem 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #334155;
+}
+.gis-analysis-configuration input,
+.gis-analysis-configuration select,
+.gis-analysis-configuration textarea {
+  min-width: 0;
+  width: 100%;
+  border: 1px solid #94a3b8;
+  border-radius: 6px;
+  padding: 0.5rem;
+  background: #fff;
+  color: #172f3e;
+  font: inherit;
+}
+.gis-analysis-configuration textarea {
+  resize: vertical;
+}
+.gis-analysis-configuration input[readonly] {
+  background: #e8eef2;
+}
+.gis-config-library,
+.gis-config-criteria {
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  margin: 0.75rem 0;
+  padding: 0.6rem;
+  min-width: 0;
+}
+.gis-config-criteria legend {
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0 0.25rem;
+}
+.gis-config-criterion + .gis-config-criterion {
+  border-top: 1px solid #cbd5e1;
+  padding-top: 0.6rem;
+}
+.gis-config-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+  margin: 0.7rem 0;
+}
+.gis-config-actions .gis-button {
+  min-height: 38px;
+  flex: 1 1 130px;
+}
+.gis-config-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+.gis-analysis-configuration details {
+  border-top: 1px solid #cbd5e1;
+  padding-top: 0.65rem;
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+}
+.gis-analysis-configuration summary {
+  cursor: pointer;
+  font-weight: 600;
+  padding: 0.3rem 0;
+}
+.gis-config-rules textarea {
+  font-family: ui-monospace, monospace;
+  font-size: 0.75rem;
+}
+.gis-config-result {
+  margin-top: 0.8rem;
+  border: 1px solid #94a3b8;
+  border-radius: 8px;
+  padding: 0.75rem;
+  background: white;
+}
+.gis-config-import input {
+  font-size: 0.75rem;
+}
+@media (max-width: 400px) {
+  .gis-config-row {
+    grid-template-columns: 1fr;
+  }
+  .gis-analysis-configuration {
+    padding: 0.7rem;
+  }
+}

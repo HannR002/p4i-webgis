@@ -1,4 +1,17 @@
-# Phase 03 interactive review
+# Phase 04 interactive review
+
+Use feature branch `feat/gis-analysis-config-phase04`, continuing Phase 03 head 8f7243c.
+See [configuration workflow and report](gis-analysis-configuration.md). Preserve local edits when
+fetching/switching branches. With Node 22, the existing lockfile and GIS_DEMO_MODE=true in local
+development settings, run npm run dev and open `/spatial/viewer?webmap=climate` in your local browser.
+
+Open Analisis → Konfigurasi analisis GIS. Save a named AHP matrix or WLC input scenario, load or
+duplicate it, and apply it to the existing recipe. Try zonal statistics with a fixture AOI and
+classification rules at a stored coordinate. Flood mappings can be configured/saved but the panel
+does not invoke GEE. Configurations persist only in this browser; export JSON to transfer settings.
+Existing recipe drafts and JSON/PDF/PNG exports remain. No credentials required for local fixtures.
+
+# Historical Phase 03 interactive review
 
 Use branch `feat/phase-03-raster-engine` for the current raster workspace, based on verified
 Phase 02 head 4d40a8e. See [Phase 03 report](phase-03-raster-report.md). Fetch the feature branch

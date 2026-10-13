@@ -15,7 +15,9 @@ export default function CopilotPanel() {
   const [prompt, setPrompt] = useState('');
   const [plan, setPlan] = useState<GisPlan | null>(null);
   const [base, setBase] = useState('');
-  const [messages, setMessages] = useState<{ role: string; text: string }[]>([]);
+  const [messages, setMessages] = useState<{ role: string; text: string }[]>(
+    [],
+  );
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   async function ask(value: string) {
@@ -33,7 +35,9 @@ export default function CopilotPanel() {
       const d: unknown = await r.json();
       if (!r.ok)
         throw new Error(
-          record(d) && typeof d.error === 'string' ? d.error : 'Planner tidak tersedia',
+          record(d) && typeof d.error === 'string'
+            ? d.error
+            : 'Planner tidak tersedia',
         );
       if (
         !record(d) ||
@@ -47,7 +51,9 @@ export default function CopilotPanel() {
       d.actions.forEach(parseMapAction);
       setPlan(d as unknown as GisPlan);
       setBase(JSON.stringify(recipe));
-      setMessages((m) => [...m, { role: 'Copilot demo', text: String(d.message) }].slice(-12));
+      setMessages((m) =>
+        [...m, { role: 'Copilot demo', text: String(d.message) }].slice(-12),
+      );
       setPrompt('');
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Permintaan gagal');
@@ -71,8 +77,14 @@ export default function CopilotPanel() {
       });
       const d: unknown = await r.json();
       if (!r.ok || !record(d))
-        throw new Error(record(d) && typeof d.error === 'string' ? d.error : 'Tindakan gagal');
-      replace(d.recipe, `Copilot: ${plan.actions.map((a) => a.tool).join(', ')}`, recipe);
+        throw new Error(
+          record(d) && typeof d.error === 'string' ? d.error : 'Tindakan gagal',
+        );
+      replace(
+        d.recipe,
+        `Copilot: ${plan.actions.map((a) => a.tool).join(', ')}`,
+        recipe,
+      );
       setPlan(null);
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Tindakan gagal');
@@ -88,22 +100,38 @@ export default function CopilotPanel() {
       </h2>
       <span className="gis-tag">PARSER DEMO DETERMINISTIK</span>
       <p className="gis-muted">
-        Instruksi menjadi MapRecipe. Provider AI eksternal belum aktif; tidak ada komputasi ilmiah
-        otomatis.
+        Instruksi menjadi MapRecipe. Provider AI eksternal belum aktif; tidak
+        ada komputasi ilmiah otomatis.
       </p>
       <div className="gis-context">
-        Konteks: {recipe.layers.length} layer · {recipe.aoi?.name ?? 'AOI belum dipilih'}
+        Konteks: {recipe.layers.length} layer ·{' '}
+        {recipe.aoi?.name ?? 'AOI belum dipilih'}
+        {recipe.analysisConfiguration && (
+          <p>
+            Konfigurasi: {recipe.analysisConfiguration.name} · v
+            {recipe.analysisConfiguration.version} · eksperimental. Tool
+            konfigurasi tersedia sebagai kontrak bertipe; planner bahasa alami
+            belum menggunakannya.
+          </p>
+        )}
       </div>
       <div className="gis-prompts">
         {prompts.map((p) => (
-          <button key={p} disabled={busy || mode !== 'demo'} onClick={() => ask(p)}>
+          <button
+            key={p}
+            disabled={busy || mode !== 'demo'}
+            onClick={() => ask(p)}
+          >
             {p}
           </button>
         ))}
       </div>
       <div className="gis-conversation" aria-live="polite">
         {messages.map((m, i) => (
-          <div key={i} className={`gis-message ${m.role === 'Anda' ? 'user' : ''}`}>
+          <div
+            key={i}
+            className={`gis-message ${m.role === 'Anda' ? 'user' : ''}`}
+          >
             <small>{m.role}</small>
             <p>{m.text}</p>
           </div>
@@ -159,7 +187,10 @@ export default function CopilotPanel() {
           placeholder="Tambahkan curah hujan dan batas kecamatan…"
           rows={3}
         />
-        <button className="gis-button" disabled={busy || !prompt.trim() || mode !== 'demo'}>
+        <button
+          className="gis-button"
+          disabled={busy || !prompt.trim() || mode !== 'demo'}
+        >
           {busy ? 'Menyiapkan…' : 'Kirim instruksi'}
           <Send size={15} />
         </button>

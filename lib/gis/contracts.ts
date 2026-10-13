@@ -1,4 +1,5 @@
 import type { AppRole } from '../authRoles';
+import type { GISAnalysisConfiguration } from './analysisContracts';
 
 export type GisRole = AppRole | 'guest';
 export type Bounds = [west: number, south: number, east: number, north: number];
@@ -131,7 +132,9 @@ export interface MapRecipe {
     weights: { bencana: number; kesuburan: number; kepadatan: number };
     cr: number;
     provisional: true;
+    weightMethod?: 'ahp' | 'manual-wlc';
   } | null;
+  analysisConfiguration?: GISAnalysisConfiguration;
   provenance: 'human' | 'ai';
 }
 export type MapDocument = MapRecipe;

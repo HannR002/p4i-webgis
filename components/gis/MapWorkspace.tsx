@@ -28,6 +28,8 @@ import type { MapRecipe, PixelSample } from '../../lib/gis/contracts';
 import { useGisCatalog } from './useGisCatalog';
 import PixelInspector from './PixelInspector';
 import RasterToolsPanel from './RasterToolsPanel';
+import AnalysisConfigurationPanel from './AnalysisConfigurationPanel';
+import { defaultConfiguration } from '../../lib/gis/analysisConfiguration';
 import CopilotPanel from './CopilotPanel';
 import WorkspaceTabs, { type WorkspacePanel } from './WorkspaceTabs';
 import AhpSimulatorPanel from '../AhpSimulatorPanel';
@@ -880,8 +882,8 @@ export default function MapWorkspace({
                   <section>
                     <h2>Analisis spasial</h2>
                     <div className="gis-warning">
-                      Ambang, dataset, dan bobot ilmiah masih memerlukan
-                      validasi. AOI sintetik tidak memicu analisis GEE.
+                      Pengaturan dan mapping saat ini eksperimental. Validasi
+                      metodologi ilmiah ditunda; AOI sintetik tidak memicu GEE.
                     </div>
                     <div className="gis-context">
                       <strong>Area kajian:</strong>{' '}
@@ -891,32 +893,61 @@ export default function MapWorkspace({
                       {s.recipe.layers.filter((l) => l.visible).length} terlihat
                       ·{' '}
                       {s.recipe.analysis
-                        ? 'Bobot AHP tersimpan'
+                        ? s.recipe.analysis.weightMethod === 'manual-wlc'
+                          ? 'Bobot WLC tersimpan'
+                          : 'Bobot AHP tersimpan'
                         : 'Belum ada bobot tersimpan'}
                     </div>
+                    <AnalysisConfigurationPanel />
                     <RasterToolsPanel />
                     <AhpSimulatorPanel standalone />
                     <button
                       className="gis-button secondary"
-                      disabled={!mapState.isCrValid}
                       onClick={() =>
-                        local(() =>
+                        local(() => {
+                          const initial = defaultConfiguration(
+                            mapState.weightMethod === 'manual-wlc'
+                              ? 'wlc'
+                              : 'ahp-smce',
+                            s.catalog,
+                            s.recipe,
+                          );
+                          const configuration =
+                            initial.analysisType === 'ahp-smce'
+                              ? {
+                                  ...initial,
+                                  weights: { ...mapState.derivedWeights },
+                                  parameters: {
+                                    pairwise: { ...mapState.pairwiseValues },
+                                  },
+                                }
+                              : {
+                                  ...initial,
+                                  weights: { ...mapState.derivedWeights },
+                                };
                           s.replace(
                             {
                               ...s.recipe,
+                              analysisConfiguration: configuration,
                               analysis: {
                                 method: 'ahp-wlc',
                                 weights: mapState.derivedWeights,
-                                cr: mapState.crValue,
+                                cr:
+                                  mapState.weightMethod === 'manual-wlc'
+                                    ? 0
+                                    : Math.max(0, mapState.crValue),
                                 provisional: true,
+                                weightMethod: mapState.weightMethod,
                               },
                             },
                             'Simpan bobot AHP (provisional)',
-                          ),
-                        )
+                          );
+                        })
                       }
                     >
-                      Simpan bobot AHP ke resep
+                      {mapState.weightMethod === 'manual-wlc'
+                        ? 'Simpan bobot WLC ke resep'
+                        : 'Simpan bobot AHP ke resep'}
                     </button>
                     {s.mode !== 'demo' && (
                       <FloodAnalysisPanel
@@ -932,9 +963,9 @@ export default function MapWorkspace({
                       Buka viewer proyek & analisis lama →
                     </Link>
                     <div className="gis-unavailable">
-                      Zonal statistics, clip, normalisasi, weighted overlay
-                      raster, dan buffer menunggu adapter komputasi. Tidak ada
-                      kalkulator kode bebas.
+                      Raster lokal hanya DEMO: statistik native, operasi titik
+                      dan descriptor clip/mask. Buffer, vector overlay,
+                      harmonisasi dan raster nyata menunggu adapter.
                     </div>
                   </section>
                 )}

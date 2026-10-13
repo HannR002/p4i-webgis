@@ -1,6 +1,25 @@
 # P4I Spatial Analytics implementation report
 
-## Current status — Phase 03, 13 October 2026
+## Current status — Phase 04, 13 October 2026
+
+Lightweight GIS analysis configuration management now runs in the existing workspace. One validated
+model, local repository and named editor support revisions, load/save/duplicate/delete, source
+metadata, AHP/WLC preferences/scenarios and configured local raster operations. Flood configuration
+records four experimental criteria/mappings; its real-data execution adapter remains pending.
+Methodology validation, scientific grading/ranking and expert approval are explicitly OUT OF SCOPE
+and are not execution blockers. Existing GIS engines/features remain available.
+
+Baseline Phase 01–03 at 8f7243c was clean; Node 22 lint/typecheck, 123 tests/22 files and build passed.
+Phase 04 lint/typecheck/build and **154 tests/25 files pass**, with 31 new tests. Chromium configuration
+flows, true JSON/PDF downloads, eight desktop/mobile Axe audits and prior Phase 02/03 regressions pass.
+No new GEE calls, migrations, deployment, credentials or billable computation. Dependency manifests
+and lockfile are unchanged; no speculative database tables or scientific results were introduced.
+
+Branch feat/gis-analysis-config-phase04 continues verified Phase 03; remote main still lacks parent
+phases. See [Phase 04 report, workflow, evidence and limitations](gis-analysis-configuration.md) and
+[prepared PR](phase-04-pr.md). No automatic merge.
+
+## Previous status — Phase 03, 13 October 2026
 
 Typed async raster providers, native coordinate/encoding semantics, selected-band Pixel Inspector,
 bounded local GIS processing and recipe/legend/PDF integration are implemented. All local data

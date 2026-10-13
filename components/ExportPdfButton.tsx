@@ -128,9 +128,11 @@ export default function ExportPdfButton({
       pdf.setFontSize(12);
       pdf.setFont('helvetica', 'bold');
       pdf.text(
-        recipe && !recipe.analysis
-          ? 'Bobot preferensi AHP (belum diterapkan):'
-          : 'Bobot SMCE / AHP:',
+        recipe?.analysis?.weightMethod === 'manual-wlc'
+          ? 'Bobot langsung WLC (eksperimental):'
+          : recipe && !recipe.analysis
+            ? 'Bobot preferensi AHP (belum diterapkan):'
+            : 'Bobot SMCE / AHP:',
         14,
         44,
       );
@@ -207,7 +209,18 @@ export default function ExportPdfButton({
           `Configuration: ${recipe.provenance === 'ai' ? 'AI-generated map configuration' : 'Human map configuration'}`,
           `Description: ${recipe.description}`,
           `Viewport: ${recipe.viewport.center.join(', ')} / zoom ${recipe.viewport.zoom}`,
-          `AHP: ${recipe.analysis ? JSON.stringify(recipe.analysis) : 'No analysis executed'}`,
+          `Weights: ${recipe.analysis ? JSON.stringify(recipe.analysis) : 'No analysis executed'}`,
+          ...(recipe.analysisConfiguration
+            ? [
+                `Analysis configuration: ${recipe.analysisConfiguration.name} | ${recipe.analysisConfiguration.analysisType} | v${recipe.analysisConfiguration.version} | EXPERIMENTAL`,
+                `Parameters: ${JSON.stringify(recipe.analysisConfiguration.parameters)}`,
+                `Classification rules: ${JSON.stringify(recipe.analysisConfiguration.classificationRules)}`,
+                `Configuration inputs: ${recipe.analysisConfiguration.inputDatasetIds.join(', ')}`,
+                `Configuration period: ${JSON.stringify(recipe.analysisConfiguration.analysisPeriod)} | native resolution: ${JSON.stringify(recipe.analysisConfiguration.spatialResolution)}`,
+                `Configuration notes: ${recipe.analysisConfiguration.notes}`,
+                'Saved configuration records settings; it does not establish a real scientific result.',
+              ]
+            : []),
           ...recipe.layers.flatMap((l) => {
             const d = datasets.find((d) => d.id === l.datasetId);
             return [
