@@ -76,7 +76,9 @@ the assumed approved/merged Phase 02. This branch continues the verified remote 
 PR base is `feat/phase-02-geoportal-ux`, isolating Phase 03 for review. Reconcile parent phases
 before a later main merge; do not treat this as evidence they were merged.
 
-The prepared [PR description](phase-03-pr.md) records publishing/PR availability. No force push,
+Implementation `1d7e395` was pushed successfully. Actual draft PR creation failed with
+`Post "https://api.github.com/graphql": Forbidden`; no PR was opened. The prepared
+[PR description](phase-03-pr.md) links the stacked diff and PR creation page. No force push,
 automatic merge, deployment, database migration, paid service or production data changes.
 
 ## Known limits

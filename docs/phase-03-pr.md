@@ -28,4 +28,10 @@ dependencies, migration, credentials, billable computations, deployment or autom
 Stack on `feat/phase-02-geoportal-ux` (4d40a8e), because remote main still lacks Phase 01/02.
 Review Phase 03 separately, then reconcile parents before any main merge.
 
-Publishing and actual PR creation outcome will be recorded after the GitHub attempt.
+Implementation commit `1d7e395` was pushed to origin/feat/phase-03-raster-engine.
+Actual draft PR creation with base feat/phase-02-geoportal-ux failed:
+`Post "https://api.github.com/graphql": Forbidden`. No PR was opened. The Git push succeeded;
+the GitHub API request is blocked in this environment. Prepared content and evidence are published.
+
+[Review the stacked diff and create a PR](https://github.com/HannR002/p4i-webgis/compare/feat%2Fphase-02-geoportal-ux...feat%2Fphase-03-raster-engine?expand=1).
+Keep feat/phase-02-geoportal-ux as the base while its parent changes remain absent from main.
