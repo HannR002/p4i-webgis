@@ -1,4 +1,20 @@
-# Phase 02 interactive review
+# Phase 03 interactive review
+
+Use branch `feat/phase-03-raster-engine` for the current raster workspace, based on verified
+Phase 02 head 4d40a8e. See [Phase 03 report](phase-03-raster-report.md). Fetch the feature branch
+into your local checkout without overwriting your existing edits. With Node 22, run npm ci,
+enable GIS_DEMO_MODE=true in ignored local development settings and run npm run dev.
+
+Open `/spatial/viewer?webmap=climate`, select the daily_mean band, then Pixel. Try center/manual
+coordinates, masked cells and outside coverage. Select a fixture AOI, then Analisis for native
+statistics/area, arithmetic and clip/mask descriptors. Save/load/undo/export preserve the band.
+Use the no-basemap option for independent demo review. No Supabase/GEE secrets are required for
+these fixtures; production refuses them. Real rasters and downloadable clipped files remain pending.
+
+The cloud onboarding UI has no public interactive localhost preview. Screenshots in GitHub's
+docs/evidence/phase-03 can be viewed or saved; workspace links are not guaranteed chat downloads.
+
+# Historical Phase 02 interactive review
 
 Use branch `feat/phase-02-geoportal-ux` for the current UI, based on Phase 01 local commit `35f9848`.
 See [Phase 02 route inventory and evidence](phase-02-geoportal-report.md) and

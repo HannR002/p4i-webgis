@@ -1,4 +1,10 @@
-import type { Dataset, MapAction, MapRecipe, RasterMetadata, PixelSample } from './contracts';
+import type {
+  Dataset,
+  MapAction,
+  MapRecipe,
+  RasterMetadata,
+  PixelSample,
+} from './contracts';
 import { DEMO_AOIS } from './catalog';
 
 export class GisInputError extends Error {}
@@ -15,7 +21,12 @@ export function color(v: unknown): v is string {
   return typeof v === 'string' && /^#[0-9a-f]{6}$/i.test(v);
 }
 export function coordinates(v: unknown): v is [number, number] {
-  return Array.isArray(v) && v.length === 2 && finite(v[0], -85, 85) && finite(v[1], -180, 180);
+  return (
+    Array.isArray(v) &&
+    v.length === 2 &&
+    finite(v[0], -85, 85) &&
+    finite(v[1], -180, 180)
+  );
 }
 function vectorStyle(v: unknown): boolean {
   return (
@@ -29,7 +40,10 @@ function vectorStyle(v: unknown): boolean {
 function rasterStyle(v: unknown): boolean {
   return (
     record(v) &&
-    Object.keys(v).every((k) => ['palette', 'min', 'max'].includes(k)) &&
+    Object.keys(v).every((k) =>
+      ['palette', 'min', 'max', 'band'].includes(k),
+    ) &&
+    (v.band === undefined || text(v.band, 100)) &&
     Array.isArray(v.palette) &&
     v.palette.length >= 2 &&
     v.palette.length <= 12 &&
@@ -71,7 +85,10 @@ export function parseMapAction(v: unknown): MapAction {
       keys = ['layerId', 'visible'];
       break;
     case 'reorderLayer':
-      valid = text(v.layerId, 100) && finite(v.index, 0, 30) && Number.isInteger(v.index);
+      valid =
+        text(v.layerId, 100) &&
+        finite(v.index, 0, 30) &&
+        Number.isInteger(v.index);
       keys = ['layerId', 'index'];
       break;
     case 'setLayerOpacity':
@@ -98,7 +115,10 @@ export function parseMapAction(v: unknown): MapAction {
     throw new GisInputError('Tindakan atau parameter GIS tidak diizinkan');
   return structuredClone(v) as MapAction;
 }
-export function parseRecipe(v: unknown, catalog: readonly Dataset[]): MapRecipe {
+export function parseRecipe(
+  v: unknown,
+  catalog: readonly Dataset[],
+): MapRecipe {
   if (
     !record(v) ||
     v.schemaVersion !== 1 ||
@@ -135,6 +155,11 @@ export function parseRecipe(v: unknown, catalog: readonly Dataset[]): MapRecipe 
       !(l.type === 'vector' ? vectorStyle(l.style) : rasterStyle(l.style))
     )
       throw new GisInputError('Dataset atau style tidak dikenal');
+    if (l.type === 'raster' && record(l.style)) {
+      const band = l.style.band;
+      if (band !== undefined && !d.raster?.bands.some((b) => b.id === band))
+        throw new GisInputError('Band raster tidak dikenal');
+    }
     ids.add(l.id);
     datasetIds.add(l.datasetId);
   }
@@ -149,9 +174,17 @@ export function parseRecipe(v: unknown, catalog: readonly Dataset[]): MapRecipe 
   if (record(v.aoi)) {
     const aoi = v.aoi;
     if (
-      !DEMO_AOIS.some((known) => known.id === aoi.id && known.name === aoi.name && known.kind === aoi.kind) ||
+      !DEMO_AOIS.some(
+        (known) =>
+          known.id === aoi.id &&
+          known.name === aoi.name &&
+          known.kind === aoi.kind,
+      ) ||
       !catalog.some((d) => d.id === 'demo-boundaries' && d.status === 'demo')
-    ) throw new GisInputError('Identitas AOI belum tersedia atau tidak sesuai katalog');
+    )
+      throw new GisInputError(
+        'Identitas AOI belum tersedia atau tidak sesuai katalog',
+      );
   }
   if (
     !Array.isArray(v.legend) ||
@@ -176,14 +209,20 @@ export function parseRecipe(v: unknown, catalog: readonly Dataset[]): MapRecipe 
       a.provisional !== true ||
       !finite(a.cr, 0, 100) ||
       !record(a.weights) ||
-      Object.keys(a.weights).some((k) => !['bencana', 'kesuburan', 'kepadatan'].includes(k)) ||
+      Object.keys(a.weights).some(
+        (k) => !['bencana', 'kesuburan', 'kepadatan'].includes(k),
+      ) ||
       !['bencana', 'kesuburan', 'kepadatan'].every((k) =>
         finite(a.weights && record(a.weights) ? a.weights[k] : null, 0, 1),
       )
     )
       throw new GisInputError('Analisis tidak valid');
-    const sum = Object.values(a.weights).reduce<number>((s, w) => s + Number(w), 0);
-    if (Math.abs(sum - 1) > 0.01) throw new GisInputError('Bobot harus berjumlah satu');
+    const sum = Object.values(a.weights).reduce<number>(
+      (s, w) => s + Number(w),
+      0,
+    );
+    if (Math.abs(sum - 1) > 0.01)
+      throw new GisInputError('Bobot harus berjumlah satu');
   }
   // Select known fields: URLs, code, embedded geometry and credentials cannot enter the recipe.
   const checked = v as unknown as MapRecipe; // Every consumed field was checked above.
@@ -193,7 +232,10 @@ export function parseRecipe(v: unknown, catalog: readonly Dataset[]): MapRecipe 
     title: checked.title,
     description: checked.description,
     basemap: checked.basemap,
-    viewport: { center: [...checked.viewport.center], zoom: checked.viewport.zoom },
+    viewport: {
+      center: [...checked.viewport.center],
+      zoom: checked.viewport.zoom,
+    },
     layers: checked.layers.map((l) => ({
       id: l.id,
       datasetId: l.datasetId,
@@ -202,8 +244,17 @@ export function parseRecipe(v: unknown, catalog: readonly Dataset[]): MapRecipe 
       opacity: l.opacity,
       style:
         'palette' in l.style
-          ? { palette: [...l.style.palette], min: l.style.min, max: l.style.max }
-          : { color: l.style.color, fillColor: l.style.fillColor, weight: l.style.weight },
+          ? {
+              palette: [...l.style.palette],
+              min: l.style.min,
+              max: l.style.max,
+              ...(l.style.band ? { band: l.style.band } : {}),
+            }
+          : {
+              color: l.style.color,
+              fillColor: l.style.fillColor,
+              weight: l.style.weight,
+            },
     })),
     aoi: checked.aoi
       ? { id: checked.aoi.id, name: checked.aoi.name, kind: checked.aoi.kind }
@@ -228,46 +279,184 @@ export function parseRecipe(v: unknown, catalog: readonly Dataset[]): MapRecipe 
     provenance: checked.provenance,
   };
 }
+function validPeriod(v: unknown): boolean {
+  if (!record(v) || typeof v.start !== 'string' || typeof v.end !== 'string')
+    return false;
+  const valid = (date: string) =>
+    /^\d{4}-\d{2}-\d{2}$/.test(date) &&
+    Number.isFinite(Date.parse(date)) &&
+    new Date(date).toISOString().slice(0, 10) === date;
+  return valid(v.start) && valid(v.end) && v.start <= v.end;
+}
 export function validateRasterMetadata(v: RasterMetadata): void {
   if (
+    !record(v) ||
     !text(v.crs) ||
-    !finite(v.resolution.x, 0.00000001, 1e6) ||
-    !finite(v.resolution.y, 0.00000001, 1e6) ||
+    !text(v.version) ||
+    !text(v.provenance, 2000) ||
+    !finite(v.scale, 1e-10, 1e9) ||
+    !record(v.resolution) ||
+    !finite(v.resolution.x, 1e-10, 1e6) ||
+    !finite(v.resolution.y, 1e-10, 1e6) ||
     !['degree', 'metre'].includes(v.resolution.unit) ||
+    (v.crs === 'EPSG:4326' && v.resolution.unit !== 'degree') ||
+    (v.crs === 'EPSG:3857' && v.resolution.unit !== 'metre') ||
+    !record(v.grid) ||
+    !Array.isArray(v.grid.origin) ||
+    v.grid.origin.length !== 2 ||
+    !v.grid.origin.every((n) => finite(n, -1e9, 1e9)) ||
+    !Array.isArray(v.grid.pixelSize) ||
+    v.grid.pixelSize.length !== 2 ||
+    !finite(v.grid.pixelSize[0], 1e-10, 1e6) ||
+    !finite(v.grid.pixelSize[1], -1e6, -1e-10) ||
+    !Number.isInteger(v.grid.width) ||
+    !finite(v.grid.width, 1, 1e6) ||
+    !Number.isInteger(v.grid.height) ||
+    !finite(v.grid.height, 1, 1e6) ||
+    v.grid.pixelReference !== 'area' ||
+    Math.abs(v.grid.pixelSize[0] - v.resolution.x) > v.resolution.x * 1e-12 ||
+    Math.abs(-v.grid.pixelSize[1] - v.resolution.y) > v.resolution.y * 1e-12 ||
+    !Array.isArray(v.bands) ||
     !v.bands.length ||
+    v.bands.length > 32 ||
     v.bands.some(
-      (b) => !text(b.id) || !text(b.unit) || !['continuous', 'categorical'].includes(b.kind),
+      (b) =>
+        !record(b) ||
+        !text(b.id, 100) ||
+        !text(b.unit) ||
+        !['continuous', 'categorical'].includes(b.kind) ||
+        !finite(b.scale, 1e-12, 1e9) ||
+        !finite(b.offset, -1e9, 1e9) ||
+        (b.kind === 'categorical' && (b.scale !== 1 || b.offset !== 0)) ||
+        (b.range !== undefined &&
+          (!Array.isArray(b.range) ||
+            b.range.length !== 2 ||
+            !b.range.every((n) => finite(n, -1e9, 1e9)) ||
+            b.range[0] >= b.range[1])),
     ) ||
-    (v.bands.some((b) => b.kind === 'categorical') && v.resampling !== 'nearest') ||
-    !/^\d{4}-\d{2}-\d{2}$/.test(v.period.start) ||
-    !/^\d{4}-\d{2}-\d{2}$/.test(v.period.end) ||
-    v.period.start > v.period.end
+    new Set(v.bands.map((b) => b.id)).size !== v.bands.length ||
+    !['nearest', 'bilinear'].includes(v.resampling) ||
+    (v.bands.some((b) => b.kind === 'categorical') &&
+      v.resampling !== 'nearest') ||
+    !record(v.noData) ||
+    !text(v.noData.meaning) ||
+    !(v.noData.value === null || finite(v.noData.value, -1e9, 1e9)) ||
+    !validPeriod(v.period) ||
+    (v.range !== undefined &&
+      (!Array.isArray(v.range) ||
+        v.range.length !== 2 ||
+        !v.range.every((n) => finite(n, -1e9, 1e9)) ||
+        v.range[0] >= v.range[1])) ||
+    (v.classes !== undefined &&
+      (!Array.isArray(v.classes) ||
+        !v.classes.length ||
+        v.classes.length > 20 ||
+        v.classes.some(
+          (c) =>
+            !record(c) ||
+            !finite(c.value, -1e9, 1e9) ||
+            !text(c.label) ||
+            !color(c.color),
+        ) ||
+        new Set(v.classes.map((c) => c.value)).size !== v.classes.length)) ||
+    (v.bands.some((b) => b.kind === 'categorical') && !v.classes?.length)
   )
     throw new GisInputError('Metadata raster tidak valid');
 }
 export function validatePixelSample(s: PixelSample): void {
   if (
     !record(s) ||
-    !coordinates([s.latitude, s.longitude]) ||
+    !finite(s.latitude, -90, 90) ||
+    !finite(s.longitude, -180, 180) ||
     !text(s.datasetId) ||
     typeof s.noData !== 'boolean' ||
     typeof s.demo !== 'boolean' ||
-    (s.noData ? s.value !== null : !finite(s.value, -1e9, 1e9)) ||
+    (s.noData
+      ? s.value !== null ||
+        s.rawValue !== null ||
+        !['outside-coverage', 'masked', 'invalid-neighborhood'].includes(
+          String(s.noDataReason),
+        )
+      : !finite(s.value, -1e18, 1e18) ||
+        !finite(s.rawValue, -1e18, 1e18) ||
+        s.noDataReason !== null) ||
     !text(s.version) ||
     !text(s.source) ||
     !text(s.unit) ||
     !text(s.band) ||
     !text(s.crs) ||
     !text(s.provenance, 2000) ||
+    !['continuous', 'categorical'].includes(s.bandKind) ||
+    !record(s.encoding) ||
+    !finite(s.encoding.scale, 1e-12, 1e9) ||
+    !finite(s.encoding.offset, -1e9, 1e9) ||
+    !record(s.requestedCoordinate) ||
+    !finite(s.requestedCoordinate.x, -1e9, 1e9) ||
+    !finite(s.requestedCoordinate.y, -1e9, 1e9) ||
+    !['EPSG:4326', 'EPSG:3857'].includes(s.requestedCoordinate.crs) ||
+    (s.cell !== null &&
+      (!record(s.cell) ||
+        !Number.isInteger(s.cell.column) ||
+        !Number.isInteger(s.cell.row) ||
+        !finite(s.cell.column, 0, 1e6) ||
+        !finite(s.cell.row, 0, 1e6) ||
+        !Array.isArray(s.cell.center) ||
+        s.cell.center.length !== 2 ||
+        !s.cell.center.every((n) => finite(n, -1e9, 1e9)))) ||
     !record(s.resolution) ||
-    !finite(s.resolution.x, 0.00000001, 1e6) ||
-    !finite(s.resolution.y, 0.00000001, 1e6) ||
+    !finite(s.resolution.x, 1e-10, 1e6) ||
+    !finite(s.resolution.y, 1e-10, 1e6) ||
     !['metre', 'degree'].includes(s.resolution.unit) ||
-    !record(s.period) ||
-    !text(s.period.start) ||
-    !text(s.period.end) ||
+    !validPeriod(s.period) ||
     !['nearest', 'bilinear'].includes(s.resampling) ||
-    !(s.classification === null || text(s.classification))
+    !(s.classification === null || text(s.classification)) ||
+    (s.bandKind === 'categorical' &&
+      (s.resampling !== 'nearest' ||
+        s.encoding.scale !== 1 ||
+        s.encoding.offset !== 0))
   )
     throw new GisInputError('Sampel piksel tidak valid');
+}
+
+export function parsePixelSample(value: unknown): PixelSample {
+  validatePixelSample(value as PixelSample);
+  const s = value as PixelSample;
+  return {
+    datasetId: s.datasetId,
+    latitude: s.latitude,
+    longitude: s.longitude,
+    value: s.value,
+    rawValue: s.rawValue,
+    bandKind: s.bandKind,
+    encoding: { scale: s.encoding.scale, offset: s.encoding.offset },
+    requestedCoordinate: {
+      x: s.requestedCoordinate.x,
+      y: s.requestedCoordinate.y,
+      crs: s.requestedCoordinate.crs,
+    },
+    cell: s.cell
+      ? {
+          column: s.cell.column,
+          row: s.cell.row,
+          center: [s.cell.center[0], s.cell.center[1]],
+        }
+      : null,
+    noDataReason: s.noDataReason,
+    unit: s.unit,
+    classification: s.classification,
+    source: s.source,
+    version: s.version,
+    period: { start: s.period.start, end: s.period.end },
+    resolution: {
+      x: s.resolution.x,
+      y: s.resolution.y,
+      unit: s.resolution.unit,
+    },
+    crs: s.crs,
+    band: s.band,
+    noData: s.noData,
+    resampling: s.resampling,
+    provenance: s.provenance,
+    demo: s.demo,
+  };
 }

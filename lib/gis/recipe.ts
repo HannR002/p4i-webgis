@@ -1,5 +1,12 @@
-import type { Dataset, GisContext, MapAction, MapRecipe, MapLegend } from './contracts';
+import type {
+  Dataset,
+  GisContext,
+  MapAction,
+  MapRecipe,
+  MapLegend,
+} from './contracts';
 import { DEMO_AOIS, emptyRecipe } from './catalog';
+import { bandRange, getBand } from './raster';
 import { GisInputError, parseMapAction, parseRecipe } from './validation';
 
 export class GisPermissionError extends Error {}
@@ -20,10 +27,14 @@ export function assertRecipeAccess(
 ): void {
   for (const l of recipe.layers) {
     const d = catalog.find((d) => d.id === l.datasetId);
-    if (!d || !canAccessDataset(d, context)) throw new GisPermissionError('Akses dataset ditolak');
+    if (!d || !canAccessDataset(d, context))
+      throw new GisPermissionError('Akses dataset ditolak');
   }
 }
-export function legendFor(recipe: MapRecipe, catalog: readonly Dataset[]): MapLegend[] {
+export function legendFor(
+  recipe: MapRecipe,
+  catalog: readonly Dataset[],
+): MapLegend[] {
   return recipe.layers
     .filter((l) => l.visible)
     .map((l) => {
@@ -33,13 +44,21 @@ export function legendFor(recipe: MapRecipe, catalog: readonly Dataset[]): MapLe
         l.type === 'raster' && 'palette' in l.style
           ? (d.raster?.classes?.map((c, i) => ({
               label: c.label,
-              color: 'palette' in l.style ? l.style.palette[i % l.style.palette.length] : c.color,
+              color:
+                'palette' in l.style
+                  ? l.style.palette[i % l.style.palette.length]
+                  : c.color,
             })) ??
             l.style.palette.map((color, i, a) => ({
               color,
-              label: `${(l.style && 'min' in l.style ? l.style.min + ((l.style.max - l.style.min) * i) / (a.length - 1) : 0).toFixed(1)} ${d.raster?.bands[0].unit ?? ''}`,
+              label: `${(l.style && 'min' in l.style ? l.style.min + ((l.style.max - l.style.min) * i) / (a.length - 1) : 0).toFixed(1)} ${d.raster ? getBand(d.raster, 'band' in l.style ? l.style.band : undefined).unit : ''}`,
             })))
-          : [{ label: d.title, color: 'color' in l.style ? l.style.color : '#0f766e' }];
+          : [
+              {
+                label: d.title,
+                color: 'color' in l.style ? l.style.color : '#0f766e',
+              },
+            ];
       return { datasetId: d.id, title: d.title, entries };
     });
 }
@@ -52,15 +71,18 @@ export function applyMapAction(
   let recipe = parseRecipe(input, catalog);
   assertRecipeAccess(recipe, catalog, context);
   const action = parseMapAction(rawAction);
-  if (action.tool === 'createMap') recipe = { ...emptyRecipe(), title: action.title };
+  if (action.tool === 'createMap')
+    recipe = { ...emptyRecipe(), title: action.title };
   else if (action.tool === 'setMapTitle') recipe.title = action.title;
   else if (action.tool === 'setBasemap') recipe.basemap = action.basemap;
   else if (action.tool === 'setViewport')
     recipe.viewport = { center: action.center, zoom: action.zoom };
   else if (action.tool === 'addLayer') {
     const d = catalog.find((d) => d.id === action.datasetId);
-    if (!d || d.status === 'unavailable') throw new GisInputError('Dataset belum tersedia');
-    if (!canAccessDataset(d, context)) throw new GisPermissionError('Akses dataset ditolak');
+    if (!d || d.status === 'unavailable')
+      throw new GisInputError('Dataset belum tersedia');
+    if (!canAccessDataset(d, context))
+      throw new GisPermissionError('Akses dataset ditolak');
     if (!recipe.layers.some((l) => l.datasetId === d.id))
       recipe.layers.push({
         id: `layer-${d.id}`,
@@ -77,11 +99,13 @@ export function applyMapAction(
                   '#3b82f6',
                   '#1e3a8a',
                 ],
-                min: d.raster?.range?.[0] ?? 0,
-                max: d.raster?.range?.[1] ?? 100,
+                band: d.raster?.bands[0].id,
+                min: d.raster ? bandRange(d.raster)[0] : 0,
+                max: d.raster ? bandRange(d.raster)[1] : 100,
               },
       });
-  } else if (action.tool === 'generateLegend') recipe.legend = legendFor(recipe, catalog);
+  } else if (action.tool === 'generateLegend')
+    recipe.legend = legendFor(recipe, catalog);
   else if (action.tool === 'selectAOI') {
     // Fixture IDs are identities, never browser-supplied geometry.
     const aoi = DEMO_AOIS.find((known) => known.id === action.aoiId);
@@ -91,7 +115,10 @@ export function applyMapAction(
     )
       throw new GisInputError('AOI tidak dikenal atau belum tersedia');
     recipe.aoi = { ...aoi };
-    recipe.viewport = { center: [-1.6, action.aoiId.endsWith('west') ? 103.57 : 103.67], zoom: 13 };
+    recipe.viewport = {
+      center: [-1.6, action.aoiId.endsWith('west') ? 103.57 : 103.67],
+      zoom: 13,
+    };
   } else {
     const index = recipe.layers.findIndex((l) => l.id === action.layerId);
     if (index < 0) throw new GisInputError('Layer tidak dikenal');
@@ -108,15 +135,21 @@ export function applyMapAction(
         break;
       case 'reorderLayer': {
         const [l] = recipe.layers.splice(index, 1);
-        recipe.layers.splice(Math.min(action.index, recipe.layers.length), 0, l);
+        recipe.layers.splice(
+          Math.min(action.index, recipe.layers.length),
+          0,
+          l,
+        );
         break;
       }
       case 'styleVectorLayer':
-        if (layer.type !== 'vector') throw new GisInputError('Layer bukan vektor');
+        if (layer.type !== 'vector')
+          throw new GisInputError('Layer bukan vektor');
         layer.style = action.style;
         break;
       case 'styleRasterLayer':
-        if (layer.type !== 'raster') throw new GisInputError('Layer bukan raster');
+        if (layer.type !== 'raster')
+          throw new GisInputError('Layer bukan raster');
         layer.style = action.style;
         break;
       case 'zoomToLayer': {
@@ -139,5 +172,8 @@ export function executeMapPlan(
 ): MapRecipe {
   if (actions.length > 30) throw new GisInputError('Terlalu banyak tindakan');
   // Atomic: a failed action cannot leave half a plan applied.
-  return actions.reduce((r, a) => applyMapAction(r, a, catalog, context), recipe);
+  return actions.reduce(
+    (r, a) => applyMapAction(r, a, catalog, context),
+    recipe,
+  );
 }

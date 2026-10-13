@@ -1,11 +1,11 @@
 import type { FeatureCollection, MultiPolygon } from 'geojson';
 import { DATASET_DEFINITIONS } from '../../../gis/catalog';
-import type { PixelSample } from '../../../gis/contracts';
+import type { RasterDataset, RasterMetadata } from '../../../gis/contracts';
+import { sampleGrid } from '../../../gis/raster';
 import {
-  coordinates,
+  finite,
   GisInputError,
   validatePixelSample,
-  validateRasterMetadata,
 } from '../../../gis/validation';
 import type { GisDataProvider } from '../contracts';
 
@@ -15,7 +15,11 @@ export const DEMO_AREAS: FeatureCollection<MultiPolygon> = {
     {
       type: 'Feature',
       id: 'demo-aoi-west',
-      properties: { id: 'demo-aoi-west', name: 'Area contoh Barat', demo: true },
+      properties: {
+        id: 'demo-aoi-west',
+        name: 'Area contoh Barat',
+        demo: true,
+      },
       geometry: {
         type: 'MultiPolygon',
         coordinates: [
@@ -34,7 +38,11 @@ export const DEMO_AREAS: FeatureCollection<MultiPolygon> = {
     {
       type: 'Feature',
       id: 'demo-aoi-east',
-      properties: { id: 'demo-aoi-east', name: 'Area contoh Timur', demo: true },
+      properties: {
+        id: 'demo-aoi-east',
+        name: 'Area contoh Timur',
+        demo: true,
+      },
       geometry: {
         type: 'MultiPolygon',
         coordinates: [
@@ -65,47 +73,38 @@ export function createDemoGisProvider(): GisDataProvider {
         ? { status: 'ok', data: structuredClone(DEMO_AREAS) }
         : { status: 'unavailable', reason: 'Dataset vektor tidak dikenal' };
     },
-    sample(id, latitude, longitude) {
-      if (!coordinates([latitude, longitude])) throw new GisInputError('Koordinat tidak valid');
-      const d = catalog.find((d) => d.id === id);
-      const m = d?.raster;
-      if (!d || !m) return { status: 'unavailable', reason: 'Raster belum tersedia' };
-      validateRasterMetadata(m);
-      const [w, s, e, n] = d.bounds;
-      const noData = longitude < w || longitude > e || latitude < s || latitude > n;
-      const x = Math.floor((longitude - w) / m.resolution.x),
-        y = Math.floor((latitude - s) / m.resolution.y);
-      const fraction = ((((x * 13 + y * 7 + 3) % 101) + 101) % 101) / 100;
-      const value = noData
-        ? null
-        : m.classes
-          ? m.classes[Math.floor(fraction * (m.classes.length - 1))].value
-          : Number(
-              (
-                (m.range?.[0] ?? 0) +
-                fraction * ((m.range?.[1] ?? 1) - (m.range?.[0] ?? 0))
-              ).toFixed(2),
-            );
-      const sample: PixelSample = {
-        datasetId: id,
-        latitude,
-        longitude,
-        value,
-        unit: m.bands[0].unit,
-        classification: m.classes?.find((c) => c.value === value)?.label ?? null,
-        source: d.source,
-        version: d.version,
-        period: m.period,
-        resolution: m.resolution,
-        crs: m.crs,
-        band: m.bands[0].id,
-        noData,
-        resampling: m.resampling,
-        provenance: d.provenance,
-        demo: true,
-      };
+    sample(id, latitude, longitude, options) {
+      if (!finite(latitude, -90, 90) || !finite(longitude, -180, 180))
+        throw new GisInputError('Koordinat tidak valid');
+      const dataset = catalog.find((dataset) => dataset.id === id);
+      if (!dataset?.raster || dataset.type !== 'raster')
+        return { status: 'unavailable', reason: 'Raster belum tersedia' };
+      const sample = sampleGrid(
+        dataset as RasterDataset,
+        { x: longitude, y: latitude, crs: 'EPSG:4326' },
+        options?.band,
+        options?.resampling ?? 'nearest',
+        fixtureReader(dataset.raster),
+      );
       validatePixelSample(sample);
       return { status: 'ok', data: sample };
     },
+  };
+}
+
+export function fixtureReader(metadata: RasterMetadata) {
+  return (column: number, row: number): number | null => {
+    if (column === 1 && row === 1) return null;
+    if (metadata.classes)
+      return metadata.classes[
+        (column * 13 + row * 7 + 3) % metadata.classes.length
+      ].value;
+    const fraction = ((column * 13 + row * 7 + 3) % 101) / 100;
+    return Number(
+      (
+        (metadata.range?.[0] ?? 0) +
+        fraction * ((metadata.range?.[1] ?? 1) - (metadata.range?.[0] ?? 0))
+      ).toFixed(2),
+    );
   };
 }

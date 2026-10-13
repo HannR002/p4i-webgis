@@ -5,13 +5,14 @@ const common = {
   source: 'P4I fixture sintetik',
   provider: 'development',
   license: 'Contoh internal P4I',
-  version: 'demo-v1',
+  version: 'demo-v2',
   updatedAt: '2026-01-01',
   crs: 'EPSG:4326',
   bounds,
   accessTier: 'public' as const,
   status: 'unavailable' as const,
-  provenance: 'Data sintetik untuk demonstrasi UI. Bukan pengukuran atau batas administrasi resmi.',
+  provenance:
+    'Data sintetik untuk demonstrasi UI. Bukan pengukuran atau batas administrasi resmi.',
 };
 export const DATASET_DEFINITIONS: readonly Dataset[] = [
   {
@@ -30,16 +31,47 @@ export const DATASET_DEFINITIONS: readonly Dataset[] = [
     id: 'demo-rainfall',
     title: 'Curah hujan tahunan',
     type: 'raster',
-    description: 'Raster hujan sintetik; kontrak disiapkan untuk adapter CHIRPS.',
+    description:
+      'Raster hujan sintetik; kontrak disiapkan untuk adapter CHIRPS.',
     category: 'Iklim',
     tags: ['curah hujan', 'rainfall', 'hujan'],
     formats: ['Map service'],
     raster: {
       crs: 'EPSG:4326',
       resolution: { x: 0.05, y: 0.05, unit: 'degree' },
-      bands: [{ id: 'rainfall', unit: 'mm/tahun', kind: 'continuous' }],
-      noData: { value: null, meaning: 'Di luar area contoh' },
-      resampling: 'bilinear',
+      grid: {
+        origin: [103.52, -1.5],
+        pixelSize: [0.05, -0.05],
+        width: 4,
+        height: 4,
+        pixelReference: 'area',
+      },
+      scale: 0.05,
+      version: common.version,
+      provenance: common.provenance,
+      bands: [
+        {
+          id: 'rainfall',
+          unit: 'mm/tahun',
+          kind: 'continuous',
+          scale: 1,
+          offset: 0,
+          range: [1200, 3000],
+        },
+        {
+          id: 'daily_mean',
+          unit: 'mm/hari',
+          kind: 'continuous',
+          scale: 1 / 365,
+          offset: 0,
+          range: [1200 / 365, 3000 / 365],
+        },
+      ],
+      noData: {
+        value: null,
+        meaning: 'Di luar cakupan atau sel fixture yang dimask',
+      },
+      resampling: 'nearest',
       period: { start: '2025-01-01', end: '2025-12-31' },
       range: [1200, 3000],
     },
@@ -56,9 +88,30 @@ export const DATASET_DEFINITIONS: readonly Dataset[] = [
     raster: {
       crs: 'EPSG:4326',
       resolution: { x: 0.01, y: 0.01, unit: 'degree' },
-      bands: [{ id: 'slope', unit: 'derajat', kind: 'continuous' }],
-      noData: { value: null, meaning: 'Di luar area contoh' },
-      resampling: 'bilinear',
+      grid: {
+        origin: [103.52, -1.5],
+        pixelSize: [0.01, -0.01],
+        width: 20,
+        height: 20,
+        pixelReference: 'area',
+      },
+      scale: 0.01,
+      version: common.version,
+      provenance: common.provenance,
+      bands: [
+        {
+          id: 'slope',
+          unit: 'derajat',
+          kind: 'continuous',
+          scale: 1,
+          offset: 0,
+        },
+      ],
+      noData: {
+        value: null,
+        meaning: 'Di luar cakupan atau sel fixture yang dimask',
+      },
+      resampling: 'nearest',
       period: { start: '2025-01-01', end: '2025-12-31' },
       range: [0, 30],
     },
@@ -75,8 +128,29 @@ export const DATASET_DEFINITIONS: readonly Dataset[] = [
     raster: {
       crs: 'EPSG:4326',
       resolution: { x: 0.005, y: 0.005, unit: 'degree' },
-      bands: [{ id: 'land_cover', unit: 'kode kelas', kind: 'categorical' }],
-      noData: { value: null, meaning: 'Di luar area contoh' },
+      grid: {
+        origin: [103.52, -1.5],
+        pixelSize: [0.005, -0.005],
+        width: 40,
+        height: 40,
+        pixelReference: 'area',
+      },
+      scale: 0.005,
+      version: common.version,
+      provenance: common.provenance,
+      bands: [
+        {
+          id: 'land_cover',
+          unit: 'kode kelas',
+          kind: 'categorical',
+          scale: 1,
+          offset: 0,
+        },
+      ],
+      noData: {
+        value: null,
+        meaning: 'Di luar cakupan atau sel fixture yang dimask',
+      },
       resampling: 'nearest',
       period: { start: '2025-01-01', end: '2025-12-31' },
       classes: [
@@ -92,15 +166,37 @@ export const DATASET_DEFINITIONS: readonly Dataset[] = [
     id: 'demo-soil',
     title: 'Kelas tanah',
     type: 'raster',
-    description: 'Kelas tanah ilustratif. Legenda tanah P4I masih menunggu validasi.',
+    description:
+      'Kelas tanah ilustratif. Legenda tanah P4I masih menunggu validasi.',
     category: 'Tanah',
     tags: ['soil', 'tanah'],
     formats: ['Map service'],
     raster: {
       crs: 'EPSG:4326',
       resolution: { x: 0.02, y: 0.02, unit: 'degree' },
-      bands: [{ id: 'soil_class', unit: 'kode kelas', kind: 'categorical' }],
-      noData: { value: null, meaning: 'Di luar area contoh' },
+      grid: {
+        origin: [103.52, -1.5],
+        pixelSize: [0.02, -0.02],
+        width: 10,
+        height: 10,
+        pixelReference: 'area',
+      },
+      scale: 0.02,
+      version: common.version,
+      provenance: common.provenance,
+      bands: [
+        {
+          id: 'soil_class',
+          unit: 'kode kelas',
+          kind: 'categorical',
+          scale: 1,
+          offset: 0,
+        },
+      ],
+      noData: {
+        value: null,
+        meaning: 'Di luar cakupan atau sel fixture yang dimask',
+      },
       resampling: 'nearest',
       period: { start: '2025-01-01', end: '2025-12-31' },
       classes: [
@@ -125,7 +221,13 @@ export const WEBMAPS = [
     category: 'Kebencanaan',
     description:
       'Susun layer hujan, lereng, tanah, dan tutupan lahan. Komputasi GEE menunggu konfigurasi.',
-    datasets: ['demo-rainfall', 'demo-slope', 'demo-landcover', 'demo-soil', 'demo-boundaries'],
+    datasets: [
+      'demo-rainfall',
+      'demo-slope',
+      'demo-landcover',
+      'demo-soil',
+      'demo-boundaries',
+    ],
     color: '#0369a1',
   },
   {
@@ -156,7 +258,8 @@ export const WEBMAPS = [
     id: 'suitability',
     title: 'Kesesuaian Lahan',
     category: 'Analisis P4I',
-    description: 'Gunakan panel AHP yang ada untuk meninjau preferensi dan konsistensi.',
+    description:
+      'Gunakan panel AHP yang ada untuk meninjau preferensi dan konsistensi.',
     datasets: ['demo-boundaries', 'demo-soil'],
     color: '#be123c',
   },

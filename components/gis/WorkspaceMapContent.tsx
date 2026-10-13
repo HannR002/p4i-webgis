@@ -14,26 +14,37 @@ import {
 } from 'react-leaflet';
 import useSWR from 'swr';
 import { useWorkspaceStore } from '../../store/useWorkspaceStore';
+import { sphericalDistance } from '../../lib/gis/geometry';
 import { record } from '../../lib/gis/validation';
 interface Props {
   tool: 'pan' | 'pixel' | 'measure';
   onInspect: (latitude: number, longitude: number) => void;
   onMeasure: (metres: number) => void;
 }
-async function loadVectors(ids: string[]): Promise<Record<string, FeatureCollection<Geometry>>> {
+async function loadVectors(
+  ids: string[],
+): Promise<Record<string, FeatureCollection<Geometry>>> {
   const entries = await Promise.all(
     ids.map(async (id) => {
       const r = await fetch(`/api/gis/vector/${encodeURIComponent(id)}`);
       if (!r.ok) throw new Error('Vektor belum tersedia');
       const d: unknown = await r.json();
-      if (!record(d) || d.type !== 'FeatureCollection' || !Array.isArray(d.features))
+      if (
+        !record(d) ||
+        d.type !== 'FeatureCollection' ||
+        !Array.isArray(d.features)
+      )
         throw new Error('Vektor tidak valid');
       return [id, d as unknown as FeatureCollection<Geometry>] as const;
     }),
   );
   return Object.fromEntries(entries);
 }
-export default function WorkspaceMapContent({ tool, onInspect, onMeasure }: Props) {
+export default function WorkspaceMapContent({
+  tool,
+  onInspect,
+  onMeasure,
+}: Props) {
   const { recipe, mode, catalog, action, trackViewport } = useWorkspaceStore();
   const map = useMap();
   const [points, setPoints] = useState<[number, number][]>([]);
@@ -54,17 +65,24 @@ export default function WorkspaceMapContent({ tool, onInspect, onMeasure }: Prop
   const zoom = recipe.viewport.zoom;
   useEffect(() => {
     const element = map.getContainer();
-    element.setAttribute('aria-label', 'Peta interaktif P4I. Gunakan panah untuk menggeser dan tombol plus atau minus untuk zoom.');
-    const observer = new ResizeObserver(() => map.invalidateSize({ pan: false }));
+    element.setAttribute(
+      'aria-label',
+      'Peta interaktif P4I. Gunakan panah untuk menggeser dan tombol plus atau minus untuk zoom.',
+    );
+    const observer = new ResizeObserver(() =>
+      map.invalidateSize({ pan: false }),
+    );
     observer.observe(element);
     return () => observer.disconnect();
   }, [map]);
   useEffect(() => {
     // React Leaflet creates Pane styles once; update the actual panes after reordering.
-    recipe.layers.filter((l) => l.visible).forEach((layer, index) => {
-      const pane = map.getPane(`workspace-${layer.id}`);
-      if (pane) pane.style.zIndex = String(460 + index);
-    });
+    recipe.layers
+      .filter((l) => l.visible)
+      .forEach((layer, index) => {
+        const pane = map.getPane(`workspace-${layer.id}`);
+        if (pane) pane.style.zIndex = String(460 + index);
+      });
   }, [map, recipe.layers]);
   useEffect(() => {
     const c = map.getCenter();
@@ -78,7 +96,10 @@ export default function WorkspaceMapContent({ tool, onInspect, onMeasure }: Prop
   useMapEvents({
     moveend: () => {
       const c = map.getCenter();
-      trackViewport([Number(c.lat.toFixed(6)), Number(c.lng.toFixed(6))], map.getZoom());
+      trackViewport(
+        [Number(c.lat.toFixed(6)), Number(c.lng.toFixed(6))],
+        map.getZoom(),
+      );
     },
     click: (e) => {
       if (tool === 'pixel') onInspect(e.latlng.lat, e.latlng.lng);
@@ -88,7 +109,14 @@ export default function WorkspaceMapContent({ tool, onInspect, onMeasure }: Prop
             ? [points[0], [e.latlng.lat, e.latlng.lng]]
             : [[e.latlng.lat, e.latlng.lng]];
         setPoints(next);
-        onMeasure(next.length === 2 ? map.distance(next[0], next[1]) : 0);
+        onMeasure(
+          next.length === 2
+            ? sphericalDistance(
+                [next[0][1], next[0][0]],
+                [next[1][1], next[1][0]],
+              )
+            : 0,
+        );
       }
     },
   });
@@ -104,11 +132,16 @@ export default function WorkspaceMapContent({ tool, onInspect, onMeasure }: Prop
               const style = l.style;
               const q = new URLSearchParams({
                 palette: style.palette.join(','),
+                ...(style.band ? { band: style.band } : {}),
                 min: String(style.min),
                 max: String(style.max),
               });
               return (
-                <Pane key={l.id} name={`workspace-${l.id}`} style={{ zIndex: 460 + index }}>
+                <Pane
+                  key={l.id}
+                  name={`workspace-${l.id}`}
+                  style={{ zIndex: 460 + index }}
+                >
                   <TileLayer
                     key={`${l.id}-${q}`}
                     url={`/api/gis/tiles/${l.datasetId}/{z}/{x}/{y}?${q}`}
@@ -117,12 +150,16 @@ export default function WorkspaceMapContent({ tool, onInspect, onMeasure }: Prop
                       catalog.find((d) => d.id === l.datasetId)?.bounds
                         ? [
                             [
-                              catalog.find((d) => d.id === l.datasetId)!.bounds[1],
-                              catalog.find((d) => d.id === l.datasetId)!.bounds[0],
+                              catalog.find((d) => d.id === l.datasetId)!
+                                .bounds[1],
+                              catalog.find((d) => d.id === l.datasetId)!
+                                .bounds[0],
                             ],
                             [
-                              catalog.find((d) => d.id === l.datasetId)!.bounds[3],
-                              catalog.find((d) => d.id === l.datasetId)!.bounds[2],
+                              catalog.find((d) => d.id === l.datasetId)!
+                                .bounds[3],
+                              catalog.find((d) => d.id === l.datasetId)!
+                                .bounds[2],
                             ],
                           ]
                         : undefined
@@ -135,7 +172,11 @@ export default function WorkspaceMapContent({ tool, onInspect, onMeasure }: Prop
             const data = vectors[l.datasetId];
             if (!data || !('color' in l.style)) return null;
             return (
-              <Pane key={l.id} name={`workspace-${l.id}`} style={{ zIndex: 460 + index }}>
+              <Pane
+                key={l.id}
+                name={`workspace-${l.id}`}
+                style={{ zIndex: 460 + index }}
+              >
                 <GeoJSON
                   key={`${l.id}-${l.opacity}-${JSON.stringify(l.style)}-${tool}`}
                   pane={`workspace-${l.id}`}
@@ -149,7 +190,9 @@ export default function WorkspaceMapContent({ tool, onInspect, onMeasure }: Prop
                   }}
                   onEachFeature={(f, layer) => {
                     const element = document.createElement('span');
-                    element.textContent = String(f.properties?.name ?? 'Area contoh');
+                    element.textContent = String(
+                      f.properties?.name ?? 'Area contoh',
+                    );
                     layer.bindTooltip(element);
                     layer.on('click', () => {
                       if (tool === 'pan' && typeof f.id === 'string')
@@ -162,12 +205,22 @@ export default function WorkspaceMapContent({ tool, onInspect, onMeasure }: Prop
           })}
       {tool === 'measure' &&
         points.map((p, i) => (
-          <CircleMarker key={i} center={p} radius={4} pathOptions={{ color: '#0f766e' }} />
+          <CircleMarker
+            key={i}
+            center={p}
+            radius={4}
+            pathOptions={{ color: '#0f766e' }}
+          />
         ))}
       {tool === 'measure' && points.length === 2 && (
-        <Polyline positions={points} pathOptions={{ color: '#0f766e', weight: 3 }} />
+        <Polyline
+          positions={points}
+          pathOptions={{ color: '#0f766e', weight: 3 }}
+        />
       )}
-      {error && <div className="gis-map-notice">Vektor contoh tidak dapat dimuat.</div>}
+      {error && (
+        <div className="gis-map-notice">Vektor contoh tidak dapat dimuat.</div>
+      )}
     </>
   );
 }

@@ -294,7 +294,18 @@ function WebmapCards({
                 </div>
                 <div>
                   <dt>Versi</dt>
-                  <dd>demo-v1</dd>
+                  <dd>
+                    {[
+                      ...new Set(
+                        map.datasets
+                          .map(
+                            (id) =>
+                              data.datasets.find((d) => d.id === id)?.version,
+                          )
+                          .filter(Boolean),
+                      ),
+                    ].join(', ') || '—'}
+                  </dd>
                 </div>
               </dl>
               {status !== 'unavailable' ? (

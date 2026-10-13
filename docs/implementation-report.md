@@ -1,6 +1,18 @@
 # P4I Spatial Analytics implementation report
 
-## Current status — Phase 02, 13 October 2026
+## Current status — Phase 03, 13 October 2026
+
+Typed async raster providers, native coordinate/encoding semantics, selected-band Pixel Inspector,
+bounded local GIS processing and recipe/legend/PDF integration are implemented. All local data
+remains explicitly DEMO; real-data adapters and raster file products remain pending. Node 22
+lint/typecheck/build and **123 tests / 22 files pass**. New desktop/mobile browser flows and four
+Axe audits pass; prior Phase 02 responsive flows pass at five widths. Production refuses fixtures.
+
+See [Phase 03 report](phase-03-raster-report.md), [adapter contract](raster-real-data-adapter-contract.md)
+and [PR content](phase-03-pr.md). Branch feat/phase-03-raster-engine continues verified Phase 02
+head 4d40a8e; remote main still lacks its parent phases. No merge/deployment/data changes occurred.
+
+## Previous status — Phase 02, 13 October 2026
 
 The functioning geoportal now has consistent Home/Webmap/Data/Help/workspace UI, genuine renderer
 previews, honest availability labels, filter/retry/empty states and accessible desktop/mobile

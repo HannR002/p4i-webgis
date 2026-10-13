@@ -1727,3 +1727,52 @@
 .gis-session-controls:disabled {
   opacity: 0.65;
 }
+.gis-pixel-query {
+  display: grid;
+  gap: 10px;
+  margin: 16px 0;
+  padding: 12px;
+  border: 1px solid #dce5e9;
+  border-radius: 7px;
+  background: #f6f9f8;
+}
+.gis-pixel-query label,
+.gis-band-select {
+  display: grid;
+  gap: 5px;
+  font-size: 11px;
+  color: #405765;
+}
+.gis-band-select {
+  margin: 10px 0;
+}
+.gis-pixel-query button {
+  width: 100%;
+}
+.gis-raster-tools {
+  border-top: 1px solid #dce5e9;
+  border-bottom: 1px solid #dce5e9;
+  margin: 20px 0;
+  padding: 18px 0;
+}
+.gis-raster-tools form {
+  display: grid;
+  gap: 12px;
+  margin: 14px 0;
+}
+.gis-raster-tools label {
+  display: grid;
+  gap: 5px;
+  font-size: 11px;
+  color: #405765;
+}
+.gis-raster-result {
+  padding: 12px;
+  border: 1px solid #c8dfd5;
+  background: #f2f8f5;
+  border-radius: 7px;
+  overflow-wrap: anywhere;
+}
+.gis-raster-result p {
+  font-size: 12px;
+}

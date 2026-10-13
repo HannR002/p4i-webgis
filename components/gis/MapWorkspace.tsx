@@ -21,11 +21,13 @@ import {
 } from 'lucide-react';
 import { useWorkspaceStore } from '../../store/useWorkspaceStore';
 import { useMapStore } from '../../store/useMapStore';
+import { bandRange } from '../../lib/gis/raster';
 import { emptyRecipe, WEBMAPS } from '../../lib/gis/catalog';
 import { record, validatePixelSample } from '../../lib/gis/validation';
 import type { MapRecipe, PixelSample } from '../../lib/gis/contracts';
 import { useGisCatalog } from './useGisCatalog';
 import PixelInspector from './PixelInspector';
+import RasterToolsPanel from './RasterToolsPanel';
 import CopilotPanel from './CopilotPanel';
 import WorkspaceTabs, { type WorkspacePanel } from './WorkspaceTabs';
 import AhpSimulatorPanel from '../AhpSimulatorPanel';
@@ -123,7 +125,11 @@ export default function MapWorkspace({
       setError(e instanceof Error ? e.message : 'Draft tidak dapat diproses');
     }
   }
-  async function inspect(latitude: number, longitude: number) {
+  async function inspect(
+    latitude: number,
+    longitude: number,
+    resampling: 'nearest' | 'bilinear' = 'nearest',
+  ) {
     setPanel('pixel');
     setPanelOpen(true);
     const layers = s.recipe.layers;
@@ -145,12 +151,32 @@ export default function MapWorkspace({
       const r = await fetch('/api/gis/pixel', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ latitude, longitude, datasetIds: ids }),
+        body: JSON.stringify({
+          latitude,
+          longitude,
+          datasetIds: ids,
+          resampling,
+          bands: Object.fromEntries(
+            s.recipe.layers
+              .filter((l) => l.visible && l.type === 'raster')
+              .map((l) => [
+                l.datasetId,
+                'band' in l.style && l.style.band
+                  ? l.style.band
+                  : s.catalog.find((d) => d.id === l.datasetId)?.raster
+                      ?.bands[0].id,
+              ]),
+          ),
+        }),
         signal,
       });
       const d: unknown = await r.json();
       if (!r.ok || !record(d) || !Array.isArray(d.samples))
-        throw new Error('Sampel belum tersedia untuk dataset ini.');
+        throw new Error(
+          record(d) && typeof d.error === 'string'
+            ? d.error
+            : 'Sampel belum tersedia untuk dataset ini.',
+        );
       const samples = d.samples as PixelSample[];
       samples.forEach(validatePixelSample);
       if (request === sampleRequest.current && !signal?.aborted) {
@@ -614,6 +640,37 @@ export default function MapWorkspace({
                               />
                             </label>
                           </div>
+                          {d?.raster && 'palette' in l.style && (
+                            <label className="gis-band-select">
+                              Band
+                              <select
+                                aria-label={`Band ${d.title}`}
+                                value={l.style.band ?? d.raster.bands[0].id}
+                                onChange={(e) => {
+                                  const range = bandRange(
+                                    d.raster!,
+                                    e.target.value,
+                                  );
+                                  act({
+                                    tool: 'styleRasterLayer',
+                                    layerId: l.id,
+                                    style: {
+                                      ...l.style,
+                                      band: e.target.value,
+                                      min: range[0],
+                                      max: range[1],
+                                    },
+                                  });
+                                }}
+                              >
+                                {d.raster.bands.map((band) => (
+                                  <option key={band.id} value={band.id}>
+                                    {band.id} · {band.unit}
+                                  </option>
+                                ))}
+                              </select>
+                            </label>
+                          )}
                           <details>
                             <summary>
                               <Info size={13} />
@@ -795,6 +852,7 @@ export default function MapWorkspace({
                       Inspeksi titik pusat
                     </button>
                     <PixelInspector
+                      onQuery={s.mode === 'demo' ? inspect : undefined}
                       samples={s.samples}
                       status={sampleStatus}
                       error={sampleError}
@@ -836,6 +894,7 @@ export default function MapWorkspace({
                         ? 'Bobot AHP tersimpan'
                         : 'Belum ada bobot tersimpan'}
                     </div>
+                    <RasterToolsPanel />
                     <AhpSimulatorPanel standalone />
                     <button
                       className="gis-button secondary"

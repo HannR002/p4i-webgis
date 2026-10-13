@@ -2,6 +2,7 @@
 
 import { useRef } from 'react';
 import { useMapStore } from '../store/useMapStore';
+import { getBand } from '../lib/gis/raster';
 import type { Dataset, MapRecipe } from '../lib/gis/contracts';
 
 export default function ExportPdfButton({
@@ -19,20 +20,31 @@ export default function ExportPdfButton({
   const activeContextId = recipe?.id ?? activeProjectId ?? activeBoundaryId;
   const exportWeights = recipe?.analysis?.weights ?? derivedWeights;
   const exportFloodResult = recipe ? null : floodAnalysisResult;
-  const hiddenElements = useRef<{ element: HTMLElement; visibility: string }[]>([]);
+  const hiddenElements = useRef<{ element: HTMLElement; visibility: string }[]>(
+    [],
+  );
 
   const handleExport = async () => {
     if (isExporting.current || !activeContextId) return;
     isExporting.current = true;
 
     try {
-      const [{ default: jsPDF }, { default: html2canvas }, { default: domtoimage }] =
-        await Promise.all([import('jspdf'), import('html2canvas'), import('dom-to-image-more')]);
+      const [
+        { default: jsPDF },
+        { default: html2canvas },
+        { default: domtoimage },
+      ] = await Promise.all([
+        import('jspdf'),
+        import('html2canvas'),
+        import('dom-to-image-more'),
+      ]);
 
       const mapElement = document.querySelector<HTMLElement>(
         recipe ? '[data-gis-export]' : '.leaflet-container',
       );
-      const chartElement = document.getElementById('ahp-chart-export') as HTMLElement;
+      const chartElement = document.getElementById(
+        'ahp-chart-export',
+      ) as HTMLElement;
 
       if (!mapElement) {
         alert('Peta tidak ditemukan');
@@ -125,9 +137,21 @@ export default function ExportPdfButton({
 
       pdf.setFontSize(10);
       pdf.setFont('helvetica', 'normal');
-      pdf.text(`Bencana (W_d): ${(exportWeights.bencana * 100).toFixed(0)}%`, 14, 52);
-      pdf.text(`Kesuburan (W_f): ${(exportWeights.kesuburan * 100).toFixed(0)}%`, 80, 52);
-      pdf.text(`Kepadatan (W_p): ${(exportWeights.kepadatan * 100).toFixed(0)}%`, 146, 52);
+      pdf.text(
+        `Bencana (W_d): ${(exportWeights.bencana * 100).toFixed(0)}%`,
+        14,
+        52,
+      );
+      pdf.text(
+        `Kesuburan (W_f): ${(exportWeights.kesuburan * 100).toFixed(0)}%`,
+        80,
+        52,
+      );
+      pdf.text(
+        `Kepadatan (W_p): ${(exportWeights.kepadatan * 100).toFixed(0)}%`,
+        146,
+        52,
+      );
 
       let mapStartY = 60;
       if (exportFloodResult) {
@@ -165,7 +189,11 @@ export default function ExportPdfButton({
       // Footer
       pdf.setFontSize(8);
       pdf.setTextColor(150);
-      pdf.text('Dihasilkan oleh Sistem P4I Spatial Analytics Engine', 14, pageHeight - 6);
+      pdf.text(
+        'Dihasilkan oleh Sistem P4I Spatial Analytics Engine',
+        14,
+        pageHeight - 6,
+      );
 
       if (recipe) {
         pdf.addPage();
@@ -188,6 +216,13 @@ export default function ExportPdfButton({
               d?.raster
                 ? `Resolution: ${d.raster.resolution.x} x ${d.raster.resolution.y} ${d.raster.resolution.unit} | ${d.raster.period.start} - ${d.raster.period.end}`
                 : 'Vector layer',
+              ...(d?.raster
+                ? [
+                    `Band: ${getBand(d.raster, 'band' in l.style ? l.style.band : undefined).id} | ${getBand(d.raster, 'band' in l.style ? l.style.band : undefined).unit} | ${getBand(d.raster, 'band' in l.style ? l.style.band : undefined).kind}`,
+                    `Scale/offset: ${getBand(d.raster, 'band' in l.style ? l.style.band : undefined).scale} / ${getBand(d.raster, 'band' in l.style ? l.style.band : undefined).offset} | native pixel size: ${d.raster.scale} ${d.raster.resolution.unit}`,
+                    `NoData: ${d.raster.noData.meaning} | origin: ${d.raster.grid.origin.join(', ')} | north-up pixel-area grid`,
+                  ]
+                : []),
               `Provenance: ${d?.provenance ?? 'unavailable'}`,
             ];
           }),
@@ -216,7 +251,10 @@ export default function ExportPdfButton({
           await fetch('/api/downloads', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ project_id: activeProjectId, file_type: 'pdf_report' }),
+            body: JSON.stringify({
+              project_id: activeProjectId,
+              file_type: 'pdf_report',
+            }),
           });
         } catch {
           // Abaikan jika log gagal agar tidak mengganggu UX pengguna

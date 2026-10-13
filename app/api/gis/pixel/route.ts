@@ -1,35 +1,54 @@
 import { NextResponse } from 'next/server';
-import { getGisProvider } from '../../../../lib/server/gis';
-import { coordinates, record, GisInputError } from '../../../../lib/gis/validation';
-import { canAccessDataset, GisPermissionError } from '../../../../lib/gis/recipe';
 import { getGisContext } from '../../../../lib/server/gis/context';
 import { gisError, readGisBody } from '../../../../lib/server/gis/http';
+import {
+  getRasterProvider,
+  checkedSample,
+} from '../../../../lib/server/gis/rasterProvider';
+import { authorizeRasterOperands } from '../../../../lib/server/gis/rasterAccess';
+import { parsePixelQuery } from '../../../../lib/gis/rasterValidation';
+export const runtime = 'nodejs';
+export const maxDuration = 15;
 export async function POST(request: Request) {
   try {
-    const body = await readGisBody(request);
-    if (
-      !record(body) ||
-      !coordinates([body.latitude, body.longitude]) ||
-      !Array.isArray(body.datasetIds) ||
-      body.datasetIds.length > 8 ||
-      !body.datasetIds.length ||
-      !body.datasetIds.every((id) => typeof id === 'string')
-    )
-      throw new GisInputError('Permintaan sampling tidak valid');
-    const provider = getGisProvider();
-    const catalog = provider.catalog();
+    const query = parsePixelQuery(await readGisBody(request));
+    const provider = getRasterProvider(),
+      catalog = provider.catalog();
     const context = await getGisContext(request, catalog);
-    const samples = [];
-    for (const id of new Set(body.datasetIds)) {
-      const d = catalog.find((d) => d.id === id);
-      if (!d) throw new GisInputError('Dataset tidak dikenal');
-      if (!canAccessDataset(d, context)) throw new GisPermissionError('Akses dataset ditolak');
-      const result = provider.sample(id, Number(body.latitude), Number(body.longitude));
-      if (result.status === 'unavailable') return NextResponse.json(result, { status: 503 });
-      samples.push(result.data);
-    }
-    return NextResponse.json({ samples }, { headers: { 'Cache-Control': 'private, no-store' } });
-  } catch (e) {
-    return gisError(e);
+    authorizeRasterOperands(
+      catalog,
+      context,
+      query.datasetIds.map((datasetId) => ({
+        datasetId,
+        band: query.bands[datasetId],
+      })),
+    );
+    const results = await Promise.all(
+      query.datasetIds.map((datasetId) =>
+        checkedSample(provider, {
+          datasetId,
+          band: query.bands[datasetId],
+          coordinate: query.coordinate,
+          resampling: query.resampling,
+          signal: request.signal,
+        }),
+      ),
+    );
+    if (results.some((result) => result.status === 'unavailable'))
+      return NextResponse.json(
+        { status: 'unavailable', reason: 'Sumber raster belum tersedia' },
+        { status: 503, headers: { 'Cache-Control': 'private, no-store' } },
+      );
+    return NextResponse.json(
+      {
+        provider: provider.id,
+        samples: results.flatMap((result) =>
+          result.status === 'ok' ? [result.data] : [],
+        ),
+      },
+      { headers: { 'Cache-Control': 'private, no-store' } },
+    );
+  } catch (error) {
+    return gisError(error);
   }
 }

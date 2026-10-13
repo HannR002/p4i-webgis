@@ -1,11 +1,17 @@
 import { getGisProvider } from '../../../../../../../../lib/server/gis';
 import { getGisContext } from '../../../../../../../../lib/server/gis/context';
-import { canAccessDataset, GisPermissionError } from '../../../../../../../../lib/gis/recipe';
+import {
+  canAccessDataset,
+  GisPermissionError,
+} from '../../../../../../../../lib/gis/recipe';
 import { GisInputError } from '../../../../../../../../lib/gis/validation';
+import { getBand, rasterColor } from '../../../../../../../../lib/gis/raster';
 import { gisError } from '../../../../../../../../lib/server/gis/http';
 export async function GET(
   request: Request,
-  { params }: { params: Promise<{ id: string; z: string; x: string; y: string }> },
+  {
+    params,
+  }: { params: Promise<{ id: string; z: string; x: string; y: string }> },
 ) {
   try {
     const { id, z: zs, x: xs, y: ys } = await params;
@@ -33,15 +39,20 @@ export async function GET(
         { status: 503 },
       );
     const url = new URL(request.url);
-    const palette = (url.searchParams.get('palette') ?? '#eff6ff,#3b82f6,#1e3a8a').split(',');
+    const palette = (
+      url.searchParams.get('palette') ?? '#eff6ff,#3b82f6,#1e3a8a'
+    ).split(',');
     if (
       palette.length < 2 ||
       palette.length > 12 ||
       palette.some((v) => !/^#[0-9a-f]{6}$/i.test(v))
     )
       throw new GisInputError('Palette tidak valid');
+    const band = getBand(d.raster, url.searchParams.get('band') ?? undefined);
     const min = Number(url.searchParams.get('min') ?? d.raster.range?.[0] ?? 0);
-    const max = Number(url.searchParams.get('max') ?? d.raster.range?.[1] ?? 100);
+    const max = Number(
+      url.searchParams.get('max') ?? d.raster.range?.[1] ?? 100,
+    );
     if (!Number.isFinite(min) || !Number.isFinite(max) || min >= max)
       throw new GisInputError('Rentang tidak valid');
     let rects = '';
@@ -50,22 +61,23 @@ export async function GET(
       for (let col = 0; col < 16; col++) {
         const longitude = ((x + (col + 0.5) / 16) / 2 ** z) * 360 - 180;
         const latitude =
-          (Math.atan(Math.sinh(Math.PI * (1 - (2 * (y + (row + 0.5) / 16)) / 2 ** z))) * 180) /
+          (Math.atan(
+            Math.sinh(Math.PI * (1 - (2 * (y + (row + 0.5) / 16)) / 2 ** z)),
+          ) *
+            180) /
           Math.PI;
-        const sample = p.sample(id, latitude, longitude);
+        const sample = p.sample(id, latitude, longitude, {
+          band: band.id,
+          resampling: 'nearest',
+        });
         if (sample.status !== 'ok' || sample.data.value === null) continue;
-        const value = sample.data.value;
-        const cls = d.raster.classes?.find((c) => c.value === value);
-        const classIndex = d.raster.classes?.findIndex((c) => c.value === value) ?? -1;
-        const color =
-          cls && classIndex >= 0
-            ? palette[classIndex % palette.length]
-            : palette[
-                Math.min(
-                  palette.length - 1,
-                  Math.max(0, Math.floor(((value - min) / (max - min)) * (palette.length - 1))),
-                )
-              ];
+        const color = rasterColor(sample.data.value, d.raster, {
+          palette,
+          min,
+          max,
+          band: band.id,
+        });
+        if (!color) continue;
         rects += `<rect x="${col * 16}" y="${row * 16}" width="16" height="16" fill="${color}"/>`;
       }
     return new Response(

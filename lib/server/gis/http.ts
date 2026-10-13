@@ -3,7 +3,13 @@ import { NextResponse } from 'next/server';
 import { GisInputError } from '../../gis/validation';
 import { GisPermissionError } from '../../gis/recipe';
 import { apiErrorResponse } from '../http';
+import { RasterProviderError } from './rasterProvider';
 export function gisError(error: unknown): NextResponse {
+  if (error instanceof RasterProviderError)
+    return NextResponse.json(
+      { error: 'Provider raster gagal atau respons tidak valid. Coba lagi.' },
+      { status: 502, headers: { 'Cache-Control': 'private, no-store' } },
+    );
   if (error instanceof GisInputError)
     return NextResponse.json({ error: error.message }, { status: 400 });
   if (error instanceof GisPermissionError)
