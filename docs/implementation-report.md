@@ -18,6 +18,9 @@ and lockfile are unchanged; no speculative database tables or scientific results
 Branch feat/gis-analysis-config-phase04 continues verified Phase 03; remote main still lacks parent
 phases. See [Phase 04 report, workflow, evidence and limitations](gis-analysis-configuration.md) and
 [prepared PR](phase-04-pr.md). No automatic merge.
+Implementation a2ad07b was pushed successfully. Actual draft PR creation returned GitHub GraphQL
+Forbidden; no PR was opened. The stacked comparison, PR body, report and screenshots are published
+for review, with Phase 03 as the intended base.
 
 ## Previous status — Phase 03, 13 October 2026
 

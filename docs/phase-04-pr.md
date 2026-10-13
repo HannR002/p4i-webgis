@@ -31,4 +31,11 @@ still lacks those parent phases; review Phase 04 as a stacked diff before reconc
 Local DEMO raster outputs/scenario math are not real scientific measurements. Real data adapters,
 configurable flood execution, raster harmonization/products and shared server storage remain pending.
 
-Publication and actual PR attempt outcome will be recorded after verification.
+Implementation commit `a2ad07b` was pushed to origin/feat/gis-analysis-config-phase04.
+Actual draft PR creation with base feat/phase-03-raster-engine failed:
+`Post "https://api.github.com/graphql": Forbidden`. No PR was opened; HTTPS Git push succeeded,
+while the GitHub API request was blocked in this environment.
+
+[Review the stacked diff and create a PR](https://github.com/HannR002/p4i-webgis/compare/feat%2Fphase-03-raster-engine...feat%2Fgis-analysis-config-phase04?expand=1).
+Keep Phase 03 as the base while its parent phases remain absent from main. This file is the
+prepared PR description; no merge or deployment occurred.
