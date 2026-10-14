@@ -416,6 +416,17 @@ export default function MapWorkspace({
             <details className="gis-map-legend" open>
               <summary>Legenda {s.mode === 'demo' && '· demo'}</summary>
               <div className="gis-legend-content">
+                {s.recipe.analysisResults?.map((r) => (
+                  <div key={r.jobId} className="gis-analysis-legend">
+                    <strong>{r.title} · EKSPERIMENTAL</strong>
+                    <p>
+                      {r.demo ? 'DEMO' : 'Input pengguna'} · {r.summary}
+                    </p>
+                    {r.points.length > 0 && (
+                      <p>● Ungu: titik/garis hasil; bukan permukaan raster.</p>
+                    )}
+                  </div>
+                ))}
                 {s.recipe.legend.map((l) => (
                   <div key={l.datasetId}>
                     <strong>{l.title}</strong>

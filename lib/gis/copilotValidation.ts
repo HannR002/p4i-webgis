@@ -1,3 +1,5 @@
+import { COMPUTE_TOOLS } from "./computeContracts";
+import { parseComputeTool, parseComputeJob } from "./computeValidation";
 import type {
   AIProviderDescriptor,
   GISExecutionPlan,
@@ -77,6 +79,8 @@ export function parseGISToolRequest(value: unknown): GISToolRequest {
   )
     throw new GisInputError("Tool GIS tidak dikenal");
   const tool = value.tool;
+  if ((COMPUTE_TOOLS as readonly string[]).includes(tool))
+    return parseComputeTool(value);
   if (mapTools.includes(tool)) return parseMapAction(value);
   if (tool === "changeLayerOpacity") {
     exact(value, ["tool", "layerId", "opacity"]);
@@ -224,6 +228,15 @@ export function parseGISExecutionPlan(
     (value.resolution !== "ready" && steps.length)
   )
     throw new GisInputError("Langkah GIS duplikat/tidak sesuai status");
+  if (
+    steps.some((s) =>
+      (COMPUTE_TOOLS as readonly string[]).includes(s.action.tool),
+    ) &&
+    steps.length !== 1
+  )
+    throw new GisInputError(
+      "Satu job komputasi per rencana; jangan gabungkan dengan langkah lain",
+    );
   const samples = steps.reduce(
     (n, s) =>
       n + (s.action.tool === "inspectPixel" ? s.action.datasetIds.length : 0),
@@ -277,8 +290,9 @@ export function validateActionResult(
     throw new GisInputError("Output tool GIS tidak valid");
   exact(value, ["stepId", "tool", "summary", "data"]);
   const d = value.data;
-  const allowedKinds =
-    tool === "inspectPixel"
+  const allowedKinds = (COMPUTE_TOOLS as readonly string[]).includes(tool)
+    ? ["compute"]
+    : tool === "inspectPixel"
       ? ["pixels"]
       : tool === "getDatasetMetadata"
         ? ["metadata"]
@@ -324,7 +338,20 @@ export function validateActionResult(
       throw new GisInputError("Output konfigurasi tidak diizinkan");
     return c;
   };
-  if (d.kind === "datasets") {
+  if (d.kind === "compute") {
+    exact(d, ["kind", "job"]);
+    const job = parseComputeJob(d.job);
+    if (job.request.operation.tool !== tool)
+      throw new GisInputError("Job tidak sesuai tool");
+    if (job.request.configuration) config(job.request.configuration);
+    if (
+      job.result?.artifact.datasetIds.some((id) => {
+        const source = env.catalog.find((d) => d.id === id);
+        return !source || !canAccessDataset(source, env.context);
+      })
+    )
+      throw new GisInputError("Hasil job tidak diizinkan");
+  } else if (d.kind === "datasets") {
     exact(d, ["kind", "datasets"]);
     if (
       !Array.isArray(d.datasets) ||

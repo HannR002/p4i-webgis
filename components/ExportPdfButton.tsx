@@ -221,6 +221,12 @@ export default function ExportPdfButton({
                 'Saved configuration records settings; it does not establish a real scientific result.',
               ]
             : []),
+          ...(recipe.analysisResults ?? []).flatMap((r) => [
+            `Computed result: ${r.title} | ${r.demo ? 'DEMO' : 'USER INPUT'} | EXPERIMENTAL | ${r.jobId}`,
+            r.summary,
+            `Configuration version: ${r.configurationVersion ?? 'geometry'} | ${r.createdAt}`,
+            `Provenance: ${r.provenance}`,
+          ]),
           ...recipe.layers.flatMap((l) => {
             const d = datasets.find((d) => d.id === l.datasetId);
             return [

@@ -1,3 +1,8 @@
+import { COMPUTE_TOOLS } from '../../../../lib/gis/computeContracts';
+import {
+  computeEnvironment,
+  requireHumanOrigin,
+} from '../../../../lib/server/compute/access';
 import { NextResponse } from 'next/server';
 import { getAIProvider } from '../../../../lib/server/ai';
 import { getGisProvider } from '../../../../lib/server/gis';
@@ -49,8 +54,8 @@ export async function POST(request: Request) {
     exact(
       body,
       body.plan === undefined
-        ? ['prompt', 'recipe', 'configurations', 'execution']
-        : ['plan', 'recipe', 'configurations'],
+        ? ['prompt', 'recipe', 'configurations', 'execution', 'requestId']
+        : ['plan', 'recipe', 'configurations', 'requestId'],
     );
     const gis = getGisProvider(),
       catalog = gis.catalog(),
@@ -93,21 +98,39 @@ export async function POST(request: Request) {
       body.plan === undefined
         ? await planWithProvider(provider, input, request.signal)
         : parseGISExecutionPlan(body.plan, provider);
+    const isCompute = plan.steps.some((s) =>
+      (COMPUTE_TOOLS as readonly string[]).includes(s.action.tool),
+    );
+    if (isCompute) requireHumanOrigin(request);
+    const computeSession = isCompute ? await computeEnvironment(request) : null;
+    if (body.requestId !== undefined && !text(body.requestId, 100))
+      throw new GisInputError('ID permintaan tidak valid');
+    const compute = computeSession
+      ? {
+          env: computeSession.env,
+          requestKey:
+            typeof body.requestId === 'string' ? body.requestId : plan.id,
+        }
+      : undefined;
     const response = await bounded(
       (signal) =>
         executeGISPlan(
           plan,
           recipe,
-          { ...env, raster: getRasterProvider(gis), signal },
+          { ...env, raster: getRasterProvider(gis), signal, compute },
           body.execution === 'preview' ? 'preview' : 'auto',
         ),
       COPILOT_LIMITS.executionMs,
       request.signal,
     );
     // Same response parser protects client and server; the selected provider is currently DEMO.
-    return NextResponse.json(parseGISRunResponse(response, env, provider), {
-      headers: { 'Cache-Control': 'private, no-store' },
-    });
+    const output = NextResponse.json(
+      parseGISRunResponse(response, env, provider),
+      {
+        headers: { 'Cache-Control': 'private, no-store' },
+      },
+    );
+    return computeSession ? computeSession.attach(output) : output;
   } catch (error) {
     if (error instanceof AIProviderError)
       return NextResponse.json(

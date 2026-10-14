@@ -1,3 +1,14 @@
+import {
+  COMPUTE_TOOLS,
+  type ComputeRequest,
+  type ComputeToolRequest,
+} from '../../../gis/computeContracts';
+import { applyComputeJob } from '../../../gis/computeMap';
+import { validateComputeRequest } from '../../compute/policy';
+import {
+  developmentCompute,
+  type ComputeEnvironment,
+} from '../../compute/service';
 import 'server-only';
 import type {
   GISToolRequest,
@@ -26,6 +37,7 @@ import { authorizeRasterOperands } from '../../gis/rasterAccess';
 import { checkedSample } from '../../gis/rasterProvider';
 
 export interface ToolEnvironment extends GISExecutionContext {
+  compute?: { env: ComputeEnvironment; requestKey: string };
   raster: RasterProvider;
   signal: AbortSignal;
 }
@@ -68,6 +80,19 @@ export function preflightTool(
   recipe: MapRecipe,
   env: GISExecutionContext,
 ): MapRecipe {
+  if ((COMPUTE_TOOLS as readonly string[]).includes(action.tool)) {
+    const request = computeRequest(
+      action as ComputeToolRequest,
+      env,
+      'preflight',
+    );
+    validateComputeRequest(
+      request,
+      { ...env, requesterId: 'preflight' },
+      recipe,
+    );
+    return recipe;
+  }
   const map = mapActionFor(action);
   if (map) {
     if (map.tool === 'addLayer') requireDataset(map.datasetId, env);
@@ -123,6 +148,32 @@ export function preflightTool(
   }
   return recipe;
 }
+export function computeRequest(
+  action: ComputeToolRequest,
+  env: GISExecutionContext,
+  key: string,
+): ComputeRequest {
+  const c =
+    action.tool === 'runConfiguredAnalysis'
+      ? requireConfiguration(action.configurationId, env)
+      : null;
+  const projectIds = [
+    ...new Set(
+      (c?.inputDatasetIds ?? []).flatMap(
+        (id) => env.catalog.find((d) => d.id === id)?.projectId ?? [],
+      ),
+    ),
+  ];
+  if (projectIds.length > 1)
+    throw new GisInputError('Satu proyek per job komputasi');
+  return {
+    schemaVersion: 1,
+    operation: action,
+    configuration: c,
+    projectId: projectIds[0] ?? null,
+    idempotencyKey: key,
+  };
+}
 export async function executeTool(
   action: GISToolRequest,
   recipe: MapRecipe,
@@ -131,6 +182,27 @@ export async function executeTool(
   recipe: MapRecipe;
   result: Omit<GISActionResult, 'stepId' | 'tool'>;
 }> {
+  if ((COMPUTE_TOOLS as readonly string[]).includes(action.tool)) {
+    if (!env.compute)
+      throw new GisInputError('Sesi komputasi development belum tersedia');
+    let job = developmentCompute.submit(
+      computeRequest(action as ComputeToolRequest, env, env.compute.requestKey),
+      recipe,
+      env.compute.env,
+    );
+    if (job.state === 'QUEUED')
+      job = await developmentCompute.run(job.id, env.compute.env, env.signal);
+    return {
+      recipe:
+        job.state === 'COMPLETED'
+          ? applyComputeJob(recipe, job, env.catalog, env.context, env.mode)
+          : recipe,
+      result: {
+        summary: `Job ${job.state} · ${job.estimate.reason}`,
+        data: { kind: 'compute', job },
+      },
+    };
+  }
   const map = mapActionFor(action);
   if (map)
     return {

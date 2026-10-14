@@ -30,6 +30,9 @@ function requestsUnresolvedPlace(prompt: string): boolean {
   )
     return true;
   return (
+    /(?<!batas )\bkecamatan\s+(?!dan\b|gunakan\b|dengan\b|contoh\b)\p{L}+/u.test(
+      control,
+    ) ||
     /\b(kota|kabupaten|provinsi)\s+\p{L}+/u.test(control) ||
     /telanaipura|jelutung|danau teluk|pasar jambi|jambi timur|jambi selatan/.test(
       control,
@@ -110,6 +113,54 @@ export function planDemo(input: GISPlanningInput): GISExecutionPlan {
     return missing(
       'Dataset tidak dikenal atau tidak diizinkan. Gunakan identitas dari katalog.',
     );
+  if (/analisis|jalankan|hitung/.test(p) && requestsUnresolvedPlace(p))
+    return missing(
+      'AOI nyata belum tersedia. Tidak ada hasil banjir atau GEE yang dibuat.',
+      'unsupported',
+    );
+  if (/hitung.*luas/.test(p)) {
+    const aoi =
+      input.aois.find(
+        (a) => p.includes(a.id) || p.includes(a.name.toLowerCase()),
+      ) ?? input.recipe.aoi;
+    if (!aoi) return missing('Pilih AOI tersedia sebelum menghitung luas.');
+    add({ tool: 'calculateArea', aoiId: aoi.id });
+    return {
+      ...base,
+      message:
+        'Luas fixture dihitung dengan pendekatan bola; hasil berlabel DEMO.',
+    };
+  }
+  if (/seleksi.*(titik|pusat)/.test(p)) {
+    add({
+      tool: 'spatialSelection',
+      point: [input.recipe.viewport.center[1], input.recipe.viewport.center[0]],
+    });
+    return {
+      ...base,
+      message: 'Seleksi polygon DEMO yang mencakup pusat peta.',
+    };
+  }
+  if (/hitung.*jarak/.test(p)) {
+    const coordinates = p.match(
+      /\[\s*(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)\s*\]/g,
+    );
+    if (coordinates?.length !== 2)
+      return missing(
+        'Gunakan: Hitung jarak [longitude, latitude] ke [longitude, latitude].',
+      );
+    add({
+      tool: 'calculateDistance',
+      points: coordinates.map((v) => JSON.parse(v)) as [
+        [number, number],
+        [number, number],
+      ],
+    });
+    return {
+      ...base,
+      message: 'Jarak dua titik EPSG:4326; pendekatan bola, bukan rute jalan.',
+    };
+  }
   const hasConfiguration = /konfigurasi|configuration/.test(p);
   if (hasConfiguration) {
     base.intent = 'analysis-configuration';
@@ -166,6 +217,14 @@ export function planDemo(input: GISPlanningInput): GISExecutionPlan {
           : 'Sebutkan nama konfigurasi dalam tanda kutip atau ID; minta daftar konfigurasi untuk melihat pilihan.',
       );
     const c = found[0];
+    if (/jalankan|execute|hitung/.test(p)) {
+      add({ tool: 'runConfiguredAnalysis', configurationId: c.id });
+      return {
+        ...base,
+        message:
+          'Konfigurasi eksperimental diproses melalui kebijakan komputasi. Status job menentukan apakah hasil tersedia atau persetujuan diperlukan.',
+      };
+    }
     if (/simpan|save/.test(p)) {
       add({ tool: 'requestConfigurationSave', configurationId: c.id });
       return {

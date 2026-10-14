@@ -1,4 +1,5 @@
 "use client";
+import ComputeJobCard from "./ComputeJobCard";
 import { useEffect, useRef, useState } from "react";
 import { Sparkles, Send } from "lucide-react";
 import { useWorkspaceStore } from "../../store/useWorkspaceStore";
@@ -22,6 +23,8 @@ const prompts = [
   "Jelaskan peta yang sedang saya lihat",
   "Inspeksi pixel di pusat peta",
   "Daftar konfigurasi analisis",
+  "Hitung luas area contoh Barat",
+  "Hitung jarak [103.55, -1.6] ke [103.65, -1.6]",
 ];
 const statusLabels: Record<GISRunResponse["status"], string> = {
   completed: "Selesai",
@@ -143,9 +146,15 @@ export default function CopilotPanel({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(
           reviewedPlan
-            ? { plan: reviewedPlan, recipe: current.recipe, configurations }
+            ? {
+                plan: reviewedPlan,
+                recipe: current.recipe,
+                configurations,
+                requestId: reviewedPlan.id,
+              }
             : {
                 prompt: value,
+                requestId: crypto.randomUUID(),
                 recipe: current.recipe,
                 configurations,
                 execution: automatic ? "auto" : "preview",
@@ -458,6 +467,12 @@ export default function CopilotPanel({
                 <article key={result.stepId}>
                   <h4>{result.tool}</h4>
                   <p>{result.summary}</p>
+                  {result.data.kind === "compute" && (
+                    <ComputeJobCard
+                      key={result.data.job.id}
+                      initial={result.data.job}
+                    />
+                  )}
                   {result.data.kind === "datasets" &&
                     result.data.datasets.map((d) => (
                       <p key={d.id}>
@@ -547,6 +562,18 @@ export default function CopilotPanel({
                     </ul>
                   )}
                   {result.data.kind === "configuration" && (
+                    <button
+                      disabled={busy}
+                      onClick={() =>
+                        void ask(
+                          `Jalankan konfigurasi "${result.data.kind === "configuration" ? result.data.configuration.id : ""}"`,
+                        )
+                      }
+                    >
+                      Jalankan konfigurasi
+                    </button>
+                  )}
+                  {result.data.kind === "configuration" && (
                     <>
                       <p>
                         {result.data.configuration.name} · v
@@ -590,6 +617,18 @@ export default function CopilotPanel({
                         </button>
                       </div>
                     </>
+                  )}
+                  {result.data.kind === "preparation" && (
+                    <button
+                      disabled={busy}
+                      onClick={() =>
+                        void ask(
+                          `Jalankan konfigurasi "${result.data.kind === "preparation" ? result.data.configuration.id : ""}"`,
+                        )
+                      }
+                    >
+                      Jalankan melalui kontrol komputasi
+                    </button>
                   )}
                   {result.data.kind === "preparation" && (
                     <>

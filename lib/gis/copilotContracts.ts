@@ -1,4 +1,9 @@
 import type {
+  ComputeToolRequest,
+  ComputeJob,
+  ComputeCostClass,
+} from "./computeContracts";
+import type {
   Dataset,
   GisContext,
   MapAction,
@@ -20,6 +25,7 @@ export type GISIntent =
   | "analysis-configuration"
   | "unsupported";
 export type GISToolRequest =
+  | ComputeToolRequest
   | MapRecipeAction
   | { tool: "styleLayer"; layerId: string; style: RasterStyle | VectorStyle }
   | { tool: "changeLayerOpacity"; layerId: string; opacity: number }
@@ -43,6 +49,7 @@ export type GISRisk =
 export interface GISToolDefinition {
   name: GISToolName;
   level: GISRisk;
+  costClass: ComputeCostClass;
   description: string;
   available: boolean;
 }
@@ -96,6 +103,7 @@ export interface AIProvider extends AIProviderDescriptor {
   plan(input: GISPlanningInput, signal?: AbortSignal): Promise<unknown>;
 }
 export type GISResultData =
+  | { kind: "compute"; job: ComputeJob }
   | { kind: "datasets"; datasets: GISDatasetInfo[] }
   | { kind: "metadata"; dataset: GISDatasetInfo }
   | { kind: "summary"; title: string; layerCount: number; aoi: string | null }

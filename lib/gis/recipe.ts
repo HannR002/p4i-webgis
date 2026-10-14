@@ -28,6 +28,7 @@ export function assertRecipeAccess(
   for (const id of new Set([
     ...recipe.layers.map((l) => l.datasetId),
     ...(recipe.analysisConfiguration?.inputDatasetIds ?? []),
+    ...(recipe.analysisResults?.flatMap((r) => r.datasetIds) ?? []),
   ])) {
     const d = catalog.find((d) => d.id === id);
     if (!d || !canAccessDataset(d, context))
