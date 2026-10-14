@@ -58,8 +58,9 @@ assesses completeness, interpretation, authorized release and professional quali
 
 Branch: **feat/consulting-workflow-phase07**, stacked on **feat/ai-gis-analysis-phase06**.
 See [client-deliverable workflow](client-deliverable-workflow.md), [review description](phase-07-pr.md)
-and [verification evidence](evidence/phase-07/verification-summary.json). PR details are recorded
-after publication through the normal reviewed GitHub workflow.
+and [verification evidence](evidence/phase-07/verification-summary.json).
+**[Draft PR #3](https://github.com/HannR002/p4i-webgis/pull/3) is open for review** on the Phase 06 base.
+Implementation `4bae725` was pushed normally; no force push, merge, deployment or actual client release.
 
 
 

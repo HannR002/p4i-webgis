@@ -38,3 +38,9 @@ professional deliverable completeness, interpretation, authorized release and qu
 [Workflow, boundaries and screenshots](client-deliverable-workflow.md) ·
 [Implementation report](implementation-report.md) ·
 [Verification evidence](evidence/phase-07/verification-summary.json).
+
+## Publication
+
+[Draft PR #3](https://github.com/HannR002/p4i-webgis/pull/3) is open for review,
+with `feat/ai-gis-analysis-phase06` as base. Implementation commit: `4bae725`.
+Branch: `feat/consulting-workflow-phase07`. No merge, deployment or actual client release.
