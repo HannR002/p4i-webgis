@@ -125,6 +125,7 @@ try {
   );
   await page.getByRole('button', { name: 'Simpan bobot AHP ke resep' }).click();
   await page.getByRole('tab', { name: 'AI GIS', exact: true }).click();
+  await page.getByLabel('Otomatis terapkan perubahan sesi').uncheck();
   await page.getByLabel('Instruksi GIS').fill('Tambahkan tutupan lahan');
   await page.getByRole('button', { name: 'Kirim instruksi' }).click();
   await page.getByRole('button', { name: 'Terapkan ke sesi peta' }).waitFor();

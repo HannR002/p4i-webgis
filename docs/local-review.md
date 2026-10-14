@@ -1,4 +1,25 @@
-# Phase 04 interactive review
+# Phase 05 interactive review
+
+Use feature branch `feat/ai-gis-copilot-phase05`, based on actual Phase 04 head 22cf04c. Preserve
+local edits when switching/fetching. Use Node 22, the existing lockfile and GIS_DEMO_MODE=true only
+in local development settings; run npm ci if needed, then npm run dev. Open
+`/spatial/viewer?webmap=climate` and choose AI GIS. No model/GEE/Supabase credentials are needed
+for local fixtures; production refuses DEMO even with the flag.
+
+Try “Buatkan peta tutupan lahan area contoh Barat, tambahkan batas kecamatan, gunakan basemap OSM
+dan buatkan legenda”. Safe changes apply automatically; try Undo/Redo or turn off automatic mode
+for preview. Ask “Metadata tutupan lahan” or “Inspeksi pixel tutupan lahan di pusat peta” for actual
+provider reads. Ask “Buat draft konfigurasi wlc "Skenario"”, then use the configuration buttons to
+prepare, open Analisis or request an explicit save. Preparing an analysis does not execute it.
+Kota Jambi requires a real authorized AOI adapter and will not be silently replaced by a fixture.
+
+See [supported prompts, architecture and limits](ai-gis-copilot-architecture.md). The cloud
+onboarding UI has no public interactive localhost preview. Actual screenshots in
+[Phase 05 evidence](evidence/phase-05) can be viewed/saved from GitHub image pages; workspace
+paths are not guaranteed downloadable chat attachments. Existing browser JSON/PNG/PDF downloads
+remain tested. The planner is deterministic DEMO, not a connected language model.
+
+# Historical Phase 04 interactive review
 
 Use feature branch `feat/gis-analysis-config-phase04`, continuing Phase 03 head 8f7243c.
 See [configuration workflow and report](gis-analysis-configuration.md). Preserve local edits when

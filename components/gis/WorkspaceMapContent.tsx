@@ -91,7 +91,9 @@ export default function WorkspaceMapContent({
       Math.abs(c.lng - lng) > 0.00001 ||
       map.getZoom() !== zoom
     )
-      map.setView([lat, lng], zoom);
+      // Recipe commits/Undo/Redo must settle immediately. Animated programmatic
+      // moves can emit a late moveend that overwrites a newer recipe viewport.
+      map.setView([lat, lng], zoom, { animate: false });
   }, [map, lat, lng, zoom]);
   useMapEvents({
     moveend: () => {

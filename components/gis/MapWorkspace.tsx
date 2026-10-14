@@ -869,7 +869,7 @@ export default function MapWorkspace({
                 tabIndex={0}
                 hidden={panel !== 'copilot'}
               >
-                <CopilotPanel />
+                <CopilotPanel onOpenAnalysis={() => changePanel('analysis')} />
               </div>
               <div
                 id="gis-panel-analysis"

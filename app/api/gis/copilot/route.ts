@@ -1,32 +1,127 @@
 import { NextResponse } from 'next/server';
-import { getGisPlanner } from '../../../../lib/server/ai';
+import { getAIProvider } from '../../../../lib/server/ai';
 import { getGisProvider } from '../../../../lib/server/gis';
 import { getGisContext } from '../../../../lib/server/gis/context';
-import { record, parseRecipe, GisInputError } from '../../../../lib/gis/validation';
-import { assertRecipeAccess } from '../../../../lib/gis/recipe';
+import { getRasterProvider } from '../../../../lib/server/gis/rasterProvider';
+import {
+  record,
+  parseRecipe,
+  GisInputError,
+  text,
+} from '../../../../lib/gis/validation';
+import { parseAnalysisConfiguration } from '../../../../lib/gis/analysisConfiguration';
+import {
+  exact,
+  parseGISRunResponse,
+  parseGISExecutionPlan,
+} from '../../../../lib/gis/copilotValidation';
+import {
+  COPILOT_LIMITS,
+  type GISExecutionContext,
+} from '../../../../lib/gis/copilotContracts';
+import {
+  assertRecipeAccess,
+  GisPermissionError,
+} from '../../../../lib/gis/recipe';
 import { gisError, readGisBody } from '../../../../lib/server/gis/http';
+import {
+  planningInput,
+  planWithProvider,
+  executeGISPlan,
+  bounded,
+  AIProviderError,
+} from '../../../../lib/server/ai/execution';
+export const runtime = 'nodejs';
+export const maxDuration = 20;
 export async function POST(request: Request) {
   try {
     const body = await readGisBody(request);
-    if (!record(body) || typeof body.prompt !== 'string')
-      throw new GisInputError('Prompt tidak valid');
-    const catalog = getGisProvider().catalog();
-    const context = await getGisContext(request, catalog);
+    if (
+      !record(body) ||
+      (body.plan === undefined &&
+        (!text(body.prompt, 2000) ||
+          !(
+            body.execution === undefined ||
+            ['auto', 'preview'].includes(String(body.execution))
+          )))
+    )
+      throw new GisInputError('Instruksi/mode Copilot tidak valid');
+    exact(
+      body,
+      body.plan === undefined
+        ? ['prompt', 'recipe', 'configurations', 'execution']
+        : ['plan', 'recipe', 'configurations'],
+    );
+    const gis = getGisProvider(),
+      catalog = gis.catalog(),
+      context = await getGisContext(request, catalog);
     const recipe = parseRecipe(body.recipe, catalog);
     assertRecipeAccess(recipe, catalog, context);
-    const planner = getGisPlanner();
-    if (!planner)
+    if (
+      body.configurations !== undefined &&
+      (!Array.isArray(body.configurations) ||
+        body.configurations.length > COPILOT_LIMITS.configurations)
+    )
+      throw new GisInputError('Konteks konfigurasi tidak valid');
+    const configurations = (
+      Array.isArray(body.configurations) ? body.configurations : []
+    ).map((c) => parseAnalysisConfiguration(c, catalog));
+    const env: GISExecutionContext = {
+      catalog,
+      context,
+      mode: gis.mode,
+      configurations,
+    };
+    const input = planningInput(
+      typeof body.prompt === 'string'
+        ? body.prompt
+        : 'Terapkan rencana yang ditinjau',
+      recipe,
+      env,
+    );
+    const provider = getAIProvider();
+    if (!provider)
       return NextResponse.json(
         {
           status: 'unavailable',
-          error: 'Provider AI belum dikonfigurasi. Demo hanya tersedia dalam development.',
+          error:
+            'Provider AI nyata belum dikonfigurasi; planner DEMO hanya dalam development.',
         },
-        { status: 503 },
+        { status: 503, headers: { 'Cache-Control': 'private, no-store' } },
       );
-    return NextResponse.json(await planner.plan(body.prompt, recipe, catalog, context), {
+    const plan =
+      body.plan === undefined
+        ? await planWithProvider(provider, input, request.signal)
+        : parseGISExecutionPlan(body.plan, provider);
+    const response = await bounded(
+      (signal) =>
+        executeGISPlan(
+          plan,
+          recipe,
+          { ...env, raster: getRasterProvider(gis), signal },
+          body.execution === 'preview' ? 'preview' : 'auto',
+        ),
+      COPILOT_LIMITS.executionMs,
+      request.signal,
+    );
+    // Same response parser protects client and server; the selected provider is currently DEMO.
+    return NextResponse.json(parseGISRunResponse(response, env, provider), {
       headers: { 'Cache-Control': 'private, no-store' },
     });
-  } catch (e) {
-    return gisError(e);
+  } catch (error) {
+    if (error instanceof AIProviderError)
+      return NextResponse.json(
+        {
+          error:
+            'Copilot gagal atau output tidak valid. Tidak ada perubahan sesi diterapkan.',
+        },
+        { status: 502, headers: { 'Cache-Control': 'private, no-store' } },
+      );
+    if (error instanceof GisPermissionError)
+      return NextResponse.json(
+        { error: error.message },
+        { status: 403, headers: { 'Cache-Control': 'private, no-store' } },
+      );
+    return gisError(error);
   }
 }
