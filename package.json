@@ -9,7 +9,9 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "import:boundaries": "node scripts/import-boundaries.mjs"
+    "import:boundaries": "node scripts/import-boundaries.mjs",
+    "db:plan": "node scripts/database/plan.mjs",
+    "test:db": "node scripts/database/rehearse.mjs"
   },
   "dependencies": {
     "@google/earthengine": "^1.7.43",

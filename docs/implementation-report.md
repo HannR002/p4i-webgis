@@ -1,7 +1,67 @@
 # P4I Spatial Analytics implementation report
 
+## Current status — Phase 08, 15 October 2026 (Asia/Jakarta)
 
-## Current status — Phase 07, 14 October 2026
+Phase 08 prepares and verifies database security locally, without pretending the missing live
+foundation has been recovered. Actual base: Phase 07 `20cbf54`, PR #3 open/draft. Work is on
+`feat/postgis-staging-phase08`; no earlier PR is assumed merged. Baseline lint, typecheck,
+226 tests/32 files and build passed.
+
+All seven historical SQL files were inventoried and retained unchanged. The ordered manifest
+records SHA256 per file. Verified DDL is still missing for the core enum/tables, auth trigger,
+materialized view dependencies and legacy report/weight tables. Runtime TypeScript and prose
+are not substituted for live schema evidence. `node scripts/database/plan.mjs --require-verified-foundation` exits 2;
+external reproduction is explicitly blocked. Metadata-only capture, prerequisite assertions,
+read-only security assertions, exact replay order and rollback are executable/documented.
+
+New migration `008_staging_security.sql` removes inherited PUBLIC grants, protects schema CREATE
+and import sequences, keeps legacy reports/weights private until publication mapping exists,
+gates download metadata on an active identity/current entitlement, protects disabled entitlement
+metadata, fixes audit actor extraction for modern JWT claims, and hardens future default ACLs.
+Trusted application roles continue to come from `user_profiles.role`; signup remains b2b_client.
+No speculative GIS/job/deliverable tables or incompatible domain models were introduced.
+
+`npm run test:db` now launches pinned real PostgreSQL/PostGIS and PostgREST containers locally,
+using synthetic auth/core fixtures, ephemeral JWTs and a low-privilege authenticator. Two complete
+fresh replays each pass **170 checks (340 total)**, including migration application/catalog
+invariants and direct HTTP tests for Guest, two B2B clients, Analyst, Super Admin, disabled and
+missing profiles. Exact project/vector row isolation, protected reports/download metadata,
+malicious metadata, invalid/expired JWT, role escalation, admin-only server mutation boundary,
+entitlement revocation, internal RPC denial, actual service GeoJSON/boundary geometry and audit
+attribution all pass. 008 also reapplies successfully; historical scripts are fresh-only.
+
+Final **lint, typecheck, 230 tests/33 files and production build pass**. Four new unit tests cover
+replay blocking, order/hashes, changed/missing migration evidence and external-target refusal.
+The database suite is additional to Vitest. Early local harness failures (Postgres temporary-init
+readiness, internal-network port publishing, single-polygon simplification and inventory alias
+syntax) were corrected; two final full cycles completed and cleaned their resources. No app UI
+changed, so no new browser screenshot is claimed. Phase 07 UI/export tests remain in the passing
+application suite; its earlier browser evidence remains historical.
+
+Supabase stays the active adapter. Domain repositories remain independent of Supabase SDK types;
+Neon/Nhost mapping needs auth/role/extension namespace/transport work, documented in the provider
+architecture. Existing configuration/MapRecipe local storage, compute jobs and consulting
+repositories remain development adapters. Client-deliverable review is separate from scientific
+methodology validation/ranking, which remain OUT OF SCOPE.
+
+No external migrations, staging fixtures, live client data, deployment, paid computation or merge
+occurred. Supabase GoTrue and external five-user RLS integration are **not verified**. Required
+next evidence: reviewed foundation/auth/view DDL and ownership, compatible PostGIS namespace,
+explicit disposable target scope and secure connection/synthetic identities. Existing “staging”
+classification alone does not authorize destructive recreation. The cloud `start_skill` field
+was saved as a reusable draft, not published automatically.
+
+See [staging runbook](staging-database-runbook.md),
+[provider architecture](backend-provider-architecture.md),
+[verification summary](evidence/phase-08/verification-summary.json),
+[database checks](evidence/phase-08/database-summary.json) and
+[PR description](phase-08-pr.md).
+**[Draft PR #4](https://github.com/HannR002/p4i-webgis/pull/4) is open** against Phase 07.
+Implementation `f8c33ed` was pushed normally; no merge or external database change.
+
+
+
+## Previous status — Phase 07, 14 October 2026
 
 Versioned GIS consulting deliverables now run in the existing geoportal workflow. Analysts
 can prepare Copilot-assisted drafts from MapRecipe, attach actual owned Phase 06 results,

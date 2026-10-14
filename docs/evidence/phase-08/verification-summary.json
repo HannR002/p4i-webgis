@@ -1,0 +1,46 @@
+{
+  "phase": 8,
+  "userDate": "2026-10-15",
+  "timezone": "Asia/Jakarta",
+  "baseCommit": "20cbf540b85f3f0b01bd92c0662c468b39517d48",
+  "branch": "feat/postgis-staging-phase08",
+  "baseline": {
+    "lint": "passed",
+    "typecheck": "passed",
+    "tests": 226,
+    "testFiles": 32,
+    "build": "passed"
+  },
+  "final": {
+    "lint": "passed",
+    "typecheck": "passed",
+    "tests": 230,
+    "testFiles": 33,
+    "build": "passed"
+  },
+  "database": {
+    "mode": "LOCAL_SYNTHETIC_FOUNDATION_ONLY",
+    "cycles": 2,
+    "checksPerCycle": 170,
+    "checksTotal": 340,
+    "postgrest": "12.2.12",
+    "postgresPostgis": "PostgreSQL 16.9 (Debian 16.9-1.pgdg110+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit\nPOSTGIS=\"3.5.2 dea6d0a\" [EXTENSION] PGSQL=\"160\" GEOS=\"3.9.0-CAPI-1.16.2\" PROJ=\"7.2.1 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/var/lib/postgresql/.local/share/proj DATABASE_PATH=/usr/share/proj/proj.db\" (compiled against PROJ 7.2.1) LIBXML=\"2.9.10\" LIBJSON=\"0.15\" LIBPROTOBUF=\"1.3.3\" WAGYU=\"0.5.0 (Internal)\" TOPOLOGY",
+    "verifiedLiveFoundation": false,
+    "externalReplayAllowed": false,
+    "blockers": [
+      "Verified DDL for user_role, user_profiles, spatial_projects and vector_layers",
+      "Verified auth.users trigger binding and provider ownership/grants",
+      "Verified materialized-view DDL/dependencies required by historical 007",
+      "Legacy analysis_reports/smce_criteria_weights DDL and report publication mapping"
+    ]
+  },
+  "externalDatabaseMutations": false,
+  "realClientDataUsed": false,
+  "deployment": false,
+  "merge": false,
+  "liveSupabaseRlsTested": false,
+  "cloudStartupDraftSaved": true,
+  "pr": "https://github.com/HannR002/p4i-webgis/pull/4",
+  "prBase": "feat/consulting-workflow-phase07",
+  "implementationCommit": "f8c33ed"
+}
