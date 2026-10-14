@@ -28,3 +28,13 @@ main still lacks the parent phases. Review as a stacked change. No dependencies,
 production data changes, paid services, deployment, scientific methodology ranking or auto merge.
 Real model/AOI/raster adapters, durable audit, distributed quotas and remote approvals remain pending.
 The deterministic grammar is intentionally limited; DEMO samples are not scientific measurements.
+
+## Publication outcome
+
+Implementation `cf3a39b` was pushed to origin/feat/ai-gis-copilot-phase05. Actual draft PR creation
+using the base above failed with `Post "https://api.github.com/graphql": Forbidden`. No PR was
+opened; this is the prepared description. HTTPS Git push succeeded, while the GitHub API request
+was blocked in this environment.
+
+[Review the stacked diff and create the PR](https://github.com/HannR002/p4i-webgis/compare/feat%2Fgis-analysis-config-phase04...feat%2Fai-gis-copilot-phase05?expand=1).
+Keep Phase 04 as the base until its parent phases are reconciled into main. No merge/deployment.
