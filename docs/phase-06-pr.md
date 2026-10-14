@@ -42,3 +42,9 @@ compute endpoint is disabled. Real AOI/raster/GEE/model adapters, durable worker
 external monetary estimates, buffer/vector overlay and automated scenario comparison are
 pending. Scientific methodology validation/ranking and mandatory expert approval are
 explicitly out of scope.
+
+## Publication
+
+[Draft PR #2](https://github.com/HannR002/p4i-webgis/pull/2) is open for review,
+with `feat/ai-gis-copilot-phase05` as base. Implementation commit: `5a04e30`.
+No automatic merge or deployment. The working branch is `feat/ai-gis-analysis-phase06`.

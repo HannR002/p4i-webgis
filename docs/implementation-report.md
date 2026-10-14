@@ -43,7 +43,8 @@ No dependencies, migrations, production data changes, paid calls, deployment or 
 Branch: **feat/ai-gis-analysis-phase06**, stacked on **feat/ai-gis-copilot-phase05**. See the
 [execution workflow and screenshots](ai-gis-analysis-execution.md), [compute governance](commercial-compute-governance.md),
 [verification evidence](evidence/phase-06/verification-summary.json), and [review description](phase-06-pr.md).
-PR publication details are recorded in the review description after the normal GitHub workflow.
+**[Draft PR #2](https://github.com/HannR002/p4i-webgis/pull/2) is open for review** on the Phase 05 base.
+Implementation commit `5a04e30` was pushed normally; no force push, merge or deployment.
 
 
 ## Previous status — Phase 05, 14 October 2026
