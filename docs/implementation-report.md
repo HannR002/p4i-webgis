@@ -10,7 +10,7 @@ foundation has been recovered. Actual base: Phase 07 `20cbf54`, PR #3 open/draft
 All seven historical SQL files were inventoried and retained unchanged. The ordered manifest
 records SHA256 per file. Verified DDL is still missing for the core enum/tables, auth trigger,
 materialized view dependencies and legacy report/weight tables. Runtime TypeScript and prose
-are not substituted for live schema evidence. `db:plan --require-verified-foundation` exits 2;
+are not substituted for live schema evidence. `node scripts/database/plan.mjs --require-verified-foundation` exits 2;
 external reproduction is explicitly blocked. Metadata-only capture, prerequisite assertions,
 read-only security assertions, exact replay order and rollback are executable/documented.
 
@@ -56,6 +56,8 @@ See [staging runbook](staging-database-runbook.md),
 [verification summary](evidence/phase-08/verification-summary.json),
 [database checks](evidence/phase-08/database-summary.json) and
 [PR description](phase-08-pr.md).
+**[Draft PR #4](https://github.com/HannR002/p4i-webgis/pull/4) is open** against Phase 07.
+Implementation `f8c33ed` was pushed normally; no merge or external database change.
 
 
 

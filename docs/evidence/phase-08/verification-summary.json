@@ -39,5 +39,8 @@
   "deployment": false,
   "merge": false,
   "liveSupabaseRlsTested": false,
-  "cloudStartupDraftSaved": true
+  "cloudStartupDraftSaved": true,
+  "pr": "https://github.com/HannR002/p4i-webgis/pull/4",
+  "prBase": "feat/consulting-workflow-phase07",
+  "implementationCommit": "f8c33ed"
 }

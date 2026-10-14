@@ -26,3 +26,5 @@ publication occurred.
 
 Stacked on Phase 07 (`feat/consulting-workflow-phase07`, PR #3); review this delta against that
 branch. Earlier phase PRs remain open/draft.
+
+Review: [Draft PR #4](https://github.com/HannR002/p4i-webgis/pull/4).
