@@ -1,6 +1,42 @@
 # P4I Spatial Analytics implementation report
 
-## Current status — Phase 04, 13 October 2026
+## Current status — Phase 05, 14 October 2026
+
+Controlled Autonomous Option B now runs in the existing GIS workspace. Typed provider-neutral
+plans, an immutable policy registry, bounded server tools and runtime output validation connect
+catalog/metadata reads, actual provider pixels, reversible map changes and Phase 04 configurations.
+Automatic session changes are enabled initially, with optional preview/exact-plan replay and one
+Undo entry per batch. Draft proposals fork new IDs. Persistent local save requires explicit
+snapshot approval; publication/GEE stay unavailable. No methodology validation/ranking gate.
+
+Baseline on actual Phase 04 head **22cf04c**: lint/typecheck, **154 tests/25 files** and build passed.
+Final Node 22.23.3 lint/typecheck/build and **188 tests/28 files** pass. New Chromium flows include
+auto map rendering, atomic Undo/Redo, native pixel/NoData, configuration preparation/approval,
+request abort and stale-response protection. Eight desktop/mobile Axe audits pass with zero
+violations/overflow/page errors. Phase 02–04 browser regressions and JSON/PNG/PDF downloads pass.
+Production refuses DEMO planning, replay, sampling and processing despite the DEMO flag. Public
+client bundle scan found zero service-role/GEE-private-key markers in 39 JavaScript files.
+
+Only a **deterministic DEMO planner** is connected: no authorized LLM credentials were present.
+Kota Jambi and unavailable real AOIs produce a clarification without changing the recipe or using
+substitute fixtures. Actual samples are synthetic provider values, never real-world measurements.
+Zero GEE calls in browser QA; no paid model, migrations, deployment, production data changes,
+new dependencies, speculative tables or automatic merge.
+
+The audit found and fixed inconsistent B2B entitlement context in client catalog checks. Browser
+QA also caught a false read-result mutation caused by legend property order; normalized recipe
+comparison fixes it. Nonanimated programmatic map synchronization prevents late moveend events
+from overwriting a newer Undo/Redo viewport. Existing AHP/WLC, Flood, Pixel Inspector and export
+features remain. Real LLM/data adapters, durable audit, distributed quotas and remote approvals
+remain pending; all prior real-data limitations still apply.
+
+Branch **feat/ai-gis-copilot-phase05** stacks on **feat/gis-analysis-config-phase04**. Read-only remote
+verification still shows main at dfe412c, without prior phase commits; they are not claimed merged.
+See [Phase 05 architecture, workflow, examples, safety and screenshots](ai-gis-copilot-architecture.md),
+[prepared PR](phase-05-pr.md) and [evidence](evidence/phase-05). Publication/PR outcome is recorded
+below after the actual GitHub attempt; do not infer an opened PR from a prepared description.
+
+## Previous status — Phase 04, 13 October 2026
 
 Lightweight GIS analysis configuration management now runs in the existing workspace. One validated
 model, local repository and named editor support revisions, load/save/duplicate/delete, source

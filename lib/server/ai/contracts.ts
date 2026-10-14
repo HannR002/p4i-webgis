@@ -27,3 +27,14 @@ export interface GisPlanner {
     context: GisContext,
   ): Promise<GisPlan>;
 }
+
+export type {
+  AIProvider,
+  GISIntent,
+  GISExecutionPlan,
+  GISToolDefinition,
+  GISToolRegistry,
+  GISActionResult,
+  MapRecipeAction,
+  GISExecutionTrace,
+} from '../../gis/copilotContracts';

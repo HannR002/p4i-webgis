@@ -13,6 +13,7 @@ export async function GET(request: Request) {
         mode: provider.mode,
         datasets: catalog.filter((d) => canAccessDataset(d, context)),
         role: context.role,
+        entitledProjectIds: context.entitledProjectIds,
       },
       { headers: { 'Cache-Control': 'private, no-store' } },
     );
