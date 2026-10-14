@@ -31,10 +31,12 @@ The deterministic grammar is intentionally limited; DEMO samples are not scienti
 
 ## Publication outcome
 
-Implementation `cf3a39b` was pushed to origin/feat/ai-gis-copilot-phase05. Actual draft PR creation
-using the base above failed with `Post "https://api.github.com/graphql": Forbidden`. No PR was
-opened; this is the prepared description. HTTPS Git push succeeded, while the GitHub API request
-was blocked in this environment.
+Implementation `cf3a39b` was pushed to origin/feat/ai-gis-copilot-phase05. Initial PR creation was
+blocked by a 403 at the proxy HTTPS CONNECT stage because api.github.com was not allowed. After
+the owner published the network configuration, live GitHub API access and repository permissions
+were verified. **[Draft PR #1](https://github.com/HannR002/p4i-webgis/pull/1) is now open** with
+feat/gis-analysis-config-phase04 as base and feat/ai-gis-copilot-phase05 as head. No merge/deployment.
 
-[Review the stacked diff and create the PR](https://github.com/HannR002/p4i-webgis/compare/feat%2Fgis-analysis-config-phase04...feat%2Fai-gis-copilot-phase05?expand=1).
-Keep Phase 04 as the base until its parent phases are reconciled into main. No merge/deployment.
+[Network resolution evidence](evidence/phase-05/pr-network-resolution.json) records the successful
+retry. Earlier pr-attempt.log is historical. The separate generic environment-editor save error
+has no field-specific service explanation and is not claimed fixed by this PR creation.

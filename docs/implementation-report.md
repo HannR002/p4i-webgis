@@ -33,10 +33,14 @@ remain pending; all prior real-data limitations still apply.
 Branch **feat/ai-gis-copilot-phase05** stacks on **feat/gis-analysis-config-phase04**. Read-only remote
 verification still shows main at dfe412c, without prior phase commits; they are not claimed merged.
 See [Phase 05 architecture, workflow, examples, safety and screenshots](ai-gis-copilot-architecture.md),
-[prepared PR](phase-05-pr.md) and [evidence](evidence/phase-05). Implementation **cf3a39b** was pushed successfully. Actual draft PR creation with Phase 04 as
-base returned `Post "https://api.github.com/graphql": Forbidden`; no PR was opened. The GitHub API
-request is blocked in this environment, while HTTPS Git push succeeds. The report, screenshots,
-prepared PR body and [stacked comparison](https://github.com/HannR002/p4i-webgis/compare/feat%2Fgis-analysis-config-phase04...feat%2Fai-gis-copilot-phase05?expand=1) are published for review. No merge or deployment.
+[PR description](phase-05-pr.md) and [evidence](evidence/phase-05). Implementation **cf3a39b** was
+pushed successfully. Initial PR creation failed because the egress proxy rejected HTTPS CONNECT
+to api.github.com (403), before GitHub authentication. After the owner published the network
+change, live API access returned HTTP 200 and repository permissions were verified. **[Draft PR #1](https://github.com/HannR002/p4i-webgis/pull/1)
+is now open**, targeting the Phase 04 branch. Earlier failure logs are historical; see
+[resolution evidence](evidence/phase-05/pr-network-resolution.json). The environment editor's
+separate generic save/publish error did not expose a field-specific cause; its internal cause
+is unconfirmed. No application restart was needed for the successful API retry. No merge/deployment.
 
 ## Previous status — Phase 04, 13 October 2026
 
