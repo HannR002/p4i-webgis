@@ -1,0 +1,5 @@
+Cycle 1: creating isolated synthetic PostgreSQL/PostGIS instance
+Cycle 1: 170 migration/security checks passed
+Cycle 2: creating isolated synthetic PostgreSQL/PostGIS instance
+Cycle 2: 170 migration/security checks passed
+Verified 2 fresh synthetic replays. External schema reproduction remains blocked pending verified foundation DDL.

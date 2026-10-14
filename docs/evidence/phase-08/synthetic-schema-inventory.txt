@@ -1,0 +1,523 @@
+BEGIN
+p4i_rehearsal|PostgreSQL 16.9 (Debian 16.9-1.pgdg110+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit
+postgis|3.5.2|public
+pgcrypto|1.3|public
+public|user_role|b2b_client|1
+public|user_role|managerial_analyst|2
+public|user_role|super_admin|3
+administrative_boundaries|r|postgres|t|f|{postgres=arwdDxt/postgres,service_role=arwdDxt/postgres}
+administrative_boundaries_import_staging|r|postgres|t|f|{postgres=arwdDxt/postgres,service_role=arwdDxt/postgres}
+administrative_boundaries_import_staging_id_seq|S|postgres|f|f|{postgres=rwU/postgres,service_role=rU/postgres}
+analysis_reports|r|postgres|t|f|{postgres=arwdDxt/postgres,service_role=arwdDxt/postgres}
+audit_logs|r|postgres|t|f|{postgres=arwdDxt/postgres,service_role=arwdDxt/postgres}
+b2b_entitlements|r|postgres|t|f|{postgres=arwdDxt/postgres,service_role=arwdDxt/postgres,authenticated=r/postgres}
+download_history|r|postgres|t|f|{postgres=arwdDxt/postgres,service_role=arwdDxt/postgres,authenticated=r/postgres}
+flood_analysis_results|r|postgres|t|f|{postgres=arwdDxt/postgres,service_role=arwdDxt/postgres,authenticated=r/postgres}
+geography_columns|v|postgres|f|f|{postgres=arwdDxt/postgres,=arwdDxt/postgres,anon=arwdDxt/postgres,authenticated=arwdDxt/postgres}
+geometry_columns|v|postgres|f|f|{postgres=arwdDxt/postgres,=arwdDxt/postgres,anon=arwdDxt/postgres,authenticated=arwdDxt/postgres}
+sales_leads|r|postgres|t|f|{postgres=arwdDxt/postgres,service_role=arwdDxt/postgres}
+smce_criteria_weights|r|postgres|t|f|{postgres=arwdDxt/postgres,service_role=arwdDxt/postgres}
+spatial_projects|r|postgres|t|f|{postgres=arwdDxt/postgres,service_role=arwdDxt/postgres,anon=r/postgres,authenticated=r/postgres}
+spatial_ref_sys|r|postgres|f|f|{postgres=arwdDxt/postgres,=arwdDxt/postgres,anon=arwdDxt/postgres,authenticated=arwdDxt/postgres}
+user_profiles|r|postgres|t|f|{postgres=arwdDxt/postgres,service_role=arwdDxt/postgres}
+vector_layers|r|postgres|t|f|{postgres=arwdDxt/postgres,service_role=arwdDxt/postgres,anon=r/postgres,authenticated=r/postgres}
+vw_spatial_projects|v|postgres|f|f|{postgres=arwdDxt/postgres}
+vw_vector_layers_geojson|m|postgres|f|f|{postgres=arwdDxt/postgres}
+administrative_boundaries|id|1|uuid|pg_catalog|uuid|NO|gen_random_uuid()|NO|NEVER
+administrative_boundaries|kode_wilayah|2|text|pg_catalog|text|NO||NO|NEVER
+administrative_boundaries|level|3|text|pg_catalog|text|NO||NO|NEVER
+administrative_boundaries|parent_id|4|uuid|pg_catalog|uuid|YES||NO|NEVER
+administrative_boundaries|nama|5|text|pg_catalog|text|NO||NO|NEVER
+administrative_boundaries|source|6|text|pg_catalog|text|NO||NO|NEVER
+administrative_boundaries|source_version|7|text|pg_catalog|text|NO||NO|NEVER
+administrative_boundaries|is_public|8|boolean|pg_catalog|bool|NO|true|NO|NEVER
+administrative_boundaries|geometry|9|USER-DEFINED|public|geometry|NO||NO|NEVER
+administrative_boundaries|created_at|10|timestamp with time zone|pg_catalog|timestamptz|NO|now()|NO|NEVER
+administrative_boundaries|updated_at|11|timestamp with time zone|pg_catalog|timestamptz|NO|now()|NO|NEVER
+administrative_boundaries_import_staging|id|1|bigint|pg_catalog|int8|NO|nextval('administrative_boundaries_import_staging_id_seq'::regclass)|NO|NEVER
+administrative_boundaries_import_staging|batch_id|2|uuid|pg_catalog|uuid|NO||NO|NEVER
+administrative_boundaries_import_staging|kode_wilayah|3|text|pg_catalog|text|NO||NO|NEVER
+administrative_boundaries_import_staging|parent_kode_wilayah|4|text|pg_catalog|text|YES||NO|NEVER
+administrative_boundaries_import_staging|level|5|text|pg_catalog|text|NO||NO|NEVER
+administrative_boundaries_import_staging|nama|6|text|pg_catalog|text|NO||NO|NEVER
+administrative_boundaries_import_staging|source|7|text|pg_catalog|text|NO||NO|NEVER
+administrative_boundaries_import_staging|source_version|8|text|pg_catalog|text|NO||NO|NEVER
+administrative_boundaries_import_staging|geometry|9|USER-DEFINED|public|geometry|NO||NO|NEVER
+administrative_boundaries_import_staging|raw_properties|10|jsonb|pg_catalog|jsonb|NO|'{}'::jsonb|NO|NEVER
+administrative_boundaries_import_staging|staged_at|11|timestamp with time zone|pg_catalog|timestamptz|NO|now()|NO|NEVER
+analysis_reports|id|1|uuid|pg_catalog|uuid|NO||NO|NEVER
+analysis_reports|project_id|2|uuid|pg_catalog|uuid|YES||NO|NEVER
+analysis_reports|body|3|text|pg_catalog|text|YES||NO|NEVER
+audit_logs|id|1|uuid|pg_catalog|uuid|NO|gen_random_uuid()|NO|NEVER
+audit_logs|user_id|2|uuid|pg_catalog|uuid|YES||NO|NEVER
+audit_logs|action_type|3|text|pg_catalog|text|NO||NO|NEVER
+audit_logs|table_name|4|text|pg_catalog|text|NO||NO|NEVER
+audit_logs|record_id|5|uuid|pg_catalog|uuid|YES||NO|NEVER
+audit_logs|ip_address|6|text|pg_catalog|text|YES||NO|NEVER
+audit_logs|metadata|7|jsonb|pg_catalog|jsonb|YES||NO|NEVER
+audit_logs|created_at|8|timestamp with time zone|pg_catalog|timestamptz|YES|now()|NO|NEVER
+b2b_entitlements|id|1|uuid|pg_catalog|uuid|NO|gen_random_uuid()|NO|NEVER
+b2b_entitlements|client_user_id|2|uuid|pg_catalog|uuid|YES||NO|NEVER
+b2b_entitlements|project_id|3|uuid|pg_catalog|uuid|YES||NO|NEVER
+b2b_entitlements|granted_by|4|uuid|pg_catalog|uuid|YES||NO|NEVER
+b2b_entitlements|granted_at|5|timestamp with time zone|pg_catalog|timestamptz|YES|now()|NO|NEVER
+download_history|id|1|uuid|pg_catalog|uuid|NO|gen_random_uuid()|NO|NEVER
+download_history|client_user_id|2|uuid|pg_catalog|uuid|YES||NO|NEVER
+download_history|project_id|3|uuid|pg_catalog|uuid|YES||NO|NEVER
+download_history|file_type|4|text|pg_catalog|text|NO||NO|NEVER
+download_history|downloaded_at|5|timestamp with time zone|pg_catalog|timestamptz|YES|now()|NO|NEVER
+flood_analysis_results|id|1|uuid|pg_catalog|uuid|NO|gen_random_uuid()|NO|NEVER
+flood_analysis_results|cache_key|2|text|pg_catalog|text|NO||NO|NEVER
+flood_analysis_results|kecamatan_id|3|uuid|pg_catalog|uuid|NO||NO|NEVER
+flood_analysis_results|model_version|4|text|pg_catalog|text|NO||NO|NEVER
+flood_analysis_results|dataset_version|5|text|pg_catalog|text|NO||NO|NEVER
+flood_analysis_results|period_start|6|date|pg_catalog|date|NO||NO|NEVER
+flood_analysis_results|period_end|7|date|pg_catalog|date|NO||NO|NEVER
+flood_analysis_results|criteria_weights|8|jsonb|pg_catalog|jsonb|NO||NO|NEVER
+flood_analysis_results|criteria_breakdown|9|jsonb|pg_catalog|jsonb|NO||NO|NEVER
+flood_analysis_results|score|10|numeric|pg_catalog|numeric|NO||NO|NEVER
+flood_analysis_results|classification|11|text|pg_catalog|text|NO||NO|NEVER
+flood_analysis_results|computed_by|12|uuid|pg_catalog|uuid|YES||NO|NEVER
+flood_analysis_results|computed_at|13|timestamp with time zone|pg_catalog|timestamptz|NO|now()|NO|NEVER
+flood_analysis_results|expires_at|14|timestamp with time zone|pg_catalog|timestamptz|NO||NO|NEVER
+geography_columns|f_table_catalog|1|name|pg_catalog|name|YES||NO|NEVER
+geography_columns|f_table_schema|2|name|pg_catalog|name|YES||NO|NEVER
+geography_columns|f_table_name|3|name|pg_catalog|name|YES||NO|NEVER
+geography_columns|f_geography_column|4|name|pg_catalog|name|YES||NO|NEVER
+geography_columns|coord_dimension|5|integer|pg_catalog|int4|YES||NO|NEVER
+geography_columns|srid|6|integer|pg_catalog|int4|YES||NO|NEVER
+geography_columns|type|7|text|pg_catalog|text|YES||NO|NEVER
+geometry_columns|f_table_catalog|1|character varying|pg_catalog|varchar|YES||NO|NEVER
+geometry_columns|f_table_schema|2|name|pg_catalog|name|YES||NO|NEVER
+geometry_columns|f_table_name|3|name|pg_catalog|name|YES||NO|NEVER
+geometry_columns|f_geometry_column|4|name|pg_catalog|name|YES||NO|NEVER
+geometry_columns|coord_dimension|5|integer|pg_catalog|int4|YES||NO|NEVER
+geometry_columns|srid|6|integer|pg_catalog|int4|YES||NO|NEVER
+geometry_columns|type|7|character varying|pg_catalog|varchar|YES||NO|NEVER
+sales_leads|id|1|uuid|pg_catalog|uuid|NO|gen_random_uuid()|NO|NEVER
+sales_leads|name|2|character varying|pg_catalog|varchar|NO||NO|NEVER
+sales_leads|institution|3|character varying|pg_catalog|varchar|NO||NO|NEVER
+sales_leads|email|4|character varying|pg_catalog|varchar|NO||NO|NEVER
+sales_leads|whatsapp|5|character varying|pg_catalog|varchar|YES||NO|NEVER
+sales_leads|requested_project_id|6|uuid|pg_catalog|uuid|YES||NO|NEVER
+sales_leads|created_at|7|timestamp with time zone|pg_catalog|timestamptz|YES|now()|NO|NEVER
+sales_leads|status|8|character varying|pg_catalog|varchar|YES|'NEW'::character varying|NO|NEVER
+smce_criteria_weights|id|1|uuid|pg_catalog|uuid|NO||NO|NEVER
+smce_criteria_weights|project_id|2|uuid|pg_catalog|uuid|YES||NO|NEVER
+smce_criteria_weights|weights|3|jsonb|pg_catalog|jsonb|YES||NO|NEVER
+spatial_projects|id|1|uuid|pg_catalog|uuid|NO|gen_random_uuid()|NO|NEVER
+spatial_projects|title|2|text|pg_catalog|text|NO||NO|NEVER
+spatial_projects|category|3|text|pg_catalog|text|YES||NO|NEVER
+spatial_projects|description|4|text|pg_catalog|text|YES||NO|NEVER
+spatial_projects|access_tier|5|text|pg_catalog|text|NO||NO|NEVER
+spatial_projects|created_at|6|timestamp with time zone|pg_catalog|timestamptz|YES|now()|NO|NEVER
+spatial_ref_sys|srid|1|integer|pg_catalog|int4|NO||NO|NEVER
+spatial_ref_sys|auth_name|2|character varying|pg_catalog|varchar|YES||NO|NEVER
+spatial_ref_sys|auth_srid|3|integer|pg_catalog|int4|YES||NO|NEVER
+spatial_ref_sys|srtext|4|character varying|pg_catalog|varchar|YES||NO|NEVER
+spatial_ref_sys|proj4text|5|character varying|pg_catalog|varchar|YES||NO|NEVER
+user_profiles|id|1|uuid|pg_catalog|uuid|NO||NO|NEVER
+user_profiles|full_name|2|text|pg_catalog|text|YES||NO|NEVER
+user_profiles|email|3|text|pg_catalog|text|YES||NO|NEVER
+user_profiles|role|4|USER-DEFINED|public|user_role|NO|'b2b_client'::user_role|NO|NEVER
+user_profiles|is_disabled|5|boolean|pg_catalog|bool|YES|false|NO|NEVER
+user_profiles|has_completed_onboarding|6|boolean|pg_catalog|bool|YES|false|NO|NEVER
+vector_layers|id|1|uuid|pg_catalog|uuid|NO|gen_random_uuid()|NO|NEVER
+vector_layers|project_id|2|uuid|pg_catalog|uuid|NO||NO|NEVER
+vector_layers|layer_name|3|text|pg_catalog|text|YES||NO|NEVER
+vector_layers|geom|4|USER-DEFINED|public|geometry|YES||NO|NEVER
+vector_layers|properties|5|jsonb|pg_catalog|jsonb|YES|'{}'::jsonb|NO|NEVER
+vector_layers|file_size_bytes|6|bigint|pg_catalog|int8|YES|0|NO|NEVER
+vw_spatial_projects|id|1|uuid|pg_catalog|uuid|YES||NO|NEVER
+vw_spatial_projects|title|2|text|pg_catalog|text|YES||NO|NEVER
+vw_spatial_projects|category|3|text|pg_catalog|text|YES||NO|NEVER
+vw_spatial_projects|description|4|text|pg_catalog|text|YES||NO|NEVER
+vw_spatial_projects|access_tier|5|text|pg_catalog|text|YES||NO|NEVER
+vw_spatial_projects|created_at|6|timestamp with time zone|pg_catalog|timestamptz|YES||NO|NEVER
+administrative_boundaries|administrative_boundaries_geometry_valid|c|CHECK (st_isvalid(geometry) AND NOT st_isempty(geometry))
+administrative_boundaries|administrative_boundaries_kode_wilayah_check|c|CHECK (char_length(kode_wilayah) >= 1 AND char_length(kode_wilayah) <= 32)
+administrative_boundaries|administrative_boundaries_level_check|c|CHECK (level = ANY (ARRAY['provinsi'::text, 'kota'::text, 'kecamatan'::text]))
+administrative_boundaries|administrative_boundaries_nama_check|c|CHECK (char_length(nama) >= 1 AND char_length(nama) <= 255)
+administrative_boundaries|administrative_boundaries_parent_check|c|CHECK (level = 'provinsi'::text AND parent_id IS NULL OR (level = ANY (ARRAY['kota'::text, 'kecamatan'::text])) AND parent_id IS NOT NULL)
+administrative_boundaries|administrative_boundaries_parent_id_fkey|f|FOREIGN KEY (parent_id) REFERENCES administrative_boundaries(id) ON DELETE RESTRICT
+administrative_boundaries|administrative_boundaries_pkey|p|PRIMARY KEY (id)
+administrative_boundaries|administrative_boundaries_source_check|c|CHECK (char_length(source) >= 1 AND char_length(source) <= 100)
+administrative_boundaries|administrative_boundaries_source_code_unique|u|UNIQUE (source, source_version, level, kode_wilayah)
+administrative_boundaries|administrative_boundaries_source_version_check|c|CHECK (char_length(source_version) >= 1 AND char_length(source_version) <= 100)
+administrative_boundaries_import_staging|administrative_boundaries_impor_batch_id_level_kode_wilayah_key|u|UNIQUE (batch_id, level, kode_wilayah)
+administrative_boundaries_import_staging|administrative_boundaries_import_staging_level_check|c|CHECK (level = ANY (ARRAY['provinsi'::text, 'kota'::text, 'kecamatan'::text]))
+administrative_boundaries_import_staging|administrative_boundaries_import_staging_pkey|p|PRIMARY KEY (id)
+analysis_reports|analysis_reports_pkey|p|PRIMARY KEY (id)
+analysis_reports|analysis_reports_project_id_fkey|f|FOREIGN KEY (project_id) REFERENCES spatial_projects(id)
+audit_logs|audit_logs_action_type_check|c|CHECK (action_type = ANY (ARRAY['INSERT'::text, 'UPDATE'::text, 'DELETE'::text]))
+audit_logs|audit_logs_pkey|p|PRIMARY KEY (id)
+audit_logs|audit_logs_user_id_fkey|f|FOREIGN KEY (user_id) REFERENCES user_profiles(id) ON DELETE SET NULL
+b2b_entitlements|b2b_entitlements_client_user_id_fkey|f|FOREIGN KEY (client_user_id) REFERENCES user_profiles(id) ON DELETE CASCADE
+b2b_entitlements|b2b_entitlements_client_user_id_project_id_key|u|UNIQUE (client_user_id, project_id)
+b2b_entitlements|b2b_entitlements_granted_by_fkey|f|FOREIGN KEY (granted_by) REFERENCES user_profiles(id)
+b2b_entitlements|b2b_entitlements_pkey|p|PRIMARY KEY (id)
+b2b_entitlements|b2b_entitlements_project_id_fkey|f|FOREIGN KEY (project_id) REFERENCES spatial_projects(id) ON DELETE CASCADE
+download_history|download_history_client_user_id_fkey|f|FOREIGN KEY (client_user_id) REFERENCES user_profiles(id) ON DELETE CASCADE
+download_history|download_history_file_type_check|c|CHECK (file_type = ANY (ARRAY['pdf_report'::text, 'geojson_export'::text, 'image_export'::text]))
+download_history|download_history_pkey|p|PRIMARY KEY (id)
+download_history|download_history_project_id_fkey|f|FOREIGN KEY (project_id) REFERENCES spatial_projects(id) ON DELETE CASCADE
+flood_analysis_results|flood_analysis_expiry_check|c|CHECK (expires_at > computed_at)
+flood_analysis_results|flood_analysis_period_check|c|CHECK (period_start <= period_end)
+flood_analysis_results|flood_analysis_results_cache_key_key|u|UNIQUE (cache_key)
+flood_analysis_results|flood_analysis_results_classification_check|c|CHECK (classification = ANY (ARRAY['very_low'::text, 'low'::text, 'moderate'::text, 'high'::text, 'very_high'::text]))
+flood_analysis_results|flood_analysis_results_computed_by_fkey|f|FOREIGN KEY (computed_by) REFERENCES user_profiles(id) ON DELETE SET NULL
+flood_analysis_results|flood_analysis_results_criteria_breakdown_check|c|CHECK (jsonb_typeof(criteria_breakdown) = 'object'::text)
+flood_analysis_results|flood_analysis_results_criteria_weights_check|c|CHECK (jsonb_typeof(criteria_weights) = 'object'::text)
+flood_analysis_results|flood_analysis_results_kecamatan_id_fkey|f|FOREIGN KEY (kecamatan_id) REFERENCES administrative_boundaries(id) ON DELETE CASCADE
+flood_analysis_results|flood_analysis_results_pkey|p|PRIMARY KEY (id)
+flood_analysis_results|flood_analysis_results_score_check|c|CHECK (score >= 0::numeric AND score <= 100::numeric)
+sales_leads|sales_leads_pkey|p|PRIMARY KEY (id)
+sales_leads|sales_leads_requested_project_id_fkey|f|FOREIGN KEY (requested_project_id) REFERENCES spatial_projects(id) ON DELETE SET NULL
+smce_criteria_weights|smce_criteria_weights_pkey|p|PRIMARY KEY (id)
+smce_criteria_weights|smce_criteria_weights_project_id_fkey|f|FOREIGN KEY (project_id) REFERENCES spatial_projects(id)
+spatial_projects|spatial_projects_access_tier_check|c|CHECK (access_tier = ANY (ARRAY['public'::text, 'restricted'::text]))
+spatial_projects|spatial_projects_pkey|p|PRIMARY KEY (id)
+spatial_ref_sys|spatial_ref_sys_pkey|p|PRIMARY KEY (srid)
+spatial_ref_sys|spatial_ref_sys_srid_check|c|CHECK (srid > 0 AND srid <= 998999)
+user_profiles|user_profiles_id_fkey|f|FOREIGN KEY (id) REFERENCES auth.users(id)
+user_profiles|user_profiles_pkey|p|PRIMARY KEY (id)
+vector_layers|vector_layers_pkey|p|PRIMARY KEY (id)
+vector_layers|vector_layers_project_id_fkey|f|FOREIGN KEY (project_id) REFERENCES spatial_projects(id)
+public|spatial_ref_sys|spatial_ref_sys_pkey|CREATE UNIQUE INDEX spatial_ref_sys_pkey ON public.spatial_ref_sys USING btree (srid)
+public|user_profiles|user_profiles_pkey|CREATE UNIQUE INDEX user_profiles_pkey ON public.user_profiles USING btree (id)
+public|spatial_projects|spatial_projects_pkey|CREATE UNIQUE INDEX spatial_projects_pkey ON public.spatial_projects USING btree (id)
+public|vector_layers|vector_layers_pkey|CREATE UNIQUE INDEX vector_layers_pkey ON public.vector_layers USING btree (id)
+public|analysis_reports|analysis_reports_pkey|CREATE UNIQUE INDEX analysis_reports_pkey ON public.analysis_reports USING btree (id)
+public|smce_criteria_weights|smce_criteria_weights_pkey|CREATE UNIQUE INDEX smce_criteria_weights_pkey ON public.smce_criteria_weights USING btree (id)
+public|b2b_entitlements|b2b_entitlements_pkey|CREATE UNIQUE INDEX b2b_entitlements_pkey ON public.b2b_entitlements USING btree (id)
+public|b2b_entitlements|b2b_entitlements_client_user_id_project_id_key|CREATE UNIQUE INDEX b2b_entitlements_client_user_id_project_id_key ON public.b2b_entitlements USING btree (client_user_id, project_id)
+public|sales_leads|sales_leads_pkey|CREATE UNIQUE INDEX sales_leads_pkey ON public.sales_leads USING btree (id)
+public|audit_logs|audit_logs_pkey|CREATE UNIQUE INDEX audit_logs_pkey ON public.audit_logs USING btree (id)
+public|audit_logs|idx_audit_logs_created_at|CREATE INDEX idx_audit_logs_created_at ON public.audit_logs USING btree (created_at DESC)
+public|audit_logs|idx_audit_logs_user_id|CREATE INDEX idx_audit_logs_user_id ON public.audit_logs USING btree (user_id)
+public|download_history|download_history_pkey|CREATE UNIQUE INDEX download_history_pkey ON public.download_history USING btree (id)
+public|administrative_boundaries|administrative_boundaries_pkey|CREATE UNIQUE INDEX administrative_boundaries_pkey ON public.administrative_boundaries USING btree (id)
+public|administrative_boundaries|administrative_boundaries_source_code_unique|CREATE UNIQUE INDEX administrative_boundaries_source_code_unique ON public.administrative_boundaries USING btree (source, source_version, level, kode_wilayah)
+public|administrative_boundaries|administrative_boundaries_geometry_gist|CREATE INDEX administrative_boundaries_geometry_gist ON public.administrative_boundaries USING gist (geometry)
+public|administrative_boundaries|administrative_boundaries_kode_idx|CREATE INDEX administrative_boundaries_kode_idx ON public.administrative_boundaries USING btree (kode_wilayah)
+public|administrative_boundaries|administrative_boundaries_level_idx|CREATE INDEX administrative_boundaries_level_idx ON public.administrative_boundaries USING btree (level)
+public|administrative_boundaries|administrative_boundaries_parent_idx|CREATE INDEX administrative_boundaries_parent_idx ON public.administrative_boundaries USING btree (parent_id)
+public|flood_analysis_results|flood_analysis_results_pkey|CREATE UNIQUE INDEX flood_analysis_results_pkey ON public.flood_analysis_results USING btree (id)
+public|flood_analysis_results|flood_analysis_results_cache_key_key|CREATE UNIQUE INDEX flood_analysis_results_cache_key_key ON public.flood_analysis_results USING btree (cache_key)
+public|flood_analysis_results|flood_analysis_results_lookup_idx|CREATE INDEX flood_analysis_results_lookup_idx ON public.flood_analysis_results USING btree (kecamatan_id, model_version, dataset_version, period_start, period_end)
+public|flood_analysis_results|flood_analysis_results_expiry_idx|CREATE INDEX flood_analysis_results_expiry_idx ON public.flood_analysis_results USING btree (expires_at)
+public|administrative_boundaries_import_staging|administrative_boundaries_import_staging_pkey|CREATE UNIQUE INDEX administrative_boundaries_import_staging_pkey ON public.administrative_boundaries_import_staging USING btree (id)
+public|administrative_boundaries_import_staging|administrative_boundaries_impor_batch_id_level_kode_wilayah_key|CREATE UNIQUE INDEX administrative_boundaries_impor_batch_id_level_kode_wilayah_key ON public.administrative_boundaries_import_staging USING btree (batch_id, level, kode_wilayah)
+public|administrative_boundaries_import_staging|administrative_boundaries_staging_batch_idx|CREATE INDEX administrative_boundaries_staging_batch_idx ON public.administrative_boundaries_import_staging USING btree (batch_id)
+public|administrative_boundaries_import_staging|administrative_boundaries_staging_geometry_gist|CREATE INDEX administrative_boundaries_staging_geometry_gist ON public.administrative_boundaries_import_staging USING gist (geometry)
+public|analysis_reports|p4i_analysis_reports_delete_by_super_admin|PERMISSIVE|{authenticated}|DELETE|(get_current_user_role() = 'super_admin'::user_role)|
+public|analysis_reports|p4i_analysis_reports_update_by_analyst|PERMISSIVE|{authenticated}|UPDATE|(get_current_user_role() = ANY (ARRAY['managerial_analyst'::user_role, 'super_admin'::user_role]))|(get_current_user_role() = ANY (ARRAY['managerial_analyst'::user_role, 'super_admin'::user_role]))
+public|analysis_reports|p4i_analysis_reports_insert_by_analyst|PERMISSIVE|{authenticated}|INSERT||(get_current_user_role() = ANY (ARRAY['managerial_analyst'::user_role, 'super_admin'::user_role]))
+public|analysis_reports|p4i_analysis_reports_read_by_project|PERMISSIVE|{anon,authenticated}|SELECT|can_access_project(project_id)|
+public|smce_criteria_weights|p4i_smce_criteria_weights_delete_by_super_admin|PERMISSIVE|{authenticated}|DELETE|(get_current_user_role() = 'super_admin'::user_role)|
+public|smce_criteria_weights|p4i_smce_criteria_weights_update_by_analyst|PERMISSIVE|{authenticated}|UPDATE|(get_current_user_role() = ANY (ARRAY['managerial_analyst'::user_role, 'super_admin'::user_role]))|(get_current_user_role() = ANY (ARRAY['managerial_analyst'::user_role, 'super_admin'::user_role]))
+public|smce_criteria_weights|p4i_smce_criteria_weights_insert_by_analyst|PERMISSIVE|{authenticated}|INSERT||(get_current_user_role() = ANY (ARRAY['managerial_analyst'::user_role, 'super_admin'::user_role]))
+public|smce_criteria_weights|p4i_smce_criteria_weights_read_by_project|PERMISSIVE|{anon,authenticated}|SELECT|can_access_project(project_id)|
+public|audit_logs|Super admin can read audit logs|PERMISSIVE|{public}|SELECT|(EXISTS ( SELECT 1
+   FROM user_profiles
+  WHERE ((user_profiles.id = auth.uid()) AND (user_profiles.role = 'super_admin'::user_role))))|
+public|administrative_boundaries|Public can read published boundaries|PERMISSIVE|{anon,authenticated}|SELECT|(is_public = true)|
+public|spatial_projects|p4i_projects_delete_by_super_admin|PERMISSIVE|{authenticated}|DELETE|(get_current_user_role() = 'super_admin'::user_role)|
+public|spatial_projects|p4i_projects_update_by_analyst|PERMISSIVE|{authenticated}|UPDATE|(get_current_user_role() = ANY (ARRAY['managerial_analyst'::user_role, 'super_admin'::user_role]))|(get_current_user_role() = ANY (ARRAY['managerial_analyst'::user_role, 'super_admin'::user_role]))
+public|spatial_projects|p4i_projects_insert_by_analyst|PERMISSIVE|{authenticated}|INSERT||(get_current_user_role() = ANY (ARRAY['managerial_analyst'::user_role, 'super_admin'::user_role]))
+public|spatial_projects|p4i_projects_read|PERMISSIVE|{anon,authenticated}|SELECT|can_access_project(id)|
+public|vector_layers|p4i_vector_layers_delete_by_super_admin|PERMISSIVE|{authenticated}|DELETE|(get_current_user_role() = 'super_admin'::user_role)|
+public|vector_layers|p4i_vector_layers_update_by_analyst|PERMISSIVE|{authenticated}|UPDATE|(get_current_user_role() = ANY (ARRAY['managerial_analyst'::user_role, 'super_admin'::user_role]))|(get_current_user_role() = ANY (ARRAY['managerial_analyst'::user_role, 'super_admin'::user_role]))
+public|vector_layers|p4i_vector_layers_insert_by_analyst|PERMISSIVE|{authenticated}|INSERT||(get_current_user_role() = ANY (ARRAY['managerial_analyst'::user_role, 'super_admin'::user_role]))
+public|vector_layers|p4i_vector_layers_read_by_project|PERMISSIVE|{anon,authenticated}|SELECT|can_access_project(project_id)|
+public|b2b_entitlements|p4i_entitlements_read_own_or_super_admin|PERMISSIVE|{authenticated}|SELECT|((get_current_user_role() IS NOT NULL) AND ((client_user_id = ( SELECT auth.uid() AS uid)) OR (get_current_user_role() = 'super_admin'::user_role)))|
+public|b2b_entitlements|p4i_entitlements_write_by_super_admin|PERMISSIVE|{authenticated}|ALL|(get_current_user_role() = 'super_admin'::user_role)|(get_current_user_role() = 'super_admin'::user_role)
+public|flood_analysis_results|p4i_flood_results_read_by_analyst|PERMISSIVE|{authenticated}|SELECT|(get_current_user_role() = ANY (ARRAY['managerial_analyst'::user_role, 'super_admin'::user_role]))|
+public|download_history|p4i_downloads_read_own_entitled|PERMISSIVE|{authenticated}|SELECT|((client_user_id = ( SELECT auth.uid() AS uid)) AND (get_current_user_role() IS NOT NULL) AND can_access_project(project_id))|
+set_updated_at||trigger|postgres|f|{search_path=pg_catalog}|{postgres=X/postgres}
+get_current_user_role||user_role|postgres|t|{search_path=pg_catalog}|{postgres=X/postgres,authenticated=X/postgres,service_role=X/postgres}
+can_access_project|p_project_id uuid|boolean|postgres|t|{search_path=pg_catalog}|{postgres=X/postgres,anon=X/postgres,authenticated=X/postgres,service_role=X/postgres}
+promote_administrative_boundary_import|p_batch_id uuid|integer|postgres|t|{"search_path=pg_catalog, public"}|{postgres=X/postgres,service_role=X/postgres}
+get_project_vector_layers_geojson|p_project_id uuid|TABLE(id uuid, project_id uuid, geojson jsonb)|postgres|t|{search_path=pg_catalog}|{postgres=X/postgres,service_role=X/postgres}
+handle_new_user||trigger|postgres|t|{search_path=pg_catalog}|{postgres=X/postgres}
+get_boundaries_in_view|p_west double precision, p_south double precision, p_east double precision, p_north double precision, p_level text, p_tolerance double precision|TABLE(id uuid, kode_wilayah text, level text, parent_id uuid, nama text, source text, source_version text, geojson jsonb)|postgres|t|{"search_path=pg_catalog, public"}|{postgres=X/postgres,service_role=X/postgres}
+audit_trigger_fn||trigger|postgres|t|{search_path=pg_catalog}|{postgres=X/postgres}
+auth.users|on_auth_user_created|CREATE TRIGGER on_auth_user_created AFTER INSERT ON auth.users FOR EACH ROW EXECUTE FUNCTION handle_new_user()
+user_profiles|trg_audit_user_profiles|CREATE TRIGGER trg_audit_user_profiles AFTER INSERT OR DELETE OR UPDATE ON user_profiles FOR EACH ROW EXECUTE FUNCTION audit_trigger_fn()
+administrative_boundaries|administrative_boundaries_set_updated_at|CREATE TRIGGER administrative_boundaries_set_updated_at BEFORE UPDATE ON administrative_boundaries FOR EACH ROW EXECUTE FUNCTION set_updated_at()
+spatial_projects|trg_audit_spatial_projects|CREATE TRIGGER trg_audit_spatial_projects AFTER INSERT OR DELETE OR UPDATE ON spatial_projects FOR EACH ROW EXECUTE FUNCTION audit_trigger_fn()
+vector_layers|trg_audit_vector_layers|CREATE TRIGGER trg_audit_vector_layers AFTER INSERT OR DELETE OR UPDATE ON vector_layers FOR EACH ROW EXECUTE FUNCTION audit_trigger_fn()
+b2b_entitlements|trg_audit_b2b_entitlements|CREATE TRIGGER trg_audit_b2b_entitlements AFTER INSERT OR DELETE OR UPDATE ON b2b_entitlements FOR EACH ROW EXECUTE FUNCTION audit_trigger_fn()
+postgres|-|f|{postgres=X/postgres}
+postgres|spatial_ref_sys|INSERT
+postgres|spatial_ref_sys|SELECT
+postgres|spatial_ref_sys|UPDATE
+postgres|spatial_ref_sys|DELETE
+postgres|spatial_ref_sys|TRUNCATE
+postgres|spatial_ref_sys|REFERENCES
+postgres|spatial_ref_sys|TRIGGER
+postgres|geography_columns|INSERT
+postgres|geography_columns|SELECT
+postgres|geography_columns|UPDATE
+postgres|geography_columns|DELETE
+postgres|geography_columns|TRUNCATE
+postgres|geography_columns|REFERENCES
+postgres|geography_columns|TRIGGER
+postgres|geometry_columns|INSERT
+postgres|geometry_columns|SELECT
+postgres|geometry_columns|UPDATE
+postgres|geometry_columns|DELETE
+postgres|geometry_columns|TRUNCATE
+postgres|geometry_columns|REFERENCES
+postgres|geometry_columns|TRIGGER
+postgres|vw_spatial_projects|INSERT
+postgres|vw_spatial_projects|SELECT
+postgres|vw_spatial_projects|UPDATE
+postgres|vw_spatial_projects|DELETE
+postgres|vw_spatial_projects|TRUNCATE
+postgres|vw_spatial_projects|REFERENCES
+postgres|vw_spatial_projects|TRIGGER
+postgres|user_profiles|INSERT
+postgres|user_profiles|SELECT
+postgres|user_profiles|UPDATE
+postgres|user_profiles|DELETE
+postgres|user_profiles|TRUNCATE
+postgres|user_profiles|REFERENCES
+postgres|user_profiles|TRIGGER
+postgres|analysis_reports|INSERT
+postgres|analysis_reports|SELECT
+postgres|analysis_reports|UPDATE
+postgres|analysis_reports|DELETE
+postgres|analysis_reports|TRUNCATE
+postgres|analysis_reports|REFERENCES
+postgres|analysis_reports|TRIGGER
+postgres|smce_criteria_weights|INSERT
+postgres|smce_criteria_weights|SELECT
+postgres|smce_criteria_weights|UPDATE
+postgres|smce_criteria_weights|DELETE
+postgres|smce_criteria_weights|TRUNCATE
+postgres|smce_criteria_weights|REFERENCES
+postgres|smce_criteria_weights|TRIGGER
+postgres|audit_logs|INSERT
+postgres|audit_logs|SELECT
+postgres|audit_logs|UPDATE
+postgres|audit_logs|DELETE
+postgres|audit_logs|TRUNCATE
+postgres|audit_logs|REFERENCES
+postgres|audit_logs|TRIGGER
+postgres|sales_leads|INSERT
+postgres|sales_leads|SELECT
+postgres|sales_leads|UPDATE
+postgres|sales_leads|DELETE
+postgres|sales_leads|TRUNCATE
+postgres|sales_leads|REFERENCES
+postgres|sales_leads|TRIGGER
+postgres|administrative_boundaries|INSERT
+postgres|administrative_boundaries|SELECT
+postgres|administrative_boundaries|UPDATE
+postgres|administrative_boundaries|DELETE
+postgres|administrative_boundaries|TRUNCATE
+postgres|administrative_boundaries|REFERENCES
+postgres|administrative_boundaries|TRIGGER
+postgres|administrative_boundaries_import_staging|INSERT
+postgres|administrative_boundaries_import_staging|SELECT
+postgres|administrative_boundaries_import_staging|UPDATE
+postgres|administrative_boundaries_import_staging|DELETE
+postgres|administrative_boundaries_import_staging|TRUNCATE
+postgres|administrative_boundaries_import_staging|REFERENCES
+postgres|administrative_boundaries_import_staging|TRIGGER
+postgres|spatial_projects|INSERT
+postgres|spatial_projects|SELECT
+postgres|spatial_projects|UPDATE
+postgres|spatial_projects|DELETE
+postgres|spatial_projects|TRUNCATE
+postgres|spatial_projects|REFERENCES
+postgres|spatial_projects|TRIGGER
+postgres|vector_layers|INSERT
+postgres|vector_layers|SELECT
+postgres|vector_layers|UPDATE
+postgres|vector_layers|DELETE
+postgres|vector_layers|TRUNCATE
+postgres|vector_layers|REFERENCES
+postgres|vector_layers|TRIGGER
+postgres|b2b_entitlements|INSERT
+postgres|b2b_entitlements|SELECT
+postgres|b2b_entitlements|UPDATE
+postgres|b2b_entitlements|DELETE
+postgres|b2b_entitlements|TRUNCATE
+postgres|b2b_entitlements|REFERENCES
+postgres|b2b_entitlements|TRIGGER
+postgres|flood_analysis_results|INSERT
+postgres|flood_analysis_results|SELECT
+postgres|flood_analysis_results|UPDATE
+postgres|flood_analysis_results|DELETE
+postgres|flood_analysis_results|TRUNCATE
+postgres|flood_analysis_results|REFERENCES
+postgres|flood_analysis_results|TRIGGER
+postgres|download_history|INSERT
+postgres|download_history|SELECT
+postgres|download_history|UPDATE
+postgres|download_history|DELETE
+postgres|download_history|TRUNCATE
+postgres|download_history|REFERENCES
+postgres|download_history|TRIGGER
+anon|spatial_ref_sys|INSERT
+anon|spatial_ref_sys|SELECT
+anon|spatial_ref_sys|UPDATE
+anon|spatial_ref_sys|DELETE
+anon|spatial_ref_sys|TRUNCATE
+anon|spatial_ref_sys|REFERENCES
+anon|spatial_ref_sys|TRIGGER
+anon|geography_columns|INSERT
+anon|geography_columns|SELECT
+anon|geography_columns|UPDATE
+anon|geography_columns|DELETE
+anon|geography_columns|TRUNCATE
+anon|geography_columns|REFERENCES
+anon|geography_columns|TRIGGER
+anon|geometry_columns|INSERT
+anon|geometry_columns|SELECT
+anon|geometry_columns|UPDATE
+anon|geometry_columns|DELETE
+anon|geometry_columns|TRUNCATE
+anon|geometry_columns|REFERENCES
+anon|geometry_columns|TRIGGER
+anon|spatial_projects|SELECT
+anon|vector_layers|SELECT
+authenticated|spatial_ref_sys|INSERT
+authenticated|spatial_ref_sys|SELECT
+authenticated|spatial_ref_sys|UPDATE
+authenticated|spatial_ref_sys|DELETE
+authenticated|spatial_ref_sys|TRUNCATE
+authenticated|spatial_ref_sys|REFERENCES
+authenticated|spatial_ref_sys|TRIGGER
+authenticated|geography_columns|INSERT
+authenticated|geography_columns|SELECT
+authenticated|geography_columns|UPDATE
+authenticated|geography_columns|DELETE
+authenticated|geography_columns|TRUNCATE
+authenticated|geography_columns|REFERENCES
+authenticated|geography_columns|TRIGGER
+authenticated|geometry_columns|INSERT
+authenticated|geometry_columns|SELECT
+authenticated|geometry_columns|UPDATE
+authenticated|geometry_columns|DELETE
+authenticated|geometry_columns|TRUNCATE
+authenticated|geometry_columns|REFERENCES
+authenticated|geometry_columns|TRIGGER
+authenticated|spatial_projects|SELECT
+authenticated|vector_layers|SELECT
+authenticated|b2b_entitlements|SELECT
+authenticated|flood_analysis_results|SELECT
+authenticated|download_history|SELECT
+service_role|user_profiles|INSERT
+service_role|user_profiles|SELECT
+service_role|user_profiles|UPDATE
+service_role|user_profiles|DELETE
+service_role|user_profiles|TRUNCATE
+service_role|user_profiles|REFERENCES
+service_role|user_profiles|TRIGGER
+service_role|analysis_reports|INSERT
+service_role|analysis_reports|SELECT
+service_role|analysis_reports|UPDATE
+service_role|analysis_reports|DELETE
+service_role|analysis_reports|TRUNCATE
+service_role|analysis_reports|REFERENCES
+service_role|analysis_reports|TRIGGER
+service_role|smce_criteria_weights|INSERT
+service_role|smce_criteria_weights|SELECT
+service_role|smce_criteria_weights|UPDATE
+service_role|smce_criteria_weights|DELETE
+service_role|smce_criteria_weights|TRUNCATE
+service_role|smce_criteria_weights|REFERENCES
+service_role|smce_criteria_weights|TRIGGER
+service_role|audit_logs|INSERT
+service_role|audit_logs|SELECT
+service_role|audit_logs|UPDATE
+service_role|audit_logs|DELETE
+service_role|audit_logs|TRUNCATE
+service_role|audit_logs|REFERENCES
+service_role|audit_logs|TRIGGER
+service_role|sales_leads|INSERT
+service_role|sales_leads|SELECT
+service_role|sales_leads|UPDATE
+service_role|sales_leads|DELETE
+service_role|sales_leads|TRUNCATE
+service_role|sales_leads|REFERENCES
+service_role|sales_leads|TRIGGER
+service_role|administrative_boundaries|INSERT
+service_role|administrative_boundaries|SELECT
+service_role|administrative_boundaries|UPDATE
+service_role|administrative_boundaries|DELETE
+service_role|administrative_boundaries|TRUNCATE
+service_role|administrative_boundaries|REFERENCES
+service_role|administrative_boundaries|TRIGGER
+service_role|administrative_boundaries_import_staging|INSERT
+service_role|administrative_boundaries_import_staging|SELECT
+service_role|administrative_boundaries_import_staging|UPDATE
+service_role|administrative_boundaries_import_staging|DELETE
+service_role|administrative_boundaries_import_staging|TRUNCATE
+service_role|administrative_boundaries_import_staging|REFERENCES
+service_role|administrative_boundaries_import_staging|TRIGGER
+service_role|spatial_projects|INSERT
+service_role|spatial_projects|SELECT
+service_role|spatial_projects|UPDATE
+service_role|spatial_projects|DELETE
+service_role|spatial_projects|TRUNCATE
+service_role|spatial_projects|REFERENCES
+service_role|spatial_projects|TRIGGER
+service_role|vector_layers|INSERT
+service_role|vector_layers|SELECT
+service_role|vector_layers|UPDATE
+service_role|vector_layers|DELETE
+service_role|vector_layers|TRUNCATE
+service_role|vector_layers|REFERENCES
+service_role|vector_layers|TRIGGER
+service_role|b2b_entitlements|INSERT
+service_role|b2b_entitlements|SELECT
+service_role|b2b_entitlements|UPDATE
+service_role|b2b_entitlements|DELETE
+service_role|b2b_entitlements|TRUNCATE
+service_role|b2b_entitlements|REFERENCES
+service_role|b2b_entitlements|TRIGGER
+service_role|flood_analysis_results|INSERT
+service_role|flood_analysis_results|SELECT
+service_role|flood_analysis_results|UPDATE
+service_role|flood_analysis_results|DELETE
+service_role|flood_analysis_results|TRUNCATE
+service_role|flood_analysis_results|REFERENCES
+service_role|flood_analysis_results|TRIGGER
+service_role|download_history|INSERT
+service_role|download_history|SELECT
+service_role|download_history|UPDATE
+service_role|download_history|DELETE
+service_role|download_history|TRUNCATE
+service_role|download_history|REFERENCES
+service_role|download_history|TRIGGER
+PUBLIC|spatial_ref_sys|INSERT
+PUBLIC|spatial_ref_sys|SELECT
+PUBLIC|spatial_ref_sys|UPDATE
+PUBLIC|spatial_ref_sys|DELETE
+PUBLIC|spatial_ref_sys|TRUNCATE
+PUBLIC|spatial_ref_sys|REFERENCES
+PUBLIC|spatial_ref_sys|TRIGGER
+PUBLIC|geography_columns|INSERT
+PUBLIC|geography_columns|SELECT
+PUBLIC|geography_columns|UPDATE
+PUBLIC|geography_columns|DELETE
+PUBLIC|geography_columns|TRUNCATE
+PUBLIC|geography_columns|REFERENCES
+PUBLIC|geography_columns|TRIGGER
+PUBLIC|geometry_columns|INSERT
+PUBLIC|geometry_columns|SELECT
+PUBLIC|geometry_columns|UPDATE
+PUBLIC|geometry_columns|DELETE
+PUBLIC|geometry_columns|TRUNCATE
+PUBLIC|geometry_columns|REFERENCES
+PUBLIC|geometry_columns|TRIGGER
+type vw_vector_layers_geojson|materialized view vw_vector_layers_geojson|i
+rule _RETURN on materialized view vw_vector_layers_geojson|materialized view vw_vector_layers_geojson|i
+type vw_spatial_projects|view vw_spatial_projects|i
+rule _RETURN on view vw_spatial_projects|view vw_spatial_projects|i
+toast table pg_toast.pg_toast_19836|materialized view vw_vector_layers_geojson|i
+COMMIT
