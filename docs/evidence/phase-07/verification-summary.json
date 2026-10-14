@@ -1,0 +1,103 @@
+{
+  "baseline": {
+    "commit": "048180133b62d57efa359e978e07f101184f6a42",
+    "lint": 0,
+    "typecheck": 0,
+    "tests": 209,
+    "testFiles": 30,
+    "build": 0
+  },
+  "phase07": {
+    "lint": 0,
+    "typecheck": 0,
+    "tests": 226,
+    "testFiles": 32,
+    "build": 0
+  },
+  "browser": {
+    "flows": [
+      "Existing map \u2192 Copilot draft \u2192 isolated project report; owned real compute result attached",
+      "Entitled client cannot see unpublished draft",
+      "Request changes, new immutable revision, resubmission and explicit four-check human review",
+      "Admin persona receives no implicit reviewer or publisher grant",
+      "Explicit simulated release, published revision-only client DTO and actual PDF/JSON downloads; internal notes redacted",
+      "New draft preserves released revision; other-client project cannot access report",
+      "Separate development session has no access to first session reports"
+    ],
+    "audits": [
+      {
+        "width": 1480,
+        "violations": []
+      },
+      {
+        "width": 390,
+        "violations": []
+      },
+      {
+        "width": 768,
+        "violations": []
+      }
+    ],
+    "errors": [],
+    "geeCalls": 0
+  },
+  "phase06Regression": {
+    "flows": [
+      "Automatic area job, MapRecipe result, undo/redo, actual Markdown download",
+      "Distance operation from explicit [longitude,latitude] inputs",
+      "1600-cell job blocked before explicit approval",
+      "Human approval bound to snapshot; categorical native zonal statistics; result applied to workspace",
+      "Job cannot be read from another anonymous browser session",
+      "Computed result retained in JSON; existing PDF and PNG downloads complete",
+      "390px/768px responsive overflow and WCAG AA automated checks",
+      "Cancelled approval job retries with fresh approval requirement",
+      "Unresolved real AOI refusal with no fabricated flood result",
+      "Unavailable flood adapter displays UNKNOWN external cost and disabled approval"
+    ],
+    "audits": [
+      {
+        "width": 390,
+        "violations": []
+      },
+      {
+        "width": 768,
+        "violations": []
+      }
+    ],
+    "errors": [],
+    "externalComputeCalls": 0
+  },
+  "productionIsolation": {
+    "GIS_DEMO_MODE": "true",
+    "checks": [
+      {
+        "path": "/api/consulting",
+        "status": 403,
+        "body": {
+          "error": "Workflow deliverable belum tersedia di production. Aktifkan development DEMO untuk ruang simulasi terisolasi."
+        }
+      },
+      {
+        "path": "/api/consulting/download?id=private&format=pdf",
+        "status": 403,
+        "body": {
+          "error": "Workflow deliverable belum tersedia di production. Aktifkan development DEMO untuk ruang simulasi terisolasi."
+        }
+      },
+      {
+        "path": "/api/consulting",
+        "status": 403,
+        "body": {
+          "error": "Workflow deliverable belum tersedia di production. Aktifkan development DEMO untuk ruang simulasi terisolasi."
+        }
+      }
+    ]
+  },
+  "downloadBytes": {
+    "client-report.pdf": 11041,
+    "client-evidence.json": 9876
+  },
+  "pdfMetadataAndRedactionVerified": true,
+  "publicationMode": "DEVELOPMENT_SIMULATION",
+  "officialClientPublication": false
+}

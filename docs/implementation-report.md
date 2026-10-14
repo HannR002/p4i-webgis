@@ -1,7 +1,69 @@
 # P4I Spatial Analytics implementation report
 
 
-## Current status — Phase 06, 14 October 2026
+## Current status — Phase 07, 14 October 2026
+
+Versioned GIS consulting deliverables now run in the existing geoportal workflow. Analysts
+can prepare Copilot-assisted drafts from MapRecipe, attach actual owned Phase 06 results,
+inspect map/configuration/provenance, record notes, submit for independent professional
+review, request changes, approve exact revisions and explicitly simulate release to an
+entitled DEMO client. The client portal and existing map/compute UI provide entry links.
+No earlier phase is assumed merged: the actual base is Phase 06 **0481801**, PR #2 open/draft.
+Baseline lint/typecheck/build and **209 tests/30 files** pass.
+
+`ConsultingProject` extends the existing spatial project summary identity; no parallel live
+project table is introduced. Provider-portable async repository/domain contracts cover
+AnalysisRun/Result, ClientDeliverable, immutable revisions, reviewer decisions and publication.
+Explicit per-project grants govern author, reviewer, publisher and client actions. Admin
+status alone does not grant professional review authority. AI prepares drafts and cannot
+approve, submit for human review or publish independently through the workflow service.
+
+Approval binds the exact revision/hash. New changes create a fresh DRAFT; the client continues
+to receive the last published revision. Compare-and-swap rejects stale writes; revision/review/
+publication evidence is append-only. Cross-project source attachment, unpublished detail,
+other-client access, other-session jobs and measurement injection are rejected. Clients receive
+redacted release DTOs without analyst notes, review comments or later drafts. Separate hashes
+identify the internal reviewed evidence and redacted released content.
+
+Reports include P4I identity, project/client, status/revision/date, saved provider map outline,
+legend, actual analysis summary/results, source metadata, AOI, configuration/weights/period/version
+when available, assumptions and limitations. All available reports are DEMO / EXPERIMENTAL /
+DEVELOPMENT SIMULATION, never an official client publication. PDF/JSON downloads reauthorize,
+use safe attachment filenames, no-store/nosniff and a restrictive content policy. Existing full
+Map Workspace rendering, PNG/PDF export, AHP/WLC, Flood, Pixel Inspector, project management,
+Supabase admin/audit and B2B boundaries remain preserved.
+
+Final Node 22.23.3 lint/typecheck/build and **226 tests/32 files** pass, including 17 new
+workflow/security/HTTP/PDF/Copilot tests. Chromium covers actual Phase 06 attachment, Copilot
+draft, request changes/revision/resubmission, independent approval, explicit simulated release,
+redacted downloads, prior-publication retention, other-client and independent-room isolation.
+Desktop/390px/768px audits show zero horizontal overflow, zero WCAG AA violations and zero page
+errors. Actual downloaded PDF text contains project/client identity, reviewed/released hashes,
+DEMO status, provider result and provenance; internal analyst notes are absent. Production
+GET/POST/download routes return 403 with the DEMO flag still enabled. No GEE requests occur.
+
+Browser QA found and fixed ambiguous accessible names on prefilled textareas. Final regression
+against Phase 06 also passes, including JSON/PNG/PDF/Markdown exports, cost approval, NoData,
+mobile checks and cancel/retry. An initial concurrent-build regression attempt timed out while
+waiting for a UI control; the isolated diagnostic replay passed unchanged functional assertions.
+No product defect from that transient attempt is claimed resolved without reproduction.
+
+The available adapter is an isolated two-hour process-local development room, not live storage.
+Synthetic personas never grant access to real Supabase projects. Real project/auth/entitlement
+bindings, durable transactions/object storage and an independently authorized official publisher
+remain future integration work. APIs fail closed in production; no real client publication,
+database migration, paid computation, deployment, dependencies or automatic merge occurred.
+Scientific methodology validation/ranking remain explicitly OUT OF SCOPE; deliverable review
+assesses completeness, interpretation, authorized release and professional quality only.
+
+Branch: **feat/consulting-workflow-phase07**, stacked on **feat/ai-gis-analysis-phase06**.
+See [client-deliverable workflow](client-deliverable-workflow.md), [review description](phase-07-pr.md)
+and [verification evidence](evidence/phase-07/verification-summary.json). PR details are recorded
+after publication through the normal reviewed GitHub workflow.
+
+
+
+## Previous status — Phase 06, 14 October 2026
 
 Controlled analysis now runs through typed compute jobs in the existing Copilot and GIS
 workspace. The actual base is Phase 05 **989ff92**; its PR #1 remains open/draft. No earlier

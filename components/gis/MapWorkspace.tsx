@@ -794,6 +794,13 @@ export default function MapWorkspace({
                         Reset
                       </button>
                     </div>
+                    <h3>Deliverable klien</h3>
+                    <Link
+                      className="gis-button secondary"
+                      href="/spatial/consulting"
+                    >
+                      Siapkan deliverable dari peta sesi
+                    </Link>
                     <h3>Ekspor</h3>
                     <ExportPdfButton recipe={s.recipe} datasets={s.catalog} />
                     <ExportImageButton recipe={s.recipe} />

@@ -25,6 +25,11 @@ const links = [
   { href: '/spatial/viewer', label: 'Map Workspace', icon: Layers },
   { href: '/spatial/analysis', label: 'Analisis', icon: FlaskConical },
   { href: '/spatial/ai', label: 'AI GIS Copilot', icon: Sparkles },
+  {
+    href: '/spatial/consulting',
+    label: 'Proyek & deliverable',
+    icon: BookOpen,
+  },
   { href: '/spatial/help', label: 'Pusat bantuan', icon: BookOpen },
 ];
 function Navigation({ path, close }: { path: string; close?: () => void }) {

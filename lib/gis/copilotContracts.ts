@@ -33,6 +33,7 @@ export type GISToolRequest =
   | { tool: "listAvailableLayers" }
   | { tool: "getDatasetMetadata"; datasetId: string }
   | { tool: "summarizeCurrentMap" }
+  | { tool: "prepareClientDeliverableDraft" }
   | ({ tool: "inspectPixel" } & PixelQuery)
   | Exclude<
       AnalysisConfigurationToolRequest,

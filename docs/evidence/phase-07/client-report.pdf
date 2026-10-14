@@ -1,0 +1,617 @@
+%PDF-1.3
+%ºß¬à
+3 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 4 0 R
+>>
+endobj
+4 0 obj
+<<
+/Length 6025
+>>
+stream
+0.5670000000000001 w
+0 G
+BT
+/F1 17 Tf
+19.5499999999999972 TL
+0 g
+42.5196850393700814 785.1970866141732586 Td
+(P4I Consultant | Spatial Analytics) Tj
+ET
+BT
+/F1 12 Tf
+13.7999999999999989 TL
+0 g
+42.5196850393700814 762.5199212598424765 Td
+(DEMO / EXPERIMENTAL - DEVELOPMENT SIMULATION) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0 g
+42.5196850393700814 739.8427559055118081 Td
+(NO OFFICIAL CLIENT PUBLICATION - NO METHODOLOGY VALIDATION) Tj
+ET
+BT
+/F1 15 Tf
+17.25 TL
+0 g
+42.5196850393700814 725.6695275590550409 Td
+(Phase07 report) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 702.9923622047243725 Td
+(Project: Kajian tata ruang — Proyek DEMO A) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 688.819133858267719 Td
+(Client: Organisasi DEMO A | Project ID: 11111111-1111-4111-8111-111111111111) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 674.6459055118109518 Td
+(Status: PUBLISHED - SIMULATION | revision 3) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 660.4726771653542983 Td
+(Created: 2026-10-14T11:00:03.139Z | origin: ai) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 646.2994488188976447 Td
+(Evidence SHA-256: 062baa8ffcc7eb5a9f3eeee81ba87f1ef4420bf67ac24b5542698ed703b5c3d0) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 632.1262204724408775 Td
+(Released/redacted content SHA-256: 118fb972bf3705d5ab406b175fb8743de2278af8041a462dd3b92420b15fa0bb) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 617.952992125984224 Td
+(Release: 2026-10-14T11:00:06.868Z | publisher: development-publisher | official=false) Tj
+ET
+BT
+/F1 13 Tf
+14.9499999999999993 TL
+0 g
+42.5196850393700814 603.7797637795274568 Td
+(Analysis summary) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 581.1025984251967884 Td
+(Luas AOI DEMO: 247190378.42 m² \(pendekatan bola\).) Tj
+ET
+BT
+/F1 13 Tf
+14.9499999999999993 TL
+0 g
+42.5196850393700814 566.9293700787401349 Td
+(Assumptions) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 544.2522047244094665 Td
+(Data fixture sintetik; area dihitung pada geometri DEMO dengan pendekatan bola.) Tj
+ET
+BT
+/F1 13 Tf
+14.9499999999999993 TL
+0 g
+42.5196850393700814 530.0789763779526993 Td
+(Limitations) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 507.4018110236219741 Td
+(Data sintetik atau input pengguna. Tidak untuk keputusan operasional. Tidak menyatakan validasi metodologi.) Tj
+ET
+BT
+/F1 13 Tf
+14.9499999999999993 TL
+0 g
+42.5196850393700814 493.2285826771653205 Td
+(Map snapshot / schematic) Tj
+ET
+0.58 0.64 0.72 RG
+42.5196850393700814 470.5514173228345953 510.2362204724410049 -119.0551181102362364 re
+S
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0 g
+53.8582677165354369 450.7088976377952463 Td
+(MapRecipe view - schematic only; no basemap / no new measurements) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0 g
+53.8582677165354369 430.8663779527558404 Td
+(Centre -1.6, 103.57 | zoom 13 | 2 layers) Tj
+ET
+0.06 0.46 0.43 RG
+70.8661417322834666 371.3388188976377364 m
+283.4645669291489867 371.3388188976377364 l
+S
+283.4645669291489867 371.3388188976377364 m
+283.4645669291489867 413.8585039370078107 l
+S
+283.4645669291489867 413.8585039370078107 m
+70.8661417322834666 413.8585039370078107 l
+S
+70.8661417322834666 413.8585039370078107 m
+70.8661417322834666 371.3388188976377364 l
+S
+283.4645669291489867 371.3388188976377364 m
+496.0629921259842945 371.3388188976377364 l
+S
+496.0629921259842945 371.3388188976377364 m
+496.0629921259842945 413.8585039370078107 l
+S
+496.0629921259842945 413.8585039370078107 m
+283.4645669291489867 413.8585039370078107 l
+S
+283.4645669291489867 413.8585039370078107 m
+283.4645669291489867 371.3388188976377364 l
+S
+0.49 0.23 0.93 rg
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 331.6537795275589815 Td
+(AOI: Area contoh Barat | demo-aoi-west) Tj
+ET
+BT
+/F1 13 Tf
+14.9499999999999993 TL
+0 g
+42.5196850393700814 317.480551181102328 Td
+(Legend / configured layers) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 294.8033858267715459 Td
+(Curah hujan tahunan) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 280.6301574803148924 Td
+(1200.0 mm/tahun | #eff6ff) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 266.4569291338582389 Td
+(2100.0 mm/tahun | #3b82f6) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 252.2837007874014716 Td
+(3000.0 mm/tahun | #1e3a8a) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 238.1104724409448181 Td
+(Batas wilayah contoh) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 223.9372440944881646 Td
+(Batas wilayah contoh | #0f766e) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 209.7640157480313974 Td
+(DEMO | Luas AOI DEMO: 247190378.42 m² \(pendekatan bola\). | Kalkulasi deterministik lokal P4I; fixture DEMO) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 195.5907874015747439 Td
+(atau input preferensi pengguna. Bukan pengukuran resmi.) Tj
+ET
+BT
+/F1 13 Tf
+14.9499999999999993 TL
+0 g
+42.5196850393700814 181.4175590551179766 Td
+(Source datasets / native metadata) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 158.7403937007873083 Td
+(Batas wilayah contoh | demo-boundaries | P4I fixture sintetik | demo-v2 | Data sintetik untuk demonstrasi UI. Bukan) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 144.5671653543306547 Td
+(pengukuran atau batas administrasi resmi. | vector metadata) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 130.3939370078738875 Td
+(Curah hujan tahunan | demo-rainfall | P4I fixture sintetik | demo-v2 | Data sintetik untuk demonstrasi UI. Bukan) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 116.220708661417234 Td
+(pengukuran atau batas administrasi resmi. |) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 102.0474803149605805 Td
+({"period":{"start":"2025-01-01","end":"2025-12-31"},"resolution":{"x":0.05,"y":0.05,"unit":"degree"}}) Tj
+ET
+BT
+/F1 13 Tf
+14.9499999999999993 TL
+0 g
+42.5196850393700814 87.8742519685038133 Td
+(Verified development compute snapshot) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 65.1970866141731449 Td
+({"jobId":"compute-2208ecb6-3d82-4d02-b3ae-ac11abf3ca9f","projectId":null,"state":"COMPLETED","requestHash":") Tj
+ET
+endstream
+endobj
+5 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 6 0 R
+>>
+endobj
+6 0 obj
+<<
+/Length 1740
+>>
+stream
+0.5670000000000001 w
+0.06 0.46 0.43 RG
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 785.1970866141732586 Td
+(3c48aff4344045a4a4fdb2eb568a75b9ba806809042f4d880c0b80b14a3e0680","configurationId":null,"configurationV) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 771.0238582677164914 Td
+(ersion":null}) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 756.8506299212598378 Td
+({"artifact":{"jobId":"compute-2208ecb6-3d82-4d02-b3ae-ac11abf3ca9f","title":"calculateArea","summary":"Luas AOI) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 742.6774015748030706 Td
+(DEMO: 247190378.42 m² \(pendekatan bola\).","datasetIds":["demo-boundaries"],"configurationVersion":null,"experi) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 728.5041732283464171 Td
+(mental":true,"demo":true,"provenance":"Kalkulasi deterministik lokal P4I; fixture DEMO atau input preferensi) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 714.3309448818897636 Td
+(pengguna. Bukan pengukuran resmi.","createdAt":"2026-10-14T10:59:58.313Z","points":[]},"raster":null,"values":{"ar) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 700.15771653543311 Td
+(eaSquareMetres":247190378.41552585,"aoiId":"demo-aoi-west"},"limitations":["Eksperimental; tidak menyatakan) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 685.9844881889763428 Td
+(validasi atau keunggulan metodologi.","Tidak ada GEE, PostGIS atau worker produksi yang dijalankan."]}) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 671.8112598425196893 Td
+(Review concerns report completeness, interpretation, authorized release and professional quality. It does not) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 657.6380314960629221 Td
+(establish scientific methodology validation.) Tj
+ET
+endstream
+endobj
+1 0 obj
+<</Type /Pages
+/Kids [3 0 R 5 0 R ]
+/Count 2
+>>
+endobj
+7 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+8 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+9 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-Oblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+10 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-BoldOblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+11 0 obj
+<<
+/Type /Font
+/BaseFont /Courier
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+12 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+13 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-Oblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+14 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-BoldOblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+15 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Roman
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+16 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+17 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Italic
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+18 0 obj
+<<
+/Type /Font
+/BaseFont /Times-BoldItalic
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+19 0 obj
+<<
+/Type /Font
+/BaseFont /ZapfDingbats
+/Subtype /Type1
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+20 0 obj
+<<
+/Type /Font
+/BaseFont /Symbol
+/Subtype /Type1
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+2 0 obj
+<<
+/ProcSet [/PDF /Text /ImageB /ImageC /ImageI]
+/Font <<
+/F1 7 0 R
+/F2 8 0 R
+/F3 9 0 R
+/F4 10 0 R
+/F5 11 0 R
+/F6 12 0 R
+/F7 13 0 R
+/F8 14 0 R
+/F9 15 0 R
+/F10 16 0 R
+/F11 17 0 R
+/F12 18 0 R
+/F13 19 0 R
+/F14 20 0 R
+>>
+/XObject <<
+>>
+>>
+endobj
+21 0 obj
+<<
+/Producer (jsPDF 4.2.1)
+/CreationDate (D:20261014110007-00'00')
+>>
+endobj
+22 0 obj
+<<
+/Type /Catalog
+/Pages 1 0 R
+/OpenAction [3 0 R /FitH null]
+/PageLayout /OneColumn
+>>
+endobj
+xref
+0 23
+0000000000 65535 f 
+0000008158 00000 n 
+0000009983 00000 n 
+0000000015 00000 n 
+0000000152 00000 n 
+0000006229 00000 n 
+0000006366 00000 n 
+0000008221 00000 n 
+0000008346 00000 n 
+0000008476 00000 n 
+0000008609 00000 n 
+0000008747 00000 n 
+0000008871 00000 n 
+0000009000 00000 n 
+0000009132 00000 n 
+0000009268 00000 n 
+0000009396 00000 n 
+0000009523 00000 n 
+0000009652 00000 n 
+0000009785 00000 n 
+0000009887 00000 n 
+0000010233 00000 n 
+0000010319 00000 n 
+trailer
+<<
+/Size 23
+/Root 22 0 R
+/Info 21 0 R
+/ID [ <D876672D20105679AAB5691547527D39> <D876672D20105679AAB5691547527D39> ]
+>>
+startxref
+10423
+%%EOF

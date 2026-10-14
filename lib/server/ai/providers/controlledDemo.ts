@@ -161,6 +161,15 @@ export function planDemo(input: GISPlanningInput): GISExecutionPlan {
       message: 'Jarak dua titik EPSG:4326; pendekatan bola, bukan rute jalan.',
     };
   }
+  if (/draft.*deliverable|deliverable.*draft/.test(p)) {
+    add({ tool: 'prepareClientDeliverableDraft' });
+    return {
+      ...base,
+      intent: 'read-map',
+      message:
+        'Draft deliverable eksperimental disiapkan dari peta dan hasil tersimpan. Belum direview atau dirilis.',
+    };
+  }
   const hasConfiguration = /konfigurasi|configuration/.test(p);
   if (hasConfiguration) {
     base.intent = 'analysis-configuration';

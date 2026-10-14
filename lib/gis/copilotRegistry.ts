@@ -12,6 +12,11 @@ const definitions: [GISToolName, GISRisk, string, boolean?][] = [
   ['searchDatasetCatalog', 'read', 'Cari katalog yang diizinkan'],
   ['listAvailableLayers', 'read', 'Daftar dataset tersedia'],
   ['getDatasetMetadata', 'read', 'Metadata sumber dan raster'],
+  [
+    'prepareClientDeliverableDraft',
+    'read',
+    'Siapkan teks draft deliverable, tanpa review/publikasi',
+  ],
   ['summarizeCurrentMap', 'read', 'Ringkasan sesi'],
   ['inspectPixel', 'read', 'Sampel native provider lokal'],
   ['createMap', 'map-session', 'Buat resep sesi'],

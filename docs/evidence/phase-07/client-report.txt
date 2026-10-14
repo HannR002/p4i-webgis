@@ -1,0 +1,61 @@
+P4I Consultant | Spatial Analytics
+DEMO / EXPERIMENTAL - DEVELOPMENT SIMULATION
+NO OFFICIAL CLIENT PUBLICATION - NO METHODOLOGY VALIDATION
+
+Phase07 report
+Project: Kajian tata ruang — Proyek DEMO A
+Client: Organisasi DEMO A | Project ID: 11111111-1111-4111-8111-111111111111
+Status: PUBLISHED - SIMULATION | revision 3
+Created: 2026-10-14T11:00:03.139Z | origin: ai
+Evidence SHA-256: 062baa8ffcc7eb5a9f3eeee81ba87f1ef4420bf67ac24b5542698ed703b5c3d0
+Released/redacted content SHA-256: 118fb972bf3705d5ab406b175fb8743de2278af8041a462dd3b92420b15fa0bb
+Release: 2026-10-14T11:00:06.868Z | publisher: development-publisher | official=false
+
+Analysis summary
+Luas AOI DEMO: 247190378.42 m² (pendekatan bola).
+
+Assumptions
+Data fixture sintetik; area dihitung pada geometri DEMO dengan pendekatan bola.
+
+Limitations
+Data sintetik atau input pengguna. Tidak untuk keputusan operasional. Tidak menyatakan validasi metodologi.
+
+Map snapshot / schematic
+
+MapRecipe view - schematic only; no basemap / no new measurements
+Centre -1.6, 103.57 | zoom 13 | 2 layers
+
+AOI: Area contoh Barat | demo-aoi-west
+
+Legend / configured layers
+Curah hujan tahunan
+1200.0 mm/tahun | #eff6ff
+2100.0 mm/tahun | #3b82f6
+3000.0 mm/tahun | #1e3a8a
+Batas wilayah contoh
+Batas wilayah contoh | #0f766e
+DEMO | Luas AOI DEMO: 247190378.42 m² (pendekatan bola). | Kalkulasi deterministik lokal P4I; fixture DEMO
+atau input preferensi pengguna. Bukan pengukuran resmi.
+
+Source datasets / native metadata
+Batas wilayah contoh | demo-boundaries | P4I fixture sintetik | demo-v2 | Data sintetik untuk demonstrasi UI. Bukan
+pengukuran atau batas administrasi resmi. | vector metadata
+Curah hujan tahunan | demo-rainfall | P4I fixture sintetik | demo-v2 | Data sintetik untuk demonstrasi UI. Bukan
+pengukuran atau batas administrasi resmi. |
+{"period":{"start":"2025-01-01","end":"2025-12-31"},"resolution":{"x":0.05,"y":0.05,"unit":"degree"}}
+
+Verified development compute snapshot
+{"jobId":"compute-2208ecb6-3d82-4d02-b3ae-ac11abf3ca9f","projectId":null,"state":"COMPLETED","requestHash":"
+
+3c48aff4344045a4a4fdb2eb568a75b9ba806809042f4d880c0b80b14a3e0680","configurationId":null,"configurationV
+ersion":null}
+{"artifact":{"jobId":"compute-2208ecb6-3d82-4d02-b3ae-ac11abf3ca9f","title":"calculateArea","summary":"Luas AOI
+DEMO: 247190378.42 m² (pendekatan bola).","datasetIds":["demo-boundaries"],"configurationVersion":null,"experi
+mental":true,"demo":true,"provenance":"Kalkulasi deterministik lokal P4I; fixture DEMO atau input preferensi
+pengguna. Bukan pengukuran resmi.","createdAt":"2026-10-14T10:59:58.313Z","points":[]},"raster":null,"values":{"ar
+eaSquareMetres":247190378.41552585,"aoiId":"demo-aoi-west"},"limitations":["Eksperimental; tidak menyatakan
+validasi atau keunggulan metodologi.","Tidak ada GEE, PostGIS atau worker produksi yang dijalankan."]}
+Review concerns report completeness, interpretation, authorized release and professional quality. It does not
+establish scientific methodology validation.
+
+
