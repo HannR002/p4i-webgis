@@ -73,6 +73,11 @@ export default function PortalPage() {
             </p>
           </motion.div>
           
+          <motion.section variants={itemVariants} className="bg-white rounded-2xl p-8 border border-slate-200">
+            <h3 className="text-2xl font-bold text-slate-800 mb-3">Deliverable konsultansi GIS</h3>
+            <p className="text-slate-600 mb-4">Laporan yang dirilis tersedia sesuai hak proyek. Workflow development memakai ruang DEMO terisolasi.</p>
+            <Link href="/spatial/consulting" className="text-blue-700 underline font-bold">Buka proyek & deliverable</Link>
+          </motion.section>
           {/* Section Pustaka Proyek dengan Glassmorphism Container */}
           <motion.section variants={itemVariants} className="relative">
              <div className="absolute inset-0 bg-white/40 backdrop-blur-md rounded-[2.5rem] border border-white shadow-xl shadow-slate-200/40 -z-10"></div>

@@ -1,0 +1,26 @@
+{
+  "GIS_DEMO_MODE": "true",
+  "checks": [
+    {
+      "path": "/api/consulting",
+      "status": 403,
+      "body": {
+        "error": "Workflow deliverable belum tersedia di production. Aktifkan development DEMO untuk ruang simulasi terisolasi."
+      }
+    },
+    {
+      "path": "/api/consulting/download?id=private&format=pdf",
+      "status": 403,
+      "body": {
+        "error": "Workflow deliverable belum tersedia di production. Aktifkan development DEMO untuk ruang simulasi terisolasi."
+      }
+    },
+    {
+      "path": "/api/consulting",
+      "status": 403,
+      "body": {
+        "error": "Workflow deliverable belum tersedia di production. Aktifkan development DEMO untuk ruang simulasi terisolasi."
+      }
+    }
+  ]
+}

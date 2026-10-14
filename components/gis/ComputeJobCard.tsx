@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import { useRef, useState } from 'react';
 import type { ComputeJob } from '../../lib/gis/computeContracts';
 import {
@@ -205,6 +206,7 @@ export default function ComputeJobCard({ initial }: { initial: ComputeJob }) {
               Terapkan hasil ke peta
             </button>
             <button onClick={download}>Unduh laporan draft (.md)</button>
+            <Link href="/spatial/consulting">Siapkan deliverable klien</Link>
           </div>
         </>
       )}

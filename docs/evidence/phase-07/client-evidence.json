@@ -1,0 +1,314 @@
+{
+  "project": {
+    "id": "11111111-1111-4111-8111-111111111111",
+    "title": "Kajian tata ruang — Proyek DEMO A",
+    "category": "Konsultansi GIS",
+    "description": "Proyek sintetik untuk alur deliverable; tidak terhubung data klien nyata.",
+    "access_tier": "restricted",
+    "clientLabel": "Organisasi DEMO A",
+    "demo": true
+  },
+  "document": {
+    "id": "642f158b-d3db-41aa-b9d5-601531721407",
+    "projectId": "11111111-1111-4111-8111-111111111111",
+    "status": "PUBLISHED",
+    "releasedContentHash": "118fb972bf3705d5ab406b175fb8743de2278af8041a462dd3b92420b15fa0bb",
+    "publication": {
+      "id": "bc832002-4a40-4ba2-a66a-c2a5b5ba0ef3",
+      "revision": 3,
+      "contentHash": "062baa8ffcc7eb5a9f3eeee81ba87f1ef4420bf67ac24b5542698ed703b5c3d0",
+      "reviewId": "098b08df-ae36-4f0d-90d8-556d7684e2ec",
+      "publishedBy": "development-publisher",
+      "publishedAt": "2026-10-14T11:00:06.868Z",
+      "mode": "DEVELOPMENT_SIMULATION",
+      "official": false
+    },
+    "revision": {
+      "number": 3,
+      "content": {
+        "title": "Phase07 report",
+        "summary": "Luas AOI DEMO: 247190378.42 m² (pendekatan bola).",
+        "analystNotes": "",
+        "assumptions": "Data fixture sintetik; area dihitung pada geometri DEMO dengan pendekatan bola.",
+        "limitations": "Data sintetik atau input pengguna. Tidak untuk keputusan operasional. Tidak menyatakan validasi metodologi.",
+        "recipe": {
+          "schemaVersion": 1,
+          "id": "local-map",
+          "title": "Curah Hujan",
+          "description": "",
+          "basemap": "none",
+          "viewport": {
+            "center": [
+              -1.6,
+              103.57
+            ],
+            "zoom": 13
+          },
+          "layers": [
+            {
+              "id": "layer-demo-rainfall",
+              "datasetId": "demo-rainfall",
+              "type": "raster",
+              "visible": true,
+              "opacity": 0.6,
+              "style": {
+                "palette": [
+                  "#eff6ff",
+                  "#3b82f6",
+                  "#1e3a8a"
+                ],
+                "min": 1200,
+                "max": 3000,
+                "band": "rainfall"
+              }
+            },
+            {
+              "id": "layer-demo-boundaries",
+              "datasetId": "demo-boundaries",
+              "type": "vector",
+              "visible": true,
+              "opacity": 0.8,
+              "style": {
+                "color": "#0f766e",
+                "fillColor": "#5eead4",
+                "weight": 2
+              }
+            }
+          ],
+          "aoi": {
+            "id": "demo-aoi-west",
+            "name": "Area contoh Barat",
+            "kind": "demo"
+          },
+          "legend": [
+            {
+              "datasetId": "demo-rainfall",
+              "title": "Curah hujan tahunan",
+              "entries": [
+                {
+                  "color": "#eff6ff",
+                  "label": "1200.0 mm/tahun"
+                },
+                {
+                  "color": "#3b82f6",
+                  "label": "2100.0 mm/tahun"
+                },
+                {
+                  "color": "#1e3a8a",
+                  "label": "3000.0 mm/tahun"
+                }
+              ]
+            },
+            {
+              "datasetId": "demo-boundaries",
+              "title": "Batas wilayah contoh",
+              "entries": [
+                {
+                  "color": "#0f766e",
+                  "label": "Batas wilayah contoh"
+                }
+              ]
+            }
+          ],
+          "analysis": null,
+          "provenance": "ai",
+          "analysisResults": [
+            {
+              "jobId": "compute-2208ecb6-3d82-4d02-b3ae-ac11abf3ca9f",
+              "title": "calculateArea",
+              "summary": "Luas AOI DEMO: 247190378.42 m² (pendekatan bola).",
+              "datasetIds": [
+                "demo-boundaries"
+              ],
+              "configurationVersion": null,
+              "experimental": true,
+              "demo": true,
+              "provenance": "Kalkulasi deterministik lokal P4I; fixture DEMO atau input preferensi pengguna. Bukan pengukuran resmi.",
+              "createdAt": "2026-10-14T10:59:58.313Z",
+              "points": []
+            }
+          ]
+        },
+        "mapOutline": {
+          "datasetId": "demo-boundaries",
+          "version": "demo-v2",
+          "provenance": "Data sintetik untuk demonstrasi UI. Bukan pengukuran atau batas administrasi resmi.",
+          "rings": [
+            [
+              [
+                103.52,
+                -1.7
+              ],
+              [
+                103.62,
+                -1.7
+              ],
+              [
+                103.62,
+                -1.5
+              ],
+              [
+                103.52,
+                -1.5
+              ],
+              [
+                103.52,
+                -1.7
+              ]
+            ],
+            [
+              [
+                103.62,
+                -1.7
+              ],
+              [
+                103.72,
+                -1.7
+              ],
+              [
+                103.72,
+                -1.5
+              ],
+              [
+                103.62,
+                -1.5
+              ],
+              [
+                103.62,
+                -1.7
+              ]
+            ]
+          ]
+        },
+        "datasetSources": [
+          {
+            "id": "demo-boundaries",
+            "title": "Batas wilayah contoh",
+            "type": "vector",
+            "status": "demo",
+            "accessTier": "public",
+            "source": "P4I fixture sintetik",
+            "provider": "development",
+            "license": "Contoh internal P4I",
+            "version": "demo-v2",
+            "provenance": "Data sintetik untuk demonstrasi UI. Bukan pengukuran atau batas administrasi resmi.",
+            "raster": null
+          },
+          {
+            "id": "demo-rainfall",
+            "title": "Curah hujan tahunan",
+            "type": "raster",
+            "status": "demo",
+            "accessTier": "public",
+            "source": "P4I fixture sintetik",
+            "provider": "development",
+            "license": "Contoh internal P4I",
+            "version": "demo-v2",
+            "provenance": "Data sintetik untuk demonstrasi UI. Bukan pengukuran atau batas administrasi resmi.",
+            "raster": {
+              "crs": "EPSG:4326",
+              "resolution": {
+                "x": 0.05,
+                "y": 0.05,
+                "unit": "degree"
+              },
+              "grid": {
+                "origin": [
+                  103.52,
+                  -1.5
+                ],
+                "pixelSize": [
+                  0.05,
+                  -0.05
+                ],
+                "width": 4,
+                "height": 4,
+                "pixelReference": "area"
+              },
+              "scale": 0.05,
+              "version": "demo-v2",
+              "provenance": "Data sintetik untuk demonstrasi UI. Bukan pengukuran atau batas administrasi resmi.",
+              "bands": [
+                {
+                  "id": "rainfall",
+                  "unit": "mm/tahun",
+                  "kind": "continuous",
+                  "scale": 1,
+                  "offset": 0,
+                  "range": [
+                    1200,
+                    3000
+                  ]
+                },
+                {
+                  "id": "daily_mean",
+                  "unit": "mm/hari",
+                  "kind": "continuous",
+                  "scale": 0.0027397260273972603,
+                  "offset": 0,
+                  "range": [
+                    3.287671232876712,
+                    8.219178082191782
+                  ]
+                }
+              ],
+              "noData": {
+                "value": null,
+                "meaning": "Di luar cakupan atau sel fixture yang dimask"
+              },
+              "resampling": "nearest",
+              "period": {
+                "start": "2025-01-01",
+                "end": "2025-12-31"
+              },
+              "range": [
+                1200,
+                3000
+              ]
+            }
+          }
+        ]
+      },
+      "createdAt": "2026-10-14T11:00:03.139Z",
+      "createdBy": "development-analyst",
+      "origin": "ai",
+      "analysisRun": {
+        "jobId": "compute-2208ecb6-3d82-4d02-b3ae-ac11abf3ca9f",
+        "projectId": null,
+        "state": "COMPLETED",
+        "requestHash": "3c48aff4344045a4a4fdb2eb568a75b9ba806809042f4d880c0b80b14a3e0680",
+        "configurationId": null,
+        "configurationVersion": null
+      },
+      "analysisResult": {
+        "jobId": "compute-2208ecb6-3d82-4d02-b3ae-ac11abf3ca9f",
+        "result": {
+          "artifact": {
+            "jobId": "compute-2208ecb6-3d82-4d02-b3ae-ac11abf3ca9f",
+            "title": "calculateArea",
+            "summary": "Luas AOI DEMO: 247190378.42 m² (pendekatan bola).",
+            "datasetIds": [
+              "demo-boundaries"
+            ],
+            "configurationVersion": null,
+            "experimental": true,
+            "demo": true,
+            "provenance": "Kalkulasi deterministik lokal P4I; fixture DEMO atau input preferensi pengguna. Bukan pengukuran resmi.",
+            "createdAt": "2026-10-14T10:59:58.313Z",
+            "points": []
+          },
+          "raster": null,
+          "values": {
+            "areaSquareMetres": 247190378.41552585,
+            "aoiId": "demo-aoi-west"
+          },
+          "limitations": [
+            "Eksperimental; tidak menyatakan validasi atau keunggulan metodologi.",
+            "Tidak ada GEE, PostGIS atau worker produksi yang dijalankan."
+          ]
+        }
+      },
+      "contentHash": "062baa8ffcc7eb5a9f3eeee81ba87f1ef4420bf67ac24b5542698ed703b5c3d0"
+    }
+  }
+}

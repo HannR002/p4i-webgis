@@ -246,6 +246,22 @@ export async function executeTool(
       dataset: datasetInfo(d),
     });
   }
+  if (action.tool === 'prepareClientDeliverableDraft')
+    return result(
+      `DRAFT · Copilot DEMO deterministik. Peta “${recipe.title}”, ${recipe.layers.length} layer, AOI ${recipe.aoi?.name ?? 'belum dipilih'}. ${
+        (recipe.analysisResults ?? [])
+          .map((r) => r.summary)
+          .join(' ')
+          .slice(0, 850) ||
+        'Belum ada hasil komputasi terverifikasi dilampirkan.'
+      } Konfigurasi ${recipe.analysisConfiguration?.name ?? 'belum dipilih'}. Eksperimental; perlu interpretasi analis dan review deliverable sebelum rilis.`,
+      {
+        kind: 'summary',
+        title: recipe.title,
+        layerCount: recipe.layers.length,
+        aoi: recipe.aoi?.name ?? null,
+      },
+    );
   if (action.tool === 'summarizeCurrentMap')
     return result(
       `Peta “${recipe.title}”: ${recipe.layers.length} layer; AOI ${recipe.aoi?.name ?? 'belum dipilih'}.`,

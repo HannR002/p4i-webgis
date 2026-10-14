@@ -102,6 +102,7 @@ export function parseGISToolRequest(value: unknown): GISToolRequest {
     [
       "listAvailableLayers",
       "summarizeCurrentMap",
+      "prepareClientDeliverableDraft",
       "listAnalysisConfigurations",
       "publishMap",
       "runFloodAnalysis",
@@ -296,7 +297,9 @@ export function validateActionResult(
       ? ["pixels"]
       : tool === "getDatasetMetadata"
         ? ["metadata"]
-        : tool === "summarizeCurrentMap"
+        : ["summarizeCurrentMap", "prepareClientDeliverableDraft"].includes(
+              tool,
+            )
           ? ["summary"]
           : tool === "listAnalysisConfigurations"
             ? ["configurations"]
