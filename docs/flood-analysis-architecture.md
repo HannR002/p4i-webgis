@@ -1,5 +1,7 @@
 # P4I Flood Risk Analysis v1
 
+> Phase 09 update (15 October 2026): The legacy real GEE route, service and initializer now fail closed before external computation. Credentials do not enable execution. Governed commercial integration is pending; model thresholds remain experimental. See [current integration readiness](real-gis-integration-readiness.md). Earlier descriptions below are historical where superseded.
+
 Modul ini memperluas P4I Spatial Analytics yang sudah ada; bukan aplikasi peta kedua. Migration, import boundary, konfigurasi Google Cloud/Earth Engine, dan deployment tetap dilakukan manusia setelah review.
 
 ## Snapshot audit sebelum perubahan
@@ -112,6 +114,16 @@ Nilai di `config/floodRiskModel.ts` adalah **TEMPORARY defaults**, bukan fakta i
 - Kalibrasi bobot/batas kelas dengan observasi kejadian dan tinggi genangan independen.
 
 ## Environment variables
+
+### New map workspace integration
+
+`/spatial/viewer` records provisional AHP configuration in a validated MapRecipe and reuses the
+existing flood panel/API. Synthetic AOIs never set authoritative `activeBoundaryId` or trigger GEE.
+Copilot can assemble thematic layers but cannot manufacture flood scores. Missing WLC criteria
+in the original viewer now render neutrally instead of using feature-name-derived fallbacks;
+aggregate flood AOI scores are not assigned to unrelated polygons. See [raster/pixel contracts](raster-pixel-analysis.md)
+and [map builder](map-builder-architecture.md). Thresholds remain `TODO(P4I-GIS-VALIDATION)`.
+No database migrations or real-data imports were run for this workspace implementation.
 
 Jangan prefix credential dengan `NEXT_PUBLIC_` dan jangan commit nilainya.
 

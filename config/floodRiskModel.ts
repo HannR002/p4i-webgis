@@ -5,7 +5,7 @@ import {
   type FloodWeights,
 } from '../types/flood';
 
-export const FLOOD_MODEL_VERSION = 'p4i-flood-wlc-v1.0.0';
+export const FLOOD_MODEL_VERSION = 'p4i-flood-wlc-experimental-v1.1.0';
 export const FLOOD_DATASET_VERSION_BASE =
   'chirps-daily+esa-worldcover-v200';
 
@@ -21,8 +21,8 @@ export const TILE_TOKEN_TTL_MS = 45 * 60 * 1000;
 export const WEIGHT_TOTAL_TOLERANCE = 1e-6;
 export const MAX_ANALYSIS_PERIOD_DAYS = 366;
 
-// TEMPORARY defaults. These thresholds must be reviewed and signed off by
-// P4I GIS before the model is used for policy or engineering decisions.
+// Experimental defaults, not official P4I scientific thresholds.
+// Scientific methodology validation is postponed; it is not an execution workflow.
 // TODO(P4I-GIS-VALIDATION): replace with locally calibrated susceptibility.
 export const RAINFALL_SUSCEPTIBILITY = [
   { maxMm: 500, value: 0.1 },

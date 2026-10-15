@@ -1,0 +1,12 @@
+{
+  "GIS_DEMO_MODE": true,
+  "NODE_ENV": "production",
+  "/spatial/home": 200,
+  "/spatial/viewer": 200,
+  "/api/gis/catalog": 200,
+  "catalogMode": "unavailable",
+  "/api/gis/pixel": 503,
+  "/api/gis/process": 503,
+  "/api/gis/copilot (prompt)": 503,
+  "/api/gis/copilot (reviewed plan)": 503
+}

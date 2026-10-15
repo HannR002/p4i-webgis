@@ -1,0 +1,7 @@
+{
+  "/spatial/viewer": 200,
+  "/api/gis/catalog": 200,
+  "catalogMode": "unavailable",
+  "/api/gis/pixel": 503,
+  "/api/gis/process": 503
+}

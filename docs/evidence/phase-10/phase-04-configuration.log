@@ -1,0 +1,9 @@
+(node:31736) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS direct analysis route hydration and catalog readiness
+PASS high-CR AHP save/apply, named revisions, duplicate/delete/load and editor persistence across tabs
+PASS WLC weights/scenario, invalid total/reset, recipe undo/redo, config JSON import/export, real PDF download and reload persistence
+PASS real local provider reclassification, malformed rules refusal, native zonal statistics/NoData and categorical histogram
+PASS pending analysis cancellation on draft edit
+PASS experimental flood metadata/mappings saved without methodology approval or GEE calls; unsupported engines hidden
+PASS eight desktop/mobile Axe audits, no overflow/page errors, corrupt-storage preservation

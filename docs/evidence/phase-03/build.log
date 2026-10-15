@@ -1,0 +1,78 @@
+(node:32706) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+> p4i-webgis@0.1.0 build
+> next build
+
+(node:32719) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▲ Next.js 16.3.5 (Turbopack)
+✓ Running next.config.ts took 29ms
+
+  Creating an optimized production build ...
+(node:32719) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:32736) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✓ Compiled successfully in 598ms
+  Running TypeScript ...
+  Finished TypeScript in 2.3s ...
+  Collecting page data using 4 workers ...
+(node:32771) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:32774) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:32772) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:32779) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  Generating static pages using 4 workers (0/35) ...
+  Generating static pages using 4 workers (8/35)
+  Generating static pages using 4 workers (17/35)
+  Generating static pages using 4 workers (26/35)
+✓ Generating static pages using 4 workers (35/35) in 722ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /admin/dashboard
+├ ○ /admin/upload
+├ ○ /admin/users
+├ ƒ /api/admin/audit-logs
+├ ƒ /api/admin/dashboard/metrics
+├ ƒ /api/admin/entitlements
+├ ƒ /api/admin/users
+├ ƒ /api/ai-recommendation
+├ ƒ /api/auth/session
+├ ƒ /api/boundaries
+├ ƒ /api/downloads
+├ ƒ /api/gee/flood-analysis
+├ ƒ /api/gis/actions
+├ ƒ /api/gis/catalog
+├ ƒ /api/gis/copilot
+├ ƒ /api/gis/pixel
+├ ƒ /api/gis/process
+├ ƒ /api/gis/tiles/[id]/[z]/[x]/[y]
+├ ƒ /api/gis/vector/[id]
+├ ƒ /api/leads
+├ ƒ /api/onboarding
+├ ƒ /api/projects
+├ ƒ /api/projects/[id]/layers
+├ ƒ /api/projects/list
+├ ○ /login
+├ ○ /portal
+├ ○ /spatial
+├ ○ /spatial/ai
+├ ○ /spatial/analysis
+├ ○ /spatial/data
+├ ○ /spatial/help
+├ ○ /spatial/home
+├ ƒ /spatial/viewer
+└ ƒ /spatial/webmap
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand

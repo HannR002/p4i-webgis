@@ -1,0 +1,15 @@
+{
+  "mode": "LOCAL_DRY_RUN",
+  "batchId": "9b1473ae-de68-41ce-9cd6-b68bb823cecc",
+  "count": 1,
+  "coordinateCount": 5,
+  "validation": "STRUCTURAL_ONLY_POSTGIS_TOPOLOGY_REVIEW_REQUIRED",
+  "provenance": {
+    "source": "SYNTHETIC",
+    "sourceVersion": "fixture-v1",
+    "license": "DEMO-TEST-ONLY",
+    "sourceCrs": "EPSG:4326",
+    "targetCrs": "EPSG:4326",
+    "inputSha256": "d7b4edfb9dd72e45f2b3d95571f30279b32a1ddcac95eeb4c7f5f44be1c3e4fe"
+  }
+}

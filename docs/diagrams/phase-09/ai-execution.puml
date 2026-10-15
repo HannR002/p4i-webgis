@@ -1,0 +1,31 @@
+@startuml
+actor User
+participant Workspace
+participant "Trusted API" as API
+participant "AIProvider" as AI
+participant "Registry + validators" as V
+participant "Compute service" as Jobs
+participant "Local provider / future governed adapter" as Provider
+User -> Workspace : natural-language request
+Workspace -> API : prompt + recipe + configuration
+API -> API : size/rate limits, identity, dataset/project ACL
+API -> AI : authorized catalog/AOI context
+AI --> API : structured plan (untrusted)
+API -> V : exact schema/tools/IDs/arguments
+V --> API : validated plan or refusal
+alt supported low-cost local analysis
+ API -> Jobs : estimate, immutable owner/request snapshot
+ Jobs -> Provider : bounded authorized operation
+ Provider --> Jobs : actual result or failure
+ Jobs --> API : validated result / usage
+else approval required
+ API --> Workspace : pending exact estimate/approval
+ User -> API : explicit human approval
+ API -> Jobs : reauthorize owner/hash/expiry/ceiling
+ Jobs -> Provider : only when adapter available
+else external adapter unavailable
+ API --> Workspace : unavailable; no fabricated fallback
+end
+API --> Workspace : validated result + atomic recipe update
+Workspace -> Workspace : stale-response guard, one Undo entry
+@enduml

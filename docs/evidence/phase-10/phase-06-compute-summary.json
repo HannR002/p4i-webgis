@@ -1,0 +1,26 @@
+{
+  "flows": [
+    "Automatic area job, MapRecipe result, undo/redo, actual Markdown download",
+    "Distance operation from explicit [longitude,latitude] inputs",
+    "1600-cell job blocked before explicit approval",
+    "Human approval bound to snapshot; categorical native zonal statistics; result applied to workspace",
+    "Job cannot be read from another anonymous browser session",
+    "Computed result retained in JSON; existing PDF and PNG downloads complete",
+    "390px/768px responsive overflow and WCAG AA automated checks",
+    "Cancelled approval job retries with fresh approval requirement",
+    "Unresolved real AOI refusal with no fabricated flood result",
+    "Unavailable flood adapter displays UNKNOWN external cost and disabled approval"
+  ],
+  "audits": [
+    {
+      "width": 390,
+      "violations": []
+    },
+    {
+      "width": 768,
+      "violations": []
+    }
+  ],
+  "errors": [],
+  "externalComputeCalls": 0
+}

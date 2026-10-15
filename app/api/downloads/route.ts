@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { resolveProjectLayerAccess } from '../../../lib/server/projectAccess';
 import { APP_ROLES } from '../../../lib/authRoles';
 import { requireRole } from '../../../lib/server/auth';
 import { getDatabaseRepositories } from '../../../lib/server/database';
@@ -13,7 +14,19 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 export async function GET(request: Request) {
   try {
     const identity = await requireRole(request, APP_ROLES);
-    return NextResponse.json(await getDatabaseRepositories().downloads.listForUser(identity.user.id));
+    const repositories = getDatabaseRepositories();
+    const history = await repositories.downloads.listForUser(identity.user.id);
+    // The service-role repository bypasses RLS. Recheck current project access
+    // before releasing history metadata, including titles, after revocation.
+    const viewer = { id: identity.user.id, role: identity.role };
+    const visible = [];
+    for (const row of history) {
+      const access = await resolveProjectLayerAccess(repositories, row.project_id, viewer);
+      if (access.allowed) visible.push(row);
+    }
+    return NextResponse.json(visible, {
+      headers: { 'Cache-Control': 'private, no-store' },
+    });
   } catch (error: unknown) {
     return apiErrorResponse(error, 'GET /api/downloads');
   }

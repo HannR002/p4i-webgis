@@ -1,0 +1,292 @@
+{
+  "schemaVersion": 1,
+  "id": "local-map",
+  "title": "Curah Hujan",
+  "description": "",
+  "basemap": "none",
+  "viewport": {
+    "center": [
+      -1.6,
+      103.57
+    ],
+    "zoom": 13
+  },
+  "layers": [
+    {
+      "id": "layer-demo-rainfall",
+      "datasetId": "demo-rainfall",
+      "type": "raster",
+      "visible": true,
+      "opacity": 0.6,
+      "style": {
+        "palette": [
+          "#eff6ff",
+          "#3b82f6",
+          "#1e3a8a"
+        ],
+        "min": 1200,
+        "max": 3000,
+        "band": "rainfall"
+      }
+    },
+    {
+      "id": "layer-demo-boundaries",
+      "datasetId": "demo-boundaries",
+      "type": "vector",
+      "visible": true,
+      "opacity": 0.8,
+      "style": {
+        "color": "#0f766e",
+        "fillColor": "#5eead4",
+        "weight": 2
+      }
+    },
+    {
+      "id": "layer-demo-landcover",
+      "datasetId": "demo-landcover",
+      "type": "raster",
+      "visible": true,
+      "opacity": 0.6,
+      "style": {
+        "palette": [
+          "#15803d",
+          "#eab308",
+          "#dc2626",
+          "#0284c7"
+        ],
+        "min": 0,
+        "max": 100,
+        "band": "land_cover"
+      }
+    }
+  ],
+  "aoi": {
+    "id": "demo-aoi-west",
+    "name": "Area contoh Barat",
+    "kind": "demo"
+  },
+  "legend": [
+    {
+      "datasetId": "demo-rainfall",
+      "title": "Curah hujan tahunan",
+      "entries": [
+        {
+          "color": "#eff6ff",
+          "label": "1200.0 mm/tahun"
+        },
+        {
+          "color": "#3b82f6",
+          "label": "2100.0 mm/tahun"
+        },
+        {
+          "color": "#1e3a8a",
+          "label": "3000.0 mm/tahun"
+        }
+      ]
+    },
+    {
+      "datasetId": "demo-boundaries",
+      "title": "Batas wilayah contoh",
+      "entries": [
+        {
+          "label": "Batas wilayah contoh",
+          "color": "#0f766e"
+        }
+      ]
+    },
+    {
+      "datasetId": "demo-landcover",
+      "title": "Tutupan lahan",
+      "entries": [
+        {
+          "label": "Pepohonan",
+          "color": "#15803d"
+        },
+        {
+          "label": "Pertanian",
+          "color": "#eab308"
+        },
+        {
+          "label": "Terbangun",
+          "color": "#dc2626"
+        },
+        {
+          "label": "Air",
+          "color": "#0284c7"
+        }
+      ]
+    }
+  ],
+  "analysis": null,
+  "provenance": "ai",
+  "analysisConfiguration": {
+    "schemaVersion": 1,
+    "id": "analysis-ce48c215-4654-44c9-9bfb-6c694b970a11",
+    "name": "Zonal approved QA",
+    "description": "",
+    "version": 1,
+    "inputDatasetIds": [
+      "demo-landcover"
+    ],
+    "criteria": [
+      {
+        "id": "value",
+        "label": "Raster",
+        "datasetId": "demo-landcover",
+        "band": "land_cover"
+      }
+    ],
+    "weights": {},
+    "classificationRules": {},
+    "selectedAOI": {
+      "id": "demo-aoi-west",
+      "name": "Area contoh Barat",
+      "kind": "demo"
+    },
+    "spatialResolution": {
+      "crs": "EPSG:4326",
+      "resolution": {
+        "x": 0.005,
+        "y": 0.005,
+        "unit": "degree"
+      }
+    },
+    "analysisPeriod": {
+      "start": "2025-01-01",
+      "end": "2025-12-31"
+    },
+    "sourceMetadata": [
+      {
+        "datasetId": "demo-landcover",
+        "source": "P4I fixture sintetik",
+        "provider": "development",
+        "license": "Contoh internal P4I",
+        "version": "demo-v2",
+        "provenance": "Data sintetik untuk demonstrasi UI. Bukan pengukuran atau batas administrasi resmi.",
+        "raster": {
+          "crs": "EPSG:4326",
+          "resolution": {
+            "x": 0.005,
+            "y": 0.005,
+            "unit": "degree"
+          },
+          "grid": {
+            "origin": [
+              103.52,
+              -1.5
+            ],
+            "pixelSize": [
+              0.005,
+              -0.005
+            ],
+            "width": 40,
+            "height": 40,
+            "pixelReference": "area"
+          },
+          "scale": 0.005,
+          "version": "demo-v2",
+          "provenance": "Data sintetik untuk demonstrasi UI. Bukan pengukuran atau batas administrasi resmi.",
+          "bands": [
+            {
+              "id": "land_cover",
+              "unit": "kode kelas",
+              "kind": "categorical",
+              "scale": 1,
+              "offset": 0
+            }
+          ],
+          "noData": {
+            "value": null,
+            "meaning": "Di luar cakupan atau sel fixture yang dimask"
+          },
+          "resampling": "nearest",
+          "period": {
+            "start": "2025-01-01",
+            "end": "2025-12-31"
+          },
+          "classes": [
+            {
+              "value": 10,
+              "label": "Pepohonan",
+              "color": "#15803d"
+            },
+            {
+              "value": 40,
+              "label": "Pertanian",
+              "color": "#eab308"
+            },
+            {
+              "value": 50,
+              "label": "Terbangun",
+              "color": "#dc2626"
+            },
+            {
+              "value": 80,
+              "label": "Air",
+              "color": "#0284c7"
+            }
+          ]
+        }
+      }
+    ],
+    "createdAt": "2026-10-14T10:09:19.980Z",
+    "updatedAt": "2026-10-14T10:09:20.348Z",
+    "notes": "",
+    "experimental": true,
+    "analysisType": "zonal-statistics",
+    "parameters": {
+      "method": "native-cell-centers"
+    }
+  },
+  "analysisResults": [
+    {
+      "jobId": "compute-3e610d5a-fea1-46d5-b564-18c75ce1863a",
+      "title": "calculateArea",
+      "summary": "Luas AOI DEMO: 247190378.42 m² (pendekatan bola).",
+      "datasetIds": [
+        "demo-boundaries"
+      ],
+      "configurationVersion": null,
+      "experimental": true,
+      "demo": true,
+      "provenance": "Kalkulasi deterministik lokal P4I; fixture DEMO atau input preferensi pengguna. Bukan pengukuran resmi.",
+      "createdAt": "2026-10-14T10:09:18.841Z",
+      "points": []
+    },
+    {
+      "jobId": "compute-544d7436-d2a8-48a6-b683-5f7b3fe05ae7",
+      "title": "calculateDistance",
+      "summary": "Jarak geodesik pendekatan bola: 11115.17 m.",
+      "datasetIds": [],
+      "configurationVersion": null,
+      "experimental": true,
+      "demo": false,
+      "provenance": "Kalkulasi deterministik lokal P4I; fixture DEMO atau input preferensi pengguna. Bukan pengukuran resmi.",
+      "createdAt": "2026-10-14T10:09:19.685Z",
+      "points": [
+        [
+          103.55,
+          -1.6
+        ],
+        [
+          103.65,
+          -1.6
+        ]
+      ]
+    },
+    {
+      "jobId": "compute-5687d5a9-49e1-4eff-8744-fd7906f2c3ff",
+      "title": "Zonal approved QA",
+      "summary": "Statistik AOI DEMO: 799 sel valid; 1 NoData. Kelas kategorikal menggunakan histogram.",
+      "datasetIds": [
+        "demo-landcover"
+      ],
+      "configurationVersion": 1,
+      "experimental": true,
+      "demo": true,
+      "provenance": "Kalkulasi deterministik lokal P4I; fixture DEMO atau input preferensi pengguna. Bukan pengukuran resmi.",
+      "createdAt": "2026-10-14T10:09:20.823Z",
+      "points": []
+    }
+  ]
+}

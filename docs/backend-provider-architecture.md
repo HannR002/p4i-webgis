@@ -1,5 +1,65 @@
 # Backend provider architecture and security review
 
+## Phase 08 database reproducibility and security — 15 October 2026
+
+The active provider remains Supabase; no Neon/Nhost migration or external database mutation
+occurred. Phase 08 starts from Phase 07 commit `20cbf54` on a clean feature branch, with
+226 baseline tests plus lint/typecheck/build passing. The earlier audit below is historical;
+its “no .git metadata” statement and deployment sequencing are not the current repository state.
+For current migration order, evidence and rollback use the
+[Phase 08 staging runbook](staging-database-runbook.md).
+
+Domain boundaries remain provider-neutral: `lib/server/database/contracts.ts` exposes projects,
+users, entitlements, downloads, leads, audits, metrics, boundaries and flood operations without
+Supabase types. `lib/server/consulting/service.ts` exposes the versioned consulting repository;
+Phase 04 configuration and Phase 06 jobs continue to use their existing local adapters. No
+speculative schema/model was introduced for MapRecipe, raster metadata, jobs or deliverables.
+
+The new executable local rehearsal applies historical SQL plus `008_staging_security.sql` to
+PostgreSQL/PostGIS behind a real PostgREST authenticator. It tests exact row isolation and grants
+for Guest, both B2B clients, Analyst, Admin and disabled/missing profiles. The minimal auth and
+foundation schemas are **synthetic test adapters**, not recovered Supabase DDL. Full external
+schema reproduction remains blocked by missing verified foundation/view/auth-trigger metadata.
+
+008 closes inherited PUBLIC grants, protects public schema CREATE and import sequences,
+restricts private legacy reports/weights, gates download metadata on current project access,
+ignores disabled entitlement identities, hardens future ACL defaults, and uses `auth.uid()` for
+modern JWT audit attribution. Existing 006/007 files are unchanged. Direct mutations remain
+unavailable to all browser roles, including super-admin; trusted Next.js APIs authorize server
+writes. A project entitlement does not imply a legacy report is approved for release.
+
+Remaining vendor assumptions and integration work:
+
+| Boundary | Remaining dependency | Required adaptation |
+|---|---|---|
+| Identity | Supabase Auth, `auth.users`, `auth.uid()`, PostgREST JWT roles | Neon requires an identity mapping; Nhost requires verified claims mapping; preserve trusted stored role and disabled checks |
+| SQL roles | `postgres` owner, `anon`, `authenticated`, `service_role` BYPASSRLS | Map principals deliberately; do not grant an end user owner/service privileges |
+| Geometry | historical SQL assumes PostGIS functions/types in `public` | Verify extension schema; do not silently relocate extensions on shared databases |
+| Transport | Supabase JS `.from()`/`.rpc()` and nested FK selections confined to adapter | Implement repositories with SQL/transactions or Nhost transport; preserve authorization and DTOs |
+| Service writes | Bypass RLS; route is security boundary; audit cannot infer an end user from a service key | Future verified actor propagation/transaction context, never arbitrary browser actor claims |
+| Project + layer creation | Existing Supabase adapter compensates a failed layer insert with project deletion | Future transactional repository implementation; compensation is not atomic |
+| Legacy reports | DDL and publication mapping absent | Verified schema reconciliation before release-aware adapter; service-only until then |
+| Config/jobs/deliverables | Local validated drafts and process-local development repositories | Durable CAS/state/idempotency/revision transactions + explicit reviewer/publisher project grants |
+| Files/downloads | No live object-storage repository; Phase 07 generates development PDF/JSON | Add authorized object storage only with real operations/retention requirements |
+
+The database scripts never consume Supabase credentials or external DB URLs. The application
+provider factory is unchanged, and unsupported providers still fail closed. Local RLS tests do
+not prove real Supabase GoTrue issuance, external service-key handling, or confidential-client
+publication. Scientific methodology validation/ranking remain OUT OF SCOPE; professional
+client-deliverable review is a distinct explicit authorization workflow.
+
+## Historical provider audit (September 2026)
+
+## GIS workspace extension
+
+The new map workspace preserves database/auth repositories. `lib/server/gis` adds a separate
+dataset/vector/pixel provider boundary; `lib/server/ai` contains a vendor-neutral planner. Shared
+MapRecipe/raster types contain no Supabase queries or Earth Engine objects. GIS endpoints derive
+permissions from the existing server identity and entitlement checks, not request roles or JWT
+user-editable metadata. Explicit development fixtures are refused in production. No migrations,
+production changes or uploads were performed. See [Copilot architecture](ai-gis-copilot-architecture.md)
+and [raster/pixel contracts](raster-pixel-analysis.md) for current capabilities and unavailable adapters.
+
 Review date: 16 September 2026. The database and production environment were not modified. SQL
 `007_security_hardening.sql` is a review artifact only and has not been executed.
 
@@ -169,7 +229,10 @@ This architecture is compatible with a persistent Hostinger Node.js 22 process: 
 features. Maintain a request timeout above the flood route's 55-second application timeout. Raster
 processing stays in GEE, so the Node process orchestrates rather than performs heavy raster compute.
 
-## Migration and rollback plan
+## Historical migration and rollback plan — superseded by Phase 08 runbook
+
+The sequence below recorded the earlier proposal. It is not authorization or the complete
+fresh-setup order; use the current runbook and verified foundation gate above.
 
 1. Back up the Supabase database. Capture the materialized-view ACL/dependencies and inventory any
    scheduler, function, or external job that refreshes it; repository code contains no refresh path.

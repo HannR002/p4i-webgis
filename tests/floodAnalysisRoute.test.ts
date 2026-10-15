@@ -23,10 +23,13 @@ vi.mock('../lib/server/floodAnalysis', () => {
   return { analyzeFloodRisk, FloodAnalysisServiceError };
 });
 vi.mock('../lib/server/http', () => ({
-  apiErrorResponse: (error: unknown) => Response.json(
-    { error: error instanceof Error ? error.message : 'Internal Server Error' },
-    { status: 400 },
-  ),
+  apiErrorResponse: (error: unknown) =>
+    Response.json(
+      {
+        error: error instanceof Error ? error.message : 'Internal Server Error',
+      },
+      { status: 400 },
+    ),
   readJsonBody: async (request: Request) => request.json() as Promise<unknown>,
 }));
 
@@ -35,30 +38,51 @@ import { POST } from '../app/api/gee/flood-analysis/route';
 describe('POST /api/gee/flood-analysis error paths', () => {
   beforeEach(() => analyzeFloodRisk.mockReset());
 
+  it('blocks a valid legacy request before any external computation', async () => {
+    const response = await POST(
+      new Request('http://localhost/api/gee/flood-analysis', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          kecamatan_id: '123e4567-e89b-42d3-a456-426614174001',
+        }),
+      }),
+    );
+    expect(response.status).toBe(503);
+    expect((await response.json()).status).toBe('unavailable');
+    expect(analyzeFloodRisk).not.toHaveBeenCalled();
+  });
+
   it('rejects a non-JSON request', async () => {
-    const response = await POST(new Request('http://localhost/api/gee/flood-analysis', {
-      method: 'POST',
-      body: 'invalid',
-    }));
+    const response = await POST(
+      new Request('http://localhost/api/gee/flood-analysis', {
+        method: 'POST',
+        body: 'invalid',
+      }),
+    );
     expect(response.status).toBe(415);
   });
 
   it('rejects an invalid kecamatan ID before computation', async () => {
-    const response = await POST(new Request('http://localhost/api/gee/flood-analysis', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ kecamatan_id: 'invalid' }),
-    }));
+    const response = await POST(
+      new Request('http://localhost/api/gee/flood-analysis', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ kecamatan_id: 'invalid' }),
+      }),
+    );
     expect(response.status).toBe(400);
     expect(analyzeFloodRisk).not.toHaveBeenCalled();
   });
 
   it('rejects malformed JSON without invoking Earth Engine', async () => {
-    const response = await POST(new Request('http://localhost/api/gee/flood-analysis', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: '{',
-    }));
+    const response = await POST(
+      new Request('http://localhost/api/gee/flood-analysis', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: '{',
+      }),
+    );
     expect(response.status).toBe(400);
     expect(analyzeFloodRisk).not.toHaveBeenCalled();
   });

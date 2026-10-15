@@ -1,9 +1,14 @@
 import { create } from 'zustand';
-import { calculateAHP, AHPResult } from '../utils/ahpCalculator';
+import {
+  calculatePreferences,
+  DEFAULT_PAIRWISE,
+  validatePreferenceWeights,
+} from '../utils/analysisPreferences';
 import type {
-  AdministrativeLevel,
-  FloodAnalysisResult,
-} from '../types/flood';
+  CriterionWeights,
+  PairwisePreferences,
+} from '../lib/gis/analysisContracts';
+import type { AdministrativeLevel, FloodAnalysisResult } from '../types/flood';
 
 interface PairwiseValues {
   bencanaVsKesuburan: number; // >1 berarti Bencana lebih penting, <1 berarti Kesuburan lebih penting
@@ -19,25 +24,30 @@ interface MapState {
   floodAnalysisResult: FloodAnalysisResult | null;
   isPanelOpen: boolean;
   mapCenter: [number, number];
-  
+
   // AHP Expert System States
   pairwiseValues: PairwiseValues;
   derivedWeights: { bencana: number; kesuburan: number; kepadatan: number };
   crValue: number;
   isCrValid: boolean;
+  weightMethod: 'ahp' | 'manual-wlc';
 
   setActiveProject: (id: string | null) => void;
-  setActiveBoundary: (boundary: {
-    id: string;
-    name: string;
-    level: AdministrativeLevel;
-  } | null) => void;
+  setActiveBoundary: (
+    boundary: {
+      id: string;
+      name: string;
+      level: AdministrativeLevel;
+    } | null,
+  ) => void;
   setFloodAnalysisResult: (result: FloodAnalysisResult | null) => void;
   togglePanel: () => void;
   setMapCenter: (center: [number, number]) => void;
-  
+
   // AHP Expert System Action
   updatePairwise: (key: keyof PairwiseValues, value: number) => void;
+  setAHPPreferences: (value: PairwisePreferences) => void;
+  setWLCWeights: (value: CriterionWeights) => void;
 }
 
 export const useMapStore = create<MapState>((set, get) => ({
@@ -55,41 +65,43 @@ export const useMapStore = create<MapState>((set, get) => ({
     bencanaVsKepadatan: 1,
     kesuburanVsKepadatan: 1,
   },
-  derivedWeights: { bencana: 0.333, kesuburan: 0.333, kepadatan: 0.333 },
+  derivedWeights: calculatePreferences(DEFAULT_PAIRWISE).weights,
   crValue: 0,
   isCrValid: true,
+  weightMethod: 'ahp',
 
   setActiveProject: (id) => set({ activeProjectId: id }),
-  setActiveBoundary: (boundary) => set({
-    activeBoundaryId: boundary?.id ?? null,
-    activeBoundaryName: boundary?.name ?? null,
-    activeBoundaryLevel: boundary?.level ?? null,
-    floodAnalysisResult: null,
-  }),
+  setActiveBoundary: (boundary) =>
+    set({
+      activeBoundaryId: boundary?.id ?? null,
+      activeBoundaryName: boundary?.name ?? null,
+      activeBoundaryLevel: boundary?.level ?? null,
+      floodAnalysisResult: null,
+    }),
   setFloodAnalysisResult: (result) => set({ floodAnalysisResult: result }),
   togglePanel: () => set((state) => ({ isPanelOpen: !state.isPanelOpen })),
   setMapCenter: (center) => set({ mapCenter: center }),
-  
+
   updatePairwise: (key, value) => {
     const { pairwiseValues } = get();
     const newValues = { ...pairwiseValues, [key]: value };
-    
-    // Bangun Matriks 3x3
-    // Index 0: Bencana, Index 1: Kesuburan, Index 2: Kepadatan
-    const matrix = [
-      [1, newValues.bencanaVsKesuburan, newValues.bencanaVsKepadatan],
-      [1 / newValues.bencanaVsKesuburan, 1, newValues.kesuburanVsKepadatan],
-      [1 / newValues.bencanaVsKepadatan, 1 / newValues.kesuburanVsKepadatan, 1]
-    ];
 
-    // Kalkulasi Eigenvector & CR
-    const result: AHPResult = calculateAHP(matrix);
-
-    set({ 
-      pairwiseValues: newValues,
+    get().setAHPPreferences(newValues);
+  },
+  setAHPPreferences: (value) => {
+    const result = calculatePreferences(value);
+    set({
+      pairwiseValues: { ...value },
       derivedWeights: result.weights,
       crValue: result.cr,
-      isCrValid: result.isValid
+      isCrValid: result.isValid,
+      weightMethod: 'ahp',
     });
-  }
+  },
+  setWLCWeights: (value) =>
+    set({
+      derivedWeights: validatePreferenceWeights(value),
+      weightMethod: 'manual-wlc',
+      isCrValid: true,
+    }),
 }));

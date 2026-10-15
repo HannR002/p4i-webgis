@@ -1,0 +1,65 @@
+[
+  {
+    "suite": "phase-01-smoke",
+    "exitCode": 0,
+    "result": "PASS",
+    "script": "Phase10 QA compatibility",
+    "log": "phase-01-smoke-final.log"
+  },
+  {
+    "suite": "phase-01-regression",
+    "exitCode": 0,
+    "result": "PASS",
+    "script": "Phase10 QA compatibility",
+    "log": "phase-01-regression-final.log"
+  },
+  {
+    "suite": "phase-02-smoke",
+    "exitCode": 0,
+    "result": "PASS",
+    "script": "original Phase09 script",
+    "log": "phase-02-smoke.log"
+  },
+  {
+    "suite": "phase-02-accessibility",
+    "exitCode": 0,
+    "result": "PASS",
+    "script": "original Phase09 script",
+    "log": "phase-02-accessibility.log"
+  },
+  {
+    "suite": "phase-03-raster",
+    "exitCode": 0,
+    "result": "PASS",
+    "script": "original Phase09 script",
+    "log": "phase-03-raster.log"
+  },
+  {
+    "suite": "phase-04-configuration",
+    "exitCode": 0,
+    "result": "PASS",
+    "script": "original Phase09 script",
+    "log": "phase-04-configuration.log"
+  },
+  {
+    "suite": "phase-05-copilot",
+    "exitCode": 0,
+    "result": "PASS",
+    "script": "original Phase09 script",
+    "log": "phase-05-copilot.log"
+  },
+  {
+    "suite": "phase-06-compute",
+    "exitCode": 0,
+    "result": "PASS",
+    "script": "original Phase09 script",
+    "log": "phase-06-compute.log"
+  },
+  {
+    "suite": "phase-07-deliverables",
+    "exitCode": 0,
+    "result": "PASS",
+    "script": "original Phase09 script",
+    "log": "phase-07-deliverables.log"
+  }
+]

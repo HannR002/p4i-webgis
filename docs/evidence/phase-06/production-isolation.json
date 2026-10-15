@@ -1,0 +1,8 @@
+{
+  "productionComputeStatus": 403,
+  "response": {
+    "error": "Adapter komputasi ini hanya untuk development; worker produksi belum tersedia"
+  },
+  "GIS_DEMO_MODE": "true",
+  "externalComputeCalls": 0
+}

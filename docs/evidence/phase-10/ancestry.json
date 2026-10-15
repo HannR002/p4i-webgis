@@ -1,0 +1,134 @@
+{
+  "main": "dfe412c81c1254707cbd16083791dc009cf90643",
+  "phase09": "11b5f9ade32f1b39c8cad5f3616f4db3d7999728",
+  "aheadBehind": [
+    "0",
+    "18"
+  ],
+  "branches": [
+    {
+      "branch": "main",
+      "remotePresent": true,
+      "inspectedRef": "origin/main",
+      "sha": "dfe412c81c1254707cbd16083791dc009cf90643",
+      "ancestorOfPhase09": true,
+      "missingFromPhase09": 0
+    },
+    {
+      "branch": "feat/phase-01-stabilization",
+      "remotePresent": false,
+      "inspectedRef": "feat/phase-01-stabilization",
+      "sha": "35f98488da8c695d9940aee54ef5afdaac23d4a9",
+      "ancestorOfPhase09": true,
+      "missingFromPhase09": 0
+    },
+    {
+      "branch": "feat/phase-02-geoportal-ux",
+      "remotePresent": true,
+      "inspectedRef": "origin/feat/phase-02-geoportal-ux",
+      "sha": "4d40a8ef98ffa227656fd293eabeed42987a8975",
+      "ancestorOfPhase09": true,
+      "missingFromPhase09": 0
+    },
+    {
+      "branch": "feat/phase-03-raster-engine",
+      "remotePresent": true,
+      "inspectedRef": "origin/feat/phase-03-raster-engine",
+      "sha": "8f7243c60eaa4230e0db5077eb1e44f6d6dcba89",
+      "ancestorOfPhase09": true,
+      "missingFromPhase09": 0
+    },
+    {
+      "branch": "feat/gis-analysis-config-phase04",
+      "remotePresent": true,
+      "inspectedRef": "origin/feat/gis-analysis-config-phase04",
+      "sha": "22cf04ce9c49047e9eac83beff3762333b45e5a6",
+      "ancestorOfPhase09": true,
+      "missingFromPhase09": 0
+    },
+    {
+      "branch": "feat/ai-gis-copilot-phase05",
+      "remotePresent": true,
+      "inspectedRef": "origin/feat/ai-gis-copilot-phase05",
+      "sha": "989ff9284e0f8a14e8044409cd37d23b54fd7d55",
+      "ancestorOfPhase09": true,
+      "missingFromPhase09": 0
+    },
+    {
+      "branch": "feat/ai-gis-analysis-phase06",
+      "remotePresent": true,
+      "inspectedRef": "origin/feat/ai-gis-analysis-phase06",
+      "sha": "048180133b62d57efa359e978e07f101184f6a42",
+      "ancestorOfPhase09": true,
+      "missingFromPhase09": 0
+    },
+    {
+      "branch": "feat/consulting-workflow-phase07",
+      "remotePresent": true,
+      "inspectedRef": "origin/feat/consulting-workflow-phase07",
+      "sha": "20cbf540b85f3f0b01bd92c0662c468b39517d48",
+      "ancestorOfPhase09": true,
+      "missingFromPhase09": 0
+    },
+    {
+      "branch": "feat/postgis-staging-phase08",
+      "remotePresent": true,
+      "inspectedRef": "origin/feat/postgis-staging-phase08",
+      "sha": "5e9d651c87325ff6509569a628919979f2b99ce8",
+      "ancestorOfPhase09": true,
+      "missingFromPhase09": 0
+    },
+    {
+      "branch": "feat/production-readiness-phase09",
+      "remotePresent": true,
+      "inspectedRef": "origin/feat/production-readiness-phase09",
+      "sha": "11b5f9ade32f1b39c8cad5f3616f4db3d7999728",
+      "ancestorOfPhase09": true,
+      "missingFromPhase09": 0
+    }
+  ],
+  "duplicatePatchIds": [],
+  "conflictedIndex": "",
+  "migrations": [
+    {
+      "path": "supabase_migrations/006_flood_analysis.sql",
+      "sha256": "7f565798969e4f13620ca6ce423474a3990333ec9e3bbe677afa9b6c442fce71",
+      "changeFromMain": "UNCHANGED"
+    },
+    {
+      "path": "supabase_migrations/007_security_hardening.sql",
+      "sha256": "b85d4642a4a19fd02cb611619eb8bea733f1fc63fd2e06b0adce9e9531f93d34",
+      "changeFromMain": "UNCHANGED"
+    },
+    {
+      "path": "supabase_migrations/008_staging_security.sql",
+      "sha256": "e4919999a13953cb6165138f59a0d7f582a7ae0fcdf1ec4eab58e928f8d76d9d",
+      "changeFromMain": "ADDED"
+    },
+    {
+      "path": "supabase_migrations/fase5_modul1_audit_logs.sql",
+      "sha256": "b444b64fe18de20bb58f995356a649d543bfd2fa51616d265526941e7c065201",
+      "changeFromMain": "UNCHANGED"
+    },
+    {
+      "path": "supabase_migrations/fase5_modul2_storage.sql",
+      "sha256": "cd69083ccd6c6e00c1a8b9c3b796debab1e3788b32a2d250cf32ed471b25b07b",
+      "changeFromMain": "UNCHANGED"
+    },
+    {
+      "path": "supabase_migrations/fase5_modul3_portal.sql",
+      "sha256": "2a551b4d89d515a48aa55ad4b33657a94c165953e8fecd9569d32517a6978eeb",
+      "changeFromMain": "UNCHANGED"
+    },
+    {
+      "path": "supabase_migrations/tugas3_user_management.sql",
+      "sha256": "2bb2f6b6e47e26bc27f1d46d2c00a5f4ee0c8f9a8fd3988c5b68a0d354f76e6e",
+      "changeFromMain": "UNCHANGED"
+    },
+    {
+      "path": "supabase_migrations/tugas4_sales_leads.sql",
+      "sha256": "b3f73b59582435bd6439a399de5667f00848ae3bb168ca00de290fe1874dbed6",
+      "changeFromMain": "UNCHANGED"
+    }
+  ]
+}

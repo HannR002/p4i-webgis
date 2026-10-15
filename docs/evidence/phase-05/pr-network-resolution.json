@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-14",
+  "priorFailure": {
+    "destination": "api.github.com:443",
+    "stage": "proxy HTTPS CONNECT",
+    "status": 403,
+    "cause": "Destination was absent from the enforced allowed hosts."
+  },
+  "successfulRetry": {
+    "httpsProbeExitCode": 0,
+    "httpStatus": 200,
+    "repositoryApi": "HannR002/p4i-webgis",
+    "repositoryAccessVerified": true,
+    "pullRequest": {
+      "number": 1,
+      "url": "https://github.com/HannR002/p4i-webgis/pull/1",
+      "state": "OPEN",
+      "isDraft": true,
+      "base": "feat/gis-analysis-config-phase04",
+      "head": "feat/ai-gis-copilot-phase05"
+    }
+  },
+  "environmentEditorSaveError": {
+    "observedMessage": "Service rejected saving without identifying a field.",
+    "internalCause": "Not established: detailed service response/logs are unavailable.",
+    "separateFromSuccessfulGitHubApiRetry": true
+  },
+  "applicationCodeChanged": false,
+  "merged": false,
+  "deployed": false
+}

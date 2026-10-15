@@ -1,0 +1,166 @@
+(node:31490) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:31507) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ RUN  v3.2.4 /workspace/p4i-webgis
+
+(node:31532) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:31534) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:31533) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ❯ tests/downloadAuthorization.test.ts (5 tests | 4 failed) 57ms
+   × download history authorization with service-role repositories > removes revoked restricted project metadata and deleted projects 33ms
+     → expected [ Array(3) ] to deeply equal [ { id: 'history-public', …(4) } ]
+   × download history authorization with service-role repositories > rechecks entitlement on each request after revocation 5ms
+     → expected [ Array(3) ] to deeply equal [ Array(2) ]
+   × download history authorization with service-role repositories > keeps staff access to their own history without borrowing client entitlement 11ms
+     → expected [ Array(3) ] to deeply equal [ Array(2) ]
+   ✓ download history authorization with service-role repositories > rejects unauthenticated access before the history repository 1ms
+   × download history authorization with service-role repositories > fails closed and redacts an entitlement-provider failure 2ms
+     → expected 200 to be 500 // Object.is equality
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/downloadAuthorization.test.ts > download history authorization with service-role repositories > removes revoked restricted project metadata and deleted projects
+AssertionError: expected [ Array(3) ] to deeply equal [ { id: 'history-public', …(4) } ]
+
+- Expected
++ Received
+
+@@ -6,6 +6,24 @@
+      "project_id": "public",
+      "spatial_projects": {
+        "title": "Project public",
+      },
+    },
++   {
++     "downloaded_at": "2026-10-15T00:00:00Z",
++     "file_type": "pdf_report",
++     "id": "history-restricted",
++     "project_id": "restricted",
++     "spatial_projects": {
++       "title": "Project restricted",
++     },
++   },
++   {
++     "downloaded_at": "2026-10-15T00:00:00Z",
++     "file_type": "pdf_report",
++     "id": "history-missing",
++     "project_id": "missing",
++     "spatial_projects": {
++       "title": "Project missing",
++     },
++   },
+  ]
+
+ ❯ tests/downloadAuthorization.test.ts:39:35
+     37|   it('removes revoked restricted project metadata and deleted projects…
+     38|     const response = await GET(request());
+     39|     expect(await response.json()).toEqual([rows[0]]);
+       |                                   ^
+     40|     expect(response.headers.get('cache-control')).toBe('private, no-st…
+     41|     expect(mocks.listForUser).toHaveBeenCalledWith('client-a');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/downloadAuthorization.test.ts > download history authorization with service-role repositories > rechecks entitlement on each request after revocation
+AssertionError: expected [ Array(3) ] to deeply equal [ Array(2) ]
+
+- Expected
++ Received
+
+@@ -15,6 +15,15 @@
+      "project_id": "restricted",
+      "spatial_projects": {
+        "title": "Project restricted",
+      },
+    },
++   {
++     "downloaded_at": "2026-10-15T00:00:00Z",
++     "file_type": "pdf_report",
++     "id": "history-missing",
++     "project_id": "missing",
++     "spatial_projects": {
++       "title": "Project missing",
++     },
++   },
+  ]
+
+ ❯ tests/downloadAuthorization.test.ts:46:49
+     44|   it('rechecks entitlement on each request after revocation', async ()…
+     45|     mocks.has.mockResolvedValue(true);
+     46|     expect(await (await GET(request())).json()).toEqual(rows.slice(0, …
+       |                                                 ^
+     47|     mocks.has.mockResolvedValue(false);
+     48|     expect(await (await GET(request())).json()).toEqual([rows[0]]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/downloadAuthorization.test.ts > download history authorization with service-role repositories > keeps staff access to their own history without borrowing client entitlement
+AssertionError: expected [ Array(3) ] to deeply equal [ Array(2) ]
+
+- Expected
++ Received
+
+@@ -15,6 +15,15 @@
+      "project_id": "restricted",
+      "spatial_projects": {
+        "title": "Project restricted",
+      },
+    },
++   {
++     "downloaded_at": "2026-10-15T00:00:00Z",
++     "file_type": "pdf_report",
++     "id": "history-missing",
++     "project_id": "missing",
++     "spatial_projects": {
++       "title": "Project missing",
++     },
++   },
+  ]
+
+ ❯ tests/downloadAuthorization.test.ts:52:49
+     50|   it('keeps staff access to their own history without borrowing client…
+     51|     mocks.requireRole.mockResolvedValue({ ...identity, role: 'manageri…
+     52|     expect(await (await GET(request())).json()).toEqual(rows.slice(0, …
+       |                                                 ^
+     53|     expect(mocks.has).not.toHaveBeenCalled();
+     54|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  tests/downloadAuthorization.test.ts > download history authorization with service-role repositories > fails closed and redacts an entitlement-provider failure
+AssertionError: expected 200 to be 500 // Object.is equality
+
+- Expected
++ Received
+
+- 500
++ 200
+
+ ❯ tests/downloadAuthorization.test.ts:65:31
+     63|     try {
+     64|       const response = await GET(request());
+     65|       expect(response.status).toBe(500);
+       |                               ^
+     66|       expect(await response.text()).not.toContain('private-provider-er…
+     67|       expect(JSON.stringify(log.mock.calls)).not.toContain('private-pr…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed | 1 passed (5)
+   Start at  13:32:39
+   Duration  803ms (transform 240ms, setup 0ms, collect 249ms, tests 57ms, environment 0ms, prepare 139ms)
+
+(node:31607) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+npm notice
+npm notice New major version of npm available! 10.9.9 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

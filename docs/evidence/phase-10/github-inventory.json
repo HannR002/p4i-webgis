@@ -1,0 +1,85 @@
+{
+  "repository": {
+    "visibility": "public",
+    "private": false,
+    "defaultBranch": "main",
+    "archived": false
+  },
+  "pullRequests": [
+    {
+      "number": 1,
+      "state": "open",
+      "draft": true,
+      "merged": false,
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "commits": 3,
+      "changed_files": 50,
+      "html_url": "https://github.com/HannR002/p4i-webgis/pull/1",
+      "head": "feat/ai-gis-copilot-phase05",
+      "headSha": "989ff9284e0f8a14e8044409cd37d23b54fd7d55",
+      "base": "feat/gis-analysis-config-phase04",
+      "baseSha": "22cf04ce9c49047e9eac83beff3762333b45e5a6"
+    },
+    {
+      "number": 2,
+      "state": "open",
+      "draft": true,
+      "merged": false,
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "commits": 2,
+      "changed_files": 50,
+      "html_url": "https://github.com/HannR002/p4i-webgis/pull/2",
+      "head": "feat/ai-gis-analysis-phase06",
+      "headSha": "048180133b62d57efa359e978e07f101184f6a42",
+      "base": "feat/ai-gis-copilot-phase05",
+      "baseSha": "989ff9284e0f8a14e8044409cd37d23b54fd7d55"
+    },
+    {
+      "number": 3,
+      "state": "open",
+      "draft": true,
+      "merged": false,
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "commits": 2,
+      "changed_files": 46,
+      "html_url": "https://github.com/HannR002/p4i-webgis/pull/3",
+      "head": "feat/consulting-workflow-phase07",
+      "headSha": "20cbf540b85f3f0b01bd92c0662c468b39517d48",
+      "base": "feat/ai-gis-analysis-phase06",
+      "baseSha": "048180133b62d57efa359e978e07f101184f6a42"
+    },
+    {
+      "number": 4,
+      "state": "open",
+      "draft": true,
+      "merged": false,
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "commits": 2,
+      "changed_files": 23,
+      "html_url": "https://github.com/HannR002/p4i-webgis/pull/4",
+      "head": "feat/postgis-staging-phase08",
+      "headSha": "5e9d651c87325ff6509569a628919979f2b99ce8",
+      "base": "feat/consulting-workflow-phase07",
+      "baseSha": "20cbf540b85f3f0b01bd92c0662c468b39517d48"
+    },
+    {
+      "number": 5,
+      "state": "open",
+      "draft": true,
+      "merged": false,
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "commits": 2,
+      "changed_files": 59,
+      "html_url": "https://github.com/HannR002/p4i-webgis/pull/5",
+      "head": "feat/production-readiness-phase09",
+      "headSha": "11b5f9ade32f1b39c8cad5f3616f4db3d7999728",
+      "base": "feat/postgis-staging-phase08",
+      "baseSha": "5e9d651c87325ff6509569a628919979f2b99ce8"
+    }
+  ]
+}

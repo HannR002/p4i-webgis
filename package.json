@@ -9,7 +9,9 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "import:boundaries": "node scripts/import-boundaries.mjs"
+    "import:boundaries": "node scripts/import-boundaries.mjs",
+    "db:plan": "node scripts/database/plan.mjs",
+    "test:db": "node scripts/database/rehearse.mjs"
   },
   "dependencies": {
     "@google/earthengine": "^1.7.43",
@@ -23,6 +25,7 @@
     "leaflet": "^1.9.4",
     "lucide-react": "^1.34.0",
     "next": "^16.3.5",
+    "proj4": "2.21.0",
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "react-globe.gl": "^2.38.0",

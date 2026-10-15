@@ -1,9 +1,24 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import type { Feature, FeatureCollection, GeoJsonObject, GeoJsonProperties, Geometry, MultiPolygon } from 'geojson';
+import type { ReactNode } from 'react';
+import type {
+  Feature,
+  FeatureCollection,
+  GeoJsonObject,
+  GeoJsonProperties,
+  Geometry,
+  MultiPolygon,
+} from 'geojson';
 import L, { type Layer } from 'leaflet';
-import { GeoJSON, MapContainer, Pane, TileLayer, useMap, useMapEvents } from 'react-leaflet';
+import {
+  GeoJSON,
+  MapContainer,
+  Pane,
+  TileLayer,
+  useMap,
+  useMapEvents,
+} from 'react-leaflet';
 import useSWR from 'swr';
 import { useMapStore } from '../store/useMapStore';
 import type {
@@ -13,6 +28,7 @@ import type {
 } from '../types/flood';
 import { onEachFeature } from '../utils/spatialInteractions';
 import MapLoadingOverlay from './MapLoadingOverlay';
+import { calculateLegacyWLC } from '../utils/analysisPreferences';
 
 interface ProjectLayer {
   id?: string;
@@ -76,25 +92,33 @@ function MapController({ layers }: { layers: ProjectLayer[] }) {
     const targetGeojson = layers[0]?.parsedGeojson;
     if (!targetGeojson) return;
     const bounds = L.geoJSON(targetGeojson).getBounds();
-    if (bounds.isValid()) map.flyToBounds(bounds, { duration: 1.5, padding: [50, 50] });
+    if (bounds.isValid())
+      map.flyToBounds(bounds, { duration: 1.5, padding: [50, 50] });
   }, [layers, map]);
   return null;
 }
 
-function ViewportController({ onViewport }: { onViewport: (viewport: Viewport) => void }) {
-  const publish = useCallback((map: L.Map) => {
-    const bounds = map.getBounds();
-    const zoom = map.getZoom();
-    onViewport({
-      west: Number(bounds.getWest().toFixed(6)),
-      south: Number(bounds.getSouth().toFixed(6)),
-      east: Number(bounds.getEast().toFixed(6)),
-      north: Number(bounds.getNorth().toFixed(6)),
-      zoom,
-      level: boundaryLevelForZoom(zoom),
-      tolerance: simplificationForZoom(zoom),
-    });
-  }, [onViewport]);
+function ViewportController({
+  onViewport,
+}: {
+  onViewport: (viewport: Viewport) => void;
+}) {
+  const publish = useCallback(
+    (map: L.Map) => {
+      const bounds = map.getBounds();
+      const zoom = map.getZoom();
+      onViewport({
+        west: Number(bounds.getWest().toFixed(6)),
+        south: Number(bounds.getSouth().toFixed(6)),
+        east: Number(bounds.getEast().toFixed(6)),
+        north: Number(bounds.getNorth().toFixed(6)),
+        zoom,
+        level: boundaryLevelForZoom(zoom),
+        tolerance: simplificationForZoom(zoom),
+      });
+    },
+    [onViewport],
+  );
 
   const map = useMapEvents({
     moveend: (event) => publish(event.target),
@@ -109,8 +133,11 @@ function ViewportController({ onViewport }: { onViewport: (viewport: Viewport) =
 }
 
 const fetchProjectLayers = async (id: string): Promise<ProjectLayer[]> => {
-  const response = await fetch(`/api/projects/${encodeURIComponent(id)}/layers`);
-  if (!response.ok) throw new Error(`Project layer request failed (${response.status})`);
+  const response = await fetch(
+    `/api/projects/${encodeURIComponent(id)}/layers`,
+  );
+  if (!response.ok)
+    throw new Error(`Project layer request failed (${response.status})`);
   const data: unknown = await response.json();
 
   return (Array.isArray(data) ? data : []).flatMap((row) => {
@@ -124,12 +151,19 @@ const fetchProjectLayers = async (id: string): Promise<ProjectLayer[]> => {
       }
     }
     return isGeoJsonObject(parsed)
-      ? [{ id: typeof row.id === 'string' ? row.id : undefined, parsedGeojson: parsed }]
+      ? [
+          {
+            id: typeof row.id === 'string' ? row.id : undefined,
+            parsedGeojson: parsed,
+          },
+        ]
       : [];
   });
 };
 
-const fetchBoundaries = async (key: BoundaryKey): Promise<AdministrativeBoundaryRow[]> => {
+const fetchBoundaries = async (
+  key: BoundaryKey,
+): Promise<AdministrativeBoundaryRow[]> => {
   const [, level, west, south, east, north, tolerance] = key;
   const params = new URLSearchParams({
     west: String(west),
@@ -140,12 +174,17 @@ const fetchBoundaries = async (key: BoundaryKey): Promise<AdministrativeBoundary
     tolerance: String(tolerance),
   });
   const response = await fetch(`/api/boundaries?${params.toString()}`);
-  if (!response.ok) throw new Error(`Boundary request failed (${response.status})`);
+  if (!response.ok)
+    throw new Error(`Boundary request failed (${response.status})`);
   const data: unknown = await response.json();
 
   const candidates: unknown[] = Array.isArray(data) ? data : [];
   return candidates.flatMap((candidate) => {
-    if (!isRecord(candidate) || typeof candidate.id !== 'string' || typeof candidate.nama !== 'string') {
+    if (
+      !isRecord(candidate) ||
+      typeof candidate.id !== 'string' ||
+      typeof candidate.nama !== 'string'
+    ) {
       return [];
     }
     let geometry: unknown = candidate.geojson;
@@ -156,32 +195,55 @@ const fetchBoundaries = async (key: BoundaryKey): Promise<AdministrativeBoundary
         return [];
       }
     }
-    if (!isRecord(geometry) || geometry.type !== 'MultiPolygon' || !Array.isArray(geometry.coordinates)) {
+    if (
+      !isRecord(geometry) ||
+      geometry.type !== 'MultiPolygon' ||
+      !Array.isArray(geometry.coordinates)
+    ) {
       return [];
     }
-    if (candidate.level !== 'provinsi' && candidate.level !== 'kota' && candidate.level !== 'kecamatan') {
+    if (
+      candidate.level !== 'provinsi' &&
+      candidate.level !== 'kota' &&
+      candidate.level !== 'kecamatan'
+    ) {
       return [];
     }
-    return [{
-      id: candidate.id,
-      kode_wilayah: String(candidate.kode_wilayah ?? ''),
-      level: candidate.level,
-      parent_id: typeof candidate.parent_id === 'string' ? candidate.parent_id : null,
-      nama: candidate.nama,
-      source: String(candidate.source ?? ''),
-      source_version: String(candidate.source_version ?? ''),
-      geojson: geometry as unknown as MultiPolygon,
-    }];
+    return [
+      {
+        id: candidate.id,
+        kode_wilayah: String(candidate.kode_wilayah ?? ''),
+        level: candidate.level,
+        parent_id:
+          typeof candidate.parent_id === 'string' ? candidate.parent_id : null,
+        nama: candidate.nama,
+        source: String(candidate.source ?? ''),
+        source_version: String(candidate.source_version ?? ''),
+        geojson: geometry as unknown as MultiPolygon,
+      },
+    ];
   });
 };
 
-function numberProperty(properties: GeoJsonProperties | undefined, key: string): number | null {
+function numberProperty(
+  properties: GeoJsonProperties | undefined,
+  key: string,
+): number | null {
   const value = properties?.[key];
+  if (value === null || value === undefined || value === '') return null;
   const numeric = typeof value === 'number' ? value : Number(value);
   return Number.isFinite(numeric) ? numeric : null;
 }
 
-export default function SpatialMap() {
+export default function SpatialMap({
+  children,
+  demo = false,
+  basemap = 'osm',
+}: {
+  children?: ReactNode;
+  demo?: boolean;
+  basemap?: 'osm' | 'none';
+}) {
   const {
     activeProjectId,
     activeBoundaryId,
@@ -194,11 +256,14 @@ export default function SpatialMap() {
   const [viewport, setViewport] = useState(DEFAULT_VIEWPORT);
   const handleViewport = useCallback((next: Viewport) => setViewport(next), []);
 
-  const { data: layers = [], isLoading, isValidating } = useSWR(
-    activeProjectId,
-    fetchProjectLayers,
-    { revalidateOnFocus: false },
-  );
+  const {
+    data: layers = [],
+    error: projectError,
+    isLoading,
+    isValidating,
+  } = useSWR(demo ? null : activeProjectId, fetchProjectLayers, {
+    revalidateOnFocus: false,
+  });
   const boundaryKey: BoundaryKey = [
     'administrative-boundaries',
     viewport.level,
@@ -212,13 +277,15 @@ export default function SpatialMap() {
     data: boundaries = [],
     error: boundaryError,
     isLoading: boundariesLoading,
-  } = useSWR(boundaryKey, fetchBoundaries, {
+  } = useSWR(demo ? null : boundaryKey, fetchBoundaries, {
     keepPreviousData: true,
     revalidateOnFocus: false,
     dedupingInterval: 1_000,
   });
 
-  const boundaryGeoJson = useMemo<FeatureCollection<MultiPolygon, AdministrativeBoundaryProperties>>(
+  const boundaryGeoJson = useMemo<
+    FeatureCollection<MultiPolygon, AdministrativeBoundaryProperties>
+  >(
     () => ({
       type: 'FeatureCollection',
       features: boundaries.map((boundary) => ({
@@ -239,28 +306,22 @@ export default function SpatialMap() {
     [boundaries],
   );
 
-  const activeFloodRiskScale = floodAnalysisResult
-    ? Math.min(5, Math.max(1, Math.ceil(floodAnalysisResult.score / 20)))
-    : null;
-  const calculateSuitability = (feature?: Feature<Geometry, GeoJsonProperties>) => {
+  const calculateSuitability = (
+    feature?: Feature<Geometry, GeoJsonProperties>,
+  ) => {
     const properties = feature?.properties;
-    const featureName = String(
-      properties?.layer_name ?? properties?.nama_wilayah ?? properties?.name ?? 'PolygonAreaDefault',
-    );
-    const nameLength = featureName.length;
-    const fallbackRisk = activeFloodRiskScale ?? ((nameLength % 5) + 1);
-    const risk = numberProperty(properties, 'skor_bencana') ?? fallbackRisk;
-    const fertility = numberProperty(properties, 'skor_kesuburan') ?? (((nameLength * 2) % 5) + 1);
-    const density = numberProperty(properties, 'skor_kepadatan') ?? (((nameLength * 3) % 5) + 1);
-    return (
-      (6 - risk) * derivedWeights.bencana +
-      fertility * derivedWeights.kesuburan +
-      density * derivedWeights.kepadatan
+    const risk = numberProperty(properties, 'skor_bencana');
+    const fertility = numberProperty(properties, 'skor_kesuburan');
+    const density = numberProperty(properties, 'skor_kepadatan');
+    if (risk === null || fertility === null || density === null) return null;
+    return calculateLegacyWLC(
+      { bencana: risk, kesuburan: fertility, kepadatan: density },
+      derivedWeights,
     );
   };
 
-  const getPolygonColor = (score: number) => {
-    if (!isCrValid) return '#cbd5e1';
+  const getPolygonColor = (score: number | null) => {
+    if (!isCrValid || score === null) return '#cbd5e1';
     if (score >= 4) return '#22c55e';
     if (score >= 3) return '#eab308';
     if (score >= 2) return '#f97316';
@@ -271,17 +332,23 @@ export default function SpatialMap() {
     feature: Feature<MultiPolygon, AdministrativeBoundaryProperties>,
     layer: Layer,
   ) => {
-    layer.bindTooltip(`${feature.properties.nama} · ${feature.properties.level}`, { sticky: true });
+    const label = document.createElement('span');
+    label.textContent = `${feature.properties.nama} · ${feature.properties.level}`;
+    layer.bindTooltip(label, { sticky: true });
     if (feature.properties.level === 'kecamatan') {
-      layer.on('click', () => setActiveBoundary({
-        id: feature.properties.id,
-        name: feature.properties.nama,
-        level: feature.properties.level,
-      }));
+      layer.on('click', () =>
+        setActiveBoundary({
+          id: feature.properties.id,
+          name: feature.properties.nama,
+          level: feature.properties.level,
+        }),
+      );
     }
   };
 
-  const isMapLoading = ((isLoading || isValidating) && activeProjectId !== null) || boundariesLoading;
+  const isMapLoading =
+    ((isLoading || isValidating) && activeProjectId !== null) ||
+    boundariesLoading;
 
   return (
     <div className="relative h-full w-full">
@@ -292,14 +359,16 @@ export default function SpatialMap() {
         zoomControl={false}
         preferCanvas
       >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          crossOrigin="anonymous"
-        />
+        {basemap === 'osm' && (
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            crossOrigin="anonymous"
+          />
+        )}
 
         <Pane name="flood-risk" style={{ zIndex: 350 }}>
-          {floodAnalysisResult?.tile_url_template && (
+          {!demo && floodAnalysisResult?.tile_url_template && (
             <TileLayer
               key={floodAnalysisResult.tile_url_template}
               url={floodAnalysisResult.tile_url_template}
@@ -335,23 +404,39 @@ export default function SpatialMap() {
             onEachFeature={onEachBoundary}
             pane="administrative-boundaries"
             style={(feature) => ({
-              color: feature?.properties.id === activeBoundaryId ? '#0ea5e9' : '#f8fafc',
+              color:
+                feature?.properties.id === activeBoundaryId
+                  ? '#0ea5e9'
+                  : '#f8fafc',
               weight: feature?.properties.id === activeBoundaryId ? 3 : 1.5,
               opacity: 0.95,
               fillColor: '#38bdf8',
-              fillOpacity: feature?.properties.id === activeBoundaryId ? 0.08 : 0.025,
+              fillOpacity:
+                feature?.properties.id === activeBoundaryId ? 0.08 : 0.025,
             })}
           />
         </Pane>
 
         <MapController layers={layers} />
         <ViewportController onViewport={handleViewport} />
+        {children}
         {isMapLoading && <MapLoadingOverlay />}
       </MapContainer>
 
-      {boundaryError && (
-        <div className="absolute bottom-4 right-4 z-[500] max-w-xs rounded-lg bg-amber-50/95 px-3 py-2 text-xs text-amber-800 shadow-lg">
-          Boundary P4I belum tersedia. Terapkan migration dan import data boundary.
+      {(projectError || boundaryError) && (
+        <div
+          role="alert"
+          className="absolute bottom-4 right-4 z-[500] max-w-xs rounded-lg bg-amber-50/95 px-3 py-2 text-xs text-amber-800 shadow-lg"
+        >
+          {projectError && (
+            <p>
+              Layer proyek tidak dapat dimuat. Coba muat ulang atau periksa
+              akses proyek.
+            </p>
+          )}
+          {boundaryError && (
+            <p>Data batas wilayah P4I belum tersedia untuk lokasi ini.</p>
+          )}
         </div>
       )}
     </div>

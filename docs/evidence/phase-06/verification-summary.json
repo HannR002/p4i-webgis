@@ -1,0 +1,113 @@
+{
+  "baseline": {
+    "commit": "989ff9284e0f8a14e8044409cd37d23b54fd7d55",
+    "lint": 0,
+    "typecheck": 0,
+    "tests": 188,
+    "files": 28,
+    "build": 0
+  },
+  "phase06": {
+    "lint": 0,
+    "typecheck": 0,
+    "tests": 209,
+    "files": 30,
+    "build": 0
+  },
+  "browser": {
+    "flows": [
+      "Automatic area job, MapRecipe result, undo/redo, actual Markdown download",
+      "Distance operation from explicit [longitude,latitude] inputs",
+      "1600-cell job blocked before explicit approval",
+      "Human approval bound to snapshot; categorical native zonal statistics; result applied to workspace",
+      "Job cannot be read from another anonymous browser session",
+      "Computed result retained in JSON; existing PDF and PNG downloads complete",
+      "390px/768px responsive overflow and WCAG AA automated checks",
+      "Cancelled approval job retries with fresh approval requirement",
+      "Unresolved real AOI refusal with no fabricated flood result",
+      "Unavailable flood adapter displays UNKNOWN external cost and disabled approval"
+    ],
+    "audits": [
+      {
+        "width": 390,
+        "violations": []
+      },
+      {
+        "width": 768,
+        "violations": []
+      }
+    ],
+    "errors": [],
+    "externalComputeCalls": 0
+  },
+  "phase05Regression": {
+    "pageErrors": [],
+    "geeCalls": 0,
+    "analysisCalls": 1,
+    "flows": [
+      "automatic authorized map generation, existing renderer, AOI, legend and atomic Undo/Redo",
+      "opacity/style/order, actual catalog metadata/provider pixels/NoData and no silent real-AOI substitution",
+      "optional preview, exact reviewed-plan execution and tab persistence",
+      "Phase 04 config create/select/fork/undo/prepare/apply and explicit local save approval, no automatic persistence",
+      "analysis preparation does not compute; explicit existing Analysis panel executes native DEMO statistics",
+      "request abort and stale-response rejection keep human map changes"
+    ],
+    "audits": [
+      {
+        "width": 1480,
+        "state": "automatic-map",
+        "violations": []
+      },
+      {
+        "width": 1480,
+        "state": "pixel",
+        "violations": []
+      },
+      {
+        "width": 1480,
+        "state": "approval",
+        "violations": []
+      },
+      {
+        "width": 1480,
+        "state": "unavailable",
+        "violations": []
+      },
+      {
+        "width": 390,
+        "state": "automatic-map",
+        "violations": []
+      },
+      {
+        "width": 390,
+        "state": "pixel",
+        "violations": []
+      },
+      {
+        "width": 390,
+        "state": "approval",
+        "violations": []
+      },
+      {
+        "width": 390,
+        "state": "unavailable",
+        "violations": []
+      }
+    ]
+  },
+  "production": {
+    "productionComputeStatus": 403,
+    "response": {
+      "error": "Adapter komputasi ini hanya untuk development; worker produksi belum tersedia"
+    },
+    "GIS_DEMO_MODE": "true",
+    "externalComputeCalls": 0
+  },
+  "downloads": {
+    "area-draft.md": 991,
+    "computed-map.json": 7069,
+    "computed-map.png": 164728,
+    "computed-map.pdf": 8325667
+  },
+  "pdfExtractedTextContainsComputedResults": true
+}
