@@ -1,4 +1,10 @@
 import 'server-only';
+import { requireGovernedEarthEngine } from './integration/readiness';
+import {
+  finiteFloodValue,
+  unitFloodValue,
+  floodHistogram,
+} from './integration/floodValues';
 
 import { createHash } from 'node:crypto';
 import {
@@ -23,7 +29,11 @@ import type {
 import type { GeoJsonMultiPolygon, GeoJsonPolygon } from '../../types/geojson';
 import { getDatabaseRepositories } from './database';
 import type { AnalysisBoundary, CachedFloodResult } from './database/contracts';
-import { evaluateEeObject, getEeMapUrl, initializeEarthEngine } from './earthEngine';
+import {
+  evaluateEeObject,
+  getEeMapUrl,
+  initializeEarthEngine,
+} from './earthEngine';
 
 type AoiGeometry = GeoJsonPolygon | GeoJsonMultiPolygon;
 
@@ -36,12 +46,21 @@ interface FloodImageGraph {
   riskImage: {
     getMapId: (
       visualization: Record<string, unknown>,
-      callback: (map: { urlFormat: string } | undefined, error?: string) => void,
+      callback: (
+        map: { urlFormat: string } | undefined,
+        error?: string,
+      ) => void,
     ) => void;
   };
-  summary: { evaluate: (callback: (result: unknown, error?: string) => void) => void };
-  soilHistogram: { evaluate: (callback: (result: unknown, error?: string) => void) => void };
-  landCoverHistogram: { evaluate: (callback: (result: unknown, error?: string) => void) => void };
+  summary: {
+    evaluate: (callback: (result: unknown, error?: string) => void) => void;
+  };
+  soilHistogram: {
+    evaluate: (callback: (result: unknown, error?: string) => void) => void;
+  };
+  landCoverHistogram: {
+    evaluate: (callback: (result: unknown, error?: string) => void) => void;
+  };
 }
 
 export class FloodAnalysisServiceError extends Error {
@@ -66,39 +85,25 @@ function parseGeometry(value: AoiGeometry | string): AoiGeometry {
     try {
       parsed = JSON.parse(value) as unknown;
     } catch {
-      throw new FloodAnalysisServiceError('Stored boundary geometry is invalid');
+      throw new FloodAnalysisServiceError(
+        'Stored boundary geometry is invalid',
+      );
     }
   }
-  if (!isRecord(parsed) || (parsed.type !== 'Polygon' && parsed.type !== 'MultiPolygon')) {
-    throw new FloodAnalysisServiceError('Stored boundary geometry must be Polygon or MultiPolygon');
+  if (
+    !isRecord(parsed) ||
+    (parsed.type !== 'Polygon' && parsed.type !== 'MultiPolygon')
+  ) {
+    throw new FloodAnalysisServiceError(
+      'Stored boundary geometry must be Polygon or MultiPolygon',
+    );
   }
   if (!Array.isArray(parsed.coordinates)) {
-    throw new FloodAnalysisServiceError('Stored boundary geometry has invalid coordinates');
+    throw new FloodAnalysisServiceError(
+      'Stored boundary geometry has invalid coordinates',
+    );
   }
   return parsed as unknown as AoiGeometry;
-}
-
-function asFiniteNumber(record: Record<string, unknown>, key: string): number {
-  const value = record[key];
-  const numeric = typeof value === 'number' ? value : Number(value);
-  if (!Number.isFinite(numeric)) {
-    throw new FloodAnalysisServiceError(`Earth Engine result is missing ${key}`);
-  }
-  return numeric;
-}
-
-function readHistogram(value: unknown, key: string): Record<string, number> {
-  if (!isRecord(value) || !isRecord(value[key])) return {};
-  return Object.fromEntries(
-    Object.entries(value[key]).flatMap(([classCode, count]) => {
-      const numeric = typeof count === 'number' ? count : Number(count);
-      return Number.isFinite(numeric) ? [[classCode, numeric]] : [];
-    }),
-  );
-}
-
-function clampUnit(value: number): number {
-  return Math.min(1, Math.max(0, value));
 }
 
 function toBreakdown(
@@ -107,49 +112,66 @@ function toBreakdown(
   landCoverHistogram: unknown,
   weights: FloodWeights,
 ): NumericAnalysis {
-  const rainfallSusceptibility = clampUnit(asFiniteNumber(means, 'rainfall_susceptibility'));
-  const slopeSusceptibility = clampUnit(asFiniteNumber(means, 'slope_susceptibility'));
-  const soilSusceptibility = clampUnit(asFiniteNumber(means, 'soil_susceptibility'));
-  const landCoverSusceptibility = clampUnit(asFiniteNumber(means, 'land_cover_susceptibility'));
-  const score = Number((clampUnit(asFiniteNumber(means, 'flood_risk')) * 100).toFixed(4));
+  const rainfallSusceptibility = unitFloodValue(
+    finiteFloodValue(means, 'rainfall_susceptibility'),
+  );
+  const slopeSusceptibility = unitFloodValue(
+    finiteFloodValue(means, 'slope_susceptibility'),
+  );
+  const soilSusceptibility = unitFloodValue(
+    finiteFloodValue(means, 'soil_susceptibility'),
+  );
+  const landCoverSusceptibility = unitFloodValue(
+    finiteFloodValue(means, 'land_cover_susceptibility'),
+  );
+  const score = Number(
+    (unitFloodValue(finiteFloodValue(means, 'flood_risk')) * 100).toFixed(4),
+  );
 
   return {
     score,
     criteriaBreakdown: {
       rainfall: {
-        raw: Number(asFiniteNumber(means, 'rainfall_raw').toFixed(4)),
+        raw: Number(finiteFloodValue(means, 'rainfall_raw').toFixed(4)),
         normalized: rainfallSusceptibility,
         susceptibility: rainfallSusceptibility,
         weight: weights.rainfall,
-        contribution: Number((rainfallSusceptibility * weights.rainfall).toFixed(6)),
+        contribution: Number(
+          (rainfallSusceptibility * weights.rainfall).toFixed(6),
+        ),
       },
       slope: {
-        raw: Number(asFiniteNumber(means, 'slope_raw').toFixed(4)),
+        raw: Number(finiteFloodValue(means, 'slope_raw').toFixed(4)),
         normalized: slopeSusceptibility,
         susceptibility: slopeSusceptibility,
         weight: weights.slope,
         contribution: Number((slopeSusceptibility * weights.slope).toFixed(6)),
       },
       soil: {
-        raw: readHistogram(soilHistogram, 'soil_raw'),
+        raw: floodHistogram(soilHistogram, 'soil_raw'),
         normalized: soilSusceptibility,
         susceptibility: soilSusceptibility,
         weight: weights.soil,
         contribution: Number((soilSusceptibility * weights.soil).toFixed(6)),
       },
       land_cover: {
-        raw: readHistogram(landCoverHistogram, 'land_cover_raw'),
+        raw: floodHistogram(landCoverHistogram, 'land_cover_raw'),
         normalized: landCoverSusceptibility,
         susceptibility: landCoverSusceptibility,
         weight: weights.land_cover,
-        contribution: Number((landCoverSusceptibility * weights.land_cover).toFixed(6)),
+        contribution: Number(
+          (landCoverSusceptibility * weights.land_cover).toFixed(6),
+        ),
       },
     },
   };
 }
 
 async function getBoundary(kecamatanId: string): Promise<AnalysisBoundary> {
-  const boundary = await getDatabaseRepositories().boundaries.findAnalysisBoundary(kecamatanId);
+  const boundary =
+    await getDatabaseRepositories().boundaries.findAnalysisBoundary(
+      kecamatanId,
+    );
   if (!boundary || boundary.level !== 'kecamatan') {
     throw new FloodAnalysisServiceError('Kecamatan boundary not found', 404);
   }
@@ -157,7 +179,8 @@ async function getBoundary(kecamatanId: string): Promise<AnalysisBoundary> {
 }
 
 function getDatasetVersion(boundary: AnalysisBoundary): string {
-  const soilVersion = process.env.GEE_SOIL_DATASET_VERSION || 'p4i-soil-unvalidated-v1';
+  const soilVersion =
+    process.env.GEE_SOIL_DATASET_VERSION || 'p4i-soil-unvalidated-v1';
   const demVersion = process.env.GEE_DEM_DATASET_VERSION || 'usgs-srtmgl1-003';
   return [
     FLOOD_DATASET_VERSION_BASE,
@@ -171,11 +194,13 @@ function buildThresholdExpression(
   variable: string,
   thresholds: ReadonlyArray<{ maximum: number; value: number }>,
 ): string {
-  return thresholds.reduceRight((fallback, threshold) => (
-    Number.isFinite(threshold.maximum)
-      ? `${variable} <= ${threshold.maximum} ? ${threshold.value} : (${fallback})`
-      : String(threshold.value)
-  ), '0.5');
+  return thresholds.reduceRight(
+    (fallback, threshold) =>
+      Number.isFinite(threshold.maximum)
+        ? `${variable} <= ${threshold.maximum} ? ${threshold.value} : (${fallback})`
+        : String(threshold.value),
+    '0.5',
+  );
 }
 
 async function buildImageGraph(
@@ -184,7 +209,8 @@ async function buildImageGraph(
 ): Promise<FloodImageGraph> {
   const ee = await initializeEarthEngine();
   const soilAssetId = process.env.GEE_SOIL_ASSET_ID;
-  if (!soilAssetId) throw new FloodAnalysisServiceError('GEE_SOIL_ASSET_ID is not configured');
+  if (!soilAssetId)
+    throw new FloodAnalysisServiceError('GEE_SOIL_ASSET_ID is not configured');
   const soilBand = process.env.GEE_SOIL_BAND || 'soil_class';
   const aoi = ee.Geometry(geometry as unknown as Record<string, unknown>);
 
@@ -238,7 +264,9 @@ async function buildImageGraph(
     .select('Map')
     .rename('land_cover_raw');
   const landCoverCodes = Object.keys(LAND_COVER_SUSCEPTIBILITY).map(Number);
-  const landCoverValues = landCoverCodes.map((code) => LAND_COVER_SUSCEPTIBILITY[code]);
+  const landCoverValues = landCoverCodes.map(
+    (code) => LAND_COVER_SUSCEPTIBILITY[code],
+  );
   const landCoverSusceptibility = landCoverRaw
     .remap(landCoverCodes, landCoverValues)
     .rename('land_cover_susceptibility');
@@ -261,14 +289,18 @@ async function buildImageGraph(
   const reduceParameters = {
     geometry: aoi,
     scale: 250,
-    maxPixels: 1_000_000_000,
-    bestEffort: true,
+    maxPixels: 1_000_000,
+    bestEffort: false,
+    crs: 'EPSG:4326',
     tileScale: 4,
   };
 
   return {
     riskImage,
-    summary: summaryImage.reduceRegion({ ...reduceParameters, reducer: ee.Reducer.mean() }),
+    summary: summaryImage.reduceRegion({
+      ...reduceParameters,
+      reducer: ee.Reducer.mean(),
+    }),
     soilHistogram: soilRaw.reduceRegion({
       ...reduceParameters,
       reducer: ee.Reducer.frequencyHistogram(),
@@ -280,23 +312,33 @@ async function buildImageGraph(
   };
 }
 
-async function generateTile(graph: FloodImageGraph): Promise<{ url: string; expiresAt: string }> {
+async function generateTile(
+  graph: FloodImageGraph,
+): Promise<{ url: string; expiresAt: string }> {
   const url = await getEeMapUrl(graph.riskImage, {
     min: 0,
     max: 1,
     palette: ['1a9850', '91cf60', 'fee08b', 'fc8d59', 'd73027'],
   });
-  return { url, expiresAt: new Date(Date.now() + TILE_TOKEN_TTL_MS).toISOString() };
+  return {
+    url,
+    expiresAt: new Date(Date.now() + TILE_TOKEN_TTL_MS).toISOString(),
+  };
 }
 
-async function computeNumeric(graph: FloodImageGraph, weights: FloodWeights): Promise<NumericAnalysis> {
+async function computeNumeric(
+  graph: FloodImageGraph,
+  weights: FloodWeights,
+): Promise<NumericAnalysis> {
   const [summary, soilHistogram, landCoverHistogram] = await Promise.all([
     evaluateEeObject(graph.summary),
     evaluateEeObject(graph.soilHistogram),
     evaluateEeObject(graph.landCoverHistogram),
   ]);
   if (!isRecord(summary)) {
-    throw new FloodAnalysisServiceError('Earth Engine returned an invalid summary');
+    throw new FloodAnalysisServiceError(
+      'Earth Engine returned an invalid summary',
+    );
   }
   return toBreakdown(summary, soilHistogram, landCoverHistogram, weights);
 }
@@ -309,7 +351,10 @@ async function runFloodAnalysis(
   cacheKey: string,
 ): Promise<FloodAnalysisResult> {
   const nowIso = new Date().toISOString();
-  const cachedData = await getDatabaseRepositories().flood.findValidCached(cacheKey, nowIso);
+  const cachedData = await getDatabaseRepositories().flood.findValidCached(
+    cacheKey,
+    nowIso,
+  );
 
   const geometry = parseGeometry(boundary.geometry);
   const graph = await buildImageGraph(geometry, input);
@@ -342,20 +387,20 @@ async function runFloodAnalysis(
   const expiresAt = new Date(computedAt.getTime() + NUMERIC_CACHE_TTL_MS);
   const classification = classifyFloodScore(numeric.score);
   await getDatabaseRepositories().flood.upsert({
-      cacheKey,
-      kecamatanId: boundary.id,
-      modelVersion: FLOOD_MODEL_VERSION,
-      datasetVersion,
-      periodStart: input.period.start,
-      periodEnd: input.period.end,
-      criteriaWeights: input.weights,
-      criteriaBreakdown: numeric.criteriaBreakdown,
-      score: numeric.score,
-      classification,
-      computedBy,
-      computedAt: computedAt.toISOString(),
-      expiresAt: expiresAt.toISOString(),
-    });
+    cacheKey,
+    kecamatanId: boundary.id,
+    modelVersion: FLOOD_MODEL_VERSION,
+    datasetVersion,
+    periodStart: input.period.start,
+    periodEnd: input.period.end,
+    criteriaWeights: input.weights,
+    criteriaBreakdown: numeric.criteriaBreakdown,
+    score: numeric.score,
+    classification,
+    computedBy,
+    computedAt: computedAt.toISOString(),
+    expiresAt: expiresAt.toISOString(),
+  });
 
   return {
     kecamatan_id: boundary.id,
@@ -379,6 +424,7 @@ export async function analyzeFloodRisk(
   input: FloodAnalysisInput,
   computedBy: string,
 ): Promise<FloodAnalysisResult> {
+  requireGovernedEarthEngine();
   const boundary = await getBoundary(input.kecamatan_id);
   const datasetVersion = getDatasetVersion(boundary);
   const identity = buildFloodCacheIdentity({
@@ -392,9 +438,13 @@ export async function analyzeFloodRisk(
   const existing = inFlight.get(cacheKey);
   if (existing) return existing;
 
-  const operation = runFloodAnalysis(input, computedBy, boundary, datasetVersion, cacheKey).finally(
-    () => inFlight.delete(cacheKey),
-  );
+  const operation = runFloodAnalysis(
+    input,
+    computedBy,
+    boundary,
+    datasetVersion,
+    cacheKey,
+  ).finally(() => inFlight.delete(cacheKey));
   inFlight.set(cacheKey, operation);
   return operation;
 }

@@ -1,6 +1,7 @@
 import 'server-only';
 
 import earthEngine from '@google/earthengine';
+import { requireGovernedEarthEngine } from './integration/readiness';
 
 let initializationPromise: Promise<typeof earthEngine> | null = null;
 
@@ -22,17 +23,25 @@ function readServiceAccount(): Record<string, unknown> {
     throw new Error('Earth Engine service-account JSON is invalid');
   }
   if (typeof parsed !== 'object' || parsed === null || Array.isArray(parsed)) {
-    throw new Error('Earth Engine service-account credentials must be a JSON object');
+    throw new Error(
+      'Earth Engine service-account credentials must be a JSON object',
+    );
   }
 
   const credentials = parsed as Record<string, unknown>;
-  if (typeof credentials.client_email !== 'string' || typeof credentials.private_key !== 'string') {
-    throw new Error('Earth Engine credentials must contain client_email and private_key');
+  if (
+    typeof credentials.client_email !== 'string' ||
+    typeof credentials.private_key !== 'string'
+  ) {
+    throw new Error(
+      'Earth Engine credentials must contain client_email and private_key',
+    );
   }
   return credentials;
 }
 
 export function initializeEarthEngine(): Promise<typeof earthEngine> {
+  requireGovernedEarthEngine();
   if (initializationPromise) return initializationPromise;
 
   initializationPromise = new Promise((resolve, reject) => {
@@ -75,7 +84,9 @@ export function initializeEarthEngine(): Promise<typeof earthEngine> {
   return initializationPromise;
 }
 
-export function evaluateEeObject(object: { evaluate: (callback: (result: unknown, error?: string) => void) => void }) {
+export function evaluateEeObject(object: {
+  evaluate: (callback: (result: unknown, error?: string) => void) => void;
+}) {
   return new Promise<unknown>((resolve, reject) => {
     object.evaluate((result, error) => {
       if (error) reject(new Error(error));
@@ -88,7 +99,10 @@ export function getEeMapUrl(
   image: {
     getMapId: (
       visualization: Record<string, unknown>,
-      callback: (map: { urlFormat: string } | undefined, error?: string) => void,
+      callback: (
+        map: { urlFormat: string } | undefined,
+        error?: string,
+      ) => void,
     ) => void;
   },
   visualization: Record<string, unknown>,
@@ -103,4 +117,3 @@ export function getEeMapUrl(
     });
   });
 }
-

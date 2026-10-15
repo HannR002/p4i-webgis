@@ -1,3 +1,7 @@
+import {
+  RequestBudgetExceeded,
+  requestBudgets,
+} from '../../../../lib/server/requestBudget';
 import { COMPUTE_TOOLS } from '../../../../lib/gis/computeContracts';
 import {
   computeEnvironment,
@@ -39,7 +43,9 @@ import {
 export const runtime = 'nodejs';
 export const maxDuration = 20;
 export async function POST(request: Request) {
+  let release: (() => void) | undefined;
   try {
+    release = requestBudgets.copilot.acquire();
     const body = await readGisBody(request);
     if (
       !record(body) ||
@@ -132,6 +138,17 @@ export async function POST(request: Request) {
     );
     return computeSession ? computeSession.attach(output) : output;
   } catch (error) {
+    if (error instanceof RequestBudgetExceeded)
+      return NextResponse.json(
+        { error: error.message },
+        {
+          status: 429,
+          headers: {
+            'Retry-After': String(error.retryAfter),
+            'Cache-Control': 'private, no-store',
+          },
+        },
+      );
     if (error instanceof AIProviderError)
       return NextResponse.json(
         {
@@ -146,5 +163,7 @@ export async function POST(request: Request) {
         { status: 403, headers: { 'Cache-Control': 'private, no-store' } },
       );
     return gisError(error);
+  } finally {
+    release?.();
   }
 }

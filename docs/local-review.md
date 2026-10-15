@@ -1,4 +1,19 @@
-# Phase 05 interactive review
+# Phase 09 interactive review
+
+Use `feat/production-readiness-phase09` with Node 22. After `npm ci`, explicitly set
+`GIS_DEMO_MODE=true AI_PROVIDER=demo` for `npm run dev`. Open `/spatial/home`, then the map workspace
+`/spatial/viewer?webmap=climate`. `.env.example` defaults AI_PROVIDER to disabled; real/unknown provider
+selection never silently enables the demo planner. No provider credentials are needed for fixtures.
+Production mode refuses these development adapters even when the flags are set.
+
+Review Pixel, Analisis, AI GIS and consulting workflows using clearly labeled DEMO datasets/personas.
+Existing engines, local drafts, Undo/Redo and PDF/PNG exports remain available. For repeatable independent
+export, select no basemap. See [latest report](P4I_WEBGIS_COMPREHENSIVE_IMPLEMENTATION_REPORT.md),
+[actual screenshots and downloadable DEMO PDF](evidence/phase-09/README.md), and
+[real integration requirements](real-gis-integration-readiness.md). These are local development
+workflows, not real provider integration or human UAT.
+
+# Historical Phase 05 interactive review
 
 Use feature branch `feat/ai-gis-copilot-phase05`, based on actual Phase 04 head 22cf04c. Preserve
 local edits when switching/fetching. Use Node 22, the existing lockfile and GIS_DEMO_MODE=true only

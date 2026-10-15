@@ -1,0 +1,96 @@
+@startuml
+hide methods
+skinparam linetype ortho
+package "Historical SQL feature DDL (verified in repository, not live deployment)" {
+ entity b2b_entitlements {
+  *id : UUID
+  client_user_id : UUID
+  project_id : UUID
+  granted_by : UUID
+}
+ entity download_history {
+  *id : UUID
+  client_user_id : UUID
+  project_id : UUID
+  file_type : TEXT
+}
+ entity audit_logs {
+  *id : UUID
+  user_id : UUID
+  action_type : TEXT
+  record_id : UUID
+  metadata : JSONB
+}
+ entity sales_leads {
+  *id : UUID
+  requested_project_id : UUID
+}
+ entity administrative_boundaries {
+  *id : UUID
+  parent_id : UUID
+  source + source_version
+  geometry : MultiPolygon/4326
+}
+ entity flood_analysis_results {
+  *id : UUID
+  cache_key : TEXT UNIQUE
+  kecamatan_id : UUID
+  computed_by : UUID
+  period / score / criteria
+}
+ entity administrative_boundaries_import_staging {
+  *id : BIGSERIAL
+  batch_id : UUID
+  geometry : Geometry/4326
+  raw_properties : JSONB
+}
+}
+package "Base contracts: creation DDL missing" #LightYellow {
+ entity user_profiles {
+  id : UUID
+  role : user_role
+  is_disabled : BOOLEAN
+}
+ entity spatial_projects {
+  id : UUID
+  access_tier : public/restricted
+}
+ entity vector_layers {
+  id : UUID
+  project_id : UUID
+  geom / properties
+}
+ entity "analysis_reports / smce_criteria_weights\nDDL and publication mapping unknown" as Legacy
+}
+user_profiles ||--o{ b2b_entitlements : client_user_id
+spatial_projects ||--o{ b2b_entitlements
+user_profiles ||--o{ download_history
+spatial_projects ||--o{ download_history
+user_profiles |o--o{ audit_logs
+spatial_projects |o--o{ sales_leads
+spatial_projects ..> vector_layers : runtime relationship, base FK DDL unverified
+administrative_boundaries |o--o{ administrative_boundaries : parent_id
+administrative_boundaries ||--o{ flood_analysis_results
+user_profiles |o--o{ flood_analysis_results : computed_by
+package "Phase 04–07 in-memory/local domain, NOT database tables" #LightBlue {
+ class MapRecipe
+ class GISAnalysisConfiguration
+ class ComputeJob
+ class ClientDeliverable
+ class DeliverableRevision
+ class DeliverableReview
+ class DeliverablePublication
+ MapRecipe o-- GISAnalysisConfiguration
+ ComputeJob --> GISAnalysisConfiguration
+ ClientDeliverable *-- DeliverableRevision
+ DeliverableReview --> DeliverableRevision : contentHash
+ DeliverablePublication --> DeliverableRevision : approved contentHash
+ DeliverableRevision o-- MapRecipe
+ DeliverableRevision --> ComputeJob : owned actual result snapshot
+}
+ClientDeliverable ..> spatial_projects : ConsultingProject extends project identity
+note bottom of Legacy
+No speculative live deliverable tables or methodology VALIDATED state.
+This is a source-evidenced conceptual diagram, not a recovered live ERD.
+end note
+@enduml

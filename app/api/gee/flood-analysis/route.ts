@@ -1,3 +1,7 @@
+import {
+  ExternalIntegrationPendingError,
+  requireGovernedEarthEngine,
+} from '../../../../lib/server/integration/readiness';
 import { NextResponse } from 'next/server';
 import { APP_ROLES } from '../../../../lib/authRoles';
 import { parseFloodAnalysisInput } from '../../../../config/floodRiskModel';
@@ -35,16 +39,31 @@ export async function POST(request: Request) {
     const identity = await requireRole(request, APP_ROLES);
     const contentType = request.headers.get('content-type') ?? '';
     if (!contentType.toLowerCase().includes('application/json')) {
-      return NextResponse.json({ error: 'Content-Type must be application/json' }, { status: 415 });
+      return NextResponse.json(
+        { error: 'Content-Type must be application/json' },
+        { status: 415 },
+      );
     }
     const input = parseFloodAnalysisInput(await readJsonBody(request));
-    const result = await withTimeout(analyzeFloodRisk(input, identity.user.id), 55_000);
+    requireGovernedEarthEngine();
+    const result = await withTimeout(
+      analyzeFloodRisk(input, identity.user.id),
+      55_000,
+    );
     return NextResponse.json(result, {
       headers: { 'Cache-Control': 'private, no-store' },
     });
   } catch (error: unknown) {
+    if (error instanceof ExternalIntegrationPendingError)
+      return NextResponse.json(
+        { status: 'unavailable', error: error.message },
+        { status: 503, headers: { 'Cache-Control': 'private, no-store' } },
+      );
     if (error instanceof FloodAnalysisServiceError) {
-      return NextResponse.json({ error: error.message }, { status: error.status });
+      return NextResponse.json(
+        { error: error.message },
+        { status: error.status },
+      );
     }
     return apiErrorResponse(error, 'POST /api/gee/flood-analysis');
   }
