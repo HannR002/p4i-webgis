@@ -1,0 +1,19 @@
+(node:35050) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS layer add/remove, actual pane ordering and undo, style tiles
+PASS delayed Copilot response cannot overwrite Undo
+PASS cancelled pixel request leaves a usable empty state
+PASS pixel provider error visible
+PASS invalid recipe import preserves existing map
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+false !== true
+
+    at file:///workspace/p4i-webgis/scripts/qa/phase-01-regression.mjs:55:9 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: 'strictEqual',
+  diff: 'simple'
+}

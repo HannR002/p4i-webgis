@@ -1,0 +1,10 @@
+(node:30359) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS layer add/remove, actual pane ordering and undo, style tiles
+locator.waitFor: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('button', { name: 'Terapkan ke sesi peta' }) to be visible[22m
+
+    at /workspace/p4i-webgis/scripts/qa/phase-01-regression.mjs:27:199 {
+  name: 'TimeoutError'
+}

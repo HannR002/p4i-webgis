@@ -1,0 +1,86 @@
+[
+  {
+    "width": 1480,
+    "path": "home",
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "width": 1480,
+    "path": "webmap",
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "width": 1480,
+    "path": "data",
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "width": 1480,
+    "path": "help",
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "width": 1480,
+    "path": "viewer",
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "width": 1480,
+    "path": "ai",
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "width": 1480,
+    "path": "analysis",
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "width": 390,
+    "path": "home",
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "width": 390,
+    "path": "webmap",
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "width": 390,
+    "path": "data",
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "width": 390,
+    "path": "help",
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "width": 390,
+    "path": "viewer",
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "width": 390,
+    "path": "ai",
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "width": 390,
+    "path": "analysis",
+    "overflow": false,
+    "violations": []
+  }
+]

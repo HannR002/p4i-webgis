@@ -1,0 +1,97 @@
+{
+  "phase": 10,
+  "date": "2026-10-15",
+  "timezone": "Asia/Jakarta",
+  "phase09Head": "11b5f9ade32f1b39c8cad5f3616f4db3d7999728",
+  "main": "dfe412c81c1254707cbd16083791dc009cf90643",
+  "integrationBranch": "integration/p4i-webgis-phase01-09",
+  "recommendation": {
+    "merge": "NO_GO_UNRESOLVED_DEPENDENCY_ADVISORIES",
+    "production": "NO_GO"
+  },
+  "securityScan": {
+    "commits": 20,
+    "uniqueBlobs": 584,
+    "realSecretCandidates": 0,
+    "limit": "pattern/manual review of reachable refs, not exhaustive secret detection"
+  },
+  "baseline": {
+    "npmCi": "PASS",
+    "lint": "PASS",
+    "typecheck": "PASS",
+    "tests": 257,
+    "testFiles": 36,
+    "build": "PASS"
+  },
+  "securityRegression": {
+    "before": {
+      "failed": 4,
+      "passed": 1
+    },
+    "after": {
+      "passed": 5
+    },
+    "finding": "Revoked project metadata exposed in service-role download history API",
+    "status": "FIXED"
+  },
+  "final": {
+    "lint": "PASS",
+    "typecheck": "PASS",
+    "tests": 262,
+    "testFiles": 37,
+    "build": "PASS",
+    "browserSuitesPassed": 9,
+    "axeAudits": 39,
+    "axeViolations": 0,
+    "productionModeLocalChecks": 12,
+    "databaseChecks": 340,
+    "databaseFreshCycles": 2
+  },
+  "databaseMode": "LOCAL_SYNTHETIC_FOUNDATION_ONLY",
+  "dependencies": {
+    "node": "22.23.3",
+    "npm": "10.9.9",
+    "npmCi": "PASS",
+    "manifestLockRootEqual": true,
+    "dependencyFilesChangedInPhase10": false,
+    "installed": {
+      "next": "16.3.5",
+      "react": "19.2.8",
+      "react-dom": "19.2.8",
+      "eslint-config-next": "16.3.5",
+      "vitest": "3.2.4",
+      "tinypool": "1.1.1",
+      "@google/earthengine": "1.7.43",
+      "google-auth-library": "7.14.1",
+      "node-forge": "1.4.0",
+      "sharp": "0.35.4",
+      "proj4": "2.21.0"
+    },
+    "fullAudit": {
+      "info": 0,
+      "low": 1,
+      "moderate": 3,
+      "high": 15,
+      "critical": 3,
+      "total": 22
+    },
+    "productionAudit": {
+      "info": 0,
+      "low": 1,
+      "moderate": 2,
+      "high": 8,
+      "critical": 1,
+      "total": 12
+    },
+    "exploitAttempted": false,
+    "automaticDependencyFix": false
+  },
+  "externalDatabaseOperations": false,
+  "paidProviderCalls": false,
+  "deployment": false,
+  "merge": false,
+  "visibilityChanged": false,
+  "humanUAT": "NOT_RUN",
+  "penetrationTest": "NOT_PERFORMED",
+  "environmentStartInstructions": "DRAFT_SAVED_NOT_PUBLISHED"
+}

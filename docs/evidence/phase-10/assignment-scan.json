@@ -1,0 +1,10 @@
+[
+  {
+    "path": "tests/authProvider.test.ts",
+    "blob": "bc0c0df72e14486fefd68c669917f81c1906336c",
+    "line": 5,
+    "kind": "TOKEN",
+    "length": 34,
+    "placeholderLikely": true
+  }
+]

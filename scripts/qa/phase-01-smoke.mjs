@@ -5,8 +5,9 @@ const artifactDir = path.resolve(process.env.P4I_QA_ARTIFACTS || '/tmp/p4i-phase
 await mkdir(artifactDir, { recursive: true });
 const chromiumPath = process.env.P4I_CHROMIUM || '/usr/bin/chromium';
 import assert from 'node:assert/strict';
+let browser;
 (async () => {
-  const browser = await chromium.launch({ executablePath: chromiumPath, headless: true, args: ['--no-sandbox'] });
+  browser = await chromium.launch({ executablePath: chromiumPath, headless: true, args: ['--no-sandbox'] });
   const context = await browser.newContext({ viewport: { width: 1480, height: 960 }, acceptDownloads: true });
   const page = await context.newPage();
   const errors = [];
@@ -15,8 +16,10 @@ import assert from 'node:assert/strict';
   await page.getByText('MODE DEMO ·').waitFor();
   await page.screenshot({ path: path.join(artifactDir, 'portal-home.png'), fullPage: true });
   await page.goto('http://localhost:3000/spatial/webmap');
+  await page.waitForFunction(() => document.querySelectorAll('.gis-webmap').length === 6);
   assert.equal(await page.locator('.gis-webmap').count(), 6);
   await page.getByLabel('Cari webmap').fill('Curah');
+  await page.waitForFunction(() => document.querySelectorAll('.gis-webmap').length === 1);
   assert.equal(await page.locator('.gis-webmap').count(), 1);
   await page.getByRole('link', { name: /^Lihat Peta/ }).click();
   await page.getByText('Layer aktif (2)').waitFor();
@@ -38,9 +41,16 @@ import assert from 'node:assert/strict';
   const box = await page.locator('.leaflet-container').boundingBox();
   await page.mouse.click(box.x + box.width / 2 + 20, box.y + box.height / 2 + 20);
   await page.locator('.gis-pixel-card').first().waitFor();
+  // A map click may hit a genuine masked fixture cell. Query a known native
+  // sample before asserting its unit; never reinterpret NoData as a value.
+  await page.getByLabel('Lintang sampling').fill('-1.625');
+  await page.getByLabel('Bujur sampling').fill('103.545');
+  await page.getByRole('button', { name: 'Ambil sampel koordinat' }).click();
+  await page.locator('.gis-pixel-value').getByText('mm/tahun', { exact: true }).waitFor();
   assert.match(await page.locator('.gis-pixel-value').first().textContent(), /mm\/tahun/);
   await page.screenshot({ path: path.join(artifactDir, 'pixel-inspector.png'), fullPage: true });
   await page.locator('.gis-tabs').getByRole('tab', { name: 'AI GIS', exact: true }).click();
+  await page.getByLabel('Otomatis terapkan perubahan sesi').uncheck();
   await page.getByLabel('Instruksi GIS').fill('Buat peta curah hujan dan kemiringan dengan batas kecamatan');
   await page.getByRole('button', { name: 'Kirim instruksi' }).click();
   await page.getByRole('button', { name: 'Terapkan ke sesi peta' }).waitFor();
@@ -83,4 +93,4 @@ import assert from 'node:assert/strict';
   assert.deepEqual(errors, []);
   console.log('PASS: dataset filtering, responsive mobile navigation, no horizontal overflow; no JavaScript page errors');
   await browser.close();
-})().catch(error => { console.error(error); process.exitCode = 1; });
+})().catch(error => { console.error(error); process.exitCode = 1; }).finally(async () => { await browser?.close(); });

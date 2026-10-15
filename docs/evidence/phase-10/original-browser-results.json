@@ -1,0 +1,56 @@
+[
+  {
+    "suite": "phase-01-smoke",
+    "exitCode": 124,
+    "seconds": 180.0,
+    "attempt": "original Phase09 script"
+  },
+  {
+    "suite": "phase-01-regression",
+    "exitCode": 1,
+    "seconds": 36.2,
+    "attempt": "original Phase09 script"
+  },
+  {
+    "suite": "phase-02-smoke",
+    "exitCode": 0,
+    "seconds": 42.3,
+    "attempt": "original Phase09 script"
+  },
+  {
+    "suite": "phase-02-accessibility",
+    "exitCode": 0,
+    "seconds": 25.7,
+    "attempt": "original Phase09 script"
+  },
+  {
+    "suite": "phase-03-raster",
+    "exitCode": 0,
+    "seconds": 19.0,
+    "attempt": "original Phase09 script"
+  },
+  {
+    "suite": "phase-04-configuration",
+    "exitCode": 0,
+    "seconds": 21.8,
+    "attempt": "original Phase09 script"
+  },
+  {
+    "suite": "phase-05-copilot",
+    "exitCode": 0,
+    "seconds": 18.4,
+    "attempt": "original Phase09 script"
+  },
+  {
+    "suite": "phase-06-compute",
+    "exitCode": 0,
+    "seconds": 12.5,
+    "attempt": "original Phase09 script"
+  },
+  {
+    "suite": "phase-07-deliverables",
+    "exitCode": 0,
+    "seconds": 10.0,
+    "attempt": "original Phase09 script"
+  }
+]

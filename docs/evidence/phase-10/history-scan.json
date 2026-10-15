@@ -1,0 +1,262 @@
+{
+  "scope": "all reachable local and fetched remote refs, full non-shallow history",
+  "commits": 20,
+  "uniqueBlobs": 584,
+  "candidateFindings": [],
+  "sensitivePathCandidates": [
+    {
+      "path": ".env.example",
+      "blob": "74167b6a59ae3018c06f28edc2ed6d1fa2918f93"
+    },
+    {
+      "path": ".env.example",
+      "blob": "139266a84f6b517646d920c017c486b780e4a112"
+    },
+    {
+      "path": ".env.example",
+      "blob": "ad1241bf82f44a383318fa1765350354944335c9"
+    }
+  ],
+  "binaryBlobs": [
+    {
+      "path": "app/favicon.ico",
+      "bytes": 25931
+    },
+    {
+      "path": "docs/evidence/phase-01/ahp-workspace.png",
+      "bytes": 124079
+    },
+    {
+      "path": "docs/evidence/phase-01/copilot-plan.png",
+      "bytes": 125048
+    },
+    {
+      "path": "docs/evidence/phase-01/map-workspace.png",
+      "bytes": 107438
+    },
+    {
+      "path": "docs/evidence/phase-01/mobile-catalog-error.png",
+      "bytes": 51339
+    },
+    {
+      "path": "docs/evidence/phase-01/mobile-workspace.png",
+      "bytes": 62911
+    },
+    {
+      "path": "docs/evidence/phase-01/pixel-inspector.png",
+      "bytes": 114964
+    },
+    {
+      "path": "docs/evidence/phase-01/portal-home.png",
+      "bytes": 226940
+    },
+    {
+      "path": "docs/evidence/phase-02/ai-desktop.png",
+      "bytes": 123001
+    },
+    {
+      "path": "docs/evidence/phase-02/analysis-desktop.png",
+      "bytes": 118413
+    },
+    {
+      "path": "docs/evidence/phase-02/data-desktop.png",
+      "bytes": 182140
+    },
+    {
+      "path": "docs/evidence/phase-02/help-desktop.png",
+      "bytes": 135494
+    },
+    {
+      "path": "docs/evidence/phase-02/home-desktop.png",
+      "bytes": 235330
+    },
+    {
+      "path": "docs/evidence/phase-02/pixel-desktop.png",
+      "bytes": 122740
+    },
+    {
+      "path": "docs/evidence/phase-02/unavailable-390.png",
+      "bytes": 64807
+    },
+    {
+      "path": "docs/evidence/phase-02/viewer-desktop.png",
+      "bytes": 112473
+    },
+    {
+      "path": "docs/evidence/phase-02/webmap-desktop.png",
+      "bytes": 165184
+    },
+    {
+      "path": "docs/evidence/phase-02/workspace-320.png",
+      "bytes": 57765
+    },
+    {
+      "path": "docs/evidence/phase-02/workspace-390.png",
+      "bytes": 64774
+    },
+    {
+      "path": "docs/evidence/phase-03/analisis-390.png",
+      "bytes": 90180
+    },
+    {
+      "path": "docs/evidence/phase-03/pixel-390.png",
+      "bytes": 81339
+    },
+    {
+      "path": "docs/evidence/phase-03/pixel-band-desktop.png",
+      "bytes": 119890
+    },
+    {
+      "path": "docs/evidence/phase-03/zonal-desktop.png",
+      "bytes": 133530
+    },
+    {
+      "path": "docs/evidence/phase-04/flood-desktop.png",
+      "bytes": 140925
+    },
+    {
+      "path": "docs/evidence/phase-04/flood-susceptibility-390.png",
+      "bytes": 89319
+    },
+    {
+      "path": "docs/evidence/phase-04/wlc-desktop.png",
+      "bytes": 131325
+    },
+    {
+      "path": "docs/evidence/phase-04/zonal-desktop.png",
+      "bytes": 130954
+    },
+    {
+      "path": "docs/evidence/phase-04/zonal-statistics-390.png",
+      "bytes": 88145
+    },
+    {
+      "path": "docs/evidence/phase-05/approval-390.png",
+      "bytes": 94251
+    },
+    {
+      "path": "docs/evidence/phase-05/approval-desktop.png",
+      "bytes": 143771
+    },
+    {
+      "path": "docs/evidence/phase-05/auto-map-desktop.png",
+      "bytes": 141203
+    },
+    {
+      "path": "docs/evidence/phase-05/pixel-390.png",
+      "bytes": 96302
+    },
+    {
+      "path": "docs/evidence/phase-05/pixel-desktop.png",
+      "bytes": 131337
+    },
+    {
+      "path": "docs/evidence/phase-06/approval-desktop.png",
+      "bytes": 151298
+    },
+    {
+      "path": "docs/evidence/phase-06/area-desktop.png",
+      "bytes": 156524
+    },
+    {
+      "path": "docs/evidence/phase-06/computed-map.png",
+      "bytes": 164728
+    },
+    {
+      "path": "docs/evidence/phase-06/unknown-cost-desktop.png",
+      "bytes": 159770
+    },
+    {
+      "path": "docs/evidence/phase-06/zonal-390.png",
+      "bytes": 104827
+    },
+    {
+      "path": "docs/evidence/phase-06/zonal-768.png",
+      "bytes": 124976
+    },
+    {
+      "path": "docs/evidence/phase-06/zonal-desktop.png",
+      "bytes": 176771
+    },
+    {
+      "path": "docs/evidence/phase-07/analyst-desktop.png",
+      "bytes": 252981
+    },
+    {
+      "path": "docs/evidence/phase-07/client-390.png",
+      "bytes": 128593
+    },
+    {
+      "path": "docs/evidence/phase-07/client-768.png",
+      "bytes": 131682
+    },
+    {
+      "path": "docs/evidence/phase-07/client-desktop.png",
+      "bytes": 164794
+    },
+    {
+      "path": "docs/evidence/phase-07/release-desktop.png",
+      "bytes": 180010
+    },
+    {
+      "path": "docs/evidence/phase-07/review-desktop.png",
+      "bytes": 206820
+    },
+    {
+      "path": "docs/evidence/phase-09/client-mobile.png",
+      "bytes": 128043
+    },
+    {
+      "path": "docs/evidence/phase-09/pixel-desktop.png",
+      "bytes": 135272
+    },
+    {
+      "path": "public/gis/previews/administration.png",
+      "bytes": 20283
+    },
+    {
+      "path": "public/gis/previews/climate.png",
+      "bytes": 25868
+    },
+    {
+      "path": "public/gis/previews/flood.png",
+      "bytes": 35311
+    },
+    {
+      "path": "public/gis/previews/landcover.png",
+      "bytes": 29907
+    },
+    {
+      "path": "public/gis/previews/suitability.png",
+      "bytes": 25781
+    },
+    {
+      "path": "public/gis/previews/terrain.png",
+      "bytes": 26772
+    },
+    {
+      "path": "public/gis/previews/administration.png",
+      "bytes": 22620
+    },
+    {
+      "path": "public/gis/previews/climate.png",
+      "bytes": 27906
+    },
+    {
+      "path": "public/gis/previews/flood.png",
+      "bytes": 36431
+    },
+    {
+      "path": "public/gis/previews/landcover.png",
+      "bytes": 30164
+    },
+    {
+      "path": "public/gis/previews/suitability.png",
+      "bytes": 26755
+    },
+    {
+      "path": "public/gis/previews/terrain.png",
+      "bytes": 28806
+    }
+  ]
+}

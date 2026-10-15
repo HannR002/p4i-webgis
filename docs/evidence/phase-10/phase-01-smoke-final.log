@@ -1,0 +1,6 @@
+(node:34866) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS: catalog search, layer opacity, Undo/Redo, AOI, draft save/reset/load, Pixel Inspector, Copilot plan/apply/undo, JSON export
+PASS: Ekspor Citra Peta (PNG)
+PASS: Ekspor Ringkasan (PDF)
+PASS: dataset filtering, responsive mobile navigation, no horizontal overflow; no JavaScript page errors

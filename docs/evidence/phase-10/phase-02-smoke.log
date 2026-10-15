@@ -1,0 +1,13 @@
+(node:30545) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS home search, category filters, genuine View Map action, editable title/description, local save/load and undo/redo
+PASS layer controls, AOI, resize after panel collapse, roving tabs, keyboard pixel sampling, AHP, Copilot state retained between panels/apply/undo
+PASS keyboard legend collapse, invalid import unchanged, real browser JSON/PNG/PDF downloads with saved AHP
+PASS dataset type/status/empty/reset states and keyboard documentation accordion
+PASS invalid selected Webmap gives a recovery link
+PASS responsive layout/overlay separation/navigation focus at 320 740
+PASS responsive layout/overlay separation/navigation focus at 390 844
+PASS responsive layout/overlay separation/navigation focus at 768 1024
+PASS responsive layout/overlay separation/navigation focus at 1024 768
+PASS responsive layout/overlay separation/navigation focus at 1480 960
+PASS catalog failure retry recovers without reloading

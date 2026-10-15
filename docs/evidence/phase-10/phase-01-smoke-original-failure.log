@@ -1,0 +1,14 @@
+(node:28648) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+0 !== 6
+
+    at file:///workspace/p4i-webgis/scripts/qa/phase-01-smoke.mjs:18:10 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 0,
+  expected: 6,
+  operator: 'strictEqual',
+  diff: 'simple'
+}

@@ -1,6 +1,26 @@
 # P4I Spatial Analytics implementation report
 
-## Current status — Phase 09, 15 October 2026 (Asia/Jakarta)
+## Current status — Phase 10 integration audit, 15 October 2026 (Asia/Jakarta)
+
+**NO-GO merge now; NO-GO production.** The cumulative Phase01–09 history is complete (Phase09
+18 ahead/0 behind main), but fresh dependency audits report 22 affected packages overall and
+12 runtime packages, including critical/high advisories. No automatic dependency rewrite or merge.
+See [Phase10 audit](PHASE_10_INTEGRATION_AUDIT.md) for scope, exact findings and merge/release gates.
+
+The service-role download-history API now rechecks current project entitlement and avoids caching
+private metadata. Five regression tests reproduce and cover the fix. Historical browser scripts
+were reconciled with actual asynchronous catalog loading, current Copilot and advisory AHP CR.
+Clean npm ci and the original 257-test baseline pass; final lint/typecheck/build, **262 tests/37 files,
+nine browser suites, 39 Axe audits, 12 local production API checks and 340 fresh local DB checks pass**.
+No real secret was identified in the scoped reachable-history scan; that is not an exhaustive audit.
+
+Integration branch `integration/p4i-webgis-phase01-09` descends directly from Phase09, preserving
+all commits and PRs #1–#5. No new product feature, migration, external DB operation, paid GEE/LLM,
+production deployment, actual client publication, visibility change or history rewrite occurred.
+Human UAT and real provider/database/hosting readiness remain pending. Evidence:
+[Phase10 verification](evidence/phase-10/verification-summary.json).
+
+## Previous status — Phase 09, 15 October 2026 (Asia/Jakarta)
 
 Phase 09 completes safe local readiness work on `feat/production-readiness-phase09`, based on
 actual Phase 08 `5e9d651`. Earlier stacked PRs are not assumed merged. The comprehensive
