@@ -20,6 +20,9 @@ production deployment, actual client publication, visibility change or history r
 Human UAT and real provider/database/hosting readiness remain pending. Evidence:
 [Phase10 verification](evidence/phase-10/verification-summary.json).
 
+[Draft cumulative PR #6](https://github.com/HannR002/p4i-webgis/pull/6) targets main, remains draft and must not be merged
+until dependency remediation/review gates are closed. Implementation `647668e` was pushed normally.
+
 ## Previous status — Phase 09, 15 October 2026 (Asia/Jakarta)
 
 Phase 09 completes safe local readiness work on `feat/production-readiness-phase09`, based on

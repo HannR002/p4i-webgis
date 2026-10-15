@@ -291,3 +291,6 @@ Cloud startup instructions were saved as a draft with explicit AI DEMO selection
 and isolated QA overrides. Existing network/credential bindings/install script were preserved.
 Saving did not publish/restart the environment; review/save/publish in environment settings is
 required to apply the instructions to later sessions. This does not block the completed local audit.
+
+Review: [Draft cumulative PR #6](https://github.com/HannR002/p4i-webgis/pull/6) against `main`; implementation `647668e`.
+The PR remains draft and the NO-GO recommendation is unchanged.

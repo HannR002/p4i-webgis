@@ -25,3 +25,6 @@ Read [integration/security audit](PHASE_10_INTEGRATION_AUDIT.md) and
 no real secret candidate within its documented scope. Live foundation DDL, real GIS/AI/GEE adapters,
 durable persistence, upload/abuse controls, hosting and human UAT remain production gates.
 No deployment, visibility change, merge, external migration or actual client publication occurred.
+
+Review: [Draft cumulative PR #6](https://github.com/HannR002/p4i-webgis/pull/6) against `main`; implementation `647668e`.
+The PR remains draft and the NO-GO recommendation is unchanged.
