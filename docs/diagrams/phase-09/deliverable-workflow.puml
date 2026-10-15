@@ -1,0 +1,17 @@
+@startuml
+[*] --> DRAFT : authorized analyst / AI prepares draft
+DRAFT --> ANALYSIS_RUNNING : attach owned running job
+ANALYSIS_RUNNING --> DRAFT : terminal job
+DRAFT --> READY_FOR_REVIEW : analyst submits complete revision
+READY_FOR_REVIEW --> CHANGES_REQUESTED : reviewer requests changes / rejects
+CHANGES_REQUESTED --> DRAFT : analyst creates new revision
+READY_FOR_REVIEW --> APPROVED : independent assigned human\nchecks + comments + exact hash
+APPROVED --> PUBLISHED : explicit assigned publisher\nDEVELOPMENT_SIMULATION only today
+APPROVED --> DRAFT : new revision
+PUBLISHED --> DRAFT : new revision; prior published snapshot retained
+note right of PUBLISHED
+Only entitled client sees released snapshot.
+AI cannot approve or publish.
+No scientific-method validation claim.
+end note
+@enduml

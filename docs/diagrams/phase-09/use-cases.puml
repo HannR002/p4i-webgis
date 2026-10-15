@@ -1,0 +1,34 @@
+@startuml
+left to right direction
+actor Visitor
+actor "B2B Client" as Client
+actor "Managerial Analyst" as Analyst
+actor "Super Admin" as Admin
+actor "Assigned Reviewer" as Reviewer
+actor "Assigned Publisher" as Publisher
+rectangle "P4I Spatial Analytics" {
+ usecase "Browse catalog / metadata / help" as Browse
+ usecase "Compose map / inspect pixel" as Map
+ usecase "Configure and execute bounded analysis" as Analysis
+ usecase "Approve exact expensive job\nwhen adapter is available" as Cost
+ usecase "Prepare draft deliverable" as Draft
+ usecase "Request revision / approve exact revision" as Review
+ usecase "Release to entitled client\n(DEMO simulation today)" as Release
+ usecase "Read/download entitled published revision" as Download
+ usecase "Manage users / entitlements / audit" as Manage
+}
+Visitor --> Browse
+Visitor --> Map : public/demo
+Client --> Map : entitlement
+Client --> Download
+Analyst --> Analysis
+Analyst --> Draft
+Analyst --> Cost
+Reviewer --> Review
+Publisher --> Release
+Admin --> Manage
+note bottom of Admin
+Admin does not imply reviewer qualification.
+AI has no reviewer/publisher/cost-approval role.
+end note
+@enduml

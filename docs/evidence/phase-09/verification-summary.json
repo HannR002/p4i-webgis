@@ -1,0 +1,81 @@
+{
+  "phase": 9,
+  "date": "2026-10-15",
+  "timezone": "Asia/Jakarta",
+  "baseCommit": "5e9d651c87325ff6509569a628919979f2b99ce8",
+  "branch": "feat/production-readiness-phase09",
+  "runtime": {
+    "node": "22.23.3",
+    "next": "16.3.5"
+  },
+  "baseline": {
+    "lint": "PASS",
+    "typecheck": "PASS",
+    "tests": 230,
+    "testFiles": 33,
+    "build": "PASS"
+  },
+  "final": {
+    "lint": "PASS",
+    "typecheck": "PASS",
+    "tests": 257,
+    "testFiles": 36,
+    "build": "PASS"
+  },
+  "browser": {
+    "runner": "Chromium / Playwright",
+    "suites": [
+      "phase-02-smoke",
+      "phase-03-raster",
+      "phase-06-compute",
+      "phase-07-deliverables"
+    ],
+    "result": "PASS",
+    "widths": [
+      320,
+      390,
+      768,
+      1024,
+      1480
+    ],
+    "axeAudits": 9,
+    "axeViolations": 0,
+    "pageErrors": 0,
+    "downloads": [
+      "PDF",
+      "PNG",
+      "JSON",
+      "Markdown"
+    ],
+    "data": "SYNTHETIC_DEMO",
+    "humanAcceptance": "NOT_RUN"
+  },
+  "productionModeLocalChecks": 12,
+  "pdfTextInspection": {
+    "branding": true,
+    "demoAndExperimental": true,
+    "officialFalse": true,
+    "sourceMetadata": true,
+    "limitations": true,
+    "map": "schematic, not a basemap screenshot"
+  },
+  "database": {
+    "phase09ExternalChanges": false,
+    "phase09Replay": "NOT_RUN_SQL_UNCHANGED",
+    "historicalPhase08Checks": 340,
+    "historicalData": "SYNTHETIC_LOCAL_POSTGIS_POSTGREST"
+  },
+  "externalGEEAnalysis": false,
+  "paidLLMRequests": false,
+  "deployment": false,
+  "merge": false,
+  "productionReady": false,
+  "pending": [
+    "Verified foundational schema/auth/view DDL",
+    "Authorized actual P4I data and licenses",
+    "Governed commercial GEE adapter",
+    "Approved LLM transport/provider and privacy terms",
+    "Durable jobs, usage and deliverables",
+    "Hosting, load, restore and human UAT"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "pageErrors": [],
+  "audits": [
+    {
+      "width": 1480,
+      "panel": "Pixel",
+      "violations": []
+    },
+    {
+      "width": 1480,
+      "panel": "Analisis",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "panel": "Pixel",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "panel": "Analisis",
+      "violations": []
+    }
+  ]
+}

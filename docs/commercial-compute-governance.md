@@ -1,5 +1,7 @@
 # Commercial compute governance — Phase 06 development boundary
 
+> Phase 09 update (15 October 2026): Legacy GEE execution is now blocked at route/service/initializer boundaries. Process-local API budgets add containment but are not durable tenant quotas or actual provider billing. See [current integration readiness](real-gis-integration-readiness.md). Earlier descriptions below are historical where superseded.
+
 P4I uses Controlled Autonomous Option B. Authorized low-risk local calculations can
 run automatically. Potentially substantial or unknown external cost requires independent
 human approval and an available, authorized backend. Persistent/sensitive changes retain

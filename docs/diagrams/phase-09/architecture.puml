@@ -1,0 +1,31 @@
+@startuml
+ title P4I implemented architecture and pending integrations
+ component "Browser\nGeoportal / MapWorkspace / SpatialMap" as UI
+ component "MapRecipe + local drafts\nUndo/Redo / configuration" as Recipe
+ component "Next.js Node routes\nidentity / ACL / bounded validators" as API
+ component "AIProvider + tool registry\nvalidated plan/execution" as AI
+ component "Controlled compute service\napproval / resource limits" as Compute
+ component "Consulting workflow\nrevision / review / release ACL" as Consulting
+ database "Development repositories\nprocess-local, non-durable" as Local
+ component "DatabaseRepositories\nprovider-neutral contracts" as Repo
+ component "Supabase adapter\nserver-only service role" as Supabase
+ database "External PostgreSQL/PostGIS\nlive schema unverified" as DB
+ component "Structured LLM transport\nINTERFACE_READY, not connected" as LLM #LightYellow
+ component "Earth Engine RasterProvider\nEXTERNAL_INTEGRATION_PENDING" as EE #LightYellow
+ UI --> Recipe
+ UI --> API
+ API --> AI
+ AI --> Compute
+ API --> Consulting
+ Compute --> Local
+ Consulting --> Local
+ API --> Repo
+ Repo --> Supabase
+ Supabase ..> DB : existing adapter; current live integration not verified
+ AI ..> LLM : future approved binding
+ Compute ..> EE : unavailable until governed adapter
+ note bottom of Local
+ DEMO is rejected in production.
+ Local success does not prove external readiness.
+ end note
+@enduml

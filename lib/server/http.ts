@@ -15,21 +15,45 @@ export function getErrorMessage(error: unknown): string {
   return error instanceof Error ? error.message : 'Unknown error';
 }
 
-export function apiErrorResponse(error: unknown, context: string): NextResponse {
+export function apiErrorResponse(
+  error: unknown,
+  context: string,
+): NextResponse {
   if (error instanceof AuthorizationError) {
-    return NextResponse.json({ error: error.message }, { status: error.status });
+    return NextResponse.json(
+      { error: error.message },
+      { status: error.status },
+    );
   }
   if (error instanceof FloodInputError || error instanceof RequestInputError) {
     return NextResponse.json({ error: error.message }, { status: 400 });
   }
 
-  console.error(context, error);
+  // Upstream errors may embed credentials, provider URLs or confidential payloads.
+  console.error(context, { code: 'UNEXPECTED_SERVER_ERROR' });
   return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
 }
 
 export async function readJsonBody(request: Request): Promise<unknown> {
+  const reader = request.body?.getReader();
+  const decoder = new TextDecoder();
+  let body = '',
+    bytes = 0;
+  if (reader) {
+    while (true) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      bytes += value.byteLength;
+      if (bytes > 65_536) {
+        await reader.cancel();
+        throw new RequestInputError('JSON request exceeds 64 KiB');
+      }
+      body += decoder.decode(value, { stream: true });
+    }
+    body += decoder.decode();
+  }
   try {
-    return await request.json() as unknown;
+    return JSON.parse(body) as unknown;
   } catch {
     throw new RequestInputError('Request body must be valid JSON');
   }
@@ -39,11 +63,17 @@ export async function readFormDataBody(request: Request): Promise<FormData> {
   try {
     return await request.formData();
   } catch {
-    throw new RequestInputError('Request body must be valid multipart form data');
+    throw new RequestInputError(
+      'Request body must be valid multipart form data',
+    );
   }
 }
 
 export function isUuid(value: unknown): value is string {
-  return typeof value === 'string' &&
-    /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
+  return (
+    typeof value === 'string' &&
+    /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
+      value,
+    )
+  );
 }

@@ -5,7 +5,7 @@ import {
   type FloodWeights,
 } from '../types/flood';
 
-export const FLOOD_MODEL_VERSION = 'p4i-flood-wlc-v1.0.0';
+export const FLOOD_MODEL_VERSION = 'p4i-flood-wlc-experimental-v1.1.0';
 export const FLOOD_DATASET_VERSION_BASE =
   'chirps-daily+esa-worldcover-v200';
 

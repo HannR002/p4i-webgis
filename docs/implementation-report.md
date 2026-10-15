@@ -1,6 +1,36 @@
 # P4I Spatial Analytics implementation report
 
-## Current status — Phase 08, 15 October 2026 (Asia/Jakarta)
+## Current status — Phase 09, 15 October 2026 (Asia/Jakarta)
+
+Phase 09 completes safe local readiness work on `feat/production-readiness-phase09`, based on
+actual Phase 08 `5e9d651`. Earlier stacked PRs are not assumed merged. The comprehensive
+[technical and academic report](P4I_WEBGIS_COMPREHENSIVE_IMPLEMENTATION_REPORT.md) inventories
+all phases, actual feature status, architecture, requirements, actors, workflows, ERD, security,
+commercial limits and the production checklist. Five PlantUML sources and a 20-case
+[human UAT matrix](P4I_UAT_ACCEPTANCE_MATRIX.md) distinguish verified implementation from proposals.
+
+Bounded SHP/GeoJSON imports now validate declared CRS/PRJ, transform coordinates, preserve
+MultiPolygon structure and provenance, enforce archive/geometry limits and support offline dry-run.
+Strict flood values reject NoData coercion; the legacy GEE route/service/initializer fail closed
+until a governed, commercially authorized adapter exists. Credentials alone cannot enable analysis.
+A typed real-planner transport seam uses the existing tool/plan validator and usage contract without
+selecting a vendor or making paid requests. Explicit non-demo provider selection never falls back
+to fabricated output. API body/viewport/concurrency/rate limits and safe error logging reduce abuse.
+
+Baseline lint/typecheck/build and 230 tests passed. Final lint/typecheck/build and **257 tests in
+36 files pass**. Four browser suites pass with actual PDF/PNG/JSON/Markdown downloads, five viewport
+widths, nine Axe audits with zero violations in the tested states, and no page errors. Twelve local
+production-mode checks verify development adapter refusal, anonymous denial and rate limiting.
+PDF text was inspected for branding, DEMO/EXPERIMENTAL status, provenance and limitations.
+See [evidence](evidence/phase-09/verification-summary.json) and [integration runbook](real-gis-integration-readiness.md).
+
+Production is **not ready**: verified DB foundation, actual P4I data/licenses, authorized GEE/LLM,
+durable persistence/quotas, hosting/load/recovery and human UAT remain pending. Phase 08 database
+checks were not rerun because SQL is unchanged. No deployment, merge, external database change,
+national upload, paid external analysis or actual client publication occurred. Scientific method
+validation/ranking remains out of scope; professional deliverable review remains required.
+
+## Previous status — Phase 08, 15 October 2026 (Asia/Jakarta)
 
 Phase 08 prepares and verifies database security locally, without pretending the missing live
 foundation has been recovered. Actual base: Phase 07 `20cbf54`, PR #3 open/draft. Work is on

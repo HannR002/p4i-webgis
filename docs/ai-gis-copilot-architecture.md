@@ -1,5 +1,7 @@
 # Phase 05 — Controlled Autonomous GIS Copilot (Option B)
 
+> Phase 09 update (15 October 2026): Explicit AI_PROVIDER=demo is recommended for local DEMO review; real/unknown/disabled selections never fall back. A typed structured transport seam exists but no real provider is selected or connected. See [current integration readiness](real-gis-integration-readiness.md). Earlier descriptions below are historical where superseded.
+
 Verified 14 October 2026 against the actual Phase 04 head `22cf04c` on
 `feat/ai-gis-copilot-phase05`. This is working development functionality in the existing Map
 Workspace, using its MapRecipe reducer, Leaflet renderer, history, raster provider and Phase 04
