@@ -1,3 +1,4 @@
+import type { AnalysisMapResult } from './computeContracts';
 import type { AppRole } from '../authRoles';
 import type { GISAnalysisConfiguration } from './analysisContracts';
 
@@ -135,6 +136,7 @@ export interface MapRecipe {
     weightMethod?: 'ahp' | 'manual-wlc';
   } | null;
   analysisConfiguration?: GISAnalysisConfiguration;
+  analysisResults?: AnalysisMapResult[];
   provenance: 'human' | 'ai';
 }
 export type MapDocument = MapRecipe;
@@ -254,7 +256,10 @@ export type RasterProcessingResult =
 export type ServiceResult<T> =
   { status: 'ok'; data: T } | { status: 'unavailable'; reason: string };
 export interface RasterAnalysisService {
-  execute(operation: RasterOperation): Promise<RasterProcessingResult>;
+  execute(
+    operation: RasterOperation,
+    options?: { signal?: AbortSignal },
+  ): Promise<RasterProcessingResult>;
 }
 export interface RasterProvider extends RasterAnalysisService {
   id: string;

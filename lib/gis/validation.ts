@@ -1,3 +1,4 @@
+import { parseAnalysisMapResults } from './computeValidation';
 import type {
   Dataset,
   MapAction,
@@ -320,6 +321,9 @@ export function parseRecipe(
       : null,
     provenance: checked.provenance,
     ...(analysisConfiguration ? { analysisConfiguration } : {}),
+    ...(v.analysisResults === undefined
+      ? {}
+      : { analysisResults: parseAnalysisMapResults(v.analysisResults) }),
   };
 }
 function validPeriod(v: unknown): boolean {

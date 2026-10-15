@@ -1960,3 +1960,18 @@
   cursor: pointer;
   padding: 0.4rem 0;
 }
+
+.gis-compute-card { border: 1px solid #cbd5e1; border-radius: 12px; padding: 12px; margin-block: 10px; min-width: 0; overflow-wrap: anywhere; background: #f8fafc; }
+.gis-compute-card dl { display: grid; gap: 4px; margin-block: 12px; }
+.gis-compute-card dt { font-weight: 650; }
+.gis-compute-card dd { margin: 0 0 8px; }
+.gis-compute-card pre { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 12px; max-height: 280px; overflow: auto; }
+.gis-compute-card details { margin-block: 12px; }
+.gis-compute-card summary { cursor: pointer; }
+.gis-compute-card .gis-actions { flex-wrap: wrap; }
+.gis-analysis-legend { border-top: 1px solid #cbd5e1; padding-top: 8px; overflow-wrap: anywhere; }
+.gis-compute-card button { min-height: 40px; padding: 8px 12px; border: 1px solid #94a3b8; border-radius: 8px; background: #fff; color: #14313c; cursor: pointer; text-align: left; }
+.gis-compute-card button:hover:not(:disabled) { background: #e5f4ef; border-color: #0f766e; }
+.gis-compute-card button:disabled { cursor: not-allowed; color: #64748b; background: #f1f5f9; }
+.gis-compute-card button:focus-visible, .gis-compute-card pre:focus-visible { outline: 3px solid #0f766e; outline-offset: 2px; }
+.gis-compute-card .gis-actions { display: flex; gap: 8px; margin-block: 10px; }

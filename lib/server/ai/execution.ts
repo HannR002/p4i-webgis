@@ -1,3 +1,4 @@
+import { applyComputeJob } from '../../gis/computeMap';
 import 'server-only';
 import type {
   AIProvider,
@@ -179,7 +180,7 @@ export async function executeGISPlan(
         throw new AIProviderError(
           'Eksekusi dibatalkan atau batas waktu terlampaui',
         );
-      const expected = preflightTool(step.action, working, env);
+      let expected = preflightTool(step.action, working, env);
       const raw = await runner(step.action, structuredClone(working), env);
       let checked;
       try {
@@ -189,6 +190,17 @@ export async function executeGISPlan(
           step.action.tool,
           env,
         );
+        if (
+          checked.data.kind === 'compute' &&
+          checked.data.job.state === 'COMPLETED'
+        )
+          expected = applyComputeJob(
+            working,
+            checked.data.job,
+            env.catalog,
+            env.context,
+            env.mode,
+          );
         const parsed = parseRecipe(raw.recipe, env.catalog);
         assertRecipeAccess(parsed, env.catalog, env.context);
         if (JSON.stringify(parsed) !== JSON.stringify(expected))

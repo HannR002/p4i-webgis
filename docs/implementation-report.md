@@ -1,6 +1,53 @@
 # P4I Spatial Analytics implementation report
 
-## Current status — Phase 05, 14 October 2026
+
+## Current status — Phase 06, 14 October 2026
+
+Controlled analysis now runs through typed compute jobs in the existing Copilot and GIS
+workspace. The actual base is Phase 05 **989ff92**; its PR #1 remains open/draft. No earlier
+phase is assumed merged. Baseline lint, typecheck, **188 tests/28 files** and build passed.
+
+Phase 06 connects the existing AHP/WLC, native raster classification/normalization/arithmetic,
+zonal statistics, clip/mask descriptors and geometry utilities to a bounded development
+execution service. Actual results update MapRecipe with Undo/Redo, point/line annotations,
+provenance, result legends and PDF metadata. The UI supports request inspection, explicit
+resource approval, cancel/reject, bounded retry, structured results and real Markdown download.
+JSON/PNG/PDF exports retain the computed recipe/results; no second map engine was introduced.
+
+The policy validates configuration/source snapshots, dataset/project access, AOI, units,
+resolution and resource bounds. The exact trusted user/project/operation/arguments/ceiling are
+bound to expiring one-use approval. Every execution reauthorizes. Duplicate requests cannot
+run twice; modified idempotency inputs are rejected. No AI approval tool exists. UNKNOWN
+external cost stays approval-required and unavailable; it never becomes zero-priced compute.
+
+Final Node 22 lint/typecheck/build and **209 tests/30 files** pass (21 new tests). Chromium
+checks pass for automatic geometry, actual 1600-cell approval, categorical native statistics,
+NoData, session isolation, cancellation/retry, unresolved Kecamatan X and UNKNOWN flood cost.
+Computed JSON/PNG/PDF and Markdown downloads succeed; extracted PDF text contains result/job
+provenance and the measured fixture count. Desktop plus 390/768px review shows no horizontal
+overflow; two Phase 06 automated WCAG AA audits and eight Phase 05 regression audits report zero
+violations. Browser page errors and GEE requests are zero. Production explicitly rejects the
+compute development adapter even when the DEMO flag is set.
+
+Browser QA fixed public Host versus Next internal bind-address origin handling and keyboard
+access to scrollable JSON results. Final review tightened provider-result identity checks so
+stale source versions, mismatched bands/coordinates/result kinds cannot become recorded results.
+
+All computations are synthetic DEMO or explicit user-parameter calculations, not real-world
+scientific findings. Flood/data adapters, buffer/vector overlay, automated scenario comparison,
+paid model/provider execution and durable distributed workers remain unavailable. Jobs expire
+in 30 minutes and are lost on process restart. This is not a production queue or billing system.
+Scientific methodology validation/ranking/expert-approval gates are explicitly OUT OF SCOPE.
+No dependencies, migrations, production data changes, paid calls, deployment or automatic merge.
+
+Branch: **feat/ai-gis-analysis-phase06**, stacked on **feat/ai-gis-copilot-phase05**. See the
+[execution workflow and screenshots](ai-gis-analysis-execution.md), [compute governance](commercial-compute-governance.md),
+[verification evidence](evidence/phase-06/verification-summary.json), and [review description](phase-06-pr.md).
+**[Draft PR #2](https://github.com/HannR002/p4i-webgis/pull/2) is open for review** on the Phase 05 base.
+Implementation commit `5a04e30` was pushed normally; no force push, merge or deployment.
+
+
+## Previous status — Phase 05, 14 October 2026
 
 Controlled Autonomous Option B now runs in the existing GIS workspace. Typed provider-neutral
 plans, an immutable policy registry, bounded server tools and runtime output validation connect

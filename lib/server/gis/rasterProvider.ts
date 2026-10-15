@@ -79,14 +79,14 @@ export function getRasterProvider(
         throw new RasterProviderError('Provider sampling gagal');
       }
     },
-    async execute(rawOperation) {
+    async execute(rawOperation, options) {
       const operation = parseRasterOperation(rawOperation);
       if (gis.mode !== 'demo')
         return {
           status: 'unavailable',
           reason: 'Pemrosesan raster provider nyata belum dikonfigurasi',
         };
-      return executeLocal(operation, provider);
+      return executeLocal(operation, provider, options?.signal);
     },
   };
   return provider;
@@ -190,6 +190,7 @@ export async function checkedSample(
 async function executeLocal(
   op: RasterOperation,
   provider: RasterProvider,
+  signal?: AbortSignal,
 ): Promise<RasterProcessingResult> {
   const finish = (
     data: Extract<RasterProcessingResult, { status: 'ok' }>['data'],
@@ -209,6 +210,7 @@ async function executeLocal(
       ...ref,
       coordinate,
       resampling: 'nearest',
+      signal,
     });
     if (result.status !== 'ok')
       throw new RasterProviderError('Sumber raster tidak tersedia');
@@ -260,6 +262,10 @@ async function executeLocal(
       south = -Infinity;
     for (let row = 0; row < metadata.grid.height; row++)
       for (let column = 0; column < metadata.grid.width; column++) {
+        signal?.throwIfAborted();
+        // Yield so deadlines and cancellation can run during bounded local scans.
+        if ((row * metadata.grid.width + column) % 64 === 0)
+          await new Promise<void>((resolve) => setTimeout(resolve, 0));
         const center = cellCenter(metadata.grid, column, row);
         const point = transformCoordinate(
           {

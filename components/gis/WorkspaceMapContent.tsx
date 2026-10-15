@@ -11,6 +11,7 @@ import {
   ScaleControl,
   Polyline,
   CircleMarker,
+  Tooltip,
 } from 'react-leaflet';
 import useSWR from 'swr';
 import { useWorkspaceStore } from '../../store/useWorkspaceStore';
@@ -205,6 +206,34 @@ export default function WorkspaceMapContent({
               </Pane>
             );
           })}
+      {recipe.analysisResults?.map((result) => (
+        <Pane
+          key={result.jobId}
+          name={`result-${result.jobId}`}
+          style={{ zIndex: 480 }}
+        >
+          {result.points.length === 2 && (
+            <Polyline
+              positions={result.points.map(([lng, lat]) => [lat, lng])}
+              pathOptions={{ color: '#7c3aed', weight: 3 }}
+            >
+              <Tooltip>{result.summary}</Tooltip>
+            </Polyline>
+          )}
+          {result.points.map(([lng, lat], i) => (
+            <CircleMarker
+              key={i}
+              center={[lat, lng]}
+              radius={6}
+              pathOptions={{ color: '#7c3aed', fillOpacity: 0.8 }}
+            >
+              <Tooltip>
+                {result.title}: {result.summary}
+              </Tooltip>
+            </CircleMarker>
+          ))}
+        </Pane>
+      ))}
       {tool === 'measure' &&
         points.map((p, i) => (
           <CircleMarker

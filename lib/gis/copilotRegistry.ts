@@ -1,5 +1,14 @@
+import { COMPUTE_TOOLS, type ComputeCostClass } from './computeContracts';
 import type { GISToolName, GISToolRegistry, GISRisk } from './copilotContracts';
 const definitions: [GISToolName, GISRisk, string, boolean?][] = [
+  [
+    'runConfiguredAnalysis',
+    'map-session',
+    'Komputasi konfigurasi dengan kebijakan biaya dinamis',
+  ],
+  ['calculateArea', 'map-session', 'Luas AOI fixture dengan batas sumber daya'],
+  ['calculateDistance', 'map-session', 'Jarak dua titik EPSG:4326'],
+  ['spatialSelection', 'map-session', 'Seleksi polygon fixture oleh titik'],
   ['searchDatasetCatalog', 'read', 'Cari katalog yang diizinkan'],
   ['listAvailableLayers', 'read', 'Daftar dataset tersedia'],
   ['getDatasetMetadata', 'read', 'Metadata sumber dan raster'],
@@ -60,7 +69,21 @@ export const GIS_TOOL_REGISTRY: GISToolRegistry = Object.freeze(
   Object.fromEntries(
     definitions.map(([name, level, description, available = true]) => [
       name,
-      Object.freeze({ name, level, description, available }),
+      Object.freeze({
+        name,
+        level,
+        description,
+        available,
+        costClass: ((COMPUTE_TOOLS as readonly string[]).includes(name)
+          ? 'LOW_COST_ANALYSIS'
+          : name === 'runFloodAnalysis'
+            ? 'APPROVAL_REQUIRED_ANALYSIS'
+            : level === 'approval-required'
+              ? 'PERSISTENT_SENSITIVE_ACTION'
+              : level === 'read'
+                ? 'READ_ONLY'
+                : 'REVERSIBLE_MAP_ACTION') as ComputeCostClass,
+      }),
     ]),
   ) as Record<GISToolName, GISToolRegistry[GISToolName]>,
 );
