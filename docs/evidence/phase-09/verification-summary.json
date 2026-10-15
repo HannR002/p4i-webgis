@@ -77,5 +77,12 @@
     "Approved LLM transport/provider and privacy terms",
     "Durable jobs, usage and deliverables",
     "Hosting, load, restore and human UAT"
-  ]
+  ],
+  "implementationCommit": "4696fde0ce8a835c2fff99d3e17578cad6200d3d",
+  "pullRequest": {
+    "number": 5,
+    "url": "https://github.com/HannR002/p4i-webgis/pull/5",
+    "draft": true,
+    "base": "feat/postgis-staging-phase08"
+  }
 }

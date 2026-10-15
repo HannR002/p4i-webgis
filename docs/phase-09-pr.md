@@ -25,3 +25,5 @@ Production remains blocked by verified schema, licensed P4I data, authorized GEE
 durable jobs/deliverables/usage, hosting/load/recovery and human UAT. No deployment, merge, paid
 request, national upload or actual client publication. Scientific methodology validation/ranking
 is out of scope. Stacked on `feat/postgis-staging-phase08` (PR #4); review against that branch.
+
+Review: [Draft PR #5](https://github.com/HannR002/p4i-webgis/pull/5), base `feat/postgis-staging-phase08`.

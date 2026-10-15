@@ -30,6 +30,9 @@ checks were not rerun because SQL is unchanged. No deployment, merge, external d
 national upload, paid external analysis or actual client publication occurred. Scientific method
 validation/ranking remains out of scope; professional deliverable review remains required.
 
+**[Draft PR #5](https://github.com/HannR002/p4i-webgis/pull/5) is open** against Phase 08. Implementation `4696fde`
+was pushed normally; no merge or deployment.
+
 ## Previous status — Phase 08, 15 October 2026 (Asia/Jakarta)
 
 Phase 08 prepares and verifies database security locally, without pretending the missing live
