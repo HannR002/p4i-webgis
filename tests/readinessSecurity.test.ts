@@ -1,15 +1,10 @@
 import { describe, it, expect, vi, afterEach } from 'vitest';
 vi.mock('server-only', () => ({}));
 const external = vi.hoisted(() => ({
-  authenticate: vi.fn(),
-  initialize: vi.fn(),
+  network: vi.fn(() => {
+    throw new Error('Unexpected external request');
+  }),
   database: vi.fn(),
-}));
-vi.mock('@google/earthengine', () => ({
-  default: {
-    data: { authenticateViaPrivateKey: external.authenticate },
-    initialize: external.initialize,
-  },
 }));
 vi.mock('../lib/server/database', () => ({
   getDatabaseRepositories: external.database,
@@ -30,10 +25,12 @@ import {
 import { apiErrorResponse, readJsonBody } from '../lib/server/http';
 afterEach(() => {
   vi.unstubAllEnvs();
+  vi.unstubAllGlobals();
   vi.restoreAllMocks();
 });
 describe('external execution and NoData safeguards', () => {
   it('never treats configured credentials or client confirmation as external execution permission', async () => {
+    vi.stubGlobal('fetch', external.network);
     vi.stubEnv('GEE_PROJECT_ID', 'configured');
     vi.stubEnv('GEE_SERVICE_ACCOUNT_JSON', '{}');
     expect(() => initializeEarthEngine()).toThrow(/belum diotorisasi/);
@@ -45,8 +42,7 @@ describe('external execution and NoData safeguards', () => {
         'actor',
       ),
     ).rejects.toThrow(/belum diotorisasi/);
-    expect(external.authenticate).not.toHaveBeenCalled();
-    expect(external.initialize).not.toHaveBeenCalled();
+    expect(external.network).not.toHaveBeenCalled();
     expect(external.database).not.toHaveBeenCalled();
   });
   it.each([null, undefined, '', false, '0', NaN, Infinity])(

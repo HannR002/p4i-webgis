@@ -1,0 +1,18 @@
+{
+  "mode": "LOCAL_NEXT_START",
+  "results": [
+    {
+      "check": "local image optimization",
+      "status": 200,
+      "width": 640
+    },
+    {
+      "check": "disallowed remote image",
+      "status": 400
+    },
+    {
+      "check": "invalid image width",
+      "status": 400
+    }
+  ]
+}

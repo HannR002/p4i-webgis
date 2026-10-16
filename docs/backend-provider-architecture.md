@@ -1,5 +1,11 @@
 # Backend provider architecture and security review
 
+> Phase 12 (16 October 2026): The dormant Earth Engine SDK/auth chain is removed from
+> the application manifest, installation and build. The legacy flood service preserves
+> its DTOs behind an unavailable provider; no database/provider is activated. Earlier
+> GEE execution diagrams below are historical/future design. See the
+> [isolation decision and reactivation requirements](PHASE_12_RESIDUAL_DEPENDENCY_RESOLUTION.md).
+
 ## Phase 08 database reproducibility and security — 15 October 2026
 
 The active provider remains Supabase; no Neon/Nhost migration or external database mutation

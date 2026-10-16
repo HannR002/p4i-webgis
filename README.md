@@ -22,6 +22,11 @@ installs use the resulting lockfile. See the
 for unresolved advisories and exact verification evidence. Passing local checks
 does not establish Hostinger compatibility or authorize production deployment.
 
+Phase 12 removes the dormant Earth Engine SDK from the application installation.
+The legacy flood endpoint remains unavailable; credentials cannot activate it.
+See the [current isolation and residual-risk report](docs/PHASE_12_RESIDUAL_DEPENDENCY_RESOLUTION.md)
+before any future GEE adapter work. Historical code is preserved as a non-runtime reference.
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.

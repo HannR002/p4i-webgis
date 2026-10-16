@@ -1,0 +1,229 @@
+{
+  "@google/earthengine": {
+    "tags": {
+      "latest": "1.7.48"
+    },
+    "versions": {
+      "1.7.43": {
+        "version": "1.7.43",
+        "engines": null,
+        "dependencies": {
+          "googleapis": "^92.0.0",
+          "xmlhttprequest": "^1.8.0"
+        },
+        "deprecated": null,
+        "repository": {
+          "url": "git+https://github.com/google/earthengine-api.git",
+          "type": "git"
+        }
+      },
+      "1.7.48": {
+        "version": "1.7.48",
+        "engines": null,
+        "dependencies": {
+          "googleapis": "^92.0.0",
+          "xmlhttprequest": "^1.8.0"
+        },
+        "deprecated": null,
+        "repository": {
+          "url": "git+https://github.com/google/earthengine-api.git",
+          "type": "git"
+        }
+      }
+    }
+  },
+  "node-forge": {
+    "tags": {
+      "latest": "1.4.0"
+    },
+    "versions": {
+      "1.4.0": {
+        "version": "1.4.0",
+        "engines": {
+          "node": ">= 6.13.0"
+        },
+        "dependencies": null,
+        "deprecated": null,
+        "repository": {
+          "type": "git",
+          "url": "git+https://github.com/digitalbazaar/forge.git"
+        }
+      }
+    }
+  },
+  "braces": {
+    "tags": {
+      "latest": "3.0.3"
+    },
+    "versions": {
+      "3.0.3": {
+        "version": "3.0.3",
+        "engines": {
+          "node": ">=8"
+        },
+        "dependencies": {
+          "fill-range": "^7.1.1"
+        },
+        "deprecated": null,
+        "repository": {
+          "url": "git+https://github.com/micromatch/braces.git",
+          "type": "git"
+        }
+      }
+    }
+  },
+  "micromatch": {
+    "tags": {
+      "latest": "4.0.8"
+    },
+    "versions": {
+      "4.0.8": {
+        "version": "4.0.8",
+        "engines": {
+          "node": ">=8.6"
+        },
+        "dependencies": {
+          "braces": "^3.0.3",
+          "picomatch": "^2.3.1"
+        },
+        "deprecated": null,
+        "repository": {
+          "url": "git+https://github.com/micromatch/micromatch.git",
+          "type": "git"
+        }
+      }
+    }
+  },
+  "uuid": {
+    "tags": {
+      "legacy-12": "12.0.1",
+      "legacy-11": "11.1.1",
+      "legacy-13": "13.0.2",
+      "latest": "14.0.3"
+    },
+    "versions": {
+      "11.1.1": {
+        "version": "11.1.1",
+        "engines": null,
+        "dependencies": null,
+        "deprecated": null,
+        "repository": {
+          "url": "git+https://github.com/uuidjs/uuid.git",
+          "type": "git"
+        }
+      },
+      "14.0.3": {
+        "version": "14.0.3",
+        "engines": null,
+        "dependencies": null,
+        "deprecated": null,
+        "repository": {
+          "url": "git+https://github.com/uuidjs/uuid.git",
+          "type": "git"
+        }
+      },
+      "8.3.2": {
+        "version": "8.3.2",
+        "engines": null,
+        "dependencies": null,
+        "deprecated": "uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).",
+        "repository": {
+          "url": "git+https://github.com/uuidjs/uuid.git",
+          "type": "git"
+        }
+      }
+    }
+  },
+  "@next/eslint-plugin-next": {
+    "name": "@next/eslint-plugin-next",
+    "version": "16.4.2",
+    "distTags": {
+      "next-11": "11.1.4",
+      "next-12-2-6": "12.2.6",
+      "next-14-1": "14.1.1",
+      "rc": "15.0.0-rc.1",
+      "next-13": "13.5.11",
+      "next-12-3-2": "12.3.7",
+      "beta": "16.0.0-beta.0",
+      "next-14": "14.2.35",
+      "next-15-3": "15.3.9",
+      "next-15-2": "15.2.9",
+      "next-15-0": "15.1.12",
+      "next-15-0-0": "15.0.8",
+      "preview": "16.3.0-preview.10",
+      "backport": "15.5.28",
+      "canary": "16.5.0-canary.15",
+      "latest": "16.4.2"
+    },
+    "dependencies": {
+      "fast-glob": "3.3.1",
+      "@eslint-community/eslint-utils": "4.9.1"
+    },
+    "engines": null,
+    "repository": {
+      "url": "git+https://github.com/vercel/next.js.git",
+      "directory": "packages/eslint-plugin-next"
+    }
+  },
+  "fast-glob": {
+    "name": "fast-glob",
+    "version": "3.3.3",
+    "distTags": {
+      "next": "2.0.2",
+      "beta": "3.2.1-beta.1",
+      "latest": "3.3.3"
+    },
+    "dependencies": {
+      "@nodelib/fs.stat": "^2.0.2",
+      "@nodelib/fs.walk": "^1.2.3",
+      "glob-parent": "^5.1.2",
+      "merge2": "^1.3.0",
+      "micromatch": "^4.0.8"
+    },
+    "engines": {
+      "node": ">=8.6.0"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/mrmlnc/fast-glob.git"
+    }
+  },
+  "eslint-config-next": {
+    "name": "eslint-config-next",
+    "version": "16.4.2",
+    "distTags": {
+      "next-11": "11.1.4",
+      "next-12-2-6": "12.2.6",
+      "next-14-1": "14.1.1",
+      "rc": "15.0.0-rc.1",
+      "next-13": "13.5.11",
+      "next-12-3-2": "12.3.7",
+      "beta": "16.0.0-beta.0",
+      "next-14": "14.2.35",
+      "next-15-3": "15.3.9",
+      "next-15-2": "15.2.9",
+      "next-15-0": "15.1.12",
+      "next-15-0-0": "15.0.8",
+      "preview": "16.3.0-preview.10",
+      "backport": "15.5.28",
+      "canary": "16.5.0-canary.15",
+      "latest": "16.4.2"
+    },
+    "dependencies": {
+      "globals": "16.4.0",
+      "typescript-eslint": "^8.56.0",
+      "eslint-plugin-react": "^7.37.0",
+      "eslint-plugin-import": "^2.32.0",
+      "eslint-plugin-jsx-a11y": "^6.10.0",
+      "@next/eslint-plugin-next": "16.4.2",
+      "eslint-plugin-react-hooks": "^7.1.0",
+      "eslint-import-resolver-node": "^0.3.6",
+      "eslint-import-resolver-typescript": "^3.5.2"
+    },
+    "engines": null,
+    "repository": {
+      "url": "git+https://github.com/vercel/next.js.git",
+      "directory": "packages/eslint-config-next"
+    }
+  }
+}

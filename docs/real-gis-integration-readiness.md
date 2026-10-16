@@ -1,5 +1,10 @@
 # Real GIS and AI integration readiness — Phase 09
 
+> Phase 12 update (16 October 2026): The application no longer installs the dormant
+> Earth Engine SDK. Real execution still fails closed, and the former implementation
+> is a non-runtime reference. Credentials alone cannot reactivate it. Follow the
+> [current secure-adapter activation requirements](PHASE_12_RESIDUAL_DEPENDENCY_RESOLUTION.md).
+
 15 October 2026, Asia/Jakarta. This is an integration runbook, not authorization to upload,
 run billable services, publish client data or deploy. No real P4I dataset was supplied.
 

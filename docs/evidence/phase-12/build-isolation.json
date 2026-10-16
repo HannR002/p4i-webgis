@@ -1,0 +1,25 @@
+{
+  "mode": "INSTALL_AND_NEXT_BUILD",
+  "root": "/workspace/p4i-webgis",
+  "forbidden": [
+    "@google/earthengine",
+    "googleapis",
+    "googleapis-common",
+    "google-auth-library",
+    "gtoken",
+    "google-p12-pem",
+    "node-forge",
+    "uuid"
+  ],
+  "lockedPackages": 668,
+  "installedPackages": 541,
+  "forbiddenInstalledPackages": [],
+  "bundle": {
+    "inspected": true,
+    "files": 686,
+    "traces": 43,
+    "tracedFiles": 5345,
+    "matches": []
+  },
+  "scope": "Application manifest, complete lockfile, recursive local node_modules and optionally fresh Next server/static output; host-global tooling is outside the deployable graph"
+}

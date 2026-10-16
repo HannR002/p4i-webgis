@@ -1,0 +1,455 @@
+{
+  "removedPackages": 35,
+  "versionChangesOfRetainedPackages": [],
+  "lockfileSha256": "77d91d2fbbd27ff937d13a13b398c4b9f52be2975dde636e61884a1f6c39db80",
+  "changes": [
+    {
+      "path": "",
+      "beforeVersion": "0.1.0",
+      "afterVersion": "0.1.0",
+      "removed": false,
+      "beforeDev": false,
+      "afterDev": false
+    },
+    {
+      "path": "node_modules/@google/earthengine",
+      "beforeVersion": "1.7.43",
+      "afterVersion": null,
+      "removed": true,
+      "beforeDev": false,
+      "afterDev": null
+    },
+    {
+      "path": "node_modules/abort-controller",
+      "beforeVersion": "3.0.0",
+      "afterVersion": null,
+      "removed": true,
+      "beforeDev": false,
+      "afterDev": null
+    },
+    {
+      "path": "node_modules/agent-base",
+      "beforeVersion": "6.0.2",
+      "afterVersion": null,
+      "removed": true,
+      "beforeDev": false,
+      "afterDev": null
+    },
+    {
+      "path": "node_modules/arrify",
+      "beforeVersion": "2.0.1",
+      "afterVersion": null,
+      "removed": true,
+      "beforeDev": false,
+      "afterDev": null
+    },
+    {
+      "path": "node_modules/base64-js",
+      "beforeVersion": "1.5.1",
+      "afterVersion": null,
+      "removed": true,
+      "beforeDev": false,
+      "afterDev": null
+    },
+    {
+      "path": "node_modules/bignumber.js",
+      "beforeVersion": "9.3.1",
+      "afterVersion": null,
+      "removed": true,
+      "beforeDev": false,
+      "afterDev": null
+    },
+    {
+      "path": "node_modules/buffer-equal-constant-time",
+      "beforeVersion": "1.0.1",
+      "afterVersion": null,
+      "removed": true,
+      "beforeDev": false,
+      "afterDev": null
+    },
+    {
+      "path": "node_modules/call-bind-apply-helpers",
+      "beforeVersion": "1.0.2",
+      "afterVersion": "1.0.2",
+      "removed": false,
+      "beforeDev": false,
+      "afterDev": true
+    },
+    {
+      "path": "node_modules/call-bound",
+      "beforeVersion": "1.0.4",
+      "afterVersion": "1.0.4",
+      "removed": false,
+      "beforeDev": false,
+      "afterDev": true
+    },
+    {
+      "path": "node_modules/debug",
+      "beforeVersion": "4.4.3",
+      "afterVersion": "4.4.3",
+      "removed": false,
+      "beforeDev": false,
+      "afterDev": true
+    },
+    {
+      "path": "node_modules/dunder-proto",
+      "beforeVersion": "1.0.1",
+      "afterVersion": "1.0.1",
+      "removed": false,
+      "beforeDev": false,
+      "afterDev": true
+    },
+    {
+      "path": "node_modules/ecdsa-sig-formatter",
+      "beforeVersion": "1.0.11",
+      "afterVersion": null,
+      "removed": true,
+      "beforeDev": false,
+      "afterDev": null
+    },
+    {
+      "path": "node_modules/es-define-property",
+      "beforeVersion": "1.0.1",
+      "afterVersion": "1.0.1",
+      "removed": false,
+      "beforeDev": false,
+      "afterDev": true
+    },
+    {
+      "path": "node_modules/es-errors",
+      "beforeVersion": "1.3.0",
+      "afterVersion": "1.3.0",
+      "removed": false,
+      "beforeDev": false,
+      "afterDev": true
+    },
+    {
+      "path": "node_modules/es-object-atoms",
+      "beforeVersion": "1.1.2",
+      "afterVersion": "1.1.2",
+      "removed": false,
+      "beforeDev": false,
+      "afterDev": true
+    },
+    {
+      "path": "node_modules/event-target-shim",
+      "beforeVersion": "5.0.1",
+      "afterVersion": null,
+      "removed": true,
+      "beforeDev": false,
+      "afterDev": null
+    },
+    {
+      "path": "node_modules/extend",
+      "beforeVersion": "3.0.2",
+      "afterVersion": null,
+      "removed": true,
+      "beforeDev": false,
+      "afterDev": null
+    },
+    {
+      "path": "node_modules/fast-text-encoding",
+      "beforeVersion": "1.0.6",
+      "afterVersion": null,
+      "removed": true,
+      "beforeDev": false,
+      "afterDev": null
+    },
+    {
+      "path": "node_modules/function-bind",
+      "beforeVersion": "1.1.2",
+      "afterVersion": "1.1.2",
+      "removed": false,
+      "beforeDev": false,
+      "afterDev": true
+    },
+    {
+      "path": "node_modules/gaxios",
+      "beforeVersion": "4.3.3",
+      "afterVersion": null,
+      "removed": true,
+      "beforeDev": false,
+      "afterDev": null
+    },
+    {
+      "path": "node_modules/gcp-metadata",
+      "beforeVersion": "4.3.1",
+      "afterVersion": null,
+      "removed": true,
+      "beforeDev": false,
+      "afterDev": null
+    },
+    {
+      "path": "node_modules/get-intrinsic",
+      "beforeVersion": "1.3.0",
+      "afterVersion": "1.3.0",
+      "removed": false,
+      "beforeDev": false,
+      "afterDev": true
+    },
+    {
+      "path": "node_modules/get-proto",
+      "beforeVersion": "1.0.1",
+      "afterVersion": "1.0.1",
+      "removed": false,
+      "beforeDev": false,
+      "afterDev": true
+    },
+    {
+      "path": "node_modules/google-auth-library",
+      "beforeVersion": "7.14.1",
+      "afterVersion": null,
+      "removed": true,
+      "beforeDev": false,
+      "afterDev": null
+    },
+    {
+      "path": "node_modules/google-auth-library/node_modules/lru-cache",
+      "beforeVersion": "6.0.0",
+      "afterVersion": null,
+      "removed": true,
+      "beforeDev": false,
+      "afterDev": null
+    },
+    {
+      "path": "node_modules/google-auth-library/node_modules/yallist",
+      "beforeVersion": "4.0.0",
+      "afterVersion": null,
+      "removed": true,
+      "beforeDev": false,
+      "afterDev": null
+    },
+    {
+      "path": "node_modules/google-p12-pem",
+      "beforeVersion": "3.1.4",
+      "afterVersion": null,
+      "removed": true,
+      "beforeDev": false,
+      "afterDev": null
+    },
+    {
+      "path": "node_modules/googleapis",
+      "beforeVersion": "92.0.0",
+      "afterVersion": null,
+      "removed": true,
+      "beforeDev": false,
+      "afterDev": null
+    },
+    {
+      "path": "node_modules/googleapis-common",
+      "beforeVersion": "5.1.0",
+      "afterVersion": null,
+      "removed": true,
+      "beforeDev": false,
+      "afterDev": null
+    },
+    {
+      "path": "node_modules/gopd",
+      "beforeVersion": "1.2.0",
+      "afterVersion": "1.2.0",
+      "removed": false,
+      "beforeDev": false,
+      "afterDev": true
+    },
+    {
+      "path": "node_modules/gtoken",
+      "beforeVersion": "5.3.2",
+      "afterVersion": null,
+      "removed": true,
+      "beforeDev": false,
+      "afterDev": null
+    },
+    {
+      "path": "node_modules/has-symbols",
+      "beforeVersion": "1.1.0",
+      "afterVersion": "1.1.0",
+      "removed": false,
+      "beforeDev": false,
+      "afterDev": true
+    },
+    {
+      "path": "node_modules/hasown",
+      "beforeVersion": "2.0.4",
+      "afterVersion": "2.0.4",
+      "removed": false,
+      "beforeDev": false,
+      "afterDev": true
+    },
+    {
+      "path": "node_modules/https-proxy-agent",
+      "beforeVersion": "5.0.1",
+      "afterVersion": null,
+      "removed": true,
+      "beforeDev": false,
+      "afterDev": null
+    },
+    {
+      "path": "node_modules/is-stream",
+      "beforeVersion": "2.0.1",
+      "afterVersion": null,
+      "removed": true,
+      "beforeDev": false,
+      "afterDev": null
+    },
+    {
+      "path": "node_modules/json-bigint",
+      "beforeVersion": "1.0.0",
+      "afterVersion": null,
+      "removed": true,
+      "beforeDev": false,
+      "afterDev": null
+    },
+    {
+      "path": "node_modules/jwa",
+      "beforeVersion": "2.0.1",
+      "afterVersion": null,
+      "removed": true,
+      "beforeDev": false,
+      "afterDev": null
+    },
+    {
+      "path": "node_modules/jws",
+      "beforeVersion": "4.0.1",
+      "afterVersion": null,
+      "removed": true,
+      "beforeDev": false,
+      "afterDev": null
+    },
+    {
+      "path": "node_modules/math-intrinsics",
+      "beforeVersion": "1.1.0",
+      "afterVersion": "1.1.0",
+      "removed": false,
+      "beforeDev": false,
+      "afterDev": true
+    },
+    {
+      "path": "node_modules/ms",
+      "beforeVersion": "2.1.3",
+      "afterVersion": "2.1.3",
+      "removed": false,
+      "beforeDev": false,
+      "afterDev": true
+    },
+    {
+      "path": "node_modules/node-fetch",
+      "beforeVersion": "2.7.0",
+      "afterVersion": null,
+      "removed": true,
+      "beforeDev": false,
+      "afterDev": null
+    },
+    {
+      "path": "node_modules/node-forge",
+      "beforeVersion": "1.4.0",
+      "afterVersion": null,
+      "removed": true,
+      "beforeDev": false,
+      "afterDev": null
+    },
+    {
+      "path": "node_modules/object-inspect",
+      "beforeVersion": "1.13.4",
+      "afterVersion": "1.13.4",
+      "removed": false,
+      "beforeDev": false,
+      "afterDev": true
+    },
+    {
+      "path": "node_modules/qs",
+      "beforeVersion": "6.16.0",
+      "afterVersion": null,
+      "removed": true,
+      "beforeDev": false,
+      "afterDev": null
+    },
+    {
+      "path": "node_modules/safe-buffer",
+      "beforeVersion": "5.2.1",
+      "afterVersion": null,
+      "removed": true,
+      "beforeDev": false,
+      "afterDev": null
+    },
+    {
+      "path": "node_modules/side-channel",
+      "beforeVersion": "1.1.1",
+      "afterVersion": "1.1.1",
+      "removed": false,
+      "beforeDev": false,
+      "afterDev": true
+    },
+    {
+      "path": "node_modules/side-channel-list",
+      "beforeVersion": "1.0.1",
+      "afterVersion": "1.0.1",
+      "removed": false,
+      "beforeDev": false,
+      "afterDev": true
+    },
+    {
+      "path": "node_modules/side-channel-map",
+      "beforeVersion": "1.0.1",
+      "afterVersion": "1.0.1",
+      "removed": false,
+      "beforeDev": false,
+      "afterDev": true
+    },
+    {
+      "path": "node_modules/side-channel-weakmap",
+      "beforeVersion": "1.0.2",
+      "afterVersion": "1.0.2",
+      "removed": false,
+      "beforeDev": false,
+      "afterDev": true
+    },
+    {
+      "path": "node_modules/tr46",
+      "beforeVersion": "0.0.3",
+      "afterVersion": null,
+      "removed": true,
+      "beforeDev": false,
+      "afterDev": null
+    },
+    {
+      "path": "node_modules/url-template",
+      "beforeVersion": "2.0.8",
+      "afterVersion": null,
+      "removed": true,
+      "beforeDev": false,
+      "afterDev": null
+    },
+    {
+      "path": "node_modules/uuid",
+      "beforeVersion": "8.3.2",
+      "afterVersion": null,
+      "removed": true,
+      "beforeDev": false,
+      "afterDev": null
+    },
+    {
+      "path": "node_modules/webidl-conversions",
+      "beforeVersion": "3.0.1",
+      "afterVersion": null,
+      "removed": true,
+      "beforeDev": false,
+      "afterDev": null
+    },
+    {
+      "path": "node_modules/whatwg-url",
+      "beforeVersion": "5.0.0",
+      "afterVersion": null,
+      "removed": true,
+      "beforeDev": false,
+      "afterDev": null
+    },
+    {
+      "path": "node_modules/xmlhttprequest",
+      "beforeVersion": "1.8.0",
+      "afterVersion": null,
+      "removed": true,
+      "beforeDev": false,
+      "afterDev": null
+    }
+  ]
+}

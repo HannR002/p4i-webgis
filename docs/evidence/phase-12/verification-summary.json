@@ -1,0 +1,90 @@
+{
+  "phase": 12,
+  "date": "2026-10-16",
+  "timezone": "Asia/Jakarta",
+  "base": "32dbdbe896f94ca8b14c532611a0c6796e475c59",
+  "branch": "security/phase12-gee-dependency-isolation",
+  "node": "22.23.3",
+  "npm": "10.9.9",
+  "checks": {
+    "cleanFullInstall": "PASS",
+    "cleanProductionOnlyInstall": "PASS",
+    "lint": "PASS",
+    "typecheck": "PASS",
+    "testFiles": 39,
+    "tests": 269,
+    "priorTestsRetained": 264,
+    "build": "PASS",
+    "browserSuitesPassed": 9,
+    "axeAudits": 39,
+    "axeViolations": 0,
+    "localApiSecurityChecks": 12,
+    "imageFrameworkChecks": 3,
+    "databaseChecks": 340,
+    "databaseFreshCycles": 2,
+    "isolationNegativeControls": 4,
+    "inspectedBuildFiles": 686,
+    "dependencyTraces": 43,
+    "fullInstalledPackagesInspected": 541,
+    "productionInstalledPackagesInspected": 176,
+    "fullAuditExit": 1,
+    "productionAuditExit": 0,
+    "fullTreeExit": 0,
+    "productionTreeExit": 0
+  },
+  "audit": {
+    "initial-audit.json": {
+      "info": 0,
+      "low": 0,
+      "moderate": 2,
+      "high": 11,
+      "critical": 0,
+      "total": 13
+    },
+    "initial-audit-production.json": {
+      "info": 0,
+      "low": 0,
+      "moderate": 2,
+      "high": 6,
+      "critical": 0,
+      "total": 8
+    },
+    "final-audit.json": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 5,
+      "critical": 0,
+      "total": 5
+    },
+    "final-audit-production.json": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    }
+  },
+  "recommendations": {
+    "mergeIntoMain": "NO_GO_PENDING_ACCOUNTABLE_DEV_BRACES_REVIEW_OR_PATCH",
+    "focusedIsolationPR": "READY_FOR_REVIEW_NOT_AUTO_APPROVED",
+    "production": "NO_GO"
+  },
+  "externalDatabaseOperations": false,
+  "paidProviderCalls": false,
+  "realGeeAuthentication": false,
+  "realGeeComputation": false,
+  "deployment": false,
+  "merge": false,
+  "visibilityChanged": false,
+  "databaseMode": "LOCAL_SYNTHETIC_FOUNDATION_ONLY",
+  "humanUAT": "NOT_RUN",
+  "penetrationTest": "NOT_PERFORMED",
+  "knownLimitations": [
+    "Dev-only braces High still unpatched; no security waiver",
+    "Host-global tooling uuid outside application scope",
+    "npm reports two platform-optional Sharp artifacts extraneous, no missing/invalid edges",
+    "No real Supabase/data/GEE/LLM/Hostinger acceptance verified"
+  ]
+}

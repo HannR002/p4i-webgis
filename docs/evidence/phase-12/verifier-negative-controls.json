@@ -1,0 +1,26 @@
+[
+  {
+    "case": "manifest",
+    "exitCode": 1,
+    "expectedRefusalObserved": true,
+    "successEvidenceWritten": false
+  },
+  {
+    "case": "lock",
+    "exitCode": 1,
+    "expectedRefusalObserved": true,
+    "successEvidenceWritten": false
+  },
+  {
+    "case": "installed",
+    "exitCode": 1,
+    "expectedRefusalObserved": true,
+    "successEvidenceWritten": false
+  },
+  {
+    "case": "missing-build",
+    "exitCode": 1,
+    "expectedRefusalObserved": true,
+    "successEvidenceWritten": false
+  }
+]

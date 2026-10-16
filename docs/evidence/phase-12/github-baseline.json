@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-16",
+  "pullRequests": [
+    {
+      "number": 6,
+      "url": "https://github.com/HannR002/p4i-webgis/pull/6",
+      "state": "open",
+      "draft": true,
+      "merged": false,
+      "head": "integration/p4i-webgis-phase01-09",
+      "headSha": "d1400a2ab363a908d49e468b51786ca5c60ce85b",
+      "base": "main"
+    },
+    {
+      "number": 7,
+      "url": "https://github.com/HannR002/p4i-webgis/pull/7",
+      "state": "open",
+      "draft": true,
+      "merged": false,
+      "head": "security/phase11-dependency-remediation",
+      "headSha": "32dbdbe896f94ca8b14c532611a0c6796e475c59",
+      "base": "integration/p4i-webgis-phase01-09"
+    }
+  ],
+  "phase11ReviewStates": [],
+  "phase11ApprovalAssumed": false
+}

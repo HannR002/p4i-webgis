@@ -1,0 +1,85 @@
+[
+  {
+    "file": "node_modules/braces/lib/compile.js",
+    "sha256": "dc98f22eee3d511785d92a00758d5f0d48efed5f5813bdecc2de430c529b5c9f",
+    "relevantLines": [
+      {
+        "line": 7,
+        "text": "const walk = (node, parent = {}) => {"
+      },
+      {
+        "line": 50,
+        "text": "output += walk(child, node);"
+      },
+      {
+        "line": 57,
+        "text": "return walk(ast);"
+      }
+    ]
+  },
+  {
+    "file": "node_modules/braces/lib/expand.js",
+    "sha256": "41ccc196ebfa7b7781a634e721eb744e4e7bcb54cba427a7e3d6806a1b9e58f7",
+    "relevantLines": [
+      {
+        "line": 36,
+        "text": "const walk = (node, parent = {}) => {"
+      },
+      {
+        "line": 103,
+        "text": "walk(child, node);"
+      }
+    ]
+  },
+  {
+    "file": "node_modules/@next/eslint-plugin-next/dist/utils/get-root-dirs.js",
+    "sha256": "886677432990a735e5ebdfb345ff1cbd40e264f9947a8432eeeb254b3a926bde",
+    "relevantLines": [
+      {
+        "line": 14,
+        "text": "*/ var processRootDir = function(rootDir) {"
+      },
+      {
+        "line": 15,
+        "text": "return (0, _fastglob.globSync)(rootDir.replace(/\\\\/g, '/'), {"
+      },
+      {
+        "line": 20,
+        "text": "var rootDirs = ["
+      },
+      {
+        "line": 23,
+        "text": "var nextSettings = context.settings.next || {};"
+      },
+      {
+        "line": 24,
+        "text": "var rootDir = nextSettings.rootDir;"
+      },
+      {
+        "line": 25,
+        "text": "if (typeof rootDir === 'string') {"
+      },
+      {
+        "line": 26,
+        "text": "rootDirs = processRootDir(rootDir);"
+      },
+      {
+        "line": 27,
+        "text": "} else if (Array.isArray(rootDir)) {"
+      },
+      {
+        "line": 28,
+        "text": "rootDirs = rootDir.map(function(dir) {"
+      },
+      {
+        "line": 32,
+        "text": "return rootDirs;"
+      }
+    ]
+  },
+  {
+    "file": "eslint.config.mjs",
+    "sha256": "870f1adccecf3051cbcd9fd307cef51d7633cf510979c181a81f4b1797273493",
+    "relevantLines": []
+  }
+]
