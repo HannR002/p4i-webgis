@@ -1,0 +1,63 @@
+(node:102432) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+> p4i-webgis@0.1.0 test
+> vitest run tests/geeIsolation.test.ts tests/dependencyRuntime.test.ts tests/readinessSecurity.test.ts tests/floodAnalysisRoute.test.ts
+
+(node:102446) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ RUN  v4.1.12 /workspace/p4i-webgis
+
+(node:102458) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:102459) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:102460) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:102497) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ❯ tests/geeIsolation.test.ts (5 tests | 3 failed) 244ms
+     × module load, initializer, service and adapter refuse in development even with DEMO flags 6ms
+     × module load, initializer, service and adapter refuse in production even with DEMO flags 2ms
+     × does not install or declare any member of the vulnerable GEE chain 11ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/geeIsolation.test.ts > Earth Engine isolation > module load, initializer, service and adapter refuse in development even with DEMO flags
+ FAIL  tests/geeIsolation.test.ts > Earth Engine isolation > module load, initializer, service and adapter refuse in production even with DEMO flags
+TypeError: 'process.env' only accepts a configurable, writable, and enumerable data descriptor
+ ❯ tests/geeIsolation.test.ts:80:10
+     78|     'module load, initializer, service and adapter refuse in %s even w…
+     79|     async (mode) => {
+     80|       vi.stubEnv('NODE_ENV', mode);
+       |          ^
+     81|       vi.stubEnv('GIS_DEMO_MODE', 'true');
+     82|       vi.stubEnv('AI_PROVIDER', 'demo');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/geeIsolation.test.ts > Earth Engine isolation > does not install or declare any member of the vulnerable GEE chain
+AssertionError: uuid: expected [Function] to throw an error
+
+- Expected:
+null
+
++ Received:
+undefined
+
+ ❯ tests/geeIsolation.test.ts:159:49
+    157|         expect(manifest[group]?.[name], name).toBeUndefined();
+    158|       }
+    159|       expect(() => require.resolve(name), name).toThrow(/Cannot find m…
+       |                                                 ^
+    160|     }
+    161|     expectNoExternalEffects();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+
+ Test Files  1 failed | 3 passed (4)
+      Tests  3 failed | 21 passed (24)
+   Start at  14:14:24
+   Duration  751ms (transform 770ms, setup 0ms, import 977ms, tests 291ms, environment 0ms)

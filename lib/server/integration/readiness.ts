@@ -5,6 +5,7 @@ export const EARTH_ENGINE_READINESS = Object.freeze({
   status: 'EXTERNAL_INTEGRATION_PENDING' as const,
   executable: false as const,
   blockers: [
+    'SDK is not installed; a separately reviewed secure real adapter is required',
     'Commercial Earth Engine registration, billing terms and project IAM not verified',
     'P4I soil asset, legend, provenance and commercial data rights not supplied',
     'Durable governed job adapter, approved estimate and provider cancellation not integrated',

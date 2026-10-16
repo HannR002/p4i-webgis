@@ -1,0 +1,25 @@
+{
+  "mode": "INSTALL_ONLY",
+  "root": "/workspace/artifacts/phase-12/production-install",
+  "forbidden": [
+    "@google/earthengine",
+    "googleapis",
+    "googleapis-common",
+    "google-auth-library",
+    "gtoken",
+    "google-p12-pem",
+    "node-forge",
+    "uuid"
+  ],
+  "lockedPackages": 668,
+  "installedPackages": 176,
+  "forbiddenInstalledPackages": [],
+  "bundle": {
+    "inspected": false,
+    "files": 0,
+    "traces": 0,
+    "tracedFiles": 0,
+    "matches": []
+  },
+  "scope": "Application manifest, complete lockfile, recursive local node_modules and optionally fresh Next server/static output; host-global tooling is outside the deployable graph"
+}

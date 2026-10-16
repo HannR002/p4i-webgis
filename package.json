@@ -17,7 +17,6 @@
     "test:db": "node scripts/database/rehearse.mjs"
   },
   "dependencies": {
-    "@google/earthengine": "^1.7.43",
     "@supabase/supabase-js": "^2.112.3",
     "@types/leaflet": "^1.9.22",
     "@types/shpjs": "^3.4.7",

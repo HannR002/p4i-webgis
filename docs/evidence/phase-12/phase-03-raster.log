@@ -1,0 +1,7 @@
+(node:107399) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS native selected band values, raw/physical metadata, internal and outside NoData, keyboard coordinate query
+PASS categorical codes, resolution mismatch warning and refused categorical bilinear
+PASS native AOI statistics/area, clip window descriptor, division-by-zero mask, categorical histogram instead of code mean
+PASS selected band draft load/undo, JSON roundtrip, genuine PNG/PDF downloads
+PASS desktop/mobile inspector/operations accessibility and overflow, no JavaScript page errors

@@ -1,0 +1,46 @@
+{
+  "pageErrors": [],
+  "geeCalls": 0,
+  "audits": [
+    {
+      "width": 1480,
+      "type": "ahp-smce",
+      "violations": []
+    },
+    {
+      "width": 1480,
+      "type": "wlc",
+      "violations": []
+    },
+    {
+      "width": 1480,
+      "type": "flood-susceptibility",
+      "violations": []
+    },
+    {
+      "width": 1480,
+      "type": "zonal-statistics",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "type": "ahp-smce",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "type": "wlc",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "type": "flood-susceptibility",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "type": "zonal-statistics",
+      "violations": []
+    }
+  ]
+}

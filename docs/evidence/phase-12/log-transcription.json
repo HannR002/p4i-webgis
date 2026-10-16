@@ -1,0 +1,26 @@
+[
+  {
+    "file": "build.log",
+    "rawSha256": "50bc1ae4074c66e7dc0e0b8bbe7b70177ac2ab5b7b99ec2cd52b9ee1da8bdaa6",
+    "committedSha256": "730121c646f4579d96eef06259a686bef24485972d4d739a750c13646ce1054d",
+    "change": "Only terminal CR/trailing whitespace/EOF blank-line normalization"
+  },
+  {
+    "file": "targeted-tests.log",
+    "rawSha256": "ac02daa04911a390c95232cd76fd949708e3668fdebfe8e1e9013683d0b4354a",
+    "committedSha256": "c6d005b36880d3950e7bbf20b895f68eea25b67dbd0a16937802369a2fd8ef26",
+    "change": "Only terminal CR/trailing whitespace/EOF blank-line normalization"
+  },
+  {
+    "file": "tests.log",
+    "rawSha256": "a9e341b147836c6cb24bd2970ca5f4841c0593ee9a3ff788e858aa467f7ca1f3",
+    "committedSha256": "112315a29ac99cf7da9b7f2a1578a0f5899f5aac0bdb14a987e6f6b61642aa38",
+    "change": "Only terminal CR/trailing whitespace/EOF blank-line normalization"
+  },
+  {
+    "file": "typecheck.log",
+    "rawSha256": "5a8687b8eb0ec7addb33d21400272ff8e07953fe52de5370c8a8ed9080ac5748",
+    "committedSha256": "ff54636eae6430b3c941f16f1d628e054673ddef9436ac6a0aeefd692c2e7282",
+    "change": "Only terminal CR/trailing whitespace/EOF blank-line normalization"
+  }
+]

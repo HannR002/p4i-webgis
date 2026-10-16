@@ -1,5 +1,10 @@
 # P4I Flood Risk Analysis v1
 
+> Phase 12 update (16 October 2026): The SDK is no longer installed in the application.
+> The legacy service now uses a provider-neutral unavailable adapter; old SDK/graph/cache code
+> is preserved in [non-runtime reference](reference/earth-engine-phase11.md). The endpoint
+> still refuses real analysis. See [current isolation and activation requirements](PHASE_12_RESIDUAL_DEPENDENCY_RESOLUTION.md).
+
 > Phase 09 update (15 October 2026): The legacy real GEE route, service and initializer now fail closed before external computation. Credentials do not enable execution. Governed commercial integration is pending; model thresholds remain experimental. See [current integration readiness](real-gis-integration-readiness.md). Earlier descriptions below are historical where superseded.
 
 Modul ini memperluas P4I Spatial Analytics yang sudah ada; bukan aplikasi peta kedua. Migration, import boundary, konfigurasi Google Cloud/Earth Engine, dan deployment tetap dilakukan manusia setelah review.

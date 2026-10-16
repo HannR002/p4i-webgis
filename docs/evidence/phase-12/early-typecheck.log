@@ -1,0 +1,24 @@
+(node:102506) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+> p4i-webgis@0.1.0 typecheck
+> tsc --noEmit
+
+tests/geeIsolation.test.ts(55,48): error TS2345: Argument of type 'Mock<Procedure | Constructable>' is not assignable to parameter of type '(url: string | URL, options: RequestOptions, callback?: ((res: IncomingMessage) => void) | undefined) => ClientRequest'.
+  Type 'MockInstance<Procedure | Constructable> & (new (...args: any[]) => any) & {}' is not assignable to type '(url: string | URL, options: RequestOptions, callback?: ((res: IncomingMessage) => void) | undefined) => ClientRequest'.
+    Type 'MockInstance<Procedure | Constructable> & (new (...args: any[]) => any) & {}' provides no match for the signature '(url: string | URL, options: RequestOptions, callback?: ((res: IncomingMessage) => void) | undefined): ClientRequest'.
+tests/geeIsolation.test.ts(56,44): error TS2345: Argument of type 'Mock<Procedure | Constructable>' is not assignable to parameter of type '(url: string | URL, options: RequestOptions, callback?: ((res: IncomingMessage) => void) | undefined) => ClientRequest'.
+  Type 'MockInstance<Procedure | Constructable> & (new (...args: any[]) => any) & {}' is not assignable to type '(url: string | URL, options: RequestOptions, callback?: ((res: IncomingMessage) => void) | undefined) => ClientRequest'.
+    Type 'MockInstance<Procedure | Constructable> & (new (...args: any[]) => any) & {}' provides no match for the signature '(url: string | URL, options: RequestOptions, callback?: ((res: IncomingMessage) => void) | undefined): ClientRequest'.
+tests/geeIsolation.test.ts(57,49): error TS2345: Argument of type 'Mock<Procedure | Constructable>' is not assignable to parameter of type '(url: string | URL, options: RequestOptions, callback?: ((res: IncomingMessage) => void) | undefined) => ClientRequest'.
+  Type 'MockInstance<Procedure | Constructable> & (new (...args: any[]) => any) & {}' is not assignable to type '(url: string | URL, options: RequestOptions, callback?: ((res: IncomingMessage) => void) | undefined) => ClientRequest'.
+    Type 'MockInstance<Procedure | Constructable> & (new (...args: any[]) => any) & {}' provides no match for the signature '(url: string | URL, options: RequestOptions, callback?: ((res: IncomingMessage) => void) | undefined): ClientRequest'.
+tests/geeIsolation.test.ts(58,45): error TS2345: Argument of type 'Mock<Procedure | Constructable>' is not assignable to parameter of type '(url: string | URL, options: RequestOptions, callback?: ((res: IncomingMessage) => void) | undefined) => ClientRequest'.
+  Type 'MockInstance<Procedure | Constructable> & (new (...args: any[]) => any) & {}' is not assignable to type '(url: string | URL, options: RequestOptions, callback?: ((res: IncomingMessage) => void) | undefined) => ClientRequest'.
+    Type 'MockInstance<Procedure | Constructable> & (new (...args: any[]) => any) & {}' provides no match for the signature '(url: string | URL, options: RequestOptions, callback?: ((res: IncomingMessage) => void) | undefined): ClientRequest'.
+tests/geeIsolation.test.ts(59,47): error TS2345: Argument of type 'Mock<Procedure | Constructable>' is not assignable to parameter of type '(path: string, connectionListener?: (() => void) | undefined) => Socket'.
+  Type 'MockInstance<Procedure | Constructable> & (new (...args: any[]) => any) & {}' is not assignable to type '(path: string, connectionListener?: (() => void) | undefined) => Socket'.
+    Type 'MockInstance<Procedure | Constructable> & (new (...args: any[]) => any) & {}' provides no match for the signature '(path: string, connectionListener?: (() => void) | undefined): Socket'.
+tests/geeIsolation.test.ts(60,56): error TS2345: Argument of type 'Mock<Procedure | Constructable>' is not assignable to parameter of type '(path: string, connectionListener?: (() => void) | undefined) => Socket'.
+  Type 'MockInstance<Procedure | Constructable> & (new (...args: any[]) => any) & {}' is not assignable to type '(path: string, connectionListener?: (() => void) | undefined) => Socket'.
+    Type 'MockInstance<Procedure | Constructable> & (new (...args: any[]) => any) & {}' provides no match for the signature '(path: string, connectionListener?: (() => void) | undefined): Socket'.
