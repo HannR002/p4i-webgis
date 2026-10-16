@@ -1,0 +1,13 @@
+(node:58470) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+> p4i-webgis@0.1.0 test:db
+> node scripts/database/rehearse.mjs --output /workspace/artifacts/phase-11/database
+
+(node:58483) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+Cycle 1: creating isolated synthetic PostgreSQL/PostGIS instance
+Cycle 1: 170 migration/security checks passed
+Cycle 2: creating isolated synthetic PostgreSQL/PostGIS instance
+Cycle 2: 170 migration/security checks passed
+Verified 2 fresh synthetic replays. External schema reproduction remains blocked pending verified foundation DDL.

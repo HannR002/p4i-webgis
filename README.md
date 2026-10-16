@@ -4,17 +4,23 @@ Flood-risk architecture, security, migration, import, and deployment guidance is
 
 ## Getting Started
 
-First, run the development server:
+Use **Node.js 22.23.3 or a later Node 22 patch** (`.node-version` selects the
+verified version). Node 20/24/26 are not this project's supported runtime.
+`@types/node` targets Node 22. Install the committed lockfile with `npm ci`
+(verified with npm 10.9.9), then run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
+
+Run `npm run lint`, `npm run typecheck`, `npm test`, and `npm run build` before
+review. Framework versions are aligned; Vite 7 is explicitly pinned for Vitest
+4 compatibility. For dependency maintenance, npm 11.21.1 was needed to resolve
+the Vitest major upgrade after npm 10's peer resolver failed; ordinary clean
+installs use the resulting lockfile. See the
+[Phase 11 security report](docs/PHASE_11_DEPENDENCY_SECURITY_REMEDIATION.md)
+for unresolved advisories and exact verification evidence. Passing local checks
+does not establish Hostinger compatibility or authorize production deployment.
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 

@@ -1,0 +1,95 @@
+{
+  "date": "2026-10-16",
+  "node": "22.23.3",
+  "npmInstallAndVerification": "10.9.9",
+  "npmOneTimeMajorResolution": "11.21.1",
+  "lockfileVersion": 3,
+  "manifestLockRootEqual": true,
+  "before": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 1,
+      "moderate": 3,
+      "high": 15,
+      "critical": 3,
+      "total": 22
+    },
+    "dependencies": {
+      "prod": 210,
+      "dev": 449,
+      "optional": 152,
+      "peer": 0,
+      "peerOptional": 0,
+      "total": 707
+    }
+  },
+  "after": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 2,
+      "high": 11,
+      "critical": 0,
+      "total": 13
+    },
+    "dependencies": {
+      "prod": 210,
+      "dev": 444,
+      "optional": 158,
+      "peer": 0,
+      "peerOptional": 0,
+      "total": 702
+    }
+  },
+  "productionBefore": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 1,
+      "moderate": 2,
+      "high": 8,
+      "critical": 1,
+      "total": 12
+    },
+    "dependencies": {
+      "prod": 210,
+      "dev": 449,
+      "optional": 152,
+      "peer": 0,
+      "peerOptional": 0,
+      "total": 707
+    }
+  },
+  "productionAfter": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 2,
+      "high": 6,
+      "critical": 0,
+      "total": 8
+    },
+    "dependencies": {
+      "prod": 210,
+      "dev": 444,
+      "optional": 158,
+      "peer": 0,
+      "peerOptional": 0,
+      "total": 702
+    }
+  },
+  "uniqueInitialAdvisories": 22,
+  "advisoriesFixed": 19,
+  "residualAdvisories": [
+    "GHSA-86w9-cpqp-85rv",
+    "GHSA-vfj7-8cjw-p6xm",
+    "GHSA-w5hq-g745-h8pq"
+  ],
+  "lockfileSha256": "a065ab788c041334f9d49ca161cd929619ecb6e585db21ff6462680ecd9af40e",
+  "npmLsAllExit": 0,
+  "npmLsAllNotes": [
+    "extraneous: @emnapi/runtime@1.11.3 /workspace/p4i-webgis/node_modules/@emnapi/runtime",
+    "extraneous: @img/sharp-wasm32@0.35.5 /workspace/p4i-webgis/node_modules/@img/sharp-wasm32"
+  ],
+  "overridesUsed": false,
+  "realProviderCalls": false
+}

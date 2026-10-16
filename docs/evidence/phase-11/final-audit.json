@@ -1,0 +1,328 @@
+{
+  "auditReportVersion": 2,
+  "vulnerabilities": {
+    "@google/earthengine": {
+      "name": "@google/earthengine",
+      "severity": "moderate",
+      "isDirect": true,
+      "via": [
+        "googleapis"
+      ],
+      "effects": [],
+      "range": ">=0.1.186",
+      "nodes": [
+        "node_modules/@google/earthengine"
+      ],
+      "fixAvailable": {
+        "name": "@google/earthengine",
+        "version": "0.1.185",
+        "isSemVerMajor": true
+      }
+    },
+    "@next/eslint-plugin-next": {
+      "name": "@next/eslint-plugin-next",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "fast-glob"
+      ],
+      "effects": [
+        "eslint-config-next"
+      ],
+      "range": ">=14.3.0-canary.0",
+      "nodes": [
+        "node_modules/@next/eslint-plugin-next"
+      ],
+      "fixAvailable": {
+        "name": "eslint-config-next",
+        "version": "14.2.35",
+        "isSemVerMajor": true
+      }
+    },
+    "braces": {
+      "name": "braces",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1240992,
+          "name": "braces",
+          "dependency": "braces",
+          "title": "braces vulnerable to stack-exhaustion denial of service through deeply nested patterns",
+          "url": "https://github.com/advisories/GHSA-vfj7-8cjw-p6xm",
+          "severity": "high",
+          "cwe": [
+            "CWE-674"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          },
+          "range": "<=3.0.3"
+        }
+      ],
+      "effects": [
+        "micromatch"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/braces"
+      ],
+      "fixAvailable": {
+        "name": "eslint-config-next",
+        "version": "14.2.35",
+        "isSemVerMajor": true
+      }
+    },
+    "eslint-config-next": {
+      "name": "eslint-config-next",
+      "severity": "high",
+      "isDirect": true,
+      "via": [
+        "@next/eslint-plugin-next"
+      ],
+      "effects": [],
+      "range": ">=14.3.0-canary.0",
+      "nodes": [
+        "node_modules/eslint-config-next"
+      ],
+      "fixAvailable": {
+        "name": "eslint-config-next",
+        "version": "14.2.35",
+        "isSemVerMajor": true
+      }
+    },
+    "fast-glob": {
+      "name": "fast-glob",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "micromatch"
+      ],
+      "effects": [
+        "@next/eslint-plugin-next"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/fast-glob"
+      ],
+      "fixAvailable": {
+        "name": "eslint-config-next",
+        "version": "14.2.35",
+        "isSemVerMajor": true
+      }
+    },
+    "google-auth-library": {
+      "name": "google-auth-library",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "gtoken"
+      ],
+      "effects": [
+        "googleapis",
+        "googleapis-common"
+      ],
+      "range": "0.9.4 - 8.9.0",
+      "nodes": [
+        "node_modules/google-auth-library"
+      ],
+      "fixAvailable": {
+        "name": "@google/earthengine",
+        "version": "0.1.185",
+        "isSemVerMajor": true
+      }
+    },
+    "google-p12-pem": {
+      "name": "google-p12-pem",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "node-forge"
+      ],
+      "effects": [
+        "gtoken"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/google-p12-pem"
+      ],
+      "fixAvailable": {
+        "name": "@google/earthengine",
+        "version": "0.1.185",
+        "isSemVerMajor": true
+      }
+    },
+    "googleapis": {
+      "name": "googleapis",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "google-auth-library",
+        "googleapis-common"
+      ],
+      "effects": [
+        "@google/earthengine"
+      ],
+      "range": "3.0.0 - 149.0.0",
+      "nodes": [
+        "node_modules/googleapis"
+      ],
+      "fixAvailable": {
+        "name": "@google/earthengine",
+        "version": "0.1.185",
+        "isSemVerMajor": true
+      }
+    },
+    "googleapis-common": {
+      "name": "googleapis-common",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "google-auth-library",
+        "uuid"
+      ],
+      "effects": [
+        "googleapis"
+      ],
+      "range": "<=7.2.0",
+      "nodes": [
+        "node_modules/googleapis-common"
+      ],
+      "fixAvailable": {
+        "name": "@google/earthengine",
+        "version": "0.1.185",
+        "isSemVerMajor": true
+      }
+    },
+    "gtoken": {
+      "name": "gtoken",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "google-p12-pem"
+      ],
+      "effects": [
+        "google-auth-library"
+      ],
+      "range": "<=6.1.2",
+      "nodes": [
+        "node_modules/gtoken"
+      ],
+      "fixAvailable": {
+        "name": "@google/earthengine",
+        "version": "0.1.185",
+        "isSemVerMajor": true
+      }
+    },
+    "micromatch": {
+      "name": "micromatch",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "braces"
+      ],
+      "effects": [
+        "fast-glob"
+      ],
+      "range": ">=0.2.0",
+      "nodes": [
+        "node_modules/micromatch"
+      ],
+      "fixAvailable": {
+        "name": "eslint-config-next",
+        "version": "14.2.35",
+        "isSemVerMajor": true
+      }
+    },
+    "node-forge": {
+      "name": "node-forge",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1240912,
+          "name": "node-forge",
+          "dependency": "node-forge",
+          "title": "node-forge RSA PKCS#1 v1.5 signature verification accepts extra nested DigestAlgorithm elements",
+          "url": "https://github.com/advisories/GHSA-86w9-cpqp-85rv",
+          "severity": "high",
+          "cwe": [
+            "CWE-347"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N"
+          },
+          "range": "<=1.4.0"
+        }
+      ],
+      "effects": [
+        "google-p12-pem"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/node-forge"
+      ],
+      "fixAvailable": {
+        "name": "@google/earthengine",
+        "version": "0.1.185",
+        "isSemVerMajor": true
+      }
+    },
+    "uuid": {
+      "name": "uuid",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1119441,
+          "name": "uuid",
+          "dependency": "uuid",
+          "title": "uuid: Missing buffer bounds check in v3/v5/v6 when buf is provided",
+          "url": "https://github.com/advisories/GHSA-w5hq-g745-h8pq",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-787",
+            "CWE-1285"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N"
+          },
+          "range": "<11.1.1"
+        }
+      ],
+      "effects": [
+        "googleapis-common"
+      ],
+      "range": "<11.1.1",
+      "nodes": [
+        "node_modules/uuid"
+      ],
+      "fixAvailable": {
+        "name": "@google/earthengine",
+        "version": "0.1.185",
+        "isSemVerMajor": true
+      }
+    }
+  },
+  "metadata": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 2,
+      "high": 11,
+      "critical": 0,
+      "total": 13
+    },
+    "dependencies": {
+      "prod": 210,
+      "dev": 444,
+      "optional": 158,
+      "peer": 0,
+      "peerOptional": 0,
+      "total": 702
+    }
+  }
+}

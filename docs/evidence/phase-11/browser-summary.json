@@ -1,0 +1,52 @@
+[
+  {
+    "suite": "phase-01-smoke",
+    "exitCode": 0,
+    "seconds": 13.88
+  },
+  {
+    "suite": "phase-01-regression",
+    "exitCode": 0,
+    "seconds": 18.39
+  },
+  {
+    "suite": "phase-02-smoke",
+    "exitCode": 0,
+    "seconds": 20.2
+  },
+  {
+    "suite": "phase-02-accessibility",
+    "exitCode": 0,
+    "seconds": 14.7
+  },
+  {
+    "suite": "phase-03-raster",
+    "exitCode": 0,
+    "seconds": 13.11
+  },
+  {
+    "suite": "phase-04-configuration",
+    "exitCode": 0,
+    "seconds": 16.63
+  },
+  {
+    "suite": "phase-05-copilot",
+    "exitCode": 0,
+    "seconds": 13.45
+  },
+  {
+    "suite": "phase-06-compute",
+    "exitCode": 0,
+    "seconds": 9.06
+  },
+  {
+    "suite": "phase-07-deliverables",
+    "exitCode": 0,
+    "seconds": 7.57
+  },
+  {
+    "suite": "phase-09-readiness",
+    "exitCode": 0,
+    "seconds": 0.72
+  }
+]

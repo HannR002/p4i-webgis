@@ -1,0 +1,4 @@
+(node:58402) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+npm error Cannot read properties of null (reading 'edgesOut')
+npm error A complete log of this run can be found in: /workspace/.npm/_logs/2026-10-16T04_51_47_499Z-debug-0.log
