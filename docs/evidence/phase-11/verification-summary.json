@@ -1,0 +1,56 @@
+{
+  "phase": 11,
+  "date": "2026-10-16",
+  "timezone": "Asia/Jakarta",
+  "base": "d1400a2ab363a908d49e468b51786ca5c60ce85b",
+  "branch": "security/phase11-dependency-remediation",
+  "node": "22.23.3",
+  "npm": "10.9.9",
+  "final": {
+    "ci": "PASS",
+    "lint": "PASS",
+    "typecheck": "PASS",
+    "testFiles": 38,
+    "tests": 264,
+    "originalTestsPreserved": 262,
+    "build": "PASS",
+    "browserSuitesPassed": 9,
+    "axeAudits": 39,
+    "axeViolations": 0,
+    "productionModeLocalChecks": 12,
+    "frameworkImageChecks": 3,
+    "databaseChecks": 340,
+    "databaseFreshCycles": 2,
+    "npmLsExit": 0,
+    "npmLsAllExit": 0,
+    "npmAuditExit": 1,
+    "npmAuditProductionExit": 1
+  },
+  "recommendation": {
+    "mergeIntoMain": "NO_GO_UNPATCHED_HIGH_PRODUCTION_DEPENDENCY",
+    "production": "NO_GO"
+  },
+  "databaseMode": "LOCAL_SYNTHETIC_FOUNDATION_ONLY",
+  "externalDatabaseOperations": false,
+  "paidProviderCalls": false,
+  "geeExecution": false,
+  "actualClientPublication": false,
+  "deployment": false,
+  "merge": false,
+  "visibilityChanged": false,
+  "penetrationTest": "NOT_PERFORMED",
+  "humanUAT": "NOT_RUN",
+  "limitations": [
+    "Real Supabase sign-in/data not tested; local inert configuration only",
+    "Optional platform-only Sharp WASM dependencies labelled extraneous by npm on Linux; no missing/invalid edges",
+    "ESLint 9 deprecated; separate coordinated tool maintenance needed",
+    "Existing production readiness blockers retained"
+  ],
+  "implementationCommit": "fe9d1b22e69cba56143ef4ea8400d448ad7a5a56",
+  "pullRequest": {
+    "number": 7,
+    "url": "https://github.com/HannR002/p4i-webgis/pull/7",
+    "base": "integration/p4i-webgis-phase01-09",
+    "draft": true
+  }
+}

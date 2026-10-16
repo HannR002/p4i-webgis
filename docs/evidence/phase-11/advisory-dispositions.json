@@ -1,0 +1,890 @@
+[
+  {
+    "ghsa": "GHSA-2883-xcg3-v3hh",
+    "cve": "CVE-2026-84375",
+    "url": "https://github.com/advisories/GHSA-2883-xcg3-v3hh",
+    "summary": "js-yaml: maxTotalMergeKeys does not limit CPU use for empty merge sources",
+    "githubSeverity": "high",
+    "npmOccurrences": [
+      {
+        "package": "js-yaml",
+        "source": 1193727,
+        "severity": "high",
+        "range": ">=4.0.0 <4.3.2",
+        "title": "js-yaml: maxTotalMergeKeys does not limit CPU use for empty merge sources"
+      }
+    ],
+    "githubAffectedAndPatched": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "js-yaml"
+        },
+        "vulnerable_version_range": ">= 4.0.0, < 4.3.2",
+        "first_patched_version": "4.3.2",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "js-yaml"
+        },
+        "vulnerable_version_range": ">= 3.0.0, < 3.15.2",
+        "first_patched_version": "3.15.2",
+        "vulnerable_functions": []
+      }
+    ],
+    "disposition": "FIXED",
+    "affectedInitialPackages": [
+      "js-yaml"
+    ]
+  },
+  {
+    "ghsa": "GHSA-39w2-rjm5-chcv",
+    "cve": "CVE-2026-94486",
+    "url": "https://github.com/advisories/GHSA-39w2-rjm5-chcv",
+    "summary": "Next.js has information disclosure in development server's Model Context Protocol endpoint",
+    "githubSeverity": "low",
+    "npmOccurrences": [
+      {
+        "package": "next",
+        "source": 1241492,
+        "severity": "low",
+        "range": ">=16.0.0 <16.3.8",
+        "title": "Next.js has information disclosure in development server's Model Context Protocol endpoint"
+      }
+    ],
+    "githubAffectedAndPatched": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 16.0.0, < 16.3.8",
+        "first_patched_version": "16.3.8",
+        "vulnerable_functions": []
+      }
+    ],
+    "disposition": "FIXED",
+    "affectedInitialPackages": [
+      "next"
+    ]
+  },
+  {
+    "ghsa": "GHSA-3w37-wq28-93x7",
+    "cve": "CVE-2026-94544",
+    "url": "https://github.com/advisories/GHSA-3w37-wq28-93x7",
+    "summary": "Next.js: Pending `use cache` fill can leak Draft Mode content into regular responses and persisted pages",
+    "githubSeverity": "medium",
+    "npmOccurrences": [
+      {
+        "package": "next",
+        "source": 1241489,
+        "severity": "moderate",
+        "range": ">=16.3.0 <16.3.8",
+        "title": "Next.js: Pending `use cache` fill can leak Draft Mode content into regular responses and persisted pages"
+      }
+    ],
+    "githubAffectedAndPatched": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 16.3.0, < 16.3.8",
+        "first_patched_version": "16.3.8",
+        "vulnerable_functions": []
+      }
+    ],
+    "disposition": "FIXED",
+    "affectedInitialPackages": [
+      "next"
+    ]
+  },
+  {
+    "ghsa": "GHSA-4jqv-mc3x-m676",
+    "cve": "CVE-2026-94543",
+    "url": "https://github.com/advisories/GHSA-4jqv-mc3x-m676",
+    "summary": "Next.js has cache poisoning of SSG and ISR pages in self-hosted applications",
+    "githubSeverity": "medium",
+    "npmOccurrences": [
+      {
+        "package": "next",
+        "source": 1241490,
+        "severity": "moderate",
+        "range": ">=16.0.0 <16.3.8",
+        "title": "Next.js has cache poisoning of SSG and ISR pages in self-hosted applications"
+      }
+    ],
+    "githubAffectedAndPatched": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 15.0.0, < 15.5.27",
+        "first_patched_version": "15.5.27",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 16.0.0, < 16.3.8",
+        "first_patched_version": "16.3.8",
+        "vulnerable_functions": []
+      }
+    ],
+    "disposition": "FIXED",
+    "affectedInitialPackages": [
+      "next"
+    ]
+  },
+  {
+    "ghsa": "GHSA-5gmw-xhrv-c9v3",
+    "cve": "CVE-2026-104848",
+    "url": "https://github.com/advisories/GHSA-5gmw-xhrv-c9v3",
+    "summary": "Tinypool: Prototype Pollution gadget in worker options leads to Remote Code Execution",
+    "githubSeverity": "critical",
+    "npmOccurrences": [
+      {
+        "package": "tinypool",
+        "source": 1241260,
+        "severity": "critical",
+        "range": "<=2.1.0",
+        "title": "Tinypool: Prototype Pollution gadget in worker options leads to Remote Code Execution"
+      }
+    ],
+    "githubAffectedAndPatched": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "tinypool"
+        },
+        "vulnerable_version_range": "<= 2.1.0",
+        "first_patched_version": "2.1.1",
+        "vulnerable_functions": []
+      }
+    ],
+    "disposition": "FIXED",
+    "affectedInitialPackages": [
+      "tinypool",
+      "vitest"
+    ]
+  },
+  {
+    "ghsa": "GHSA-5xrq-8626-4rwp",
+    "cve": "CVE-2026-47429",
+    "url": "https://github.com/advisories/GHSA-5xrq-8626-4rwp",
+    "summary": "When Vitest UI server is listening, arbitrary file can be read and executed",
+    "githubSeverity": "critical",
+    "npmOccurrences": [
+      {
+        "package": "vitest",
+        "source": 1139528,
+        "severity": "critical",
+        "range": "<3.2.6",
+        "title": "When Vitest UI server is listening, arbitrary file can be read and executed"
+      }
+    ],
+    "githubAffectedAndPatched": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "vitest"
+        },
+        "vulnerable_version_range": ">= 4.0.0, < 4.1.0",
+        "first_patched_version": "4.1.0",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "vitest"
+        },
+        "vulnerable_version_range": "< 3.2.6",
+        "first_patched_version": "3.2.6",
+        "vulnerable_functions": []
+      }
+    ],
+    "disposition": "FIXED",
+    "affectedInitialPackages": [
+      "vitest"
+    ]
+  },
+  {
+    "ghsa": "GHSA-6688-9rhm-gjv2",
+    "cve": null,
+    "url": "https://github.com/advisories/GHSA-6688-9rhm-gjv2",
+    "summary": "DOMPurify: IN_PLACE returns a force-removed rawtext root whose text carries attacker markup \u2014 pure HTML reparse executes",
+    "githubSeverity": "low",
+    "npmOccurrences": [
+      {
+        "package": "dompurify",
+        "source": 1241204,
+        "severity": "low",
+        "range": "<=3.4.15",
+        "title": "DOMPurify: IN_PLACE returns a force-removed rawtext root whose text carries attacker markup \u2014 pure HTML reparse executes"
+      }
+    ],
+    "githubAffectedAndPatched": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "dompurify"
+        },
+        "vulnerable_version_range": "<= 3.4.15",
+        "first_patched_version": "3.4.16",
+        "vulnerable_functions": []
+      }
+    ],
+    "disposition": "FIXED",
+    "affectedInitialPackages": [
+      "dompurify"
+    ]
+  },
+  {
+    "ghsa": "GHSA-68fv-2mgg-jv7q",
+    "cve": "CVE-2026-93749",
+    "url": "https://github.com/advisories/GHSA-68fv-2mgg-jv7q",
+    "summary": "source-map-js allows event-loop denial of service through indexed source-map section offsets",
+    "githubSeverity": "high",
+    "npmOccurrences": [
+      {
+        "package": "source-map-js",
+        "source": 1241209,
+        "severity": "high",
+        "range": ">=1.0.0 <1.2.2",
+        "title": "source-map-js allows event-loop denial of service through indexed source-map section offsets"
+      }
+    ],
+    "githubAffectedAndPatched": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "source-map-js"
+        },
+        "vulnerable_version_range": ">= 1.0.0, < 1.2.2",
+        "first_patched_version": "1.2.2",
+        "vulnerable_functions": []
+      }
+    ],
+    "disposition": "FIXED",
+    "affectedInitialPackages": [
+      "source-map-js"
+    ]
+  },
+  {
+    "ghsa": "GHSA-6j4f-fj2g-mc7p",
+    "cve": "CVE-2026-102276",
+    "url": "https://github.com/advisories/GHSA-6j4f-fj2g-mc7p",
+    "summary": "brace-expansion: DoS via uncontrolled recursion in parseCommaParts causing stack exhaustion",
+    "githubSeverity": "high",
+    "npmOccurrences": [
+      {
+        "package": "brace-expansion",
+        "source": 1240108,
+        "severity": "high",
+        "range": "<1.1.19",
+        "title": "brace-expansion: DoS via uncontrolled recursion in parseCommaParts causing stack exhaustion"
+      },
+      {
+        "package": "brace-expansion",
+        "source": 1240111,
+        "severity": "high",
+        "range": ">=4.0.0 <5.0.10",
+        "title": "brace-expansion: DoS via uncontrolled recursion in parseCommaParts causing stack exhaustion"
+      }
+    ],
+    "githubAffectedAndPatched": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "brace-expansion"
+        },
+        "vulnerable_version_range": ">= 4.0.0, < 5.0.10",
+        "first_patched_version": "5.0.10",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "brace-expansion"
+        },
+        "vulnerable_version_range": ">= 3.0.0, < 3.0.7",
+        "first_patched_version": "3.0.7",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "brace-expansion"
+        },
+        "vulnerable_version_range": ">= 2.0.0, < 2.1.5",
+        "first_patched_version": "2.1.5",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "brace-expansion"
+        },
+        "vulnerable_version_range": "< 1.1.19",
+        "first_patched_version": "1.1.19",
+        "vulnerable_functions": []
+      }
+    ],
+    "disposition": "FIXED",
+    "affectedInitialPackages": [
+      "brace-expansion"
+    ]
+  },
+  {
+    "ghsa": "GHSA-82fw-gwwq-j7x9",
+    "cve": "CVE-2026-84373",
+    "url": "https://github.com/advisories/GHSA-82fw-gwwq-j7x9",
+    "summary": "Vitest: Path Traversal / Arbitrary File Read via @vitest/mocker Redirect Mock",
+    "githubSeverity": "medium",
+    "npmOccurrences": [
+      {
+        "package": "@vitest/mocker",
+        "source": 1193684,
+        "severity": "moderate",
+        "range": ">=2.1.0 <4.1.11",
+        "title": "Vitest: Path Traversal / Arbitrary File Read via @vitest/mocker Redirect Mock"
+      },
+      {
+        "package": "vitest",
+        "source": 1193683,
+        "severity": "moderate",
+        "range": ">=2.1.0 <4.1.11",
+        "title": "Vitest: Path Traversal / Arbitrary File Read via @vitest/mocker Redirect Mock"
+      }
+    ],
+    "githubAffectedAndPatched": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "@vitest/mocker"
+        },
+        "vulnerable_version_range": ">= 2.1.0, < 4.1.11",
+        "first_patched_version": "4.1.11",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "vitest"
+        },
+        "vulnerable_version_range": ">= 2.1.0, < 4.1.11",
+        "first_patched_version": "4.1.11",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "vitest"
+        },
+        "vulnerable_version_range": ">= 5.0.0-beta.1, < 5.0.0-rc.2",
+        "first_patched_version": "5.0.0-rc.2",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "@vitest/mocker"
+        },
+        "vulnerable_version_range": ">= 5.0.0-beta.1, < 5.0.0-rc.2",
+        "first_patched_version": "5.0.0-rc.2",
+        "vulnerable_functions": []
+      }
+    ],
+    "disposition": "FIXED",
+    "affectedInitialPackages": [
+      "@vitest/mocker",
+      "vitest"
+    ]
+  },
+  {
+    "ghsa": "GHSA-85c8-ppgw-ccpr",
+    "cve": "CVE-2026-104849",
+    "url": "https://github.com/advisories/GHSA-85c8-ppgw-ccpr",
+    "summary": "Tinypool: Prototype Pollution Gadget to RCE in run() options",
+    "githubSeverity": "critical",
+    "npmOccurrences": [
+      {
+        "package": "tinypool",
+        "source": 1241261,
+        "severity": "critical",
+        "range": "<2.1.2",
+        "title": "Tinypool: Prototype Pollution Gadget to RCE in run() options"
+      }
+    ],
+    "githubAffectedAndPatched": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "tinypool"
+        },
+        "vulnerable_version_range": "< 2.1.2",
+        "first_patched_version": "2.1.2",
+        "vulnerable_functions": []
+      }
+    ],
+    "disposition": "FIXED",
+    "affectedInitialPackages": [
+      "tinypool",
+      "vitest"
+    ]
+  },
+  {
+    "ghsa": "GHSA-86w9-cpqp-85rv",
+    "cve": "CVE-2026-85393",
+    "url": "https://github.com/advisories/GHSA-86w9-cpqp-85rv",
+    "summary": "node-forge RSA PKCS#1 v1.5 signature verification accepts extra nested DigestAlgorithm elements",
+    "githubSeverity": "high",
+    "npmOccurrences": [
+      {
+        "package": "node-forge",
+        "source": 1240912,
+        "severity": "high",
+        "range": "<=1.4.0",
+        "title": "node-forge RSA PKCS#1 v1.5 signature verification accepts extra nested DigestAlgorithm elements"
+      }
+    ],
+    "githubAffectedAndPatched": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "node-forge"
+        },
+        "vulnerable_version_range": "<= 1.4.0",
+        "first_patched_version": null,
+        "vulnerable_functions": []
+      }
+    ],
+    "disposition": "UNPATCHED_BLOCKER",
+    "affectedInitialPackages": [
+      "@google/earthengine",
+      "google-auth-library",
+      "google-p12-pem",
+      "googleapis",
+      "googleapis-common",
+      "gtoken",
+      "node-forge"
+    ]
+  },
+  {
+    "ghsa": "GHSA-cjq9-62q9-8jv4",
+    "cve": "CVE-2026-94483",
+    "url": "https://github.com/advisories/GHSA-cjq9-62q9-8jv4",
+    "summary": "Next.js has Server-Side Request Forgery in Image Optimization",
+    "githubSeverity": "high",
+    "npmOccurrences": [
+      {
+        "package": "next",
+        "source": 1241496,
+        "severity": "high",
+        "range": ">=16.0.0 <16.3.8",
+        "title": "Next.js has Server-Side Request Forgery in Image Optimization"
+      }
+    ],
+    "githubAffectedAndPatched": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 16.0.0, < 16.3.8",
+        "first_patched_version": "16.3.8",
+        "vulnerable_functions": []
+      }
+    ],
+    "disposition": "FIXED",
+    "affectedInitialPackages": [
+      "next"
+    ]
+  },
+  {
+    "ghsa": "GHSA-f87g-xv8r-7p7x",
+    "cve": "CVE-2026-94485",
+    "url": "https://github.com/advisories/GHSA-f87g-xv8r-7p7x",
+    "summary": "Next.js has information disclosure in App Router metadata image routes via dynamicParams bypass",
+    "githubSeverity": "medium",
+    "npmOccurrences": [
+      {
+        "package": "next",
+        "source": 1241493,
+        "severity": "moderate",
+        "range": ">=16.0.0 <16.3.8",
+        "title": "Next.js has information disclosure in App Router metadata image routes via dynamicParams bypass"
+      }
+    ],
+    "githubAffectedAndPatched": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 16.0.0, < 16.3.8",
+        "first_patched_version": "16.3.8",
+        "vulnerable_functions": []
+      }
+    ],
+    "disposition": "FIXED",
+    "affectedInitialPackages": [
+      "next"
+    ]
+  },
+  {
+    "ghsa": "GHSA-mcj8-r9mp-w47p",
+    "cve": "CVE-2026-94484",
+    "url": "https://github.com/advisories/GHSA-mcj8-r9mp-w47p",
+    "summary": "Next.js has cache poisoning in SSG/ISR rendering that leads to cross-user content substitution and persistent denial of service",
+    "githubSeverity": "medium",
+    "npmOccurrences": [
+      {
+        "package": "next",
+        "source": 1241495,
+        "severity": "moderate",
+        "range": ">=16.0.0 <16.3.8",
+        "title": "Next.js has cache poisoning in SSG/ISR rendering that leads to cross-user content substitution and persistent denial of service"
+      }
+    ],
+    "githubAffectedAndPatched": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 16.0.0, < 16.3.8",
+        "first_patched_version": "16.3.8",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 15.0.0, < 15.5.27",
+        "first_patched_version": "15.5.27",
+        "vulnerable_functions": []
+      }
+    ],
+    "disposition": "FIXED",
+    "affectedInitialPackages": [
+      "next"
+    ]
+  },
+  {
+    "ghsa": "GHSA-p98j-92pf-mc4p",
+    "cve": null,
+    "url": "https://github.com/advisories/GHSA-p98j-92pf-mc4p",
+    "summary": "DOMPurify: IN_PLACE: node-removing afterSanitize hook leaves detached subtree event handlers armed, causing DOM XSS",
+    "githubSeverity": "low",
+    "npmOccurrences": [
+      {
+        "package": "dompurify",
+        "source": 1240621,
+        "severity": "low",
+        "range": ">=3.4.13 <=3.4.15",
+        "title": "DOMPurify: IN_PLACE: node-removing afterSanitize hook leaves detached subtree event handlers armed, causing DOM XSS"
+      }
+    ],
+    "githubAffectedAndPatched": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "dompurify"
+        },
+        "vulnerable_version_range": ">= 3.4.13, <= 3.4.15",
+        "first_patched_version": "3.4.16",
+        "vulnerable_functions": []
+      }
+    ],
+    "disposition": "FIXED",
+    "affectedInitialPackages": [
+      "dompurify"
+    ]
+  },
+  {
+    "ghsa": "GHSA-q2hr-2g5m-vwhr",
+    "cve": "CVE-2026-102277",
+    "url": "https://github.com/advisories/GHSA-q2hr-2g5m-vwhr",
+    "summary": "brace-expansion: Quadratic-time expansion of the `{a},b}` rewrite causes CPU denial of service",
+    "githubSeverity": "medium",
+    "npmOccurrences": [
+      {
+        "package": "brace-expansion",
+        "source": 1240100,
+        "severity": "moderate",
+        "range": "<1.1.21",
+        "title": "brace-expansion: Quadratic-time expansion of the `{a},b}` rewrite causes CPU denial of service"
+      },
+      {
+        "package": "brace-expansion",
+        "source": 1240103,
+        "severity": "moderate",
+        "range": ">=4.0.0 <5.0.12",
+        "title": "brace-expansion: Quadratic-time expansion of the `{a},b}` rewrite causes CPU denial of service"
+      }
+    ],
+    "githubAffectedAndPatched": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "brace-expansion"
+        },
+        "vulnerable_version_range": ">= 4.0.0, < 5.0.12",
+        "first_patched_version": "5.0.12",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "brace-expansion"
+        },
+        "vulnerable_version_range": ">= 3.0.0, < 3.0.9",
+        "first_patched_version": "3.0.9",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "brace-expansion"
+        },
+        "vulnerable_version_range": ">= 2.0.0, < 2.1.7",
+        "first_patched_version": "2.1.7",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "brace-expansion"
+        },
+        "vulnerable_version_range": "< 1.1.21",
+        "first_patched_version": "1.1.21",
+        "vulnerable_functions": []
+      }
+    ],
+    "disposition": "FIXED",
+    "affectedInitialPackages": [
+      "brace-expansion"
+    ]
+  },
+  {
+    "ghsa": "GHSA-qhr7-859c-m2p7",
+    "cve": "CVE-2026-102278",
+    "url": "https://github.com/advisories/GHSA-qhr7-859c-m2p7",
+    "summary": "brace-expansion: DoS via uncontrolled recursion on nested brace groups causing stack exhaustion",
+    "githubSeverity": "high",
+    "npmOccurrences": [
+      {
+        "package": "brace-expansion",
+        "source": 1240104,
+        "severity": "high",
+        "range": "<1.1.20",
+        "title": "brace-expansion: DoS via uncontrolled recursion on nested brace groups causing stack exhaustion"
+      },
+      {
+        "package": "brace-expansion",
+        "source": 1240107,
+        "severity": "high",
+        "range": ">=4.0.0 <5.0.11",
+        "title": "brace-expansion: DoS via uncontrolled recursion on nested brace groups causing stack exhaustion"
+      }
+    ],
+    "githubAffectedAndPatched": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "brace-expansion"
+        },
+        "vulnerable_version_range": ">= 4.0.0, < 5.0.11",
+        "first_patched_version": "5.0.11",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "brace-expansion"
+        },
+        "vulnerable_version_range": ">= 3.0.0, < 3.0.8",
+        "first_patched_version": "3.0.8",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "brace-expansion"
+        },
+        "vulnerable_version_range": ">= 2.0.0, < 2.1.6",
+        "first_patched_version": "2.1.6",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "brace-expansion"
+        },
+        "vulnerable_version_range": "< 1.1.20",
+        "first_patched_version": "1.1.20",
+        "vulnerable_functions": []
+      }
+    ],
+    "disposition": "FIXED",
+    "affectedInitialPackages": [
+      "brace-expansion"
+    ]
+  },
+  {
+    "ghsa": "GHSA-vcvr-r3jv-pc5j",
+    "cve": null,
+    "url": "https://github.com/advisories/GHSA-vcvr-r3jv-pc5j",
+    "summary": "Next.js: Remote Code Execution in next/og ImageResponse",
+    "githubSeverity": "critical",
+    "npmOccurrences": [
+      {
+        "package": "next",
+        "source": 1240609,
+        "severity": "critical",
+        "range": ">=16.2.0 <16.3.6",
+        "title": "Next.js: Remote Code Execution in next/og ImageResponse"
+      }
+    ],
+    "githubAffectedAndPatched": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 16.2.0, < 16.3.6",
+        "first_patched_version": "16.3.6",
+        "vulnerable_functions": []
+      }
+    ],
+    "disposition": "FIXED",
+    "affectedInitialPackages": [
+      "next"
+    ]
+  },
+  {
+    "ghsa": "GHSA-vfj7-8cjw-p6xm",
+    "cve": "CVE-2026-93687",
+    "url": "https://github.com/advisories/GHSA-vfj7-8cjw-p6xm",
+    "summary": "braces vulnerable to stack-exhaustion denial of service through deeply nested patterns",
+    "githubSeverity": "high",
+    "npmOccurrences": [
+      {
+        "package": "braces",
+        "source": 1240992,
+        "severity": "high",
+        "range": "<=3.0.3",
+        "title": "braces vulnerable to stack-exhaustion denial of service through deeply nested patterns"
+      }
+    ],
+    "githubAffectedAndPatched": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "braces"
+        },
+        "vulnerable_version_range": "<= 3.0.3",
+        "first_patched_version": null,
+        "vulnerable_functions": []
+      }
+    ],
+    "disposition": "MITIGATED_WITH_RESIDUAL_RISK",
+    "affectedInitialPackages": [
+      "@next/eslint-plugin-next",
+      "braces",
+      "eslint-config-next",
+      "fast-glob",
+      "micromatch"
+    ]
+  },
+  {
+    "ghsa": "GHSA-w5hq-g745-h8pq",
+    "cve": "CVE-2026-41907",
+    "url": "https://github.com/advisories/GHSA-w5hq-g745-h8pq",
+    "summary": "uuid: Missing buffer bounds check in v3/v5/v6 when buf is provided",
+    "githubSeverity": "medium",
+    "npmOccurrences": [
+      {
+        "package": "uuid",
+        "source": 1119441,
+        "severity": "moderate",
+        "range": "<11.1.1",
+        "title": "uuid: Missing buffer bounds check in v3/v5/v6 when buf is provided"
+      }
+    ],
+    "githubAffectedAndPatched": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "uuid"
+        },
+        "vulnerable_version_range": ">= 12.0.0, < 12.0.1",
+        "first_patched_version": "12.0.1",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "uuid"
+        },
+        "vulnerable_version_range": ">= 13.0.0, < 13.0.1",
+        "first_patched_version": "13.0.1",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "uuid"
+        },
+        "vulnerable_version_range": "< 11.1.1",
+        "first_patched_version": "11.1.1",
+        "vulnerable_functions": []
+      }
+    ],
+    "disposition": "NEEDS_MANUAL_SECURITY_REVIEW",
+    "affectedInitialPackages": [
+      "@google/earthengine",
+      "googleapis",
+      "googleapis-common",
+      "uuid"
+    ]
+  },
+  {
+    "ghsa": "GHSA-wq5f-xc86-pv6w",
+    "cve": null,
+    "url": "https://github.com/advisories/GHSA-wq5f-xc86-pv6w",
+    "summary": "sharp : Vulnerability in librsvg dependency CVE-2026-96889",
+    "githubSeverity": "high",
+    "npmOccurrences": [
+      {
+        "package": "sharp",
+        "source": 1241331,
+        "severity": "high",
+        "range": "<0.35.5",
+        "title": "sharp : Vulnerability in librsvg dependency CVE-2026-96889"
+      }
+    ],
+    "githubAffectedAndPatched": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "sharp"
+        },
+        "vulnerable_version_range": "< 0.35.5",
+        "first_patched_version": "0.35.5",
+        "vulnerable_functions": []
+      }
+    ],
+    "disposition": "FIXED",
+    "affectedInitialPackages": [
+      "sharp"
+    ]
+  }
+]

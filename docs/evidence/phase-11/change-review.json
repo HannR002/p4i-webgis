@@ -1,0 +1,7 @@
+{
+  "filesScanned": 58,
+  "highConfidenceCredentialCandidates": 0,
+  "scope": "Changed text files only; pattern check, not exhaustive secret detection",
+  "phase10EvidenceUnchanged": true,
+  "sqlUnchanged": true
+}

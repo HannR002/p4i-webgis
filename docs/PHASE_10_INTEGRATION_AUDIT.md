@@ -294,3 +294,26 @@ required to apply the instructions to later sessions. This does not block the co
 
 Review: [Draft cumulative PR #6](https://github.com/HannR002/p4i-webgis/pull/6) against `main`; implementation `647668e`.
 The PR remains draft and the NO-GO recommendation is unchanged.
+
+## Phase 11 addendum — 16 October 2026
+
+The original Phase 10 findings/evidence above remain historical and unchanged. Follow-up on
+`security/phase11-dependency-remediation`, based on integration head `d1400a2`, patches Next to
+16.3.8, Vitest to 4.1.12 and compatible vulnerable transitive dependencies, and establishes
+Node 22 runtime/type policy. See the
+[Phase 11 report](PHASE_11_DEPENDENCY_SECURITY_REMEDIATION.md) and
+[complete advisory triage](evidence/phase-11/TRIAGE_MATRIX.md).
+
+Fresh audit: full **22 → 13 affected packages**, production **12 → 8**; all Critical findings
+resolved, **19/22 unique advisories fixed**. Unpatched node-forge in the Google/Earth Engine
+runtime chain remains a High blocker; braces (dev High) and uuid (runtime Moderate) also remain
+explicitly dispositioned. No security waiver is approved. The cumulative main merge decision
+remains **NO-GO**, separately from **NO-GO for production**.
+
+Node 22.23.3 verification: clean install, lint, typecheck, **264 tests / 38 files**, build,
+**9 browser suites**, **39 Axe audits / zero violations**, **12 production-mode local checks**,
+**3 additional image/framework checks**, and **340 local synthetic database checks** passed.
+See [verification evidence](evidence/phase-11/verification-summary.json) for qualifications,
+including npm's two platform-optional artifact labels and missing real-provider/UAT coverage.
+The Phase 10 download authorization correction and production readiness blockers are preserved.
+PR #6 and existing stacked PRs are not changed or merged by this follow-up.

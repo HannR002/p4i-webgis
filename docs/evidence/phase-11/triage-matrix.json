@@ -1,0 +1,733 @@
+[
+  {
+    "package": "@google/earthengine",
+    "installedBefore": [
+      {
+        "path": "node_modules/@google/earthengine",
+        "version": "1.7.43",
+        "lockDev": false,
+        "optional": false
+      }
+    ],
+    "installedAfter": [
+      "1.7.43"
+    ],
+    "reportedSeverity": "moderate",
+    "reportedRange": ">=0.1.186",
+    "direct": true,
+    "dependencyScope": "production (possibly also tooling)",
+    "dependencyChainsBefore": [
+      "@google/earthengine@1.7.43"
+    ],
+    "dependencyChainsAfter": [
+      "@google/earthengine@1.7.43"
+    ],
+    "advisoryIds": [
+      "GHSA-86w9-cpqp-85rv",
+      "GHSA-w5hq-g745-h8pq"
+    ],
+    "remainingInFinalAudit": true,
+    "disposition": "UNPATCHED_BLOCKER",
+    "reachability": "Server-only Earth Engine import chain. Route/service/initializer reject external execution; regression tests verify refusal before SDK/auth/database calls. SDK 1.7.43 uses positional google.auth.JWT; latest 1.7.48 still requires googleapis ^92.0.0. gtoken loads google-p12-pem only for .p12/.pfx key files; that code uses node-forge PKCS12 parsing, whereas the advisory concerns RSA signature verification. The application accepts JSON private-key objects and guard currently prevents authentication. This narrows observed exposure but does not establish a whole-program exemption.",
+    "remediation": "No patched node-forge release as of 2026-10-16. Retain compatible SDK; reject npm suggested downgrade to 0.1.185 and unverified cross-major Google auth override. Require upstream fix/review before merge.",
+    "compatibilityRisk": "Cross-major googleapis/auth changes can break positional JWT constructors and authentication. No credentialed/provider compatibility claim; no real GEE calls."
+  },
+  {
+    "package": "@next/eslint-plugin-next",
+    "installedBefore": [
+      {
+        "path": "node_modules/@next/eslint-plugin-next",
+        "version": "16.3.5",
+        "lockDev": true,
+        "optional": false
+      }
+    ],
+    "installedAfter": [
+      "16.3.8"
+    ],
+    "reportedSeverity": "high",
+    "reportedRange": ">=14.3.0-canary.0",
+    "direct": false,
+    "dependencyScope": "development",
+    "dependencyChainsBefore": [
+      "eslint-config-next@16.3.5 > @next/eslint-plugin-next@16.3.5"
+    ],
+    "dependencyChainsAfter": [
+      "eslint-config-next@16.3.8 > @next/eslint-plugin-next@16.3.8"
+    ],
+    "advisoryIds": [
+      "GHSA-vfj7-8cjw-p6xm"
+    ],
+    "remainingInFinalAudit": true,
+    "disposition": "MITIGATED_WITH_RESIDUAL_RISK",
+    "reachability": "Dev-only eslint-config-next > @next/eslint-plugin-next > fast-glob > micromatch > braces. Inspected get-root-dirs.js reads trusted ESLint settings.next.rootDir, not HTTP input; repo config defines no custom rootDir. Build tooling and untrusted PR/config inputs remain potential attack surfaces.",
+    "remediation": "No patched braces release (latest 3.0.3) or updated micromatch parent (latest 4.0.8). Do not downgrade Next ESLint to obsolete 14.2.35. Run tooling only on reviewed configuration with process/time limits; obtain accountable review.",
+    "compatibilityRisk": "Residual High dev DoS; this disposition is not acceptance or a waiver, and must be revisited if tooling consumes user globs."
+  },
+  {
+    "package": "@vitest/mocker",
+    "installedBefore": [
+      {
+        "path": "node_modules/@vitest/mocker",
+        "version": "3.2.4",
+        "lockDev": true,
+        "optional": false
+      }
+    ],
+    "installedAfter": [
+      "4.1.12"
+    ],
+    "reportedSeverity": "moderate",
+    "reportedRange": "2.1.0 - 4.1.10",
+    "direct": false,
+    "dependencyScope": "development",
+    "dependencyChainsBefore": [
+      "vitest@3.2.4 > @vitest/mocker@3.2.4"
+    ],
+    "dependencyChainsAfter": [
+      "vitest@4.1.12 > @vitest/mocker@4.1.12"
+    ],
+    "advisoryIds": [
+      "GHSA-82fw-gwwq-j7x9"
+    ],
+    "remainingInFinalAudit": false,
+    "disposition": "FIXED",
+    "reachability": "Vitest transforms and resolves test mocks; API/UI not enabled, but dev tool advisory is retained until patched.",
+    "remediation": "4.1.12 through Vitest upgrade.",
+    "compatibilityRisk": "Mock behavior; auth, approval and provider-failure regressions executed."
+  },
+  {
+    "package": "brace-expansion",
+    "installedBefore": [
+      {
+        "path": "node_modules/@typescript-eslint/typescript-estree/node_modules/brace-expansion",
+        "version": "5.0.9",
+        "lockDev": true,
+        "optional": false
+      },
+      {
+        "path": "node_modules/brace-expansion",
+        "version": "1.1.18",
+        "lockDev": true,
+        "optional": false
+      }
+    ],
+    "installedAfter": [
+      "1.1.21",
+      "5.0.12"
+    ],
+    "reportedSeverity": "high",
+    "reportedRange": "<=1.1.20 || 4.0.0 - 5.0.11",
+    "direct": false,
+    "dependencyScope": "development",
+    "dependencyChainsBefore": [
+      "eslint-config-next@16.3.5 > typescript-eslint@8.67.0 > @typescript-eslint/typescript-estree@8.67.0 > minimatch@10.2.6 > brace-expansion@5.0.9",
+      "eslint@9.39.5 > minimatch@3.1.5 > brace-expansion@1.1.18"
+    ],
+    "dependencyChainsAfter": [
+      "eslint-config-next@16.3.8 > typescript-eslint@8.67.0 > @typescript-eslint/typescript-estree@8.67.0 > minimatch@10.2.6 > brace-expansion@5.0.12",
+      "eslint@9.39.5 > minimatch@3.1.5 > brace-expansion@1.1.21"
+    ],
+    "advisoryIds": [
+      "GHSA-6j4f-fj2g-mc7p",
+      "GHSA-q2hr-2g5m-vwhr",
+      "GHSA-qhr7-859c-m2p7"
+    ],
+    "remainingInFinalAudit": false,
+    "disposition": "FIXED",
+    "reachability": "ESLint minimatch 3 and TypeScript-ESLint minimatch 10 glob expansion of tool/repository paths.",
+    "remediation": "1.1.21 and 5.0.12 within respective parent ranges.",
+    "compatibilityRisk": "File glob matching; lint and test discovery verified."
+  },
+  {
+    "package": "braces",
+    "installedBefore": [
+      {
+        "path": "node_modules/braces",
+        "version": "3.0.3",
+        "lockDev": true,
+        "optional": false
+      }
+    ],
+    "installedAfter": [
+      "3.0.3"
+    ],
+    "reportedSeverity": "high",
+    "reportedRange": "*",
+    "direct": false,
+    "dependencyScope": "development",
+    "dependencyChainsBefore": [
+      "eslint-config-next@16.3.5 > @next/eslint-plugin-next@16.3.5 > fast-glob@3.3.1 > micromatch@4.0.8 > braces@3.0.3"
+    ],
+    "dependencyChainsAfter": [
+      "eslint-config-next@16.3.8 > @next/eslint-plugin-next@16.3.8 > fast-glob@3.3.1 > micromatch@4.0.8 > braces@3.0.3"
+    ],
+    "advisoryIds": [
+      "GHSA-vfj7-8cjw-p6xm"
+    ],
+    "remainingInFinalAudit": true,
+    "disposition": "MITIGATED_WITH_RESIDUAL_RISK",
+    "reachability": "Dev-only eslint-config-next > @next/eslint-plugin-next > fast-glob > micromatch > braces. Inspected get-root-dirs.js reads trusted ESLint settings.next.rootDir, not HTTP input; repo config defines no custom rootDir. Build tooling and untrusted PR/config inputs remain potential attack surfaces.",
+    "remediation": "No patched braces release (latest 3.0.3) or updated micromatch parent (latest 4.0.8). Do not downgrade Next ESLint to obsolete 14.2.35. Run tooling only on reviewed configuration with process/time limits; obtain accountable review.",
+    "compatibilityRisk": "Residual High dev DoS; this disposition is not acceptance or a waiver, and must be revisited if tooling consumes user globs."
+  },
+  {
+    "package": "dompurify",
+    "installedBefore": [
+      {
+        "path": "node_modules/dompurify",
+        "version": "3.4.14",
+        "lockDev": false,
+        "optional": true
+      }
+    ],
+    "installedAfter": [
+      "3.4.17"
+    ],
+    "reportedSeverity": "low",
+    "reportedRange": "<=3.4.15",
+    "direct": false,
+    "dependencyScope": "production (possibly also tooling)",
+    "dependencyChainsBefore": [
+      "jspdf@4.2.1 > dompurify@3.4.14"
+    ],
+    "dependencyChainsAfter": [
+      "jspdf@4.2.1 > dompurify@3.4.17"
+    ],
+    "advisoryIds": [
+      "GHSA-6688-9rhm-gjv2",
+      "GHSA-p98j-92pf-mc4p"
+    ],
+    "remainingInFinalAudit": false,
+    "disposition": "FIXED",
+    "reachability": "jsPDF optional HTML rendering dependency. Current exports use text/images, but browser packaging and optional HTML entry remain; not declared unaffected.",
+    "remediation": "3.4.17 within jsPDF supported range.",
+    "compatibilityRisk": "HTML sanitization behavior; existing PDF/PNG download flows retained."
+  },
+  {
+    "package": "eslint-config-next",
+    "installedBefore": [
+      {
+        "path": "node_modules/eslint-config-next",
+        "version": "16.3.5",
+        "lockDev": true,
+        "optional": false
+      }
+    ],
+    "installedAfter": [
+      "16.3.8"
+    ],
+    "reportedSeverity": "high",
+    "reportedRange": ">=14.3.0-canary.0",
+    "direct": true,
+    "dependencyScope": "development",
+    "dependencyChainsBefore": [
+      "eslint-config-next@16.3.5"
+    ],
+    "dependencyChainsAfter": [
+      "eslint-config-next@16.3.8"
+    ],
+    "advisoryIds": [
+      "GHSA-vfj7-8cjw-p6xm"
+    ],
+    "remainingInFinalAudit": true,
+    "disposition": "MITIGATED_WITH_RESIDUAL_RISK",
+    "reachability": "Dev-only eslint-config-next > @next/eslint-plugin-next > fast-glob > micromatch > braces. Inspected get-root-dirs.js reads trusted ESLint settings.next.rootDir, not HTTP input; repo config defines no custom rootDir. Build tooling and untrusted PR/config inputs remain potential attack surfaces.",
+    "remediation": "No patched braces release (latest 3.0.3) or updated micromatch parent (latest 4.0.8). Do not downgrade Next ESLint to obsolete 14.2.35. Run tooling only on reviewed configuration with process/time limits; obtain accountable review.",
+    "compatibilityRisk": "Residual High dev DoS; this disposition is not acceptance or a waiver, and must be revisited if tooling consumes user globs."
+  },
+  {
+    "package": "fast-glob",
+    "installedBefore": [
+      {
+        "path": "node_modules/fast-glob",
+        "version": "3.3.1",
+        "lockDev": true,
+        "optional": false
+      }
+    ],
+    "installedAfter": [
+      "3.3.1"
+    ],
+    "reportedSeverity": "high",
+    "reportedRange": "*",
+    "direct": false,
+    "dependencyScope": "development",
+    "dependencyChainsBefore": [
+      "eslint-config-next@16.3.5 > @next/eslint-plugin-next@16.3.5 > fast-glob@3.3.1"
+    ],
+    "dependencyChainsAfter": [
+      "eslint-config-next@16.3.8 > @next/eslint-plugin-next@16.3.8 > fast-glob@3.3.1"
+    ],
+    "advisoryIds": [
+      "GHSA-vfj7-8cjw-p6xm"
+    ],
+    "remainingInFinalAudit": true,
+    "disposition": "MITIGATED_WITH_RESIDUAL_RISK",
+    "reachability": "Dev-only eslint-config-next > @next/eslint-plugin-next > fast-glob > micromatch > braces. Inspected get-root-dirs.js reads trusted ESLint settings.next.rootDir, not HTTP input; repo config defines no custom rootDir. Build tooling and untrusted PR/config inputs remain potential attack surfaces.",
+    "remediation": "No patched braces release (latest 3.0.3) or updated micromatch parent (latest 4.0.8). Do not downgrade Next ESLint to obsolete 14.2.35. Run tooling only on reviewed configuration with process/time limits; obtain accountable review.",
+    "compatibilityRisk": "Residual High dev DoS; this disposition is not acceptance or a waiver, and must be revisited if tooling consumes user globs."
+  },
+  {
+    "package": "google-auth-library",
+    "installedBefore": [
+      {
+        "path": "node_modules/google-auth-library",
+        "version": "7.14.1",
+        "lockDev": false,
+        "optional": false
+      }
+    ],
+    "installedAfter": [
+      "7.14.1"
+    ],
+    "reportedSeverity": "high",
+    "reportedRange": "0.9.4 - 8.9.0",
+    "direct": false,
+    "dependencyScope": "production (possibly also tooling)",
+    "dependencyChainsBefore": [
+      "@google/earthengine@1.7.43 > googleapis@92.0.0 > google-auth-library@7.14.1",
+      "@google/earthengine@1.7.43 > googleapis@92.0.0 > googleapis-common@5.1.0 > google-auth-library@7.14.1"
+    ],
+    "dependencyChainsAfter": [
+      "@google/earthengine@1.7.43 > googleapis@92.0.0 > google-auth-library@7.14.1",
+      "@google/earthengine@1.7.43 > googleapis@92.0.0 > googleapis-common@5.1.0 > google-auth-library@7.14.1"
+    ],
+    "advisoryIds": [
+      "GHSA-86w9-cpqp-85rv"
+    ],
+    "remainingInFinalAudit": true,
+    "disposition": "UNPATCHED_BLOCKER",
+    "reachability": "Server-only Earth Engine import chain. Route/service/initializer reject external execution; regression tests verify refusal before SDK/auth/database calls. SDK 1.7.43 uses positional google.auth.JWT; latest 1.7.48 still requires googleapis ^92.0.0. gtoken loads google-p12-pem only for .p12/.pfx key files; that code uses node-forge PKCS12 parsing, whereas the advisory concerns RSA signature verification. The application accepts JSON private-key objects and guard currently prevents authentication. This narrows observed exposure but does not establish a whole-program exemption.",
+    "remediation": "No patched node-forge release as of 2026-10-16. Retain compatible SDK; reject npm suggested downgrade to 0.1.185 and unverified cross-major Google auth override. Require upstream fix/review before merge.",
+    "compatibilityRisk": "Cross-major googleapis/auth changes can break positional JWT constructors and authentication. No credentialed/provider compatibility claim; no real GEE calls."
+  },
+  {
+    "package": "google-p12-pem",
+    "installedBefore": [
+      {
+        "path": "node_modules/google-p12-pem",
+        "version": "3.1.4",
+        "lockDev": false,
+        "optional": false
+      }
+    ],
+    "installedAfter": [
+      "3.1.4"
+    ],
+    "reportedSeverity": "high",
+    "reportedRange": "*",
+    "direct": false,
+    "dependencyScope": "production (possibly also tooling)",
+    "dependencyChainsBefore": [
+      "@google/earthengine@1.7.43 > googleapis@92.0.0 > google-auth-library@7.14.1 > gtoken@5.3.2 > google-p12-pem@3.1.4"
+    ],
+    "dependencyChainsAfter": [
+      "@google/earthengine@1.7.43 > googleapis@92.0.0 > google-auth-library@7.14.1 > gtoken@5.3.2 > google-p12-pem@3.1.4"
+    ],
+    "advisoryIds": [
+      "GHSA-86w9-cpqp-85rv"
+    ],
+    "remainingInFinalAudit": true,
+    "disposition": "UNPATCHED_BLOCKER",
+    "reachability": "Server-only Earth Engine import chain. Route/service/initializer reject external execution; regression tests verify refusal before SDK/auth/database calls. SDK 1.7.43 uses positional google.auth.JWT; latest 1.7.48 still requires googleapis ^92.0.0. gtoken loads google-p12-pem only for .p12/.pfx key files; that code uses node-forge PKCS12 parsing, whereas the advisory concerns RSA signature verification. The application accepts JSON private-key objects and guard currently prevents authentication. This narrows observed exposure but does not establish a whole-program exemption.",
+    "remediation": "No patched node-forge release as of 2026-10-16. Retain compatible SDK; reject npm suggested downgrade to 0.1.185 and unverified cross-major Google auth override. Require upstream fix/review before merge.",
+    "compatibilityRisk": "Cross-major googleapis/auth changes can break positional JWT constructors and authentication. No credentialed/provider compatibility claim; no real GEE calls."
+  },
+  {
+    "package": "googleapis",
+    "installedBefore": [
+      {
+        "path": "node_modules/googleapis",
+        "version": "92.0.0",
+        "lockDev": false,
+        "optional": false
+      }
+    ],
+    "installedAfter": [
+      "92.0.0"
+    ],
+    "reportedSeverity": "high",
+    "reportedRange": "3.0.0 - 149.0.0",
+    "direct": false,
+    "dependencyScope": "production (possibly also tooling)",
+    "dependencyChainsBefore": [
+      "@google/earthengine@1.7.43 > googleapis@92.0.0"
+    ],
+    "dependencyChainsAfter": [
+      "@google/earthengine@1.7.43 > googleapis@92.0.0"
+    ],
+    "advisoryIds": [
+      "GHSA-86w9-cpqp-85rv",
+      "GHSA-w5hq-g745-h8pq"
+    ],
+    "remainingInFinalAudit": true,
+    "disposition": "UNPATCHED_BLOCKER",
+    "reachability": "Server-only Earth Engine import chain. Route/service/initializer reject external execution; regression tests verify refusal before SDK/auth/database calls. SDK 1.7.43 uses positional google.auth.JWT; latest 1.7.48 still requires googleapis ^92.0.0. gtoken loads google-p12-pem only for .p12/.pfx key files; that code uses node-forge PKCS12 parsing, whereas the advisory concerns RSA signature verification. The application accepts JSON private-key objects and guard currently prevents authentication. This narrows observed exposure but does not establish a whole-program exemption.",
+    "remediation": "No patched node-forge release as of 2026-10-16. Retain compatible SDK; reject npm suggested downgrade to 0.1.185 and unverified cross-major Google auth override. Require upstream fix/review before merge.",
+    "compatibilityRisk": "Cross-major googleapis/auth changes can break positional JWT constructors and authentication. No credentialed/provider compatibility claim; no real GEE calls."
+  },
+  {
+    "package": "googleapis-common",
+    "installedBefore": [
+      {
+        "path": "node_modules/googleapis-common",
+        "version": "5.1.0",
+        "lockDev": false,
+        "optional": false
+      }
+    ],
+    "installedAfter": [
+      "5.1.0"
+    ],
+    "reportedSeverity": "high",
+    "reportedRange": "<=7.2.0",
+    "direct": false,
+    "dependencyScope": "production (possibly also tooling)",
+    "dependencyChainsBefore": [
+      "@google/earthengine@1.7.43 > googleapis@92.0.0 > googleapis-common@5.1.0"
+    ],
+    "dependencyChainsAfter": [
+      "@google/earthengine@1.7.43 > googleapis@92.0.0 > googleapis-common@5.1.0"
+    ],
+    "advisoryIds": [
+      "GHSA-86w9-cpqp-85rv",
+      "GHSA-w5hq-g745-h8pq"
+    ],
+    "remainingInFinalAudit": true,
+    "disposition": "UNPATCHED_BLOCKER",
+    "reachability": "Server-only Earth Engine import chain. Route/service/initializer reject external execution; regression tests verify refusal before SDK/auth/database calls. SDK 1.7.43 uses positional google.auth.JWT; latest 1.7.48 still requires googleapis ^92.0.0. gtoken loads google-p12-pem only for .p12/.pfx key files; that code uses node-forge PKCS12 parsing, whereas the advisory concerns RSA signature verification. The application accepts JSON private-key objects and guard currently prevents authentication. This narrows observed exposure but does not establish a whole-program exemption.",
+    "remediation": "No patched node-forge release as of 2026-10-16. Retain compatible SDK; reject npm suggested downgrade to 0.1.185 and unverified cross-major Google auth override. Require upstream fix/review before merge.",
+    "compatibilityRisk": "Cross-major googleapis/auth changes can break positional JWT constructors and authentication. No credentialed/provider compatibility claim; no real GEE calls."
+  },
+  {
+    "package": "gtoken",
+    "installedBefore": [
+      {
+        "path": "node_modules/gtoken",
+        "version": "5.3.2",
+        "lockDev": false,
+        "optional": false
+      }
+    ],
+    "installedAfter": [
+      "5.3.2"
+    ],
+    "reportedSeverity": "high",
+    "reportedRange": "<=6.1.2",
+    "direct": false,
+    "dependencyScope": "production (possibly also tooling)",
+    "dependencyChainsBefore": [
+      "@google/earthengine@1.7.43 > googleapis@92.0.0 > google-auth-library@7.14.1 > gtoken@5.3.2"
+    ],
+    "dependencyChainsAfter": [
+      "@google/earthengine@1.7.43 > googleapis@92.0.0 > google-auth-library@7.14.1 > gtoken@5.3.2"
+    ],
+    "advisoryIds": [
+      "GHSA-86w9-cpqp-85rv"
+    ],
+    "remainingInFinalAudit": true,
+    "disposition": "UNPATCHED_BLOCKER",
+    "reachability": "Server-only Earth Engine import chain. Route/service/initializer reject external execution; regression tests verify refusal before SDK/auth/database calls. SDK 1.7.43 uses positional google.auth.JWT; latest 1.7.48 still requires googleapis ^92.0.0. gtoken loads google-p12-pem only for .p12/.pfx key files; that code uses node-forge PKCS12 parsing, whereas the advisory concerns RSA signature verification. The application accepts JSON private-key objects and guard currently prevents authentication. This narrows observed exposure but does not establish a whole-program exemption.",
+    "remediation": "No patched node-forge release as of 2026-10-16. Retain compatible SDK; reject npm suggested downgrade to 0.1.185 and unverified cross-major Google auth override. Require upstream fix/review before merge.",
+    "compatibilityRisk": "Cross-major googleapis/auth changes can break positional JWT constructors and authentication. No credentialed/provider compatibility claim; no real GEE calls."
+  },
+  {
+    "package": "js-yaml",
+    "installedBefore": [
+      {
+        "path": "node_modules/js-yaml",
+        "version": "4.3.1",
+        "lockDev": true,
+        "optional": false
+      }
+    ],
+    "installedAfter": [
+      "4.3.2"
+    ],
+    "reportedSeverity": "high",
+    "reportedRange": "4.0.0 - 4.3.1",
+    "direct": false,
+    "dependencyScope": "development",
+    "dependencyChainsBefore": [
+      "eslint@9.39.5 > @eslint/eslintrc@3.3.6 > js-yaml@4.3.1"
+    ],
+    "dependencyChainsAfter": [
+      "eslint@9.39.5 > @eslint/eslintrc@3.3.6 > js-yaml@4.3.2"
+    ],
+    "advisoryIds": [
+      "GHSA-2883-xcg3-v3hh"
+    ],
+    "remainingInFinalAudit": false,
+    "disposition": "FIXED",
+    "reachability": "ESLint legacy configuration parser; repository config is controlled, but dependency remains reachable during tooling.",
+    "remediation": "4.3.2 within existing ^4 range.",
+    "compatibilityRisk": "Lint configuration parsing."
+  },
+  {
+    "package": "micromatch",
+    "installedBefore": [
+      {
+        "path": "node_modules/micromatch",
+        "version": "4.0.8",
+        "lockDev": true,
+        "optional": false
+      }
+    ],
+    "installedAfter": [
+      "4.0.8"
+    ],
+    "reportedSeverity": "high",
+    "reportedRange": ">=0.2.0",
+    "direct": false,
+    "dependencyScope": "development",
+    "dependencyChainsBefore": [
+      "eslint-config-next@16.3.5 > @next/eslint-plugin-next@16.3.5 > fast-glob@3.3.1 > micromatch@4.0.8"
+    ],
+    "dependencyChainsAfter": [
+      "eslint-config-next@16.3.8 > @next/eslint-plugin-next@16.3.8 > fast-glob@3.3.1 > micromatch@4.0.8"
+    ],
+    "advisoryIds": [
+      "GHSA-vfj7-8cjw-p6xm"
+    ],
+    "remainingInFinalAudit": true,
+    "disposition": "MITIGATED_WITH_RESIDUAL_RISK",
+    "reachability": "Dev-only eslint-config-next > @next/eslint-plugin-next > fast-glob > micromatch > braces. Inspected get-root-dirs.js reads trusted ESLint settings.next.rootDir, not HTTP input; repo config defines no custom rootDir. Build tooling and untrusted PR/config inputs remain potential attack surfaces.",
+    "remediation": "No patched braces release (latest 3.0.3) or updated micromatch parent (latest 4.0.8). Do not downgrade Next ESLint to obsolete 14.2.35. Run tooling only on reviewed configuration with process/time limits; obtain accountable review.",
+    "compatibilityRisk": "Residual High dev DoS; this disposition is not acceptance or a waiver, and must be revisited if tooling consumes user globs."
+  },
+  {
+    "package": "next",
+    "installedBefore": [
+      {
+        "path": "node_modules/next",
+        "version": "16.3.5",
+        "lockDev": false,
+        "optional": false
+      }
+    ],
+    "installedAfter": [
+      "16.3.8"
+    ],
+    "reportedSeverity": "critical",
+    "reportedRange": "16.0.0 - 16.3.7",
+    "direct": true,
+    "dependencyScope": "production (possibly also tooling)",
+    "dependencyChainsBefore": [
+      "next@16.3.5"
+    ],
+    "dependencyChainsAfter": [
+      "next@16.3.8"
+    ],
+    "advisoryIds": [
+      "GHSA-39w2-rjm5-chcv",
+      "GHSA-3w37-wq28-93x7",
+      "GHSA-4jqv-mc3x-m676",
+      "GHSA-cjq9-62q9-8jv4",
+      "GHSA-f87g-xv8r-7p7x",
+      "GHSA-mcj8-r9mp-w47p",
+      "GHSA-vcvr-r3jv-pc5j"
+    ],
+    "remainingInFinalAudit": false,
+    "disposition": "FIXED",
+    "reachability": "App Router, route handlers, proxy and next/image are used. Catalog thumbnails explicitly use unoptimized; default optimizer remains reachable and was tested locally. No ImageResponse use found; absence of a direct import is not an exemption.",
+    "remediation": "Aligned stable 16.3.8 patch; removes all seven audited framework advisories.",
+    "compatibilityRisk": "Framework routing, hydration, proxy and image behavior; full build/browser/API regression required."
+  },
+  {
+    "package": "node-forge",
+    "installedBefore": [
+      {
+        "path": "node_modules/node-forge",
+        "version": "1.4.0",
+        "lockDev": false,
+        "optional": false
+      }
+    ],
+    "installedAfter": [
+      "1.4.0"
+    ],
+    "reportedSeverity": "high",
+    "reportedRange": "*",
+    "direct": false,
+    "dependencyScope": "production (possibly also tooling)",
+    "dependencyChainsBefore": [
+      "@google/earthengine@1.7.43 > googleapis@92.0.0 > google-auth-library@7.14.1 > gtoken@5.3.2 > google-p12-pem@3.1.4 > node-forge@1.4.0"
+    ],
+    "dependencyChainsAfter": [
+      "@google/earthengine@1.7.43 > googleapis@92.0.0 > google-auth-library@7.14.1 > gtoken@5.3.2 > google-p12-pem@3.1.4 > node-forge@1.4.0"
+    ],
+    "advisoryIds": [
+      "GHSA-86w9-cpqp-85rv"
+    ],
+    "remainingInFinalAudit": true,
+    "disposition": "UNPATCHED_BLOCKER",
+    "reachability": "Server-only Earth Engine import chain. Route/service/initializer reject external execution; regression tests verify refusal before SDK/auth/database calls. SDK 1.7.43 uses positional google.auth.JWT; latest 1.7.48 still requires googleapis ^92.0.0. gtoken loads google-p12-pem only for .p12/.pfx key files; that code uses node-forge PKCS12 parsing, whereas the advisory concerns RSA signature verification. The application accepts JSON private-key objects and guard currently prevents authentication. This narrows observed exposure but does not establish a whole-program exemption.",
+    "remediation": "No patched node-forge release as of 2026-10-16. Retain compatible SDK; reject npm suggested downgrade to 0.1.185 and unverified cross-major Google auth override. Require upstream fix/review before merge.",
+    "compatibilityRisk": "Cross-major googleapis/auth changes can break positional JWT constructors and authentication. No credentialed/provider compatibility claim; no real GEE calls."
+  },
+  {
+    "package": "sharp",
+    "installedBefore": [
+      {
+        "path": "node_modules/sharp",
+        "version": "0.35.4",
+        "lockDev": false,
+        "optional": true
+      }
+    ],
+    "installedAfter": [
+      "0.35.5"
+    ],
+    "reportedSeverity": "high",
+    "reportedRange": "<0.35.5",
+    "direct": false,
+    "dependencyScope": "production (possibly also tooling)",
+    "dependencyChainsBefore": [
+      "next@16.3.5 > sharp@0.35.4"
+    ],
+    "dependencyChainsAfter": [
+      "next@16.3.8 > sharp@0.35.5"
+    ],
+    "advisoryIds": [
+      "GHSA-wq5f-xc86-pv6w"
+    ],
+    "remainingInFinalAudit": false,
+    "disposition": "FIXED",
+    "reachability": "Next optional runtime image optimizer; exercised real local PNG decode, resize and WebP output both directly and through /_next/image.",
+    "remediation": "0.35.5/libvips 1.3.4 within existing semver range.",
+    "compatibilityRisk": "Native optional binaries/platform compatibility; only Linux x64 tested."
+  },
+  {
+    "package": "source-map-js",
+    "installedBefore": [
+      {
+        "path": "node_modules/source-map-js",
+        "version": "1.2.1",
+        "lockDev": false,
+        "optional": false
+      }
+    ],
+    "installedAfter": [
+      "1.2.2"
+    ],
+    "reportedSeverity": "high",
+    "reportedRange": "1.0.0 - 1.2.1",
+    "direct": false,
+    "dependencyScope": "production (possibly also tooling)",
+    "dependencyChainsBefore": [
+      "@tailwindcss/postcss@4.3.3 > @tailwindcss/node@4.3.3 > source-map-js@1.2.1",
+      "@tailwindcss/postcss@4.3.3 > postcss@8.5.26 > source-map-js@1.2.1",
+      "next@16.3.5 > postcss@8.5.23 > source-map-js@1.2.1"
+    ],
+    "dependencyChainsAfter": [
+      "@tailwindcss/postcss@4.3.3 > @tailwindcss/node@4.3.3 > source-map-js@1.2.2",
+      "@tailwindcss/postcss@4.3.3 > postcss@8.5.30 > source-map-js@1.2.2",
+      "next@16.3.8 > postcss@8.5.23 > source-map-js@1.2.2"
+    ],
+    "advisoryIds": [
+      "GHSA-68fv-2mgg-jv7q"
+    ],
+    "remainingInFinalAudit": false,
+    "disposition": "FIXED",
+    "reachability": "Next/PostCSS and Tailwind CSS processing; sourcemap parsing can consume build inputs.",
+    "remediation": "1.2.2 within all parent ranges.",
+    "compatibilityRisk": "Build/sourcemap compatibility; production build verified."
+  },
+  {
+    "package": "tinypool",
+    "installedBefore": [
+      {
+        "path": "node_modules/tinypool",
+        "version": "1.1.1",
+        "lockDev": true,
+        "optional": false
+      }
+    ],
+    "installedAfter": [],
+    "reportedSeverity": "critical",
+    "reportedRange": "<=2.1.1",
+    "direct": false,
+    "dependencyScope": "development",
+    "dependencyChainsBefore": [
+      "vitest@3.2.4 > tinypool@1.1.1"
+    ],
+    "dependencyChainsAfter": [],
+    "advisoryIds": [
+      "GHSA-5gmw-xhrv-c9v3",
+      "GHSA-85c8-ppgw-ccpr"
+    ],
+    "remainingInFinalAudit": false,
+    "disposition": "FIXED",
+    "reachability": "Former Vitest worker-pool dependency. CLI-only use lowers network exposure but does not fix prototype-pollution gadgets.",
+    "remediation": "Removed transitively by supported Vitest 4 upgrade; no feature or test removal.",
+    "compatibilityRisk": "New Vitest worker implementation; full suite executed."
+  },
+  {
+    "package": "uuid",
+    "installedBefore": [
+      {
+        "path": "node_modules/uuid",
+        "version": "8.3.2",
+        "lockDev": false,
+        "optional": false
+      }
+    ],
+    "installedAfter": [
+      "8.3.2"
+    ],
+    "reportedSeverity": "moderate",
+    "reportedRange": "<11.1.1",
+    "direct": false,
+    "dependencyScope": "production (possibly also tooling)",
+    "dependencyChainsBefore": [
+      "@google/earthengine@1.7.43 > googleapis@92.0.0 > googleapis-common@5.1.0 > uuid@8.3.2"
+    ],
+    "dependencyChainsAfter": [
+      "@google/earthengine@1.7.43 > googleapis@92.0.0 > googleapis-common@5.1.0 > uuid@8.3.2"
+    ],
+    "advisoryIds": [
+      "GHSA-w5hq-g745-h8pq"
+    ],
+    "remainingInFinalAudit": true,
+    "disposition": "NEEDS_MANUAL_SECURITY_REVIEW",
+    "reachability": "googleapis-common calls uuid.v4() without caller buffer for multipart boundaries; advisory concerns v3/v5/v6 external buffers. Real GEE is guarded. No whole-program exemption claimed; inherited vulnerable major remains in runtime graph.",
+    "remediation": "Patched CommonJS-compatible 11.1.1 exists but falls outside parent ^8.3.2; seek maintained upstream Google SDK chain or separately reviewed/tested scoped upgrade.",
+    "compatibilityRisk": "Major-version transitive override not applied; deprecated uuid8 remains."
+  },
+  {
+    "package": "vitest",
+    "installedBefore": [
+      {
+        "path": "node_modules/vitest",
+        "version": "3.2.4",
+        "lockDev": true,
+        "optional": false
+      }
+    ],
+    "installedAfter": [
+      "4.1.12"
+    ],
+    "reportedSeverity": "critical",
+    "reportedRange": "<=4.1.10",
+    "direct": true,
+    "dependencyScope": "development",
+    "dependencyChainsBefore": [
+      "vitest@3.2.4"
+    ],
+    "dependencyChainsAfter": [
+      "vitest@4.1.12"
+    ],
+    "advisoryIds": [
+      "GHSA-5gmw-xhrv-c9v3",
+      "GHSA-5xrq-8626-4rwp",
+      "GHSA-82fw-gwwq-j7x9",
+      "GHSA-85c8-ppgw-ccpr"
+    ],
+    "remainingInFinalAudit": false,
+    "disposition": "FIXED",
+    "reachability": "npm test uses vitest run with no UI/API server. Prior mocker/tinypool vulnerabilities still required patching; tests are executable trusted repository code.",
+    "remediation": "4.1.12 maintained V4 line; all @vitest packages aligned; no tinypool dependency. Retain Vite 7.3.6 explicitly.",
+    "compatibilityRisk": "Major testing/mocking behavior; all 262 original tests preserved, plus two runtime tests."
+  }
+]

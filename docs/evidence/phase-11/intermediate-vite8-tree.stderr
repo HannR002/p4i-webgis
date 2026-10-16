@@ -1,0 +1,7 @@
+(node:60896) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+npm error code ELSPROBLEMS
+npm error extraneous: @emnapi/runtime@1.11.3 /workspace/p4i-webgis/node_modules/@emnapi/runtime
+npm error extraneous: @img/sharp-wasm32@0.35.5 /workspace/p4i-webgis/node_modules/@img/sharp-wasm32
+npm error invalid: lightningcss-linux-x64-musl@1.32.0 /workspace/p4i-webgis/node_modules/lightningcss-linux-x64-musl
+npm error A complete log of this run can be found in: /workspace/.npm/_logs/2026-10-16T04_52_53_252Z-debug-0.log
