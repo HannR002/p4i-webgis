@@ -1,0 +1,26 @@
+[
+  {
+    "file": "build.log",
+    "rawSha256": "184ff5242966f0405a23e26f112e69644ce59b96b4b2c8f90bc1ea4ae9dfefb7",
+    "committedSha256": "ac1a21750be8ad80ae62b7b21c894a10009a860fe0fded86fe84b059c544b6d8",
+    "change": "Normalize terminal CR/trailing whitespace/blank EOF only; raw retained in workspace artifacts"
+  },
+  {
+    "file": "final-ls.txt",
+    "rawSha256": "fd81d936267b453e75e83bcb0d00c1749a47006a022bd469baf0ba9c1b97e620",
+    "committedSha256": "4cb5e16d3b82766dbf5b3db74a151fe466c5c8f098b0c633adb6d7197ab7e59d",
+    "change": "Normalize terminal CR/trailing whitespace/blank EOF only; raw retained in workspace artifacts"
+  },
+  {
+    "file": "tests.log",
+    "rawSha256": "3ae39ac5b3de209eae0c8078bc38fdca93bfc0bd05602557282e5c725793d5ea",
+    "committedSha256": "b2baec3af9a9ab6316c853676b81db565f1cf665ecb0dca3c2158eabbdd7b95f",
+    "change": "Normalize terminal CR/trailing whitespace/blank EOF only; raw retained in workspace artifacts"
+  },
+  {
+    "file": "typecheck.log",
+    "rawSha256": "b27ca0662d9fff07b635e714ac93653094571b809d076e701ec14339f605068e",
+    "committedSha256": "78a8e426e13f3268d43ae711dda254a8dfb3d77b14886c9caa5b19c58d877d5f",
+    "change": "Normalize terminal CR/trailing whitespace/blank EOF only; raw retained in workspace artifacts"
+  }
+]

@@ -33,4 +33,3 @@ p4i-webgis@0.1.0 /workspace/p4i-webgis
 ├── vite@7.3.6
 ├── vitest@4.1.12
 └── zustand@5.0.15
-

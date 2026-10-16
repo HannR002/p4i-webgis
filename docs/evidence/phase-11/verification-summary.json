@@ -45,5 +45,12 @@
     "Optional platform-only Sharp WASM dependencies labelled extraneous by npm on Linux; no missing/invalid edges",
     "ESLint 9 deprecated; separate coordinated tool maintenance needed",
     "Existing production readiness blockers retained"
-  ]
+  ],
+  "implementationCommit": "fe9d1b22e69cba56143ef4ea8400d448ad7a5a56",
+  "pullRequest": {
+    "number": 7,
+    "url": "https://github.com/HannR002/p4i-webgis/pull/7",
+    "base": "integration/p4i-webgis-phase01-09",
+    "draft": true
+  }
 }

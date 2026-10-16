@@ -29,3 +29,7 @@ Collected 16 October 2026 using Node 22.23.3. See the
 Machine-specific absolute artifact/tool paths in logs are informational. Reproduction commands
 and isolation requirements are in the report. Screenshots/downloads from these runs remain in
 `/workspace/artifacts/phase-11`; no additional binary report/client data is published here.
+
+`log-transcription.json` records raw and committed hashes where terminal carriage returns,
+trailing whitespace or blank EOF lines were normalized for review. Log content/results are
+otherwise unchanged; raw captures remain in the workspace artifact directory.

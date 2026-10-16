@@ -4,6 +4,7 @@ Date: **16 October 2026 (Asia/Jakarta)**. Repository: `HannR002/p4i-webgis`.
 Base: `integration/p4i-webgis-phase01-09` at
 `d1400a2ab363a908d49e468b51786ca5c60ce85b` (fetched and matched to cumulative draft PR #6).
 Remediation branch: `security/phase11-dependency-remediation`.
+Draft review PR: [#7](https://github.com/HannR002/p4i-webgis/pull/7) → `integration/p4i-webgis-phase01-09`.
 
 ## 1. Executive decision
 
