@@ -8,6 +8,7 @@ Phase 11 work, not an assertion of human security approval. The checkout was cle
 remote heads were fetched before branching.
 
 Branch: `security/phase12-gee-dependency-isolation`.
+Draft review PR: [#8](https://github.com/HannR002/p4i-webgis/pull/8) → `security/phase11-dependency-remediation`.
 
 ## 1. Outcome and separate release decisions
 

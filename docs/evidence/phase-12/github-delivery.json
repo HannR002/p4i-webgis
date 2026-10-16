@@ -1,0 +1,89 @@
+{
+  "date": "2026-10-16",
+  "implementationCommit": "3070a507c549244e8210b819795bf53916b5371d",
+  "remediationPR": 8,
+  "pullRequests": [
+    {
+      "number": 1,
+      "url": "https://github.com/HannR002/p4i-webgis/pull/1",
+      "state": "open",
+      "draft": true,
+      "merged": false,
+      "head": "feat/ai-gis-copilot-phase05",
+      "headSha": "989ff9284e0f8a14e8044409cd37d23b54fd7d55",
+      "base": "feat/gis-analysis-config-phase04"
+    },
+    {
+      "number": 2,
+      "url": "https://github.com/HannR002/p4i-webgis/pull/2",
+      "state": "open",
+      "draft": true,
+      "merged": false,
+      "head": "feat/ai-gis-analysis-phase06",
+      "headSha": "048180133b62d57efa359e978e07f101184f6a42",
+      "base": "feat/ai-gis-copilot-phase05"
+    },
+    {
+      "number": 3,
+      "url": "https://github.com/HannR002/p4i-webgis/pull/3",
+      "state": "open",
+      "draft": true,
+      "merged": false,
+      "head": "feat/consulting-workflow-phase07",
+      "headSha": "20cbf540b85f3f0b01bd92c0662c468b39517d48",
+      "base": "feat/ai-gis-analysis-phase06"
+    },
+    {
+      "number": 4,
+      "url": "https://github.com/HannR002/p4i-webgis/pull/4",
+      "state": "open",
+      "draft": true,
+      "merged": false,
+      "head": "feat/postgis-staging-phase08",
+      "headSha": "5e9d651c87325ff6509569a628919979f2b99ce8",
+      "base": "feat/consulting-workflow-phase07"
+    },
+    {
+      "number": 5,
+      "url": "https://github.com/HannR002/p4i-webgis/pull/5",
+      "state": "open",
+      "draft": true,
+      "merged": false,
+      "head": "feat/production-readiness-phase09",
+      "headSha": "11b5f9ade32f1b39c8cad5f3616f4db3d7999728",
+      "base": "feat/postgis-staging-phase08"
+    },
+    {
+      "number": 6,
+      "url": "https://github.com/HannR002/p4i-webgis/pull/6",
+      "state": "open",
+      "draft": true,
+      "merged": false,
+      "head": "integration/p4i-webgis-phase01-09",
+      "headSha": "d1400a2ab363a908d49e468b51786ca5c60ce85b",
+      "base": "main"
+    },
+    {
+      "number": 7,
+      "url": "https://github.com/HannR002/p4i-webgis/pull/7",
+      "state": "open",
+      "draft": true,
+      "merged": false,
+      "head": "security/phase11-dependency-remediation",
+      "headSha": "32dbdbe896f94ca8b14c532611a0c6796e475c59",
+      "base": "integration/p4i-webgis-phase01-09"
+    },
+    {
+      "number": 8,
+      "url": "https://github.com/HannR002/p4i-webgis/pull/8",
+      "state": "open",
+      "draft": true,
+      "merged": false,
+      "head": "security/phase12-gee-dependency-isolation",
+      "headSha": "3070a507c549244e8210b819795bf53916b5371d",
+      "base": "security/phase11-dependency-remediation"
+    }
+  ],
+  "automaticMerge": false,
+  "visibilityChanged": false
+}

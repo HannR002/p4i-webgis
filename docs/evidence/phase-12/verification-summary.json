@@ -86,5 +86,15 @@
     "Host-global tooling uuid outside application scope",
     "npm reports two platform-optional Sharp artifacts extraneous, no missing/invalid edges",
     "No real Supabase/data/GEE/LLM/Hostinger acceptance verified"
-  ]
+  ],
+  "implementationCommit": "3070a507c549244e8210b819795bf53916b5371d",
+  "pullRequest": {
+    "number": 8,
+    "url": "https://github.com/HannR002/p4i-webgis/pull/8",
+    "draft": true,
+    "state": "open",
+    "head": "security/phase12-gee-dependency-isolation",
+    "headSha": "3070a507c549244e8210b819795bf53916b5371d",
+    "base": "security/phase11-dependency-remediation"
+  }
 }
