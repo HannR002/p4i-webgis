@@ -1,3 +1,8 @@
+import {
+  VECTOR_TOOLS,
+  parseVectorAction,
+  parseSketchLayers,
+} from './vectorEditing';
 import { parseAnalysisMapResults } from './computeValidation';
 import type {
   Dataset,
@@ -58,6 +63,8 @@ function rasterStyle(v: unknown): boolean {
 }
 export function parseMapAction(v: unknown): MapAction {
   if (!record(v)) throw new GisInputError('Tindakan GIS tidak valid');
+  if (VECTOR_TOOLS.includes(v.tool as (typeof VECTOR_TOOLS)[number]))
+    return parseVectorAction(v);
   let valid = false;
   let keys: string[] = [];
   switch (v.tool) {
@@ -268,6 +275,9 @@ export function parseRecipe(
   const checked = v as unknown as MapRecipe; // Every consumed field was checked above.
   return {
     schemaVersion: 1,
+    ...(v.sketchLayers === undefined
+      ? {}
+      : { sketchLayers: parseSketchLayers(v.sketchLayers) }),
     id: checked.id,
     title: checked.title,
     description: checked.description,

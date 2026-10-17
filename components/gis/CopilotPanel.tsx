@@ -1,4 +1,10 @@
 "use client";
+import { emptyRecipe } from "../../lib/gis/catalog";
+import {
+  GEMINI_FREE_PROVIDER,
+  SYNTHETIC_GEMINI_PROMPT,
+  type FreeAiStatus,
+} from "../../lib/gis/freeAi";
 import ComputeJobCard from "./ComputeJobCard";
 import { useEffect, useRef, useState } from "react";
 import { Sparkles, Send } from "lucide-react";
@@ -16,6 +22,10 @@ import { parseAnalysisConfiguration } from "../../lib/gis/analysisConfiguration"
 import { canAccessDataset } from "../../lib/gis/recipe";
 import { parseRecipe, record } from "../../lib/gis/validation";
 const prompts = [
+  "Buatkan peta baru bernama Survei Lapangan dan gunakan OpenStreetMap.",
+  "Tambahkan titik A pada longitude 103.61 dan latitude -1.61, warna merah.",
+  "Tambahkan titik B [103.62, -1.61]; C [103.62, -1.62]; D [103.61, -1.62]",
+  "Buat poligon dari titik A, B, C, dan D. Beri warna hijau dengan transparansi 40%.",
   "Buat peta curah hujan dan kemiringan dengan batas kecamatan",
   "Buatkan peta tutupan lahan area contoh Barat, tambahkan batas kecamatan, gunakan basemap OSM dan buatkan legenda",
   "Tambahkan tutupan lahan dan tanah",
@@ -39,10 +49,24 @@ export default function CopilotPanel({
   onOpenAnalysis?: () => void;
 }) {
   const s = useWorkspaceStore();
+  const [providerStatus, setProviderStatus] = useState<FreeAiStatus | null>(
+    null,
+  );
+  useEffect(() => {
+    const c = new AbortController();
+    fetch("/api/gis/copilot", { signal: c.signal })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((v) => {
+        if (v && ["demo", "gemini-free", "unavailable"].includes(v.provider))
+          setProviderStatus(v);
+      })
+      .catch(() => {});
+    return () => c.abort();
+  }, []);
   const [prompt, setPrompt] = useState(""),
     [automatic, setAutomatic] = useState(true);
   const [messages, setMessages] = useState<
-    { role: "Anda" | "Copilot DEMO"; text: string }[]
+    { role: "Anda" | "Copilot DEMO" | "Copilot Gemini"; text: string }[]
   >([]);
   const [response, setResponse] = useState<GISRunResponse | null>(null),
     [busy, setBusy] = useState(false);
@@ -154,6 +178,11 @@ export default function CopilotPanel({
               }
             : {
                 prompt: value,
+                selectedVectorIds: current.selectedVectorIds.filter((id) =>
+                  current.recipe.sketchLayers?.some((l) =>
+                    l.data.features.some((f) => f.id === id),
+                  ),
+                ),
                 requestId: crypto.randomUUID(),
                 recipe: current.recipe,
                 configurations,
@@ -178,7 +207,13 @@ export default function CopilotPanel({
         throw Error(
           "Peta atau izin berubah saat permintaan diproses. Hasil lama tidak diterapkan; kirim instruksi baru.",
         );
-      const parsed = parseGISRunResponse(raw, env);
+      const parsed = parseGISRunResponse(
+        raw,
+        env,
+        providerStatus?.provider === "gemini-free"
+          ? GEMINI_FREE_PROVIDER
+          : undefined,
+      );
       const actualChange = JSON.stringify(parsed.recipe) !== canonicalBase;
       if (
         parsed.changed !== actualChange ||
@@ -188,7 +223,7 @@ export default function CopilotPanel({
       if (parsed.changed)
         latest.replace(
           parsed.recipe,
-          `Copilot DEMO: ${parsed.plan.steps.map((step) => step.action.tool).join(", ")}`,
+          `Copilot ${parsed.plan.provider.mode === "demo" ? "DEMO" : "Gemini Free Tier"}: ${parsed.plan.steps.map((step) => step.action.tool).join(", ")}`,
           latest.recipe,
         );
       const configuration = parsed.results.findLast(
@@ -214,7 +249,13 @@ export default function CopilotPanel({
       setMessages((m) =>
         [
           ...m,
-          { role: "Copilot DEMO" as const, text: parsed.plan.message },
+          {
+            role:
+              providerStatus?.provider === "gemini-free"
+                ? ("Copilot Gemini" as const)
+                : ("Copilot DEMO" as const),
+            text: parsed.plan.message,
+          },
         ].slice(-24),
       );
       setPrompt("");
@@ -232,7 +273,10 @@ export default function CopilotPanel({
           [
             ...m,
             {
-              role: "Copilot DEMO" as const,
+              role:
+                providerStatus?.provider === "gemini-free"
+                  ? ("Copilot Gemini" as const)
+                  : ("Copilot DEMO" as const),
               text: `Permintaan gagal: ${reason} Tidak ada perubahan sesi diterapkan.`,
             },
           ].slice(-24),
@@ -306,15 +350,66 @@ export default function CopilotPanel({
         <Sparkles size={19} />
         AI GIS Copilot
       </h2>
-      <span className="gis-tag">PLANNER DEMO DETERMINISTIK</span>
+      <span className="gis-tag">
+        {providerStatus?.provider === "gemini-free"
+          ? "GEMINI FREE TIER · LIVE_INTEGRATION_PENDING"
+          : providerStatus?.provider === "unavailable"
+            ? "PROVIDER TIDAK TERSEDIA"
+            : "PLANNER DEMO DETERMINISTIK"}
+      </span>
+      <p className="gis-muted">
+        {providerStatus?.reason ??
+          "Memeriksa status provider; belum ada koneksi live yang diverifikasi."}
+      </p>
+      {providerStatus?.provider === "gemini-free" && (
+        <details>
+          <summary>Privasi dan sampel Gemini</summary>
+          <p>
+            Free Tier dapat memakai input/output untuk peningkatan produk dan
+            peninjauan manusia. Hanya skenario sintetik server yang diizinkan.
+            Prompt bebas, data privat, dan peta klien ditolak. Tombol ini
+            menyiapkan peta kosong; Undo tersedia. Pengiriman tetap melalui
+            Kirim instruksi.
+          </p>
+          <button
+            disabled={busy}
+            onClick={() => {
+              s.replace(
+                emptyRecipe(),
+                "Persetujuan menyiapkan sampel publik Gemini",
+              );
+              s.setVectorEditor({
+                selectedVectorIds: [],
+                vectorVertices: [],
+                vectorMode: "off",
+              });
+              setPrompt(SYNTHETIC_GEMINI_PROMPT);
+            }}
+          >
+            Siapkan sampel publik Gemini
+          </button>
+        </details>
+      )}
       <p className="gis-muted">
         Controlled Autonomous · Option B. Pembacaan dan perubahan sesi aman
-        dapat berjalan otomatis. Belum ada model LLM terhubung atau komputasi
-        GEE otomatis.
+        dapat berjalan otomatis. Gemini dibatasi verifikasi Free Tier dan
+        allowlist sintetik. GEE tidak aktif.
       </p>
       <div className="gis-context">
         Konteks: {s.recipe.layers.length} layer ·{" "}
         {s.recipe.aoi?.name ?? "AOI belum dipilih"}
+        <p>
+          {s.recipe.sketchLayers?.reduce(
+            (n, l) => n + l.data.features.length,
+            0,
+          ) ?? 0}{" "}
+          objek vektor lokal · pilihan:{" "}
+          {s.recipe.sketchLayers
+            ?.flatMap((l) => l.data.features)
+            .filter((f) => s.selectedVectorIds.includes(f.id))
+            .map((f) => f.properties.name)
+            .join(", ") || "belum ada"}
+        </p>
         {s.analysisDraft && (
           <p>
             Draft editor: {s.analysisDraft.name} · v{s.analysisDraft.version} ·
@@ -341,11 +436,22 @@ export default function CopilotPanel({
         Matikan untuk preview. Menyimpan konfigurasi, publikasi dan operasi
         berbiaya selalu memerlukan persetujuan terpisah.
       </p>
+      <div className="gis-config-actions">
+        <button disabled={!s.past.length || busy} onClick={s.undo}>
+          Undo perubahan AI
+        </button>
+        <button disabled={!s.future.length || busy} onClick={s.redo}>
+          Redo perubahan AI
+        </button>
+      </div>
       <div className="gis-prompts">
         {prompts.map((p) => (
           <button
             key={p}
-            disabled={busy || s.mode !== "demo"}
+            disabled={
+              busy ||
+              (s.mode !== "demo" && providerStatus?.provider !== "gemini-free")
+            }
             onClick={() => void ask(p)}
           >
             {p}
@@ -708,7 +814,11 @@ export default function CopilotPanel({
         <div className="gis-config-actions">
           <button
             className="gis-button"
-            disabled={busy || !prompt.trim() || s.mode !== "demo"}
+            disabled={
+              busy ||
+              !prompt.trim() ||
+              (s.mode !== "demo" && providerStatus?.provider !== "gemini-free")
+            }
           >
             {busy ? "Memproses…" : "Kirim instruksi"}
             <Send size={15} />

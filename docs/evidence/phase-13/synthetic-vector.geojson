@@ -1,0 +1,167 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "local-feature-1",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.61,
+          -1.61
+        ]
+      },
+      "properties": {
+        "name": "A",
+        "description": "",
+        "attributes": {},
+        "style": {
+          "color": "#dc2626",
+          "fillColor": "#dc2626",
+          "weight": 2,
+          "fillOpacity": 0.6,
+          "radius": 7
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "local-feature-2",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.62,
+          -1.61
+        ]
+      },
+      "properties": {
+        "name": "B",
+        "description": "",
+        "attributes": {}
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "local-feature-3",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.62,
+          -1.62
+        ]
+      },
+      "properties": {
+        "name": "C",
+        "description": "",
+        "attributes": {}
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "local-feature-4",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.61,
+          -1.62
+        ]
+      },
+      "properties": {
+        "name": "D",
+        "description": "",
+        "attributes": {}
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "local-feature-5",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              103.61,
+              -1.61
+            ],
+            [
+              103.62,
+              -1.61
+            ],
+            [
+              103.62,
+              -1.62
+            ],
+            [
+              103.61,
+              -1.62
+            ],
+            [
+              103.61,
+              -1.61
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Poligon pilihan",
+        "description": "",
+        "attributes": {},
+        "style": {
+          "color": "#16a34a",
+          "fillColor": "#16a34a",
+          "weight": 2,
+          "fillOpacity": 0.6,
+          "radius": 7
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "local-feature-6",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.540993,
+          -1.536956
+        ]
+      },
+      "properties": {
+        "name": "Titik 6",
+        "description": "",
+        "attributes": {}
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "local-feature-7",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              103.53756,
+              -1.526665
+            ],
+            [
+              103.558159,
+              -1.526665
+            ],
+            [
+              103.558159,
+              -1.543817
+            ],
+            [
+              103.53756,
+              -1.526665
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Poligon 7",
+        "description": "",
+        "attributes": {}
+      }
+    }
+  ]
+}

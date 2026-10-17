@@ -2008,3 +2008,12 @@
 .consulting-map-preview svg { width:100%; border:1px solid #b6c9cc; border-radius:8px; }
 .consulting-map-preview figcaption { font-size:12px; line-height:1.6; }
 @media(max-width:800px) { .consulting-grid { grid-template-columns:minmax(0,1fr); } .consulting-page { padding:16px; } .consulting-controls { align-items:stretch; } .consulting-card { padding:16px; } }
+
+.gis-vector-editor { border: 1px solid var(--gis-border, #cbd5e1); border-radius: 12px; padding: 12px; margin-bottom: 16px; }
+.gis-vector-editor label { display: block; margin: 8px 0; }
+.gis-vector-editor input:not([type=checkbox]):not([type=color]), .gis-vector-editor select, .gis-vector-editor textarea { width: 100%; min-width: 0; box-sizing: border-box; }
+.gis-vector-editor fieldset { min-width: 0; margin: 12px 0; border: 1px solid #cbd5e1; border-radius: 8px; }
+.gis-vector-editor button { min-height: 36px; margin: 3px; padding: 5px 8px; border: 1px solid #94a3b8; border-radius: 6px; }
+.gis-vector-editor button[aria-pressed=true] { background: #0f766e; color: white; }
+.gis-vector-editor ul { max-height: 220px; overflow: auto; list-style: none; padding: 0; }
+.gis-vector-editor :focus-visible { outline: 3px solid #2563eb; outline-offset: 2px; }

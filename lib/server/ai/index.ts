@@ -1,3 +1,4 @@
+import { geminiFreeProvider } from './providers/geminiFree';
 import 'server-only';
 import { demoEnabled } from '../../gis/mode';
 import { createDemoPlanner } from './providers/demo';
@@ -9,6 +10,7 @@ export function getGisPlanner(): GisPlanner | null {
 import { createControlledDemoProvider } from './providers/controlledDemo';
 import type { AIProvider } from '../../gis/copilotContracts';
 export function getAIProvider(): AIProvider | null {
+  if (process.env.AI_PROVIDER === 'gemini-free') return geminiFreeProvider;
   return demoPlannerSelected() ? createControlledDemoProvider() : null;
 }
 

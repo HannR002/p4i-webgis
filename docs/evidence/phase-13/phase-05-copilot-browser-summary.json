@@ -1,0 +1,55 @@
+{
+  "pageErrors": [],
+  "geeCalls": 0,
+  "analysisCalls": 1,
+  "flows": [
+    "automatic authorized map generation, existing renderer, AOI, legend and atomic Undo/Redo",
+    "opacity/style/order, actual catalog metadata/provider pixels/NoData and no silent real-AOI substitution",
+    "optional preview, exact reviewed-plan execution and tab persistence",
+    "Phase 04 config create/select/fork/undo/prepare/apply and explicit local save approval, no automatic persistence",
+    "analysis preparation does not compute; explicit existing Analysis panel executes native DEMO statistics",
+    "request abort and stale-response rejection keep human map changes"
+  ],
+  "audits": [
+    {
+      "width": 1480,
+      "state": "automatic-map",
+      "violations": []
+    },
+    {
+      "width": 1480,
+      "state": "pixel",
+      "violations": []
+    },
+    {
+      "width": 1480,
+      "state": "approval",
+      "violations": []
+    },
+    {
+      "width": 1480,
+      "state": "unavailable",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "state": "automatic-map",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "state": "pixel",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "state": "approval",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "state": "unavailable",
+      "violations": []
+    }
+  ]
+}

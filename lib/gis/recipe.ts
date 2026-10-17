@@ -1,3 +1,8 @@
+import {
+  VECTOR_TOOLS,
+  applyVectorAction,
+  type VectorAction,
+} from './vectorEditing';
 import type {
   Dataset,
   GisContext,
@@ -75,6 +80,10 @@ export function applyMapAction(
   let recipe = parseRecipe(input, catalog);
   assertRecipeAccess(recipe, catalog, context);
   const action = parseMapAction(rawAction);
+  if (VECTOR_TOOLS.includes(action.tool as (typeof VECTOR_TOOLS)[number])) {
+    applyVectorAction(recipe, action as VectorAction);
+    return parseRecipe(recipe, catalog);
+  }
   if (action.tool === 'createMap')
     recipe = { ...emptyRecipe(), title: action.title };
   else if (action.tool === 'setMapTitle') recipe.title = action.title;
@@ -124,7 +133,9 @@ export function applyMapAction(
       zoom: 13,
     };
   } else {
-    const index = recipe.layers.findIndex((l) => l.id === action.layerId);
+    const index = recipe.layers.findIndex(
+      (l) => l.id === ('layerId' in action ? action.layerId : ''),
+    );
     if (index < 0) throw new GisInputError('Layer tidak dikenal');
     const layer = recipe.layers[index];
     switch (action.tool) {

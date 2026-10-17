@@ -1,3 +1,4 @@
+import { VECTOR_TOOLS } from "./vectorEditing";
 import { COMPUTE_TOOLS } from "./computeContracts";
 import { parseComputeTool, parseComputeJob } from "./computeValidation";
 import type {
@@ -45,6 +46,7 @@ export function byteSize(v: unknown): number {
   }
 }
 const mapTools = [
+  ...VECTOR_TOOLS,
   "createMap",
   "setMapTitle",
   "setBasemap",

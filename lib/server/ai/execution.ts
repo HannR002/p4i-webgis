@@ -1,3 +1,4 @@
+import { SafeProviderError } from './providerError';
 import { applyComputeJob } from '../../gis/computeMap';
 import 'server-only';
 import type {
@@ -120,6 +121,7 @@ export async function planWithProvider(
       signal,
     );
   } catch (error) {
+    if (error instanceof SafeProviderError) throw error;
     if (
       provider.mode === 'demo' &&
       (error instanceof GisInputError || error instanceof GisPermissionError)

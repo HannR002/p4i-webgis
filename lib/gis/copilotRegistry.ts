@@ -1,6 +1,15 @@
+import { VECTOR_TOOLS } from './vectorEditing';
 import { COMPUTE_TOOLS, type ComputeCostClass } from './computeContracts';
 import type { GISToolName, GISToolRegistry, GISRisk } from './copilotContracts';
 const definitions: [GISToolName, GISRisk, string, boolean?][] = [
+  ...VECTOR_TOOLS.map(
+    (name) =>
+      [name, 'map-session', 'Edit geometri sesi lokal dengan batas ukuran'] as [
+        GISToolName,
+        GISRisk,
+        string,
+      ],
+  ),
   [
     'runConfiguredAnalysis',
     'map-session',

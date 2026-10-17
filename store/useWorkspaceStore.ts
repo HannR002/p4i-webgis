@@ -39,18 +39,24 @@ function syncConfiguration(previous: MapRecipe, next: MapRecipe) {
       // Preserve the recipe, normalize its accepted rounded sum only for the runtime store.
       const weights = next.analysis.weights;
       const total = weights.bencana + weights.kesuburan + weights.kepadatan;
-      useMapStore
-        .getState()
-        .setWLCWeights({
-          bencana: weights.bencana / total,
-          kesuburan: weights.kesuburan / total,
-          kepadatan: weights.kepadatan / total,
-        });
+      useMapStore.getState().setWLCWeights({
+        bencana: weights.bencana / total,
+        kesuburan: weights.kesuburan / total,
+        kepadatan: weights.kepadatan / total,
+      });
     } else useMapStore.getState().setAHPPreferences(DEFAULT_PAIRWISE);
   }
 }
 
-interface WorkspaceState {
+interface VectorEditorState {
+  vectorMode: 'off' | 'select' | 'point' | 'polygon';
+  vectorLayerId: string;
+  selectedVectorIds: string[];
+  vectorVertices: [number, number][];
+  vectorError: string | null;
+}
+interface WorkspaceState extends VectorEditorState {
+  setVectorEditor: (value: Partial<VectorEditorState>) => void;
   recipe: MapRecipe;
   catalog: Dataset[];
   mode: 'loading' | 'demo' | 'unavailable';
@@ -77,6 +83,12 @@ interface WorkspaceState {
 }
 export const useWorkspaceStore = create<WorkspaceState>((set, get) => ({
   recipe: emptyRecipe(),
+  vectorMode: 'off',
+  vectorLayerId: '',
+  selectedVectorIds: [],
+  vectorVertices: [],
+  vectorError: null,
+  setVectorEditor: (value) => set(value),
   catalog: [],
   mode: 'loading',
   context: { role: 'guest', entitledProjectIds: [] },

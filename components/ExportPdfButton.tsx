@@ -227,6 +227,14 @@ export default function ExportPdfButton({
             `Configuration version: ${r.configurationVersion ?? 'geometry'} | ${r.createdAt}`,
             `Provenance: ${r.provenance}`,
           ]),
+          ...(recipe.sketchLayers ?? []).flatMap((l) => [
+            `Local vector: ${l.name} | EPSG:4326 | ${l.data.features.length} objects | visible: ${l.visible}`,
+            'Source: user-supplied or explicitly synthetic coordinates; not official boundaries or measured results.',
+            ...l.data.features.map(
+              (f) =>
+                `Object: ${f.properties.name} | ${f.geometry.type} | ${f.properties.description}`,
+            ),
+          ]),
           ...recipe.layers.flatMap((l) => {
             const d = datasets.find((d) => d.id === l.datasetId);
             return [

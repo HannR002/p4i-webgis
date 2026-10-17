@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-17",
+  "base": "3762e34b4a58c93cee0177fca542641cf6c8b6ed",
+  "node": "22.23.3",
+  "npm": "10.9.9",
+  "installation": "npm ci passed; manifests unchanged",
+  "lint": "passed",
+  "typecheck": "passed",
+  "tests": {
+    "passed": 314,
+    "files": 42,
+    "phase12_baseline": 269,
+    "new_tests": 45
+  },
+  "build": "passed",
+  "browser": {
+    "existing_suites": 9,
+    "all_final_passed": true,
+    "new_suite": "phase-13-vector-editor",
+    "new_viewports": [
+      320,
+      390,
+      768,
+      1480
+    ],
+    "new_axe_violations": 0,
+    "new_page_errors": 0
+  },
+  "local_production_api_checks": 12,
+  "image_optimizer_checks": 3,
+  "gee_dependency_isolation": "passed",
+  "production_audit_affected_packages": 0,
+  "live_gemini": "LIVE_INTEGRATION_PENDING",
+  "external_Gemini_or_GEE_inference_calls": 0,
+  "database_rehearsal": "not repeated; no schema/database changes",
+  "initial_issues_fixed": [
+    "Test readonly catalog assignment",
+    "Vector editor heading hierarchy",
+    "Explicit textarea accessible labels"
+  ],
+  "qa_harness_corrections": [
+    "Use actual /spatial/viewer route",
+    "Wait for submit label rather than enabled state after cleared prompt",
+    "Verify Leaflet Canvas renderer rather than SVG paths",
+    "Use existing Buka draft button"
+  ]
+}
