@@ -1,3 +1,4 @@
+import { planVector } from './vectorPlanner';
 import type {
   AIProvider,
   GISPlanningInput,
@@ -94,6 +95,12 @@ export function planDemo(input: GISPlanningInput): GISExecutionPlan {
     message,
     steps: [],
   });
+  const vectorPlan = planVector(input);
+  if (vectorPlan) {
+    if (vectorPlan.clarification) return missing(vectorPlan.clarification);
+    vectorPlan.actions.forEach(add);
+    return base;
+  }
   const tokens = p.split(/[^a-z0-9_-]+/);
   const matches = input.catalog.filter(
     (d) =>

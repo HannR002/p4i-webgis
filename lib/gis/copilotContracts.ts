@@ -94,6 +94,7 @@ export interface GISConfigurationSummary {
   experimental: true;
 }
 export interface GISPlanningInput {
+  selectedVectorIds?: string[];
   prompt: string;
   recipe: MapRecipe;
   catalog: readonly GISDatasetInfo[];

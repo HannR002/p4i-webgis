@@ -1,4 +1,5 @@
 'use client';
+import WorkspaceVectors from './WorkspaceVectors';
 import { useEffect, useState } from 'react';
 import type { FeatureCollection, Geometry } from 'geojson';
 import {
@@ -105,6 +106,7 @@ export default function WorkspaceMapContent({
       );
     },
     click: (e) => {
+      if (useWorkspaceStore.getState().vectorMode !== 'off') return;
       if (tool === 'pixel') onInspect(e.latlng.lat, e.latlng.lng);
       if (tool === 'measure') {
         const next: [number, number][] =
@@ -125,6 +127,7 @@ export default function WorkspaceMapContent({
   });
   return (
     <>
+      <WorkspaceVectors />
       <ZoomControl position="topright" />
       <ScaleControl position="bottomleft" />
       {mode === 'demo' &&
@@ -198,7 +201,11 @@ export default function WorkspaceMapContent({
                     );
                     layer.bindTooltip(element);
                     layer.on('click', () => {
-                      if (tool === 'pan' && typeof f.id === 'string')
+                      if (
+                        tool === 'pan' &&
+                        useWorkspaceStore.getState().vectorMode === 'off' &&
+                        typeof f.id === 'string'
+                      )
                         action({ tool: 'selectAOI', aoiId: f.id });
                     });
                   }}

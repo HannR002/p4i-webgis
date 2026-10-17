@@ -1,0 +1,12 @@
+phase-01-smoke 0
+phase-01-regression 0
+phase-02-smoke 0
+phase-02-accessibility 1
+phase-03-raster 0
+phase-04-configuration 0
+phase-05-copilot 0
+phase-06-compute 0
+phase-07-deliverables 0
+phase-02-accessibility-recheck 0
+phase-13-vector-editor-final 0
+phase-03-raster-final 0

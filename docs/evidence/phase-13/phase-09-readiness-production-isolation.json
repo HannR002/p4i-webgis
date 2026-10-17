@@ -1,0 +1,57 @@
+{
+  "mode": "LOCAL_NEXT_START_WITH_DEMO_FLAGS_SET",
+  "results": [
+    {
+      "route": "/api/consulting",
+      "status": 403
+    },
+    {
+      "route": "/api/consulting/download?id=unknown&format=pdf",
+      "status": 403
+    },
+    {
+      "route": "/api/gis/compute",
+      "status": 403
+    },
+    {
+      "route": "/api/gis/copilot",
+      "status": 503
+    },
+    {
+      "route": "/api/gis/pixel",
+      "status": 503
+    },
+    {
+      "route": "/api/gis/vector/demo-boundaries",
+      "status": 503
+    },
+    {
+      "route": "/api/gis/tiles/demo-rainfall/2/0/0",
+      "status": 503
+    },
+    {
+      "route": "/api/gee/flood-analysis",
+      "status": 401
+    },
+    {
+      "route": "/api/admin/users",
+      "status": 401
+    },
+    {
+      "route": "/api/gis/catalog",
+      "mode": "unavailable",
+      "status": 200
+    },
+    {
+      "route": "/api/boundaries",
+      "status": 429,
+      "processRateLimit": true
+    },
+    {
+      "route": "/api/gis/copilot",
+      "status": 429,
+      "processRateLimit": true
+    }
+  ],
+  "externalAnalysisExecuted": false
+}

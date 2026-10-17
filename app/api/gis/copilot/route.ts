@@ -1,3 +1,5 @@
+import { freeAiStatus } from '../../../../lib/server/ai/providers/geminiFree';
+import { SafeProviderError } from '../../../../lib/server/ai/providerError';
 import {
   RequestBudgetExceeded,
   requestBudgets,
@@ -42,6 +44,11 @@ import {
 } from '../../../../lib/server/ai/execution';
 export const runtime = 'nodejs';
 export const maxDuration = 20;
+export async function GET() {
+  return NextResponse.json(freeAiStatus(process.env), {
+    headers: { 'Cache-Control': 'private, no-store' },
+  });
+}
 export async function POST(request: Request) {
   let release: (() => void) | undefined;
   try {
@@ -60,7 +67,14 @@ export async function POST(request: Request) {
     exact(
       body,
       body.plan === undefined
-        ? ['prompt', 'recipe', 'configurations', 'execution', 'requestId']
+        ? [
+            'prompt',
+            'recipe',
+            'configurations',
+            'execution',
+            'requestId',
+            'selectedVectorIds',
+          ]
         : ['plan', 'recipe', 'configurations', 'requestId'],
     );
     const gis = getGisProvider(),
@@ -90,6 +104,23 @@ export async function POST(request: Request) {
       recipe,
       env,
     );
+    if (body.selectedVectorIds !== undefined) {
+      if (
+        !Array.isArray(body.selectedVectorIds) ||
+        body.selectedVectorIds.length > 100 ||
+        new Set(body.selectedVectorIds).size !==
+          body.selectedVectorIds.length ||
+        !body.selectedVectorIds.every(
+          (id) =>
+            typeof id === 'string' &&
+            recipe.sketchLayers?.some((l) =>
+              l.data.features.some((f) => f.id === id),
+            ),
+        )
+      )
+        throw new GisInputError('Pilihan objek tidak valid');
+      input.selectedVectorIds = body.selectedVectorIds as string[];
+    }
     const provider = getAIProvider();
     if (!provider)
       return NextResponse.json(
@@ -138,6 +169,19 @@ export async function POST(request: Request) {
     );
     return computeSession ? computeSession.attach(output) : output;
   } catch (error) {
+    if (error instanceof SafeProviderError)
+      return NextResponse.json(
+        { error: error.message, code: error.code },
+        {
+          status:
+            error.code === 'QUOTA_EXHAUSTED'
+              ? 429
+              : error.code === 'PRIVATE_CONTEXT_BLOCKED'
+                ? 403
+                : 503,
+          headers: { 'Cache-Control': 'private, no-store' },
+        },
+      );
     if (error instanceof RequestBudgetExceeded)
       return NextResponse.json(
         { error: error.message },

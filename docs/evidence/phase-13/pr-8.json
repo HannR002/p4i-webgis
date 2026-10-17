@@ -1,0 +1,9 @@
+{
+  "number": 8,
+  "state": "open",
+  "draft": true,
+  "merged": false,
+  "head": "security/phase12-gee-dependency-isolation",
+  "sha": "3762e34b4a58c93cee0177fca542641cf6c8b6ed",
+  "base": "security/phase11-dependency-remediation"
+}

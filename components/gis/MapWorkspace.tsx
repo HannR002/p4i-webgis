@@ -30,6 +30,7 @@ import PixelInspector from './PixelInspector';
 import RasterToolsPanel from './RasterToolsPanel';
 import AnalysisConfigurationPanel from './AnalysisConfigurationPanel';
 import { defaultConfiguration } from '../../lib/gis/analysisConfiguration';
+import VectorEditorPanel from './VectorEditorPanel';
 import CopilotPanel from './CopilotPanel';
 import WorkspaceTabs, { type WorkspacePanel } from './WorkspaceTabs';
 import AhpSimulatorPanel from '../AhpSimulatorPanel';
@@ -197,6 +198,7 @@ export default function MapWorkspace({
     }
   }
   function changePanel(p: Panel) {
+    s.setVectorEditor({ vectorMode: 'off', vectorVertices: [] });
     setPanel(p);
     setPanelOpen(true);
     setTool(p === 'pixel' ? 'pixel' : 'pan');
@@ -253,7 +255,12 @@ export default function MapWorkspace({
             disabled={s.mode === 'loading' || !!catalogError}
             onClick={() =>
               local(() => {
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(s.recipe));
+                const value = JSON.stringify(s.recipe);
+                if (new Blob([value]).size > 65536)
+                  throw new Error(
+                    'Draft terlalu besar (maks 64 KB); kurangi objek/konfigurasi sebelum menyimpan.',
+                  );
+                localStorage.setItem(STORAGE_KEY, value);
                 setNotice('Draft disimpan di browser ini.');
               })
             }
@@ -371,7 +378,10 @@ export default function MapWorkspace({
               aria-label="Navigasi peta"
               title="Navigasi peta"
               aria-pressed={tool === 'pan'}
-              onClick={() => setTool('pan')}
+              onClick={() => {
+                s.setVectorEditor({ vectorMode: 'off', vectorVertices: [] });
+                setTool('pan');
+              }}
             >
               <MousePointer2 size={18} />
             </button>
@@ -388,6 +398,7 @@ export default function MapWorkspace({
               title="Ukur jarak"
               aria-pressed={tool === 'measure'}
               onClick={() => {
+                s.setVectorEditor({ vectorMode: 'off', vectorVertices: [] });
                 setTool('measure');
                 setMeasure(0);
               }}
@@ -412,7 +423,8 @@ export default function MapWorkspace({
                 : 'P4I Spatial Analytics'}
             </small>
           </div>
-          {s.recipe.legend.length > 0 && (
+          {(s.recipe.legend.length > 0 ||
+            s.recipe.sketchLayers?.some((l) => l.visible)) && (
             <details className="gis-map-legend" open>
               <summary>Legenda {s.mode === 'demo' && '· demo'}</summary>
               <div className="gis-legend-content">
@@ -427,6 +439,31 @@ export default function MapWorkspace({
                     )}
                   </div>
                 ))}
+                {s.recipe.sketchLayers
+                  ?.filter((l) => l.visible)
+                  .map((l) => (
+                    <div key={l.id}>
+                      <strong>{l.name} · vektor lokal</strong>
+                      <div>
+                        {l.data.features.slice(0, 12).map((f) => (
+                          <span key={f.id}>
+                            <i
+                              style={{
+                                background: (f.properties.style ?? l.style)
+                                  .color,
+                              }}
+                            />
+                            {f.properties.name}
+                          </span>
+                        ))}
+                        {l.data.features.length > 12 && (
+                          <small>
+                            +{l.data.features.length - 12} objek; lihat editor
+                          </small>
+                        )}
+                      </div>
+                    </div>
+                  ))}
                 {s.recipe.legend.map((l) => (
                   <div key={l.datasetId}>
                     <strong>{l.title}</strong>
@@ -441,8 +478,9 @@ export default function MapWorkspace({
                   </div>
                 ))}
                 <small>
-                  Preview raster digeneralisasi. Nilai sampel memakai grid
-                  native sintetik.
+                  {s.recipe.layers.some((l) => l.type === 'raster')
+                    ? 'Preview raster digeneralisasi. Nilai sampel memakai grid native sintetik.'
+                    : 'Geometri lokal dari input pengguna; bukan batas resmi.'}
                 </small>
               </div>
             </details>
@@ -475,6 +513,7 @@ export default function MapWorkspace({
                 tabIndex={0}
                 hidden={panel !== 'layers'}
               >
+                <VectorEditorPanel />
                 {panel === 'layers' && (
                   <section>
                     <h2>Susun peta Anda</h2>
@@ -1006,7 +1045,9 @@ export default function MapWorkspace({
       <footer className="gis-workspace-footer">
         <span>
           {s.recipe.aoi?.name ?? 'AOI belum dipilih'} ·{' '}
-          {s.recipe.layers.filter((l) => l.visible).length} layer terlihat
+          {s.recipe.layers.filter((l) => l.visible).length +
+            (s.recipe.sketchLayers?.filter((l) => l.visible).length ?? 0)}{' '}
+          layer terlihat
         </span>
         <span>
           {s.recipe.viewport.center.map((n) => n.toFixed(4)).join(', ')} · Zoom{' '}

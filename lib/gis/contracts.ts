@@ -1,3 +1,4 @@
+import type { SketchLayer, VectorAction } from './vectorEditing';
 import type { AnalysisMapResult } from './computeContracts';
 import type { AppRole } from '../authRoles';
 import type { GISAnalysisConfiguration } from './analysisContracts';
@@ -119,6 +120,7 @@ export interface MapLegend {
   entries: { label: string; color: string }[];
 }
 export interface MapRecipe {
+  sketchLayers?: SketchLayer[];
   schemaVersion: 1;
   id: string;
   title: string;
@@ -278,6 +280,7 @@ export interface GisContext {
   entitledProjectIds: readonly string[];
 }
 export type MapAction =
+  | VectorAction
   | { tool: 'createMap'; title: string }
   | { tool: 'setMapTitle'; title: string }
   | { tool: 'setBasemap'; basemap: MapRecipe['basemap'] }

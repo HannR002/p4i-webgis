@@ -449,3 +449,14 @@ apply networking or publish a new snapshot, and fresh-task restoration is not in
 - `components/SpatialMap.tsx`
 - `docs/backend-provider-architecture.md`
 - `docs/flood-analysis-architecture.md`
+
+
+## Phase 13 — local AI map creation and vector editing (17 October 2026)
+
+Implemented on `feat/phase13-free-ai-map-creator`, based on Phase 12 commit `3762e34`. The existing MapRecipe/reducer, GIS registry, Copilot, Leaflet renderer and draft mechanism now support bounded editable Point/Polygon GeoJSON, manual drawing/editing, Indonesian deterministic planning, atomic Undo/Redo and exports. Gemini Free Tier uses the existing structured-provider seam with server-side attestation and a fixed synthetic-context allowlist; no live inference was executed and status is **LIVE_INTEGRATION_PENDING**.
+
+Verification: 314 tests in 42 files; lint/typecheck/build passed; nine existing browser suites and the new editor suite passed; four new responsive/Axe checks had zero violations; 12 local production-mode API checks, three image checks and Phase 12 dependency/build isolation passed. Production audit: zero affected packages. No dependency, database, migration or deployment change. Prior production/security blockers remain.
+
+See [the full Phase 13 report](PHASE_13_FREE_AI_MAP_CREATOR.md) and [verification evidence](evidence/phase-13/verification-summary.json).
+
+Delivery: [Draft PR #9](https://github.com/HannR002/p4i-webgis/pull/9) targets the Phase 12 branch; no merge or deployment.

@@ -1,3 +1,4 @@
+import { SafeProviderError } from '../providerError';
 import 'server-only';
 import type {
   AIProvider,
@@ -108,12 +109,13 @@ export function createStructuredAIProvider(
           signal,
         );
         return plan;
-      } catch {
+      } catch (error) {
         try {
           await bounded(() => binding.recordUsage(usageEvent('failed')), 1000);
         } catch {
           /* transport/usage details remain private */
         }
+        if (error instanceof SafeProviderError) throw error;
         throw new AIProviderError(
           'Real planner unavailable or invalid; no fallback applied',
         );
