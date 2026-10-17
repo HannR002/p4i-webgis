@@ -458,3 +458,5 @@ Implemented on `feat/phase13-free-ai-map-creator`, based on Phase 12 commit `376
 Verification: 314 tests in 42 files; lint/typecheck/build passed; nine existing browser suites and the new editor suite passed; four new responsive/Axe checks had zero violations; 12 local production-mode API checks, three image checks and Phase 12 dependency/build isolation passed. Production audit: zero affected packages. No dependency, database, migration or deployment change. Prior production/security blockers remain.
 
 See [the full Phase 13 report](PHASE_13_FREE_AI_MAP_CREATOR.md) and [verification evidence](evidence/phase-13/verification-summary.json).
+
+Delivery: [Draft PR #9](https://github.com/HannR002/p4i-webgis/pull/9) targets the Phase 12 branch; no merge or deployment.

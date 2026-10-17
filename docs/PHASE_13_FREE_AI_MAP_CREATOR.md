@@ -1,6 +1,8 @@
 # Phase 13 — Free AI Map Creator & Vector Geometry Editor
 
 Date: **17 October 2026 (Asia/Jakarta)**. Branch: `feat/phase13-free-ai-map-creator`.
+Draft PR: [#9](https://github.com/HannR002/p4i-webgis/pull/9) → `security/phase12-gee-dependency-isolation`. Implementation commit: `dca2d74988fabc0c653f27d9b9002d44c4a03b59`.
+
 Base: `security/phase12-gee-dependency-isolation` at `3762e34b4a58c93cee0177fca542641cf6c8b6ed` (PR #8, verified open/draft/unmerged before branching). Phase 12 is included by ancestry; no cherry-picking, history rewrite, dependency updates, migrations, deployment or GEE activation.
 
 ## Delivered and live status
@@ -197,5 +199,7 @@ PDF download was generated and verified by the browser suite; file size/hash are
 - Quotas, usage and approval state remain process-local where previously documented. Production also remains blocked on real-data rights, database foundation/security integration, durable governance, commercial GEE/LLM decisions, multipart containment, hosting verification and human UAT.
 - Phase 12's unresolved development-toolchain `braces` advisory remains subject to maintainer security review. This phase does not waive or remediate it; runtime dependencies are unchanged.
 - Scientific methodology validation/ranking remains out of scope. No approvals, real-world measurements, cadastral claims or scientific accuracy findings were fabricated.
+
+The exact cumulative file inventory relative to Phase 12 is in [changed-files.txt](evidence/phase-13/changed-files.txt).
 
 Review this child PR against Phase 12 first. Keep PRs #1–#8 intact; incorporate changes through the approved stacked review workflow. Nothing was merged, deployed or applied to an external database.

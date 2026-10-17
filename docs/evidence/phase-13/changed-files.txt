@@ -10,6 +10,7 @@ docs/PHASE_13_FREE_AI_MAP_CREATOR.md
 docs/evidence/phase-13/README.md
 docs/evidence/phase-13/browser-exits.txt
 docs/evidence/phase-13/build.log
+docs/evidence/phase-13/changed-files.txt
 docs/evidence/phase-13/editor-1480.png
 docs/evidence/phase-13/editor-390.png
 docs/evidence/phase-13/exports.json
@@ -44,6 +45,7 @@ docs/evidence/phase-13/phase-12-isolation.log
 docs/evidence/phase-13/phase-13-vector-editor-final-results.json
 docs/evidence/phase-13/phase-13-vector-editor-final.log
 docs/evidence/phase-13/pr-8.json
+docs/evidence/phase-13/pr-created.json
 docs/evidence/phase-13/synthetic-map-export.png
 docs/evidence/phase-13/synthetic-vector.geojson
 docs/evidence/phase-13/tests.log
