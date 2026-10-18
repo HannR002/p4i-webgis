@@ -1,0 +1,57 @@
+(node:120587) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:120600) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ RUN  v4.1.12 /workspace/p4i-webgis
+
+(node:120612) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ❯ tests/vectorAnalysis.integration.test.ts (20 tests | 3 failed) 3237ms
+     × buffers metres with an independently checked radius and area 29ms
+     × normalizes collections without dropping point or polygon components 6ms
+     × preserves multipart areas and holes 12ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/vectorAnalysis.integration.test.ts > actual bounded PostGIS spatial analysis > buffers metres with an independently checked radius and area
+AssertionError: expected 780028.5861752068 to be close to 785398.1633974483, received difference is 5369.577222241438, but expected 5000
+ ❯ tests/vectorAnalysis.integration.test.ts:37:479
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/vectorAnalysis.integration.test.ts > actual bounded PostGIS spatial analysis > normalizes collections without dropping point or polygon components
+Error: Geometri atau atribut ditolak database
+ ❯ lib/server/database/vector/local.ts:104:13
+    102|                 ? 400
+    103|                 : 503;
+    104|       throw new VectorStorageError(
+       |             ^
+    105|         status,
+    106|         status === 429 ? 'Batas operasi bersamaan tercapai; coba lagi.…
+ ❯ Object.execute lib/server/database/vector/analysis.ts:12:44
+ ❯ tests/vectorAnalysis.integration.test.ts:41:93
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/vectorAnalysis.integration.test.ts > actual bounded PostGIS spatial analysis > preserves multipart areas and holes
+Error: Geometri atau atribut ditolak database
+ ❯ lib/server/database/vector/local.ts:104:13
+    102|                 ? 400
+    103|                 : 503;
+    104|       throw new VectorStorageError(
+       |             ^
+    105|         status,
+    106|         status === 429 ? 'Batas operasi bersamaan tercapai; coba lagi.…
+ ❯ Object.execute lib/server/database/vector/analysis.ts:12:44
+ ❯ tests/vectorAnalysis.integration.test.ts:42:264
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 17 passed (20)
+   Start at  16:13:44
+   Duration  3.97s (transform 398ms, setup 0ms, import 459ms, tests 3.24s, environment 0ms)
+

@@ -1,3 +1,4 @@
+import type { VectorAnalysisProposal } from "./vectorAnalysis";
 import type {
   ComputeToolRequest,
   ComputeJob,
@@ -25,6 +26,7 @@ export type GISIntent =
   | "analysis-configuration"
   | "unsupported";
 export type GISToolRequest =
+  | VectorAnalysisProposal
   | ComputeToolRequest
   | MapRecipeAction
   | { tool: "styleLayer"; layerId: string; style: RasterStyle | VectorStyle }
@@ -105,6 +107,7 @@ export interface AIProvider extends AIProviderDescriptor {
   plan(input: GISPlanningInput, signal?: AbortSignal): Promise<unknown>;
 }
 export type GISResultData =
+  | { kind: "vector-analysis-preparation"; proposal: VectorAnalysisProposal }
   | { kind: "compute"; job: ComputeJob }
   | { kind: "datasets"; datasets: GISDatasetInfo[] }
   | { kind: "metadata"; dataset: GISDatasetInfo }

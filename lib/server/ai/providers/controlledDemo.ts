@@ -1,3 +1,4 @@
+import { planSpatialAnalysis } from './spatialAnalysisPlanner';
 import { planVector } from './vectorPlanner';
 import type {
   AIProvider,
@@ -95,6 +96,16 @@ export function planDemo(input: GISPlanningInput): GISExecutionPlan {
     message,
     steps: [],
   });
+  const spatial = planSpatialAnalysis(input);
+  if (spatial) {
+    if ('clarification' in spatial) return missing(spatial.clarification);
+    add(spatial);
+    return {
+      ...base,
+      message:
+        'Usulan analisis PostGIS lokal disiapkan. Tinjau sumber tersimpan dan jalankan melalui panel Analisis Vektor.',
+    };
+  }
   const vectorPlan = planVector(input);
   if (vectorPlan) {
     if (vectorPlan.clarification) return missing(vectorPlan.clarification);

@@ -1,0 +1,15 @@
+(node:131155) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+{
+  "flows": [
+    "Existing map → Copilot draft → isolated project report; owned real compute result attached",
+    "Entitled client cannot see unpublished draft",
+    "Request changes, new immutable revision, resubmission and explicit four-check human review",
+    "Admin persona receives no implicit reviewer or publisher grant",
+    "Explicit simulated release, published revision-only client DTO and actual PDF/JSON downloads; internal notes redacted",
+    "New draft preserves released revision; other-client project cannot access report",
+    "Separate development session has no access to first session reports"
+  ],
+  "errors": [],
+  "geeCalls": 0
+}

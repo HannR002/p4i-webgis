@@ -80,6 +80,19 @@ export function preflightTool(
   recipe: MapRecipe,
   env: GISExecutionContext,
 ): MapRecipe {
+  if (action.tool === 'prepareVectorAnalysis') {
+    const layer = recipe.sketchLayers?.find((l) => l.id === action.layerId);
+    if (
+      !layer ||
+      action.featureIds.some(
+        (id) => !layer.data.features.some((f) => f.id === id),
+      )
+    )
+      throw new GisInputError(
+        'Fitur analisis tidak tersedia; pilih objek yang jelas',
+      );
+    return recipe;
+  }
   if ((COMPUTE_TOOLS as readonly string[]).includes(action.tool)) {
     const request = computeRequest(
       action as ComputeToolRequest,
@@ -182,6 +195,17 @@ export async function executeTool(
   recipe: MapRecipe;
   result: Omit<GISActionResult, 'stepId' | 'tool'>;
 }> {
+  if (action.tool === 'prepareVectorAnalysis') {
+    preflightTool(action, recipe, env);
+    return {
+      recipe,
+      result: {
+        summary:
+          'Usulan siap. Buka panel analisis, petakan identitas tersimpan, lalu periksa estimasi dan jalankan PostGIS.',
+        data: { kind: 'vector-analysis-preparation', proposal: action },
+      },
+    };
+  }
   if ((COMPUTE_TOOLS as readonly string[]).includes(action.tool)) {
     if (!env.compute)
       throw new GisInputError('Sesi komputasi development belum tersedia');

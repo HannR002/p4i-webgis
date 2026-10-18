@@ -1,0 +1,17 @@
+[
+  {
+    "check": "guest denied",
+    "status": 401,
+    "passed": true
+  },
+  {
+    "check": "cross origin denied",
+    "status": 403,
+    "passed": true
+  },
+  {
+    "check": "production fixture refused",
+    "status": 503,
+    "passed": true
+  }
+]

@@ -41,3 +41,9 @@ export const requestBudgets = (runtime.p4iRequestBudgets ??= {
   copilot: new RequestBudget(60, 4),
   boundaries: new RequestBudget(120, 8),
 });
+
+const vectorRuntime = globalThis as typeof globalThis & {
+  p4iVectorAnalysisBudget?: RequestBudget;
+};
+export const vectorAnalysisBudget = (vectorRuntime.p4iVectorAnalysisBudget ??=
+  new RequestBudget(30, 2));

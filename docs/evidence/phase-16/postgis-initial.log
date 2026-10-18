@@ -1,0 +1,205 @@
+(node:119225) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:119238) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ RUN  v4.1.12 /workspace/p4i-webgis
+
+(node:119250) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ❯ tests/vectorAnalysis.integration.test.ts (20 tests | 15 failed) 2970ms
+     × derives estimates from stored geometry and does not mutate sources 172ms
+     × buffers metres with an independently checked radius and area 19ms
+     × intersection has exact independently calculated planar rectangle area 9ms
+     × union has exact independently calculated planar rectangle area 5ms
+     × difference has exact independently calculated planar rectangle area 5ms
+     × clip has exact independently calculated planar rectangle area 5ms
+     × returns empty overlay without invented geometry 12ms
+     × preserves lower dimensional shared boundary and crossing-line point 10ms
+     × normalizes collections without dropping point or polygon components 9ms
+     × preserves multipart areas and holes 4ms
+     × dissolves only a permitted existing scalar attribute 4ms
+     × selects within excluding boundary, while intersects includes boundary 4ms
+     × measures WGS84 area, equatorial distance and length with independent constants 4ms
+     × rejects guest, B2B read-only, other tenant, disabled user and forged project references 27ms
+     × saves results only through existing authorized revision workflow, retaining conflicts 5ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 15 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/vectorAnalysis.integration.test.ts > actual bounded PostGIS spatial analysis > derives estimates from stored geometry and does not mutate sources
+Error: Penyimpanan proyek gagal; edit lokal dipertahankan.
+ ❯ lib/server/database/vector/local.ts:104:13
+    102|                 ? 400
+    103|                 : 503;
+    104|       throw new VectorStorageError(
+       |             ^
+    105|         status,
+    106|         status === 429 ? 'Batas operasi bersamaan tercapai; coba lagi.…
+ ❯ Module.estimateLocalVectorAnalysis lib/server/database/vector/analysis.ts:27:12
+ ❯ tests/vectorAnalysis.integration.test.ts:36:173
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/15]⎯
+
+ FAIL  tests/vectorAnalysis.integration.test.ts > actual bounded PostGIS spatial analysis > buffers metres with an independently checked radius and area
+Error: Penyimpanan proyek gagal; edit lokal dipertahankan.
+ ❯ lib/server/database/vector/local.ts:104:13
+    102|                 ? 400
+    103|                 : 503;
+    104|       throw new VectorStorageError(
+       |             ^
+    105|         status,
+    106|         status === 429 ? 'Batas operasi bersamaan tercapai; coba lagi.…
+ ❯ Object.execute lib/server/database/vector/analysis.ts:12:44
+ ❯ tests/vectorAnalysis.integration.test.ts:37:86
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/15]⎯
+
+ FAIL  tests/vectorAnalysis.integration.test.ts > actual bounded PostGIS spatial analysis > intersection has exact independently calculated planar rectangle area
+ FAIL  tests/vectorAnalysis.integration.test.ts > actual bounded PostGIS spatial analysis > union has exact independently calculated planar rectangle area
+ FAIL  tests/vectorAnalysis.integration.test.ts > actual bounded PostGIS spatial analysis > difference has exact independently calculated planar rectangle area
+ FAIL  tests/vectorAnalysis.integration.test.ts > actual bounded PostGIS spatial analysis > clip has exact independently calculated planar rectangle area
+Error: Penyimpanan proyek gagal; edit lokal dipertahankan.
+ ❯ lib/server/database/vector/local.ts:104:13
+    102|                 ? 400
+    103|                 : 503;
+    104|       throw new VectorStorageError(
+       |             ^
+    105|         status,
+    106|         status === 429 ? 'Batas operasi bersamaan tercapai; coba lagi.…
+ ❯ Object.execute lib/server/database/vector/analysis.ts:12:44
+ ❯ tests/vectorAnalysis.integration.test.ts:38:192
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/15]⎯
+
+ FAIL  tests/vectorAnalysis.integration.test.ts > actual bounded PostGIS spatial analysis > returns empty overlay without invented geometry
+Error: Penyimpanan proyek gagal; edit lokal dipertahankan.
+ ❯ lib/server/database/vector/local.ts:104:13
+    102|                 ? 400
+    103|                 : 503;
+    104|       throw new VectorStorageError(
+       |             ^
+    105|         status,
+    106|         status === 429 ? 'Batas operasi bersamaan tercapai; coba lagi.…
+ ❯ Object.execute lib/server/database/vector/analysis.ts:12:44
+ ❯ tests/vectorAnalysis.integration.test.ts:39:73
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/15]⎯
+
+ FAIL  tests/vectorAnalysis.integration.test.ts > actual bounded PostGIS spatial analysis > preserves lower dimensional shared boundary and crossing-line point
+Error: Penyimpanan proyek gagal; edit lokal dipertahankan.
+ ❯ lib/server/database/vector/local.ts:104:13
+    102|                 ? 400
+    103|                 : 503;
+    104|       throw new VectorStorageError(
+       |             ^
+    105|         status,
+    106|         status === 429 ? 'Batas operasi bersamaan tercapai; coba lagi.…
+ ❯ Object.execute lib/server/database/vector/analysis.ts:12:44
+ ❯ tests/vectorAnalysis.integration.test.ts:40:93
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/15]⎯
+
+ FAIL  tests/vectorAnalysis.integration.test.ts > actual bounded PostGIS spatial analysis > normalizes collections without dropping point or polygon components
+Error: Penyimpanan proyek gagal; edit lokal dipertahankan.
+ ❯ lib/server/database/vector/local.ts:104:13
+    102|                 ? 400
+    103|                 : 503;
+    104|       throw new VectorStorageError(
+       |             ^
+    105|         status,
+    106|         status === 429 ? 'Batas operasi bersamaan tercapai; coba lagi.…
+ ❯ Object.execute lib/server/database/vector/analysis.ts:12:44
+ ❯ tests/vectorAnalysis.integration.test.ts:41:93
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/15]⎯
+
+ FAIL  tests/vectorAnalysis.integration.test.ts > actual bounded PostGIS spatial analysis > preserves multipart areas and holes
+Error: Penyimpanan proyek gagal; edit lokal dipertahankan.
+ ❯ lib/server/database/vector/local.ts:104:13
+    102|                 ? 400
+    103|                 : 503;
+    104|       throw new VectorStorageError(
+       |             ^
+    105|         status,
+    106|         status === 429 ? 'Batas operasi bersamaan tercapai; coba lagi.…
+ ❯ Object.execute lib/server/database/vector/analysis.ts:12:44
+ ❯ tests/vectorAnalysis.integration.test.ts:42:64
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/15]⎯
+
+ FAIL  tests/vectorAnalysis.integration.test.ts > actual bounded PostGIS spatial analysis > dissolves only a permitted existing scalar attribute
+Error: Penyimpanan proyek gagal; edit lokal dipertahankan.
+ ❯ lib/server/database/vector/local.ts:104:13
+    102|                 ? 400
+    103|                 : 503;
+    104|       throw new VectorStorageError(
+       |             ^
+    105|         status,
+    106|         status === 429 ? 'Batas operasi bersamaan tercapai; coba lagi.…
+ ❯ Object.execute lib/server/database/vector/analysis.ts:12:44
+ ❯ tests/vectorAnalysis.integration.test.ts:43:78
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/15]⎯
+
+ FAIL  tests/vectorAnalysis.integration.test.ts > actual bounded PostGIS spatial analysis > selects within excluding boundary, while intersects includes boundary
+Error: Penyimpanan proyek gagal; edit lokal dipertahankan.
+ ❯ lib/server/database/vector/local.ts:104:13
+    102|                 ? 400
+    103|                 : 503;
+    104|       throw new VectorStorageError(
+       |             ^
+    105|         status,
+    106|         status === 429 ? 'Batas operasi bersamaan tercapai; coba lagi.…
+ ❯ Object.execute lib/server/database/vector/analysis.ts:12:44
+ ❯ tests/vectorAnalysis.integration.test.ts:44:95
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/15]⎯
+
+ FAIL  tests/vectorAnalysis.integration.test.ts > actual bounded PostGIS spatial analysis > measures WGS84 area, equatorial distance and length with independent constants
+Error: Penyimpanan proyek gagal; edit lokal dipertahankan.
+ ❯ lib/server/database/vector/local.ts:104:13
+    102|                 ? 400
+    103|                 : 503;
+    104|       throw new VectorStorageError(
+       |             ^
+    105|         status,
+    106|         status === 429 ? 'Batas operasi bersamaan tercapai; coba lagi.…
+ ❯ Object.execute lib/server/database/vector/analysis.ts:12:44
+ ❯ tests/vectorAnalysis.integration.test.ts:48:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/15]⎯
+
+ FAIL  tests/vectorAnalysis.integration.test.ts > actual bounded PostGIS spatial analysis > rejects guest, B2B read-only, other tenant, disabled user and forged project references
+AssertionError: expected 400 to be 403 // Object.is equality
+
+- Expected
++ Received
+
+- 403
++ 400
+
+ ❯ tests/vectorAnalysis.integration.test.ts:54:484
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/15]⎯
+
+ FAIL  tests/vectorAnalysis.integration.test.ts > actual bounded PostGIS spatial analysis > saves results only through existing authorized revision workflow, retaining conflicts
+Error: Penyimpanan proyek gagal; edit lokal dipertahankan.
+ ❯ lib/server/database/vector/local.ts:104:13
+    102|                 ? 400
+    103|                 : 503;
+    104|       throw new VectorStorageError(
+       |             ^
+    105|         status,
+    106|         status === 429 ? 'Batas operasi bersamaan tercapai; coba lagi.…
+ ❯ Object.execute lib/server/database/vector/analysis.ts:12:44
+ ❯ tests/vectorAnalysis.integration.test.ts:68:111
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/15]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  15 failed | 5 passed (20)
+   Start at  16:12:41
+   Duration  3.96s (transform 561ms, setup 0ms, import 635ms, tests 2.97s, environment 0ms)
+

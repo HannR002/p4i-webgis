@@ -1,0 +1,54 @@
+{
+  "foundation": {
+    "verified": false,
+    "externalReplayAllowed": false,
+    "blockers": [
+      "Verified DDL for user_role, user_profiles, spatial_projects and vector_layers",
+      "Verified auth.users trigger binding and provider ownership/grants",
+      "Verified materialized-view DDL/dependencies required by historical 007",
+      "Legacy analysis_reports/smce_criteria_weights DDL and report publication mapping"
+    ]
+  },
+  "migrations": [
+    {
+      "order": 1,
+      "file": "tugas3_user_management.sql",
+      "sha256": "2bb2f6b6e47e26bc27f1d46d2c00a5f4ee0c8f9a8fd3988c5b68a0d354f76e6e"
+    },
+    {
+      "order": 2,
+      "file": "tugas4_sales_leads.sql",
+      "sha256": "b3f73b59582435bd6439a399de5667f00848ae3bb168ca00de290fe1874dbed6"
+    },
+    {
+      "order": 3,
+      "file": "fase5_modul1_audit_logs.sql",
+      "sha256": "b444b64fe18de20bb58f995356a649d543bfd2fa51616d265526941e7c065201"
+    },
+    {
+      "order": 4,
+      "file": "fase5_modul2_storage.sql",
+      "sha256": "cd69083ccd6c6e00c1a8b9c3b796debab1e3788b32a2d250cf32ed471b25b07b"
+    },
+    {
+      "order": 5,
+      "file": "fase5_modul3_portal.sql",
+      "sha256": "2a551b4d89d515a48aa55ad4b33657a94c165953e8fecd9569d32517a6978eeb"
+    },
+    {
+      "order": 6,
+      "file": "006_flood_analysis.sql",
+      "sha256": "7f565798969e4f13620ca6ce423474a3990333ec9e3bbe677afa9b6c442fce71"
+    },
+    {
+      "order": 7,
+      "file": "007_security_hardening.sql",
+      "sha256": "b85d4642a4a19fd02cb611619eb8bea733f1fc63fd2e06b0adce9e9531f93d34"
+    },
+    {
+      "order": 8,
+      "file": "008_staging_security.sql",
+      "sha256": "e4919999a13953cb6165138f59a0d7f582a7ae0fcdf1ec4eab58e928f8d76d9d"
+    }
+  ]
+}

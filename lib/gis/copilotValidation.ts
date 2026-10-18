@@ -1,3 +1,4 @@
+import { parseVectorAnalysisProposal } from "./vectorAnalysis";
 import { VECTOR_TOOLS } from "./vectorEditing";
 import { COMPUTE_TOOLS } from "./computeContracts";
 import { parseComputeTool, parseComputeJob } from "./computeValidation";
@@ -81,6 +82,8 @@ export function parseGISToolRequest(value: unknown): GISToolRequest {
   )
     throw new GisInputError("Tool GIS tidak dikenal");
   const tool = value.tool;
+  if (tool === "prepareVectorAnalysis")
+    return parseVectorAnalysisProposal(value);
   if ((COMPUTE_TOOLS as readonly string[]).includes(tool))
     return parseComputeTool(value);
   if (mapTools.includes(tool)) return parseMapAction(value);
@@ -293,29 +296,34 @@ export function validateActionResult(
     throw new GisInputError("Output tool GIS tidak valid");
   exact(value, ["stepId", "tool", "summary", "data"]);
   const d = value.data;
-  const allowedKinds = (COMPUTE_TOOLS as readonly string[]).includes(tool)
-    ? ["compute"]
-    : tool === "inspectPixel"
-      ? ["pixels"]
-      : tool === "getDatasetMetadata"
-        ? ["metadata"]
-        : ["summarizeCurrentMap", "prepareClientDeliverableDraft"].includes(
-              tool,
-            )
-          ? ["summary"]
-          : tool === "listAnalysisConfigurations"
-            ? ["configurations"]
-            : [
-                  "selectAnalysisConfiguration",
-                  "createAnalysisConfigurationDraft",
-                  "proposeAnalysisConfigurationChanges",
-                ].includes(tool)
-              ? ["configuration"]
-              : tool === "prepareAnalysis"
-                ? ["preparation"]
-                : ["searchDatasetCatalog", "listAvailableLayers"].includes(tool)
-                  ? ["datasets"]
-                  : ["map-change"];
+  const allowedKinds =
+    tool === "prepareVectorAnalysis"
+      ? ["vector-analysis-preparation"]
+      : (COMPUTE_TOOLS as readonly string[]).includes(tool)
+        ? ["compute"]
+        : tool === "inspectPixel"
+          ? ["pixels"]
+          : tool === "getDatasetMetadata"
+            ? ["metadata"]
+            : ["summarizeCurrentMap", "prepareClientDeliverableDraft"].includes(
+                  tool,
+                )
+              ? ["summary"]
+              : tool === "listAnalysisConfigurations"
+                ? ["configurations"]
+                : [
+                      "selectAnalysisConfiguration",
+                      "createAnalysisConfigurationDraft",
+                      "proposeAnalysisConfigurationChanges",
+                    ].includes(tool)
+                  ? ["configuration"]
+                  : tool === "prepareAnalysis"
+                    ? ["preparation"]
+                    : ["searchDatasetCatalog", "listAvailableLayers"].includes(
+                          tool,
+                        )
+                      ? ["datasets"]
+                      : ["map-change"];
   if (!allowedKinds.includes(String(d.kind)))
     throw new GisInputError("Jenis output tidak sesuai tool");
   const metadata = (v: unknown) => {
@@ -343,7 +351,12 @@ export function validateActionResult(
       throw new GisInputError("Output konfigurasi tidak diizinkan");
     return c;
   };
-  if (d.kind === "compute") {
+  if (d.kind === "vector-analysis-preparation") {
+    exact(d, ["kind", "proposal"]);
+    if (tool !== "prepareVectorAnalysis")
+      throw new GisInputError("Usulan tidak sesuai tool");
+    parseVectorAnalysisProposal(d.proposal);
+  } else if (d.kind === "compute") {
     exact(d, ["kind", "job"]);
     const job = parseComputeJob(d.job);
     if (job.request.operation.tool !== tool)

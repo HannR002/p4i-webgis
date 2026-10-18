@@ -1,0 +1,3 @@
+(node:131359) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+{"flows":["Indonesian map/points/polygon appear in actual Leaflet pane","Manual rename, coordinates, style, delete, Undo/Redo","Explicit save and reload GeoJSON in existing local MapRecipe draft","Click-to-add point and polygon vertices","Ekspor PNG download","Ekspor PDF download"],"audits":[{"width":1480,"violations":[]},{"width":768,"violations":[]},{"width":390,"violations":[]},{"width":320,"violations":[]}],"errors":[],"externalAI":0,"result":"passed"}

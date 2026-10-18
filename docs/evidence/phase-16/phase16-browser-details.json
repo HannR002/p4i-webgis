@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "flows": [
+    "AI deterministic preparation -> authorized estimate -> real buffer -> existing Leaflet preview",
+    "result visibility/style and real GeoJSON download with provenance",
+    "two-source intersection from explicit stored feature selections",
+    "explicit copy + Phase15 authorized save, new revision evidence, source untouched",
+    "direct malformed API denied"
+  ],
+  "audits": [
+    {
+      "width": 1480,
+      "overflow": false,
+      "axeViolations": 0
+    },
+    {
+      "width": 768,
+      "overflow": false,
+      "axeViolations": 0
+    },
+    {
+      "width": 390,
+      "overflow": false,
+      "axeViolations": 0
+    },
+    {
+      "width": 320,
+      "overflow": false,
+      "axeViolations": 0
+    }
+  ],
+  "errors": [],
+  "externalCalls": 0
+}

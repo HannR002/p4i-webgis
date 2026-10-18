@@ -1,0 +1,33 @@
+@startuml
+actor Analyst
+participant "Existing Map Workspace / Copilot" as UI
+participant "Vector Analysis API" as API
+participant "VectorSpatialAnalysisRepository" as Repo
+database "Local PostgREST / PostGIS" as DB
+Analyst -> UI: Select persisted sources, operation, parameters
+opt Deterministic AI preparation
+ UI -> UI: Existing tool registry validates prepareVectorAnalysis
+ UI -> UI: Match unchanged saved binding; resolve DB UUIDs
+end
+UI -> API: Estimate request + current user session
+API -> Repo: Validate, request budget, same-origin
+Repo -> DB: Authenticated bounded RPC (preview)
+DB -> DB: Current profile + project assignment\nlayer revisions + UUID features\ncounts, extent and concurrency limits
+DB --> UI: Server-derived estimate
+Analyst -> UI: Execute
+UI -> API: Same validated request
+Repo -> DB: Reauthorize and recheck revisions
+DB -> DB: Bounded PostGIS operation\nvalidate every output component
+DB --> Repo: Geometry + units + provenance
+Repo --> UI: Fully validated transient result
+UI -> UI: Existing Leaflet read-only overlay
+opt Explicit human copy and save
+ Analyst -> UI: Copy to new editable layer
+ UI -> UI: Existing MapRecipe reducer / Undo
+ Analyst -> UI: Save to authorized project + confirm
+ UI -> DB: Existing Phase 15 persistence API / revision checks
+ DB -> DB: Atomic save + immutable revision evidence
+ DB --> UI: Committed new layer/revision
+end
+note over DB: No source mutation during analysis.\nNo external database or paid provider.
+@enduml

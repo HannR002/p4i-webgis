@@ -1,3 +1,8 @@
+import {
+  parseVectorAnalysisResult,
+  type VectorAnalysisResult,
+  type VectorAnalysisProposal,
+} from '../lib/gis/vectorAnalysis';
 import { create } from 'zustand';
 import type { VectorLayerDocument } from '../lib/gis/vectorPersistence';
 import {
@@ -76,6 +81,10 @@ interface VectorEditorState {
   vectorError: string | null;
 }
 interface WorkspaceState extends VectorEditorState {
+  vectorAnalysisResult: VectorAnalysisResult | null;
+  vectorAnalysisProposal: VectorAnalysisProposal | null;
+  setVectorAnalysisResult: (result: VectorAnalysisResult | null) => void;
+  setVectorAnalysisProposal: (proposal: VectorAnalysisProposal | null) => void;
   vectorProjectBinding: VectorLayerDocument | null;
   setVectorProjectBinding: (binding: VectorLayerDocument | null) => void;
   setVectorEditor: (value: Partial<VectorEditorState>) => void;
@@ -114,6 +123,18 @@ interface WorkspaceState extends VectorEditorState {
   openTemplate: (title: string, ids: readonly string[]) => void;
 }
 export const useWorkspaceStore = create<WorkspaceState>((set, get) => ({
+  vectorAnalysisResult: null,
+  vectorAnalysisProposal: null,
+  setVectorAnalysisResult: (result) =>
+    set((s) => ({
+      vectorAnalysisResult: result ? parseVectorAnalysisResult(result) : null,
+      log: [
+        ...s.log,
+        result ? 'Pratinjau analisis PostGIS' : 'Buang pratinjau analisis',
+      ].slice(-50),
+    })),
+  setVectorAnalysisProposal: (vectorAnalysisProposal) =>
+    set({ vectorAnalysisProposal }),
   recipe: emptyRecipe(),
   vectorProjectBinding: null,
   setVectorProjectBinding: (vectorProjectBinding) =>
@@ -297,7 +318,11 @@ export const useWorkspaceStore = create<WorkspaceState>((set, get) => ({
       'tool' in action &&
       action.tool === 'createMap'
     )
-      set({ vectorProjectBinding: null });
+      set({
+        vectorProjectBinding: null,
+        vectorAnalysisResult: null,
+        vectorAnalysisProposal: null,
+      });
   },
   undo: () => {
     get().cancelVectorEdit();

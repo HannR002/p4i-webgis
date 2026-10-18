@@ -1,0 +1,16 @@
+(node:123455) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+locator.waitFor: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('.leaflet-vector-analysis-preview-pane') to be visible[22m
+[2m    64 × locator resolved to hidden <div class="leaflet-pane leaflet-vector-analysis-preview-pane">…</div>[22m
+
+    at /workspace/p4i-webgis/scripts/qa/phase-16-vector-analysis.mjs:26:214 {
+  name: 'TimeoutError'
+}
+
+Node.js v22.23.3
