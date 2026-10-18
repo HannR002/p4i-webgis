@@ -1,0 +1,85 @@
+{
+  "applicationTests": {
+    "passed": 407,
+    "skippedDatabaseCases": 37
+  },
+  "postgis": {
+    "phase15Passed": 14,
+    "phase16Passed": 23,
+    "distinctExecutedTotal": 444
+  },
+  "browserSuites": [
+    {
+      "suite": "phase-01-smoke",
+      "exitCode": 0
+    },
+    {
+      "suite": "phase-01-regression",
+      "exitCode": 0
+    },
+    {
+      "suite": "phase-02-smoke",
+      "exitCode": 0
+    },
+    {
+      "suite": "phase-02-accessibility",
+      "exitCode": 0
+    },
+    {
+      "suite": "phase-03-raster",
+      "exitCode": 0
+    },
+    {
+      "suite": "phase-04-configuration",
+      "exitCode": 0
+    },
+    {
+      "suite": "phase-05-copilot",
+      "exitCode": 0
+    },
+    {
+      "suite": "phase-06-compute",
+      "exitCode": 0
+    },
+    {
+      "suite": "phase-07-deliverables",
+      "exitCode": 0
+    },
+    {
+      "suite": "phase-13-vector-editor",
+      "exitCode": 0
+    },
+    {
+      "suite": "phase-14-vector-digitizing",
+      "exitCode": 0
+    },
+    {
+      "suite": "phase-15-vector-persistence",
+      "exitCode": 0
+    },
+    {
+      "suite": "phase-16-vector-analysis",
+      "exitCode": 0
+    }
+  ],
+  "checks": {
+    "npmCi": "passed",
+    "lint": "passed without warnings",
+    "typecheck": "passed",
+    "build": "passed",
+    "productionApiChecks": 12,
+    "frameworkImageChecks": 3,
+    "phase15ProductionBoundaryChecks": 7,
+    "phase16ProductionBoundaryChecks": 3,
+    "geeIsolation": "541 installed packages, 712 output files, 45 dependency traces; no GEE chain"
+  },
+  "audit": {
+    "productionAffected": 0,
+    "developmentAffectedHigh": 5,
+    "disposition": "Inherited braces advisory; independent review required; no waiver"
+  },
+  "externalDatabaseActions": 0,
+  "paidProviderCalls": 0,
+  "productionReadiness": "NO-GO",
+  "stagingFoundationVerified": false
+}

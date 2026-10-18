@@ -55,7 +55,10 @@ async function readProviderJSON(response: Response): Promise<unknown> {
     );
   }
 }
-export function getLocalVectorRepository(token: string | null) {
+export function localVectorRpc(
+  token: string | null,
+  rpc: 'p4i_vector_store' | 'p4i_vector_analyze',
+) {
   const endpoint = localVectorEndpoint();
   if (!endpoint)
     throw new VectorStorageError(
@@ -64,10 +67,10 @@ export function getLocalVectorRepository(token: string | null) {
     );
   if (token && (token.length > 8192 || /[\r\n]/.test(token)))
     throw new VectorStorageError(401, 'Identitas tidak valid');
-  return createVectorRepository(async (operation, input) => {
+  return async (body: unknown) => {
     let response: Response;
     try {
-      response = await fetch(`${endpoint}/rpc/p4i_vector_store`, {
+      response = await fetch(`${endpoint}/rpc/${rpc}`, {
         method: 'POST',
         redirect: 'error',
         cache: 'no-store',
@@ -75,7 +78,7 @@ export function getLocalVectorRepository(token: string | null) {
           'Content-Type': 'application/json',
           ...(token ? { Authorization: `Bearer ${token}` } : {}),
         },
-        body: JSON.stringify({ operation, input }),
+        body: JSON.stringify(body),
         signal: AbortSignal.timeout(5000),
       });
     } catch {
@@ -92,26 +95,74 @@ export function getLocalVectorRepository(token: string | null) {
           ? raw.code
           : '';
       const status =
-        code === 'PT409'
-          ? 409
-          : response.status === 401
-            ? 401
-            : code === '42501' || response.status === 403
-              ? 403
-              : code.startsWith('22') || code === '23514'
-                ? 400
-                : 503;
+        code === 'PT429'
+          ? 429
+          : code === '57014'
+            ? 408
+            : code === 'PT409'
+              ? 409
+              : response.status === 401
+                ? 401
+                : code === '42501' || response.status === 403
+                  ? 403
+                  : code.startsWith('22') || code === '23514'
+                    ? 400
+                    : 503;
+      const reasons: Record<string, string> = {
+        'Extent or latitude unsupported':
+          'Cakupan harus ≤1° dan latitude di antara −70° hingga 70°; antimeridian tidak didukung.',
+        'Buffer crosses UTM zone/hemisphere':
+          'Buffer melintasi zona UTM atau khatulistiwa; pecah input secara eksplisit.',
+        'Measurement geometry mismatch':
+          'Luas membutuhkan polygon; panjang membutuhkan garis.',
+        'Within requires points and polygon mask':
+          'Within membutuhkan sumber titik dan pembanding polygon.',
+        'Clip mask must contain only polygons': 'Mask clip harus polygon.',
+        'Polygon mask required': 'Mask clip harus polygon.',
+        'Dissolve attribute missing':
+          'Atribut dissolve harus tersedia pada setiap fitur.',
+        'Resource ceiling exceeded':
+          'Batas fitur atau vertex terlampaui; kurangi input.',
+        'Output byte limit': 'Hasil melebihi batas 64 KiB; kurangi input.',
+        'Unsupported/oversized result':
+          'Geometri hasil tidak didukung atau melebihi batas; komponen tidak dibuang.',
+        'Part limit':
+          'Hasil melebihi delapan bagian; tidak ada komponen yang dibuang.',
+        'Vertex limit':
+          'Hasil melebihi batas vertex editor; sumber tetap utuh.',
+        'Invalid result (not repaired)':
+          'Geometri hasil tidak valid; perbaikan otomatis tidak dilakukan.',
+      };
+      const reason =
+        typeof raw === 'object' &&
+        raw !== null &&
+        'message' in raw &&
+        typeof raw.message === 'string' &&
+        Object.hasOwn(reasons, raw.message)
+          ? reasons[raw.message]
+          : null;
       throw new VectorStorageError(
         status,
-        status === 409
-          ? 'Konflik revisi. Edit lokal dipertahankan; muat ulang setelah meninjau perubahan.'
-          : status === 401 || status === 403
-            ? 'Akses proyek ditolak'
-            : status === 400
-              ? 'Geometri atau atribut ditolak database'
-              : 'Penyimpanan proyek gagal; edit lokal dipertahankan.',
+        status === 429
+          ? 'Batas operasi bersamaan tercapai; coba lagi.'
+          : status === 408
+            ? 'Batas waktu komputasi terlampaui; kurangi input.'
+            : status === 409
+              ? 'Konflik revisi. Edit lokal dipertahankan; muat ulang setelah meninjau perubahan.'
+              : status === 401 || status === 403
+                ? 'Akses proyek ditolak'
+                : status === 400
+                  ? (reason ?? 'Geometri atau atribut ditolak database')
+                  : 'Penyimpanan proyek gagal; edit lokal dipertahankan.',
       );
     }
     return readProviderJSON(response);
-  });
+  };
+}
+
+export function getLocalVectorRepository(token: string | null) {
+  const rpc = localVectorRpc(token, 'p4i_vector_store');
+  return createVectorRepository((operation, input) =>
+    rpc({ operation, input }),
+  );
 }

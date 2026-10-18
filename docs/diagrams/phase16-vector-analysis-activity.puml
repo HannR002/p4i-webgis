@@ -1,0 +1,37 @@
+@startuml
+start
+:Validate fixed operation and parameters;
+:Verify caller and current project assignment;
+:Resolve stored UUIDs and expected layer revisions;
+if (Any identity, revision or permission invalid?) then (yes)
+ :Reject without result or source mutation;
+ stop
+endif
+:Derive counts, vertices, pair workload and extent;
+if (Within automatic ceilings and DB slots?) then (no)
+ :Reject; no caller approval bypass;
+ stop
+endif
+if (Estimate only?) then (yes)
+ :Return bounded server estimate;
+ stop
+endif
+:Execute allowlisted PostGIS operation;
+:Validate geometry, components, units and output size;
+if (Empty?) then (yes)
+ :Return genuine empty FeatureCollection;
+else (no)
+ if (All components supported and bounded?) then (no)
+  :Reject whole output; no silent dropping/repair;
+  stop
+ endif
+ :Return validated result with provenance;
+endif
+:Read-only workspace preview;
+if (Explicit human copy and save?) then (yes)
+ :Reuse reducer and Phase 15 authorized persistence;
+else (no)
+ :Retain transient result or discard;
+endif
+stop
+@enduml

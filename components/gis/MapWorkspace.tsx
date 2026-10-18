@@ -34,6 +34,7 @@ import PixelInspector from './PixelInspector';
 import RasterToolsPanel from './RasterToolsPanel';
 import AnalysisConfigurationPanel from './AnalysisConfigurationPanel';
 import { defaultConfiguration } from '../../lib/gis/analysisConfiguration';
+import VectorAnalysisPanel from './VectorAnalysisPanel';
 import VectorEditorPanel from './VectorEditorPanel';
 import CopilotPanel from './CopilotPanel';
 import WorkspaceTabs, { type WorkspacePanel } from './WorkspaceTabs';
@@ -960,6 +961,7 @@ export default function MapWorkspace({
                           : 'Bobot AHP tersimpan'
                         : 'Belum ada bobot tersimpan'}
                     </div>
+                    <VectorAnalysisPanel />
                     <AnalysisConfigurationPanel />
                     <RasterToolsPanel />
                     <AhpSimulatorPanel standalone />

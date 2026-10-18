@@ -1,4 +1,5 @@
 'use client';
+import VectorAnalysisOverlay from './VectorAnalysisOverlay';
 import SpatialMap from '../SpatialMap';
 import WorkspaceMapContent from './WorkspaceMapContent';
 import { useWorkspaceStore } from '../../store/useWorkspaceStore';
@@ -14,7 +15,12 @@ export default function WorkspaceMap({
   const { recipe, mode } = useWorkspaceStore();
   return (
     <SpatialMap demo={mode === 'demo'} basemap={recipe.basemap}>
-      <WorkspaceMapContent tool={tool} onInspect={onInspect} onMeasure={onMeasure} />
+      <VectorAnalysisOverlay />
+      <WorkspaceMapContent
+        tool={tool}
+        onInspect={onInspect}
+        onMeasure={onMeasure}
+      />
     </SpatialMap>
   );
 }

@@ -130,6 +130,12 @@ if (process.argv[2] === 'stop') {
       "SET p4i.local_fixture='synthetic-only';\n" +
         file('database/proposals/009_vector_persistence.LOCAL_ONLY.sql'),
     );
+    if (process.env.P4I_VECTOR_ANALYSIS === 'true')
+      sql(
+        state,
+        "SET p4i.local_fixture='synthetic-only';\n" +
+          file('database/proposals/010_vector_analysis.LOCAL_ONLY.sql'),
+      );
     const users = Object.fromEntries(
       ['clientA', 'clientB', 'analyst', 'admin', 'disabled', 'editorB'].map(
         (n, i) => [n, `aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa${i + 1}`],

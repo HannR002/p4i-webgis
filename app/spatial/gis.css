@@ -2044,3 +2044,19 @@
 .gis-vector-editor button:disabled { color: #64748b; background: #f1f5f9; }
 .gis-vector-editor button[aria-pressed=true] { background: #0f766e; color: #fff; }
 .gis-vector-editor .gis-button:not(.secondary) { background: #0f766e; color: #fff; }
+
+/* Read-only PostGIS processing preview, within the existing workspace panel. */
+.gis-vector-analysis { min-width: 0; padding: 14px; margin: 12px 0 20px; border: 1px solid #cbd5e1; border-radius: 12px; background: #fff; overflow-wrap: anywhere; }
+.gis-vector-analysis h3, .gis-vector-analysis h4 { font-weight: 700; color: #16313c; margin: 0 0 10px; }
+.gis-vector-analysis p { margin: 8px 0; line-height: 1.6; }
+.gis-vector-analysis label { display: block; margin: 10px 0; line-height: 1.6; }
+.gis-vector-analysis input:not([type=checkbox]):not([type=color]), .gis-vector-analysis select { display: block; width: 100%; min-width: 0; margin-top: 5px; }
+.gis-vector-analysis input[type=checkbox] { margin-right: 7px; }
+.gis-vector-analysis input[type=color] { display: block; width: 64px; height: 34px; margin-top: 5px; }
+.gis-vector-analysis fieldset { min-width: 0; padding: 10px; margin: 12px 0; border: 1px solid #d8e3e8; border-radius: 8px; }
+.gis-vector-analysis fieldset fieldset { max-height: 240px; overflow: auto; }
+.gis-vector-analysis legend { font-weight: 600; padding: 0 4px; }
+.gis-vector-analysis .gis-button { display: block; width: 100%; margin: 8px 0; white-space: normal; }
+.gis-vector-analysis details { margin: 12px 0; border-top: 1px solid #d8e3e8; padding-top: 10px; }
+.gis-vector-analysis summary { cursor: pointer; font-weight: 600; }
+.gis-vector-analysis :focus-visible { outline: 3px solid #2563eb; outline-offset: 2px; }

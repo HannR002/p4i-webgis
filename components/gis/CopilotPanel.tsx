@@ -16,6 +16,7 @@ import type {
   GISRunResponse,
   GISExecutionContext,
 } from "../../lib/gis/copilotContracts";
+import VectorAnalysisPanel from "./VectorAnalysisPanel";
 import type { GISAnalysisConfiguration } from "../../lib/gis/analysisContracts";
 import { parseGISRunResponse } from "../../lib/gis/copilotValidation";
 import { createAnalysisConfigurationRepository } from "../../lib/gis/analysisRepository";
@@ -253,6 +254,11 @@ export default function CopilotPanel({
           latest.recipe,
         );
       if (parsed.status === "completed") {
+        const prepared = parsed.results.findLast(
+          (r) => r.data.kind === "vector-analysis-preparation",
+        );
+        if (prepared?.data.kind === "vector-analysis-preparation")
+          latest.setVectorAnalysisProposal(prepared.data.proposal);
         const table = parsed.plan.steps.findLast(
           (step) => step.action.tool === "inspectVectorTable",
         )?.action;
@@ -448,6 +454,7 @@ export default function CopilotPanel({
             .map((f) => f.properties.name)
             .join(", ") || "belum ada"}
         </p>
+        {s.vectorAnalysisProposal && <VectorAnalysisPanel />}
         {s.analysisDraft && (
           <p>
             Draft editor: {s.analysisDraft.name} · v{s.analysisDraft.version} ·
