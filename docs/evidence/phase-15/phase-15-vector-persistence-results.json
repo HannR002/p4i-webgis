@@ -1,0 +1,31 @@
+{
+  "flows": [
+    "Explicit authenticated UI save commits real PostGIS revision 1, without localStorage fallback",
+    "Fresh browser reopens durable data; two sessions conflict safely; explicit reload obtains revision 2",
+    "Local Undo does not revert committed revision; cancel-local restores last committed snapshot",
+    "Delayed committed save retains newer local edits and refuses stale project-binding attachment",
+    "Real server roundtrip preserves Polygon holes, MultiLineString and MultiPolygon in a second project layer",
+    "Read-only client controls and direct API deny writes; other-client project access denied"
+  ],
+  "audits": [
+    {
+      "width": 1480,
+      "violations": []
+    },
+    {
+      "width": 768,
+      "violations": []
+    },
+    {
+      "width": 390,
+      "violations": []
+    },
+    {
+      "width": 320,
+      "violations": []
+    }
+  ],
+  "errors": [],
+  "external": 0,
+  "result": "passed"
+}

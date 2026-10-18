@@ -1,0 +1,14 @@
+[
+  {
+    "suite": "phase-09-readiness",
+    "exitCode": 0
+  },
+  {
+    "suite": "phase-11-framework",
+    "exitCode": 0
+  },
+  {
+    "suite": "phase-15-production-boundary",
+    "exitCode": 0
+  }
+]

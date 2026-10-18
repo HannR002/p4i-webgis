@@ -1,0 +1,15 @@
+{
+  "number": 10,
+  "state": "open",
+  "draft": true,
+  "merged": false,
+  "html_url": "https://github.com/HannR002/p4i-webgis/pull/10",
+  "head": {
+    "ref": "feat/phase14-advanced-vector-editor",
+    "sha": "4bae236ee65b72e967b8342777498a5487ef0cda"
+  },
+  "base": {
+    "ref": "feat/phase13-free-ai-map-creator",
+    "sha": "64d667856d37509a0355a7806c587112ccd0e54e"
+  }
+}

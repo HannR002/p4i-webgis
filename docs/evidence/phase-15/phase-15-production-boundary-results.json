@@ -1,0 +1,33 @@
+{
+  "mode": "LOCAL_NEXT_START_ONLY",
+  "results": [
+    {
+      "check": "production refuses acknowledged local capability",
+      "status": 200
+    },
+    {
+      "check": "no authenticated session",
+      "status": 401
+    },
+    {
+      "check": "cross-origin denial",
+      "status": 403
+    },
+    {
+      "check": "production write capability disabled",
+      "status": 503
+    },
+    {
+      "check": "client-supplied authority refused",
+      "status": 400
+    },
+    {
+      "check": "streamed upload budget",
+      "status": 400
+    },
+    {
+      "check": "production project load disabled",
+      "status": 503
+    }
+  ]
+}

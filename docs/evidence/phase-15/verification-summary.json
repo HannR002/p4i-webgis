@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-18",
+  "branch": "feat/phase15-vector-postgis-persistence",
+  "base": "4bae236ee65b72e967b8342777498a5487ef0cda",
+  "node": "22.23.3",
+  "npm": "10.9.9",
+  "installation": "fresh npm ci passed; dependency manifests unchanged",
+  "baseline": {
+    "tests": 351,
+    "files": 43
+  },
+  "lint": "passed",
+  "typecheck": "passed",
+  "application_tests": {
+    "passed": 383,
+    "files_passed": 45,
+    "opt_in_postgis_tests_skipped_in_default_run": 14
+  },
+  "real_postgis_tests": {
+    "passed": 14,
+    "files": 1,
+    "mode": "LOCAL_SYNTHETIC_POSTGIS_POSTGREST",
+    "restart_persistence": "passed",
+    "actual_GoTrue_verification": "PENDING"
+  },
+  "distinct_tests_executed": 397,
+  "build": "passed",
+  "browser": {
+    "suites": 12,
+    "all_final_passed": true,
+    "new_suite": "phase-15-vector-persistence",
+    "widths": [
+      1480,
+      768,
+      390,
+      320
+    ],
+    "new_axe_violations": 0,
+    "new_page_errors": 0,
+    "delayed_save_guard": "passed"
+  },
+  "local_production_api_checks": 12,
+  "new_local_vector_production_boundary_checks": 7,
+  "image_optimizer_checks": 3,
+  "gee_dependency_isolation": "passed; 541 installed packages, 697 output files, 44 traces",
+  "production_audit_affected_packages": 0,
+  "full_audit_affected_packages": 5,
+  "external_database_access_or_mutation": false,
+  "external_Gemini_or_GEE_inference_calls": 0,
+  "foundation_verified": false,
+  "external_migration": "BLOCKED",
+  "staging_auth": "STAGING_VERIFICATION_PENDING",
+  "production": "NO-GO",
+  "security_waiver": false,
+  "local_fixture_cleanup": "owned containers/network/volume removed; ephemeral state file deleted after evidence capture"
+}

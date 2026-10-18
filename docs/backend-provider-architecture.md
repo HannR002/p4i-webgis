@@ -267,3 +267,26 @@ For one engineer with staging access and a tested data export:
 
 The estimate excludes production change windows, large dataset transfer time, external identity
 migration, penetration testing, and remediation discovered from the live schema audit.
+
+## Phase 15 — editable vector persistence (local verification only)
+
+`VectorRepository` extends the existing database domain contracts with project-layer listing,
+layer snapshots, transactional save/archive and revision reads. `VectorProject.id` is an existing
+`spatial_projects.id`; no second project identity is created. The historical `vector_layers`
+contract represents imported geometry rows and has no verified editable collection/revision DDL,
+so the **local-only proposal** adds editable layers/features under `p4i_vector` instead of
+rewriting that table or pretending its missing live definition is known.
+
+`lib/server/database/vector/repository.ts` accepts an authenticated RPC transport independent
+of Supabase SDKs. The concrete `local.ts` transport calls real PostgREST backed by isolated
+PostgreSQL/PostGIS. It accepts only acknowledged loopback development endpoints, forwards the
+user token (never a service-role key), and refuses production/external URLs. PostgreSQL resolves
+signed-JWT subject and trusted `user_profiles` role/disabled state. The existing Supabase
+adapter remains unchanged and active for existing features; its editable-vector activation is
+**STAGING_VERIFICATION_PENDING**, not a hidden substitute for local storage.
+
+Future Supabase/Neon/Nhost transports must preserve transactional RPC semantics, caller identity,
+server authorization, expected-revision checks and idempotency. The current PostgreSQL logic
+uses portable PostGIS/JSONB with explicit provider seams (`auth.uid()`, existing application
+roles and PostgREST JWT context). These auth/grant assumptions require adapter-specific review.
+See [Phase 15 report](PHASE_15_VECTOR_POSTGIS_PERSISTENCE.md). No external migration was run.

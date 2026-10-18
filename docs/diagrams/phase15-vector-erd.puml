@@ -1,0 +1,79 @@
+@startuml
+hide methods
+entity "public.spatial_projects\n(existing identity; live DDL unverified)" as project {
+ * id : uuid
+ title : text
+ access_tier : public | restricted
+}
+entity "public.user_profiles\n(existing trusted role authority)" as user {
+ * id : uuid
+ role : app role
+ is_disabled : boolean
+}
+entity "public.b2b_entitlements\n(existing contract)" as entitlement {
+ * client_user_id : uuid
+ * project_id : uuid
+}
+entity "p4i_vector.project_editors\n(proposed local ACL sidecar)" as acl {
+ * project_id : uuid
+ * user_id : uuid
+ permission : owner | editor
+}
+entity "p4i_vector.layers\n(editable collection)" as layer {
+ * id : uuid (database generated)
+ project_id : uuid
+ revision : integer
+ metadata : jsonb
+ archived : boolean
+ created_by / updated_by : uuid
+ created_at / updated_at : timestamptz
+}
+entity "p4i_vector.features" as feature {
+ * id : uuid (database generated)
+ layer_id : uuid
+ local_id : text (session mapping)
+ revision : integer
+ geom : geometry(Geometry,4326)
+ properties : jsonb
+ ordinal : integer
+ created_by / updated_by : uuid
+}
+entity "p4i_vector.layer_revisions" as lr {
+ * layer_id : uuid
+ * revision : integer
+ actor_id : uuid
+ snapshot : jsonb
+ created_at : timestamptz
+}
+entity "p4i_vector.feature_revisions" as fr {
+ * feature_id : uuid
+ * revision : integer
+ layer_id : uuid
+ deleted : boolean
+ geometry / properties : jsonb
+ actor_id : uuid
+}
+entity "p4i_vector.requests" as request {
+ * actor_id : uuid
+ * request_id : uuid
+ project_id : uuid
+ fingerprint : bytea
+ result : jsonb
+}
+project ||--o{ layer
+project ||--o{ acl
+user ||--o{ acl
+user ||--o{ entitlement
+project ||--o{ entitlement
+layer ||--o{ feature
+layer ||--o{ lr
+layer ||--o{ fr
+feature ||..o{ fr : logical identity; tombstone survives deletion
+user ||--o{ request
+project ||--o{ request
+note bottom
+Local fixture verified only. These are proposed incremental objects,
+not a verified Supabase production ERD. Historical vector_layers is
+unchanged: imported geometry-row contract, not an editable collection.
+end note
+@enduml

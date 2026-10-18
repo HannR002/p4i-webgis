@@ -208,3 +208,33 @@ Remaining external blockers: verified foundational DDL/owners/relationships/view
 compatible extension namespace; explicit disposable target scope; secure DB connection and
 synthetic Auth identities for full Supabase staging integration. Complete those before calling
 external fresh-database reproduction or real-client authorization verified.
+
+## Phase 15 addendum — isolated editable-vector persistence
+
+`database/proposals/009_vector_persistence.LOCAL_ONLY.sql` is **not** in the migration plan.
+It requires the disposable database `p4i_phase15_local` and an explicit synthetic-fixture marker.
+Do not copy its foundation fixture or remove the local guard to migrate an external project.
+Historical migrations 006/007/008 are unchanged. External application remains **BLOCKED** until
+verified DDL, ownership, auth trigger/RLS/grants, project-owner mapping, legacy layer mapping,
+backup/restore and explicit staging authorization are supplied and reviewed.
+
+Reproduce with Node 22 and the local Docker Unix socket:
+
+```sh
+mkdir -p /workspace/artifacts/phase-15
+node scripts/database/vector-local.mjs start
+P4I_VECTOR_TEST_STATE=/workspace/artifacts/phase-15/local-state.json npm test -- tests/vectorPostgis.integration.test.ts
+# Stop only this runner's uniquely named containers/network and owned anonymous volume:
+node scripts/database/vector-local.mjs stop
+```
+
+The state file contains ephemeral synthetic test sessions and must stay outside Git. Do not
+print/copy its tokens into reports. The runner uses pinned PostGIS/PostgREST image digests,
+an internal database network with no database port, and a random loopback HTTP port. Its own
+volume survives database/container restart until explicit fixture cleanup; it is not a managed
+backup or production durability guarantee. Synthetic signed JWT/PostgREST verification is
+separate from real Supabase Auth/GoTrue verification, which remains pending.
+
+Rollback of the local proposal is disposal of the runner's own fixture. No destructive external
+rollback or DROP/CASCADE is prescribed. Future staging needs a separately reviewed additive
+migration, feature-disable plan, verified backups and retention of immutable revision evidence.

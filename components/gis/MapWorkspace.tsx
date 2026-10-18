@@ -19,6 +19,10 @@ import {
   Trash2,
   LocateFixed,
 } from 'lucide-react';
+import {
+  saveLocalWorkspaceDraft,
+  WORKSPACE_DRAFT_KEY,
+} from '../../lib/gis/workspaceDraft';
 import { useWorkspaceStore } from '../../store/useWorkspaceStore';
 import { useMapStore } from '../../store/useMapStore';
 import { bandRange } from '../../lib/gis/raster';
@@ -42,7 +46,7 @@ const WorkspaceMap = dynamic(() => import('./WorkspaceMap'), {
   loading: () => <div className="gis-map-loading">Memuat workspace…</div>,
 });
 type Panel = WorkspacePanel;
-const STORAGE_KEY = 'p4i-map-draft-v1';
+const STORAGE_KEY = WORKSPACE_DRAFT_KEY;
 export default function MapWorkspace({
   webmap,
   dataset,
@@ -255,16 +259,11 @@ export default function MapWorkspace({
             disabled={s.mode === 'loading' || !!catalogError}
             onClick={() =>
               local(() => {
-                if (s.vectorEdit || s.vectorVertices.length)
-                  throw new Error(
-                    'Selesaikan atau batalkan gambar/edit sebelum menyimpan draft.',
-                  );
-                const value = JSON.stringify(s.recipe);
-                if (new Blob([value]).size > 65536)
-                  throw new Error(
-                    'Draft terlalu besar (maks 64 KB); kurangi objek/konfigurasi sebelum menyimpan.',
-                  );
-                localStorage.setItem(STORAGE_KEY, value);
+                saveLocalWorkspaceDraft(
+                  s.recipe,
+                  !!s.vectorEdit || !!s.vectorVertices.length,
+                  localStorage,
+                );
                 setNotice('Draft disimpan di browser ini.');
               })
             }
@@ -282,6 +281,7 @@ export default function MapWorkspace({
                 if (new Blob([data]).size > 65536)
                   throw new Error('Draft terlalu besar (maks 64 KB).');
                 s.replace(JSON.parse(data) as unknown, 'Memuat draft lokal');
+                s.setVectorProjectBinding(null);
                 setNotice('Draft dimuat.');
               })
             }

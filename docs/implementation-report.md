@@ -471,3 +471,14 @@ Verification: 351 tests in 43 files, lint/typecheck/build, 11 browser suites, fo
 See [Phase 14 report](PHASE_14_ADVANCED_VECTOR_EDITOR.md) and [evidence](evidence/phase-14/verification-summary.json). Branch: `feat/phase14-advanced-vector-editor`, stacked on verified Phase 13 head `64d6678`.
 
 Delivery: [Draft PR #10](https://github.com/HannR002/p4i-webgis/pull/10) targets Phase 13; implementation commit `32b9119`. Existing PRs remain intact.
+
+
+## Phase 15 — real isolated PostGIS vector persistence (18 October 2026)
+
+Implemented on `feat/phase15-vector-postgis-persistence`, based on Phase 14 `4bae236`. The existing editor now explicitly saves/opens/version-controls bounded vector layers through a real local PostgreSQL/PostGIS/PostgREST repository. Save transactions enforce trusted active identity, project-specific write rights, optimistic layer revisions, feature revisions, idempotency and immutable evidence. Local draft, Undo/Redo and server revisions remain distinct; rejected or delayed saves preserve local edits.
+
+Fresh npm ci/lint/typecheck/build passed. Default application suite: 383 passed, 14 opt-in DB cases skipped; separate real DB suite: all 14 passed (397 distinct executed tests). All 12 browser suites passed, including four new responsive/Axe widths with zero violations; 12 existing API checks, seven vector production-boundary checks, three image checks and GEE dependency/build isolation passed. Production audit: zero findings; inherited development braces advisory remains unwaived.
+
+The local-only proposal is outside the migration plan and gated to the synthetic fixture. Historical 006/007/008 and dependency manifests are unchanged. No external database access/migration, live GoTrue verification, paid inference, GEE, merge or deployment occurred. External schema/application is BLOCKED; actual Supabase staging auth is STAGING_VERIFICATION_PENDING; production remains NO-GO.
+
+See [full Phase 15 report](PHASE_15_VECTOR_POSTGIS_PERSISTENCE.md), [ERD](diagrams/phase15-vector-erd.puml), [save sequence](diagrams/phase15-vector-save-sequence.puml) and [verification evidence](evidence/phase-15/verification-summary.json).

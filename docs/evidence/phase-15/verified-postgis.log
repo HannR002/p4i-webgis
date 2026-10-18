@@ -1,0 +1,12 @@
+
+> p4i-webgis@0.1.0 test
+> vitest run tests/vectorPostgis.integration.test.ts
+
+
+ RUN  v4.1.12 /workspace/p4i-webgis
+
+
+ Test Files  1 passed (1)
+      Tests  14 passed (14)
+   Start at  02:34:06
+   Duration  6.52s (transform 587ms, setup 0ms, import 708ms, tests 5.38s, environment 0ms)
