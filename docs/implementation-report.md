@@ -469,3 +469,5 @@ The existing Leaflet/MapRecipe workspace now supports direct Point/LineString/Po
 Verification: 351 tests in 43 files, lint/typecheck/build, 11 browser suites, four new responsive/Axe checks with no violations, 12 local production API checks, three image checks and GEE dependency/build isolation passed. Production audit has zero findings; inherited development braces advisory remains for reviewer disposition. No dependency, database, deployment or external inference change.
 
 See [Phase 14 report](PHASE_14_ADVANCED_VECTOR_EDITOR.md) and [evidence](evidence/phase-14/verification-summary.json). Branch: `feat/phase14-advanced-vector-editor`, stacked on verified Phase 13 head `64d6678`.
+
+Delivery: [Draft PR #10](https://github.com/HannR002/p4i-webgis/pull/10) targets Phase 13; implementation commit `32b9119`. Existing PRs remain intact.
