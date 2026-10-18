@@ -1,0 +1,46 @@
+[
+  {
+    "suite": "phase-01-smoke",
+    "exitCode": 0
+  },
+  {
+    "suite": "phase-01-regression",
+    "exitCode": 0
+  },
+  {
+    "suite": "phase-02-smoke",
+    "exitCode": 0
+  },
+  {
+    "suite": "phase-02-accessibility",
+    "exitCode": 0
+  },
+  {
+    "suite": "phase-03-raster",
+    "exitCode": 0
+  },
+  {
+    "suite": "phase-04-configuration",
+    "exitCode": 0
+  },
+  {
+    "suite": "phase-05-copilot",
+    "exitCode": 0
+  },
+  {
+    "suite": "phase-06-compute",
+    "exitCode": 0
+  },
+  {
+    "suite": "phase-07-deliverables",
+    "exitCode": 0
+  },
+  {
+    "suite": "phase-13-vector-editor",
+    "exitCode": 0
+  },
+  {
+    "suite": "phase-14-vector-digitizing",
+    "exitCode": 0
+  }
+]

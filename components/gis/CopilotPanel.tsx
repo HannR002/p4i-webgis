@@ -1,4 +1,5 @@
 "use client";
+import VectorAttributeTable from "./VectorAttributeTable";
 import { emptyRecipe } from "../../lib/gis/catalog";
 import {
   GEMINI_FREE_PROVIDER,
@@ -22,6 +23,10 @@ import { parseAnalysisConfiguration } from "../../lib/gis/analysisConfiguration"
 import { canAccessDataset } from "../../lib/gis/recipe";
 import { parseRecipe, record } from "../../lib/gis/validation";
 const prompts = [
+  "Buat layer garis bernama Jalur Survei.",
+  "Buat garis dari titik A ke titik B.",
+  "Tambahkan satu vertex di antara titik kedua dan ketiga.",
+  "Zoom ke objek yang saya pilih.",
   "Buatkan peta baru bernama Survei Lapangan dan gunakan OpenStreetMap.",
   "Tambahkan titik A pada longitude 103.61 dan latitude -1.61, warna merah.",
   "Tambahkan titik B [103.62, -1.61]; C [103.62, -1.62]; D [103.61, -1.62]",
@@ -136,6 +141,11 @@ export default function CopilotPanel({
   async function ask(value: string, reviewedPlan?: GISExecutionPlan) {
     if (busy || !value.trim()) return;
     const current = useWorkspaceStore.getState();
+    if (current.vectorEdit || current.vectorVertices.length) {
+      setError("Selesaikan atau batalkan edit geometri dahulu.");
+      return;
+    }
+    const vectorEpoch = current.vectorEpoch;
     const base = JSON.stringify(current.recipe),
       permissions = JSON.stringify(current.context);
     // The workspace regenerates legends with a different key order. Compare
@@ -201,6 +211,7 @@ export default function CopilotPanel({
       if (active.signal.aborted || request !== sequence.current) return;
       const latest = useWorkspaceStore.getState();
       if (
+        latest.vectorEpoch !== vectorEpoch ||
         JSON.stringify(latest.recipe) !== base ||
         JSON.stringify(latest.context) !== permissions
       )
@@ -220,12 +231,35 @@ export default function CopilotPanel({
         (parsed.status !== "completed" && actualChange)
       )
         throw Error("Respons perubahan sesi tidak konsisten");
+      const removedLayers =
+        latest.recipe.sketchLayers?.filter(
+          (l) => !parsed.recipe.sketchLayers?.some((next) => next.id === l.id),
+        ) ?? [];
+      if (
+        parsed.changed &&
+        removedLayers.length &&
+        !window.confirm(
+          `Hapus ${removedLayers.length} layer lokal beserta objeknya sesuai rencana? Undo dapat mengembalikan.`,
+        )
+      )
+        throw Error("Penghapusan layer dibatalkan; peta tetap utuh.");
       if (parsed.changed)
         latest.replace(
           parsed.recipe,
           `Copilot ${parsed.plan.provider.mode === "demo" ? "DEMO" : "Gemini Free Tier"}: ${parsed.plan.steps.map((step) => step.action.tool).join(", ")}`,
           latest.recipe,
         );
+      if (parsed.status === "completed") {
+        const table = parsed.plan.steps.findLast(
+          (step) => step.action.tool === "inspectVectorTable",
+        )?.action;
+        if (table?.tool === "inspectVectorTable")
+          latest.setVectorEditor({
+            vectorLayerId: table.layerId,
+            vectorTableOpen: true,
+            selectedVectorIds: [],
+          });
+      }
       const configuration = parsed.results.findLast(
         (r) => r.data.kind === "configuration",
       );
@@ -567,6 +601,22 @@ export default function CopilotPanel({
             </div>
           )}
           <div className="gis-copilot-results">
+            {s.vectorTableOpen &&
+              s.recipe.sketchLayers
+                ?.filter((l) => l.id === s.vectorLayerId)
+                .map((l) => (
+                  <VectorAttributeTable
+                    key={l.id}
+                    layer={l}
+                    act={(action) => {
+                      try {
+                        s.action(action);
+                      } catch (e) {
+                        setError(e instanceof Error ? e.message : "Edit gagal");
+                      }
+                    }}
+                  />
+                ))}
             {response.results
               .filter((r) => r.data.kind !== "map-change")
               .map((result) => (

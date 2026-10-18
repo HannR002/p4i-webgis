@@ -1,0 +1,15 @@
+{
+  "number": 9,
+  "state": "open",
+  "draft": true,
+  "merged": false,
+  "html_url": "https://github.com/HannR002/p4i-webgis/pull/9",
+  "head": {
+    "ref": "feat/phase13-free-ai-map-creator",
+    "sha": "64d667856d37509a0355a7806c587112ccd0e54e"
+  },
+  "base": {
+    "ref": "security/phase12-gee-dependency-isolation",
+    "sha": "3762e34b4a58c93cee0177fca542641cf6c8b6ed"
+  }
+}

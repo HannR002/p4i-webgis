@@ -1,3 +1,4 @@
+import { planAdvancedVector } from './advancedVectorPlanner';
 import type { GISPlanningInput } from '../../../gis/copilotContracts';
 import type { MapAction } from '../../../gis/contracts';
 import {
@@ -10,6 +11,8 @@ import {
 export function planVector(
   input: GISPlanningInput,
 ): { actions: MapAction[]; clarification?: string } | null {
+  const advanced = planAdvancedVector(input);
+  if (advanced) return advanced;
   const p = input.prompt.trim(),
     lower = p.toLowerCase();
   const newMap = p.match(

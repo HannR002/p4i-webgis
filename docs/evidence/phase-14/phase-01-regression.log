@@ -1,0 +1,11 @@
+PASS layer add/remove, actual pane ordering and undo, style tiles
+PASS delayed Copilot response cannot overwrite Undo
+PASS cancelled pixel request leaves a usable empty state
+PASS pixel provider error visible
+PASS invalid recipe import preserves existing map
+PASS advisory AHP CR, provisional recipe save and synthetic flood panel isolation
+PASS all portal routes, legacy viewer, login and anonymous protected-route redirects
+LOCAL inert-provider route /api/projects/list 500
+LOCAL inert-provider route /api/boundaries?west=103&south=-2&east=104&north=-1&level=kecamatan&tolerance=0.001 500
+PASS guest sensitive endpoints denied; NoData outside fixture bounds
+PASS catalog failure replaces indefinite loading, mobile error screenshot

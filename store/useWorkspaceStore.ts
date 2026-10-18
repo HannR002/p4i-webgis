@@ -1,4 +1,10 @@
 import { create } from 'zustand';
+import {
+  editVertex,
+  type LonLat,
+  type SketchGeometry,
+} from '../lib/gis/vectorEditing';
+import type { SnapSettings, SnapTarget } from '../lib/gis/vectorSnapping';
 import { emptyRecipe } from '../lib/gis/catalog';
 import type {
   Dataset,
@@ -49,7 +55,20 @@ function syncConfiguration(previous: MapRecipe, next: MapRecipe) {
 }
 
 interface VectorEditorState {
-  vectorMode: 'off' | 'select' | 'point' | 'polygon';
+  vectorMode: 'off' | 'select' | 'point' | 'line' | 'polygon' | 'edit';
+  vectorEdit: {
+    layerId: string;
+    featureId: string;
+    original: SketchGeometry;
+    preview: SketchGeometry;
+    path: number[];
+    index: number;
+  } | null;
+  vectorEpoch: number;
+  snapSettings: SnapSettings;
+  snapTarget: SnapTarget | null;
+  vectorCursor: LonLat | null;
+  vectorTableOpen: boolean;
   vectorLayerId: string;
   selectedVectorIds: string[];
   vectorVertices: [number, number][];
@@ -57,6 +76,16 @@ interface VectorEditorState {
 }
 interface WorkspaceState extends VectorEditorState {
   setVectorEditor: (value: Partial<VectorEditorState>) => void;
+  beginVertexDrag: (
+    layerId: string,
+    featureId: string,
+    path: number[],
+    index: number,
+  ) => void;
+  previewVertexDrag: (coordinate: LonLat) => void;
+  commitVertexDrag: () => void;
+  cancelVectorEdit: () => void;
+  finishVectorDrawing: () => void;
   recipe: MapRecipe;
   catalog: Dataset[];
   mode: 'loading' | 'demo' | 'unavailable';
@@ -84,11 +113,129 @@ interface WorkspaceState extends VectorEditorState {
 export const useWorkspaceStore = create<WorkspaceState>((set, get) => ({
   recipe: emptyRecipe(),
   vectorMode: 'off',
+  vectorEdit: null,
+  vectorEpoch: 0,
+  snapSettings: {
+    enabled: true,
+    vertices: true,
+    segments: true,
+    tolerance: 12,
+  },
+  snapTarget: null,
+  vectorCursor: null,
+  vectorTableOpen: false,
   vectorLayerId: '',
   selectedVectorIds: [],
   vectorVertices: [],
   vectorError: null,
-  setVectorEditor: (value) => set(value),
+  setVectorEditor: (value) =>
+    set((s) => ({
+      ...value,
+      ...(value.vectorMode !== undefined ||
+      value.vectorLayerId !== undefined ||
+      value.selectedVectorIds !== undefined
+        ? { vectorEdit: null, snapTarget: null, vectorEpoch: s.vectorEpoch + 1 }
+        : {}),
+    })),
+  beginVertexDrag: (layerId, featureId, path, index) => {
+    const s = get(),
+      layer = s.recipe.sketchLayers?.find((l) => l.id === layerId);
+    const f = layer?.data.features.find((f) => f.id === featureId);
+    if (!f || !layer?.visible || s.vectorMode !== 'edit')
+      throw Error('Objek edit tidak tersedia');
+    set({
+      vectorEdit: {
+        layerId,
+        featureId,
+        original: structuredClone(f.geometry),
+        preview: structuredClone(f.geometry),
+        path,
+        index,
+      },
+      vectorEpoch: s.vectorEpoch + 1,
+      vectorError: null,
+    });
+  },
+  previewVertexDrag: (coordinate) => {
+    const edit = get().vectorEdit;
+    if (!edit) return;
+    try {
+      set({
+        vectorEdit: {
+          ...edit,
+          preview: editVertex(
+            edit.original,
+            edit.path,
+            edit.index,
+            'move',
+            coordinate,
+          ),
+        },
+        vectorError: null,
+      });
+    } catch (e) {
+      set({
+        vectorError: e instanceof Error ? e.message : 'Vertex tidak valid',
+      });
+    }
+  },
+  commitVertexDrag: () => {
+    const s = get(),
+      edit = s.vectorEdit;
+    if (!edit) return;
+    const current = s.recipe.sketchLayers
+      ?.find((l) => l.id === edit.layerId)
+      ?.data.features.find((f) => f.id === edit.featureId);
+    set({ vectorEdit: null, snapTarget: null, vectorEpoch: s.vectorEpoch + 1 });
+    if (s.vectorError) return;
+    if (JSON.stringify(current?.geometry) !== JSON.stringify(edit.original)) {
+      set({ vectorError: 'Objek berubah; ulangi edit.' });
+      return;
+    }
+    if (JSON.stringify(edit.original) === JSON.stringify(edit.preview)) return;
+    get().action({
+      tool: 'updateFeatureGeometry',
+      layerId: edit.layerId,
+      featureId: edit.featureId,
+      geometry: edit.preview,
+    });
+  },
+  cancelVectorEdit: () =>
+    set((s) => ({
+      vectorEdit: null,
+      vectorVertices: [],
+      vectorCursor: null,
+      snapTarget: null,
+      vectorError: null,
+      vectorEpoch: s.vectorEpoch + 1,
+    })),
+  finishVectorDrawing: () => {
+    const s = get(),
+      layer = s.recipe.sketchLayers?.find((l) => l.id === s.vectorLayerId);
+    if (!layer || !['line', 'polygon'].includes(s.vectorMode)) return;
+    try {
+      s.action(
+        s.vectorMode === 'line'
+          ? {
+              tool: 'createFeature',
+              layerId: layer.id,
+              name: `Garis ${layer.data.features.length + 1}`,
+              geometry: { type: 'LineString', coordinates: s.vectorVertices },
+            }
+          : {
+              tool: 'createPolygon',
+              layerId: layer.id,
+              name: `Poligon ${layer.data.features.length + 1}`,
+              vertices: s.vectorVertices,
+            },
+      );
+      set({ vectorVertices: [], vectorError: null, snapTarget: null });
+    } catch (e) {
+      set({
+        vectorError: e instanceof Error ? e.message : 'Geometri tidak valid',
+      });
+    }
+  },
   catalog: [],
   mode: 'loading',
   context: { role: 'guest', entitledProjectIds: [] },
@@ -102,6 +249,8 @@ export const useWorkspaceStore = create<WorkspaceState>((set, get) => ({
   configure: (catalog, mode, context) => set({ catalog, mode, context }),
   replace: (input, label, expectedRecipe) => {
     const s = get();
+    if (s.vectorEdit)
+      throw new Error('Selesaikan atau batalkan drag vertex dahulu.');
     if (expectedRecipe && s.recipe !== expectedRecipe)
       throw new Error(
         'Peta berubah saat permintaan diproses. Minta rencana baru.',
@@ -112,6 +261,13 @@ export const useWorkspaceStore = create<WorkspaceState>((set, get) => ({
     syncConfiguration(s.recipe, recipe);
     set({
       recipe,
+      vectorEpoch: s.vectorEpoch + 1,
+      selectedVectorIds: s.selectedVectorIds.filter((id) =>
+        recipe.sketchLayers?.some((l) =>
+          l.data.features.some((f) => f.id === id),
+        ),
+      ),
+      vectorVertices: [],
       past: [...s.past, s.recipe].slice(-30),
       future: [],
       log: [...s.log, label].slice(-50),
@@ -126,12 +282,19 @@ export const useWorkspaceStore = create<WorkspaceState>((set, get) => ({
     );
   },
   undo: () => {
+    get().cancelVectorEdit();
     const s = get();
     const previous = s.past.at(-1);
     if (previous) {
       syncConfiguration(s.recipe, previous);
       set({
         recipe: previous,
+        vectorEpoch: s.vectorEpoch + 1,
+        selectedVectorIds: s.selectedVectorIds.filter((id) =>
+          previous.sketchLayers?.some((l) =>
+            l.data.features.some((f) => f.id === id),
+          ),
+        ),
         past: s.past.slice(0, -1),
         future: [s.recipe, ...s.future].slice(0, 30),
         samples: [],
@@ -140,12 +303,19 @@ export const useWorkspaceStore = create<WorkspaceState>((set, get) => ({
     }
   },
   redo: () => {
+    get().cancelVectorEdit();
     const s = get();
     const next = s.future[0];
     if (next) {
       syncConfiguration(s.recipe, next);
       set({
         recipe: next,
+        vectorEpoch: s.vectorEpoch + 1,
+        selectedVectorIds: s.selectedVectorIds.filter((id) =>
+          next.sketchLayers?.some((l) =>
+            l.data.features.some((f) => f.id === id),
+          ),
+        ),
         past: [...s.past, s.recipe].slice(-30),
         future: s.future.slice(1),
         samples: [],

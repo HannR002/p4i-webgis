@@ -203,3 +203,8 @@ PDF download was generated and verified by the browser suite; file size/hash are
 The exact cumulative file inventory relative to Phase 12 is in [changed-files.txt](evidence/phase-13/changed-files.txt).
 
 Review this child PR against Phase 12 first. Keep PRs #1–#8 intact; incorporate changes through the approved stacked review workflow. Nothing was merged, deployed or applied to an external database.
+
+
+## Phase 14 continuation (18 October 2026)
+
+[Phase 14](PHASE_14_ADVANCED_VECTOR_EDITOR.md) extends the same editor with LineString, multipart and holes, transactional vertex handles, screen-space snapping, a typed attribute table and bounded local import. The Phase 13 test baseline remains preserved. Historical Phase 13 results above remain unchanged; Phase 14 has separate evidence and does not activate Gemini.

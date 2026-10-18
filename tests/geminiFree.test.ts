@@ -210,6 +210,21 @@ describe('Gemini Free Tier is fail-closed; all HTTP calls here are mocks', () =>
       [{ tool: 'runFloodAnalysis' }],
       [
         {
+          tool: 'createFeature',
+          layerId: 'local-vector-1',
+          name: 'Phase14 blocked',
+          geometry: {
+            type: 'LineString',
+            coordinates: [
+              [0, 0],
+              [0.01, 0],
+            ],
+          },
+        },
+      ],
+      [{ tool: 'inspectVectorTable', layerId: 'local-vector-1' }],
+      [
+        {
           tool: 'createPoint',
           layerId: 'local-vector-1',
           name: 'Invented',

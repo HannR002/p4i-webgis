@@ -1,0 +1,46 @@
+{
+  "date": "2026-10-18",
+  "branch": "feat/phase14-advanced-vector-editor",
+  "base": "64d667856d37509a0355a7806c587112ccd0e54e",
+  "node": "22.23.3",
+  "npm": "10.9.9",
+  "installation": "npm ci passed; dependency manifests unchanged",
+  "baseline": {
+    "tests": 314,
+    "files": 42
+  },
+  "lint": "passed",
+  "typecheck": "passed",
+  "tests": {
+    "passed": 351,
+    "files": 43,
+    "new_tests": 37
+  },
+  "build": "passed",
+  "browser": {
+    "suites": 11,
+    "all_final_passed": true,
+    "new_suite": "phase-14-vector-digitizing",
+    "new_viewports": [
+      1480,
+      768,
+      390,
+      320
+    ],
+    "new_axe_violations": 0,
+    "new_page_errors": 0
+  },
+  "local_production_api_checks": 12,
+  "image_optimizer_checks": 3,
+  "gee_dependency_isolation": "passed; 541 installed packages, 686 output files, 43 dependency traces",
+  "production_audit_affected_packages": 0,
+  "full_audit_affected_packages": 5,
+  "residual_development_advisory": "braces GHSA-vfj7-8cjw-p6xm; inherited tooling chain; no waiver",
+  "external_Gemini_or_GEE_inference_calls": 0,
+  "live_gemini": "LIVE_INTEGRATION_PENDING; default disabled; Phase 14 tools excluded",
+  "database_rehearsal": "not repeated; no schema/database changes",
+  "initial_browser_failures": [
+    "Two ambiguous recipe-import selectors corrected without removing assertions",
+    "Phase 05 screenshot element detached during concurrent hot reload; final settled-code rerun passed"
+  ]
+}

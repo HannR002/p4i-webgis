@@ -2017,3 +2017,30 @@
 .gis-vector-editor button[aria-pressed=true] { background: #0f766e; color: white; }
 .gis-vector-editor ul { max-height: 220px; overflow: auto; list-style: none; padding: 0; }
 .gis-vector-editor :focus-visible { outline: 3px solid #2563eb; outline-offset: 2px; }
+
+/* Phase 14 uses the existing workspace and Leaflet panes. */
+.gis-vertex-handle { background: #fff; border: 3px solid #7c3aed; border-radius: 3px; box-shadow: 0 0 0 2px #fff; cursor: move; }
+.gis-vertex-handle:focus { outline: 3px solid #111827; outline-offset: 3px; }
+.gis-vector-editor details { margin: .65rem 0; padding: .55rem; border: 1px solid #cbd5e1; border-radius: .5rem; }
+.gis-vector-editor summary { cursor: pointer; font-weight: 600; }
+.gis-coordinate-readout { font-variant-numeric: tabular-nums; font-size: .8rem; overflow-wrap: anywhere; }
+.gis-attribute-section { max-width: 100%; min-width: 0; padding: .5rem 0; }
+.gis-attribute-scroll { max-width: 100%; max-height: 320px; overflow: auto; border: 1px solid #cbd5e1; border-radius: .4rem; }
+.gis-attribute-scroll table { border-collapse: collapse; font-size: .8rem; width: 100%; }
+.gis-attribute-scroll caption { padding: .5rem; text-align: left; }
+.gis-attribute-scroll th, .gis-attribute-scroll td { padding: .35rem; border-bottom: 1px solid #cbd5e1; text-align: left; }
+.gis-attribute-scroll th { background: #e2e8f0; color: #0f172a; position: sticky; top: 0; }
+.gis-attribute-scroll tr[aria-selected=true] { background: #ccfbf1; color: #134e4a; }
+.gis-attribute-scroll input:not([type=checkbox]) { min-width: 100px; width: 120px; }
+.gis-attribute-scroll input[type=checkbox] { width: 18px; }
+.gis-vector-editor input[type=file] { max-width: 100%; width: 100%; }
+.gis-vector-editor .gis-config-actions { flex-wrap: wrap; }
+.gis-vector-editor { background: #f8fafc; }
+.gis-vector-editor fieldset { padding: .65rem; background: #fff; }
+.gis-vector-editor legend { padding: 0 .25rem; font-weight: 600; font-size: .82rem; }
+.gis-vector-editor label { font-size: .82rem; line-height: 1.5; }
+.gis-vector-editor input[type=color] { width: 42px; height: 30px; margin-left: .5rem; vertical-align: middle; }
+.gis-vector-editor button { font-size: .8rem; background: #fff; }
+.gis-vector-editor button:disabled { color: #64748b; background: #f1f5f9; }
+.gis-vector-editor button[aria-pressed=true] { background: #0f766e; color: #fff; }
+.gis-vector-editor .gis-button:not(.secondary) { background: #0f766e; color: #fff; }

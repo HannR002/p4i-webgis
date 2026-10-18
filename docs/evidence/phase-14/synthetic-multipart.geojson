@@ -1,0 +1,153 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "local-feature-4",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              103.6,
+              -1.6
+            ],
+            [
+              103.64,
+              -1.6
+            ],
+            [
+              103.64,
+              -1.64
+            ],
+            [
+              103.6,
+              -1.64
+            ],
+            [
+              103.6,
+              -1.6
+            ]
+          ],
+          [
+            [
+              103.61,
+              -1.61
+            ],
+            [
+              103.61,
+              -1.62
+            ],
+            [
+              103.62,
+              -1.62
+            ],
+            [
+              103.62,
+              -1.61
+            ],
+            [
+              103.61,
+              -1.61
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Area berlubang",
+        "description": "",
+        "attributes": {
+          "sample": 1
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "local-feature-5",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              103.6,
+              -1.6
+            ],
+            [
+              103.64,
+              -1.64
+            ]
+          ],
+          [
+            [
+              103.65,
+              -1.6
+            ],
+            [
+              103.65,
+              -1.64
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Jalur multipart",
+        "description": "",
+        "attributes": {}
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "local-feature-6",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                103.66,
+                -1.6
+              ],
+              [
+                103.68,
+                -1.6
+              ],
+              [
+                103.68,
+                -1.62
+              ],
+              [
+                103.66,
+                -1.6
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                103.69,
+                -1.6
+              ],
+              [
+                103.7,
+                -1.6
+              ],
+              [
+                103.7,
+                -1.62
+              ],
+              [
+                103.69,
+                -1.6
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Area multipart",
+        "description": "",
+        "attributes": {}
+      }
+    }
+  ]
+}

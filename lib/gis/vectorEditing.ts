@@ -1,14 +1,25 @@
-import type { Feature, Point, Polygon } from 'geojson';
+import type {
+  Feature,
+  Point,
+  Polygon,
+  LineString,
+  MultiLineString,
+  MultiPolygon,
+} from 'geojson';
 import type { MapRecipe } from './contracts';
 import { GisInputError, record, text, finite, color } from './validation';
 
 export type LonLat = [number, number];
+export type SketchGeometry =
+  Point | LineString | Polygon | MultiLineString | MultiPolygon;
 export interface SketchStyle {
   color: string;
   fillColor: string;
   weight: number;
   fillOpacity: number;
   radius: number;
+  strokeOpacity?: number;
+  dash?: 'solid' | 'dash' | 'dot';
 }
 export interface SketchProperties {
   name: string;
@@ -16,7 +27,7 @@ export interface SketchProperties {
   attributes: Record<string, string | number | boolean>;
   style?: SketchStyle;
 }
-export type SketchFeature = Feature<Point | Polygon, SketchProperties> & {
+export type SketchFeature = Feature<SketchGeometry, SketchProperties> & {
   id: string;
 };
 export interface SketchLayer {
@@ -35,6 +46,11 @@ export const DEFAULT_SKETCH_STYLE: SketchStyle = {
   radius: 7,
 };
 export const VECTOR_TOOLS = [
+  'createFeature',
+  'importVectorLayer',
+  'editLayerField',
+  'inspectVectorTable',
+  'zoomVectorFeatures',
   'createVectorLayer',
   'updateVectorLayer',
   'createPoint',
@@ -47,6 +63,28 @@ export const VECTOR_TOOLS = [
   'deleteFeature',
 ] as const;
 export type VectorAction =
+  | {
+      tool: 'createFeature';
+      layerId: string;
+      name: string;
+      geometry: SketchGeometry;
+      style?: SketchStyle;
+    }
+  | {
+      tool: 'importVectorLayer';
+      name: string;
+      collection: unknown;
+      wgs84: true;
+    }
+  | {
+      tool: 'editLayerField';
+      layerId: string;
+      field: string;
+      value?: string | number | boolean;
+      remove?: boolean;
+    }
+  | { tool: 'inspectVectorTable'; layerId: string }
+  | { tool: 'zoomVectorFeatures'; layerId: string; featureIds: string[] }
   | { tool: 'createVectorLayer'; name: string }
   | {
       tool: 'updateVectorLayer';
@@ -88,7 +126,7 @@ export type VectorAction =
       tool: 'updateFeatureGeometry';
       layerId: string;
       featureId: string;
-      geometry: Point | Polygon;
+      geometry: SketchGeometry;
     }
   | {
       tool: 'updateFeatureProperties';
@@ -133,7 +171,20 @@ export function sketchStyle(v: unknown): SketchStyle {
     !finite(v.radius, 2, 20)
   )
     fail();
-  exact(v, ['color', 'fillColor', 'weight', 'fillOpacity', 'radius']);
+  exact(v, [
+    'color',
+    'fillColor',
+    'weight',
+    'fillOpacity',
+    'radius',
+    'strokeOpacity',
+    'dash',
+  ]);
+  if (
+    (v.strokeOpacity !== undefined && !finite(v.strokeOpacity, 0, 1)) ||
+    (v.dash !== undefined && !['solid', 'dash', 'dot'].includes(String(v.dash)))
+  )
+    fail();
   return { ...v } as unknown as SketchStyle;
 }
 const cross = (a: LonLat, b: LonLat, c: LonLat) =>
@@ -170,14 +221,13 @@ export function polygonGeometry(v: unknown): Polygon {
   )
     fail();
   for (let i = 0; i < ring.length; i++) {
+    const prev = ring[(i + ring.length - 1) % ring.length],
+      next = ring[(i + 1) % ring.length];
     if (
-      Math.abs(
-        cross(
-          ring[(i + ring.length - 1) % ring.length],
-          ring[i],
-          ring[(i + 1) % ring.length],
-        ),
-      ) < 1e-12
+      Math.abs(cross(prev, ring[i], next)) < 1e-12 &&
+      (prev[0] - ring[i][0]) * (next[0] - ring[i][0]) +
+        (prev[1] - ring[i][1]) * (next[1] - ring[i][1]) >=
+        0
     )
       fail();
     for (let j = i + 1; j < ring.length; j++)
@@ -193,20 +243,238 @@ export function polygonGeometry(v: unknown): Polygon {
       )
         fail();
   }
+  if (
+    Math.abs(
+      ring.reduce((sum, p, i) => {
+        const q = ring[(i + 1) % ring.length];
+        return sum + p[0] * q[1] - q[0] * p[1];
+      }, 0),
+    ) < 1e-12
+  )
+    fail();
   return { type: 'Polygon', coordinates: [[...ring, [...ring[0]]]] };
 }
-export function sketchGeometry(v: unknown): Point | Polygon {
+function line(v: unknown): LonLat[] {
+  if (!Array.isArray(v) || v.length < 2 || v.length > 128) fail();
+  const points = v.map(lonLat);
+  for (let i = 1; i < points.length; i++) {
+    if (
+      JSON.stringify(points[i]) === JSON.stringify(points[i - 1]) ||
+      Math.abs(points[i][0] - points[i - 1][0]) > 180
+    )
+      fail();
+  }
+  return points;
+}
+function inside(p: LonLat, ring: number[][]): boolean {
+  let result = false;
+  for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+    const a = ring[i],
+      b = ring[j];
+    if (
+      a[1] > p[1] !== b[1] > p[1] &&
+      p[0] < ((b[0] - a[0]) * (p[1] - a[1])) / (b[1] - a[1]) + a[0]
+    )
+      result = !result;
+  }
+  return result;
+}
+function ringTouches(a: number[][], b: number[][]): boolean {
+  return a
+    .slice(1)
+    .some((p, i) =>
+      b
+        .slice(1)
+        .some((q, j) =>
+          touches(lonLat(a[i]), lonLat(p), lonLat(b[j]), lonLat(q)),
+        ),
+    );
+}
+function rings(v: unknown): number[][][] {
+  if (!Array.isArray(v) || !v.length || v.length > 8) fail();
+  const result = v.map((r) => {
+    if (
+      !Array.isArray(r) ||
+      r.length < 4 ||
+      JSON.stringify(r[0]) !== JSON.stringify(r.at(-1))
+    )
+      fail();
+    return polygonGeometry(r).coordinates[0];
+  });
+  for (let i = 1; i < result.length; i++) {
+    if (
+      !inside(lonLat(result[i][0]), result[0]) ||
+      ringTouches(result[i], result[0])
+    )
+      fail();
+    for (let j = 1; j < i; j++)
+      if (
+        ringTouches(result[i], result[j]) ||
+        inside(lonLat(result[i][0]), result[j]) ||
+        inside(lonLat(result[j][0]), result[i])
+      )
+        fail();
+  }
+  return result;
+}
+export function sketchGeometry(v: unknown): SketchGeometry {
   if (!record(v)) fail();
   exact(v, ['type', 'coordinates']);
+  let g: SketchGeometry;
   if (v.type === 'Point')
-    return { type: 'Point', coordinates: lonLat(v.coordinates) };
-  if (
-    v.type === 'Polygon' &&
+    g = { type: 'Point', coordinates: lonLat(v.coordinates) };
+  else if (v.type === 'LineString')
+    g = { type: 'LineString', coordinates: line(v.coordinates) };
+  // Legacy single-ring drafts accepted unclosed rings; normalization is retained only here.
+  else if (v.type === 'Polygon') {
+    if (Array.isArray(v.coordinates) && v.coordinates.length === 1)
+      g = polygonGeometry(v.coordinates[0]);
+    else g = { type: 'Polygon', coordinates: rings(v.coordinates) };
+  } else if (
+    (v.type === 'MultiLineString' || v.type === 'MultiPolygon') &&
     Array.isArray(v.coordinates) &&
-    v.coordinates.length === 1
+    v.coordinates.length > 0 &&
+    v.coordinates.length <= 8
+  ) {
+    if (v.type === 'MultiLineString')
+      g = { type: 'MultiLineString', coordinates: v.coordinates.map(line) };
+    else {
+      const parts = v.coordinates.map(rings);
+      // Conservative disjoint exteriors: nested/touching components are rejected, including islands in holes.
+      for (let i = 0; i < parts.length; i++)
+        for (let j = 0; j < i; j++)
+          if (
+            ringTouches(parts[i][0], parts[j][0]) ||
+            inside(lonLat(parts[i][0][0]), parts[j][0]) ||
+            inside(lonLat(parts[j][0][0]), parts[i][0])
+          )
+            fail();
+      g = { type: 'MultiPolygon', coordinates: parts };
+    }
+  } else return fail();
+  if (geometryPaths(g).reduce((n, p) => n + p.coordinates.length, 0) > 512)
+    fail();
+  return g;
+}
+export function geometryPaths(
+  g: SketchGeometry,
+): { path: number[]; coordinates: LonLat[]; closed: boolean }[] {
+  const item = (path: number[], coordinates: number[][], closed: boolean) => ({
+    path,
+    coordinates: coordinates.map(lonLat),
+    closed,
+  });
+  switch (g.type) {
+    case 'Point':
+      return [item([], [g.coordinates], false)];
+    case 'LineString':
+      return [item([], g.coordinates, false)];
+    case 'Polygon':
+      return g.coordinates.map((r, i) => item([i], r, true));
+    case 'MultiLineString':
+      return g.coordinates.map((r, i) => item([i], r, false));
+    case 'MultiPolygon':
+      return g.coordinates.flatMap((p, i) =>
+        p.map((r, j) => item([i, j], r, true)),
+      );
+  }
+}
+export function editVertex(
+  g: SketchGeometry,
+  path: number[],
+  index: number,
+  operation: 'move' | 'insert' | 'remove',
+  coordinate?: LonLat,
+): SketchGeometry {
+  const found = geometryPaths(g).find(
+    (p) => JSON.stringify(p.path) === JSON.stringify(path),
+  );
+  if (
+    !found ||
+    !Number.isInteger(index) ||
+    index < 0 ||
+    index >= found.coordinates.length - (found.closed ? 1 : 0)
   )
-    return polygonGeometry(v.coordinates[0]);
-  return fail();
+    fail();
+  const points = structuredClone(found.coordinates);
+  if (found.closed) points.pop();
+  if (g.type === 'Point' && operation !== 'move') fail();
+  if (operation === 'remove') points.splice(index, 1);
+  else if (operation === 'move') points[index] = lonLat(coordinate);
+  else {
+    const next = points[(index + 1) % points.length];
+    if (!found.closed && index === points.length - 1) fail();
+    points.splice(
+      index + 1,
+      0,
+      coordinate
+        ? lonLat(coordinate)
+        : [(points[index][0] + next[0]) / 2, (points[index][1] + next[1]) / 2],
+    );
+  }
+  if (found.closed && points.length) points.push([...points[0]]);
+  const clone = structuredClone(g);
+  if (clone.type === 'Point') clone.coordinates = points[0];
+  else if (clone.type === 'LineString') clone.coordinates = points;
+  else if (clone.type === 'Polygon' || clone.type === 'MultiLineString')
+    clone.coordinates[path[0]] = points;
+  else clone.coordinates[path[0]][path[1]] = points;
+  return sketchGeometry(clone);
+}
+export function importGeoJSON(
+  v: unknown,
+  wgs84: unknown,
+): { geometry: SketchGeometry; properties: SketchProperties }[] {
+  if (
+    wgs84 !== true ||
+    !record(v) ||
+    v.type !== 'FeatureCollection' ||
+    !Array.isArray(v.features) ||
+    !v.features.length ||
+    v.features.length > 100 ||
+    new TextEncoder().encode(JSON.stringify(v)).length > 65536
+  )
+    fail();
+  exact(v, ['type', 'features']);
+  const ids = new Set<string>();
+  return v.features.map((f, i) => {
+    if (!record(f) || f.type !== 'Feature' || !record(f.properties)) fail();
+    exact(f, ['type', 'id', 'geometry', 'properties']);
+    if (f.id !== undefined) {
+      if (
+        !(typeof f.id === 'number' && Number.isSafeInteger(f.id)) &&
+        !(typeof f.id === 'string' && /^[a-zA-Z0-9_-]{1,100}$/.test(f.id))
+      )
+        fail();
+      const id = String(f.id);
+      if (ids.has(id) || ['__proto__', 'prototype', 'constructor'].includes(id))
+        fail();
+      ids.add(id);
+    }
+    const geometry = sketchGeometry(f.geometry);
+    // Imports must already have closed rings; only old draft loading has a closure compatibility exception.
+    if (
+      record(f.geometry) &&
+      (geometry.type === 'Polygon' || geometry.type === 'MultiPolygon')
+    ) {
+      const raw = f.geometry.coordinates;
+      if (JSON.stringify(raw) !== JSON.stringify(geometry.coordinates)) fail();
+    }
+    const p = f.properties;
+    const props =
+      'attributes' in p
+        ? properties(p)
+        : properties({
+            name: p.name ?? `Objek ${i + 1}`,
+            description: p.description ?? '',
+            attributes: Object.fromEntries(
+              Object.entries(p).filter(
+                ([k]) => !['name', 'description'].includes(k),
+              ),
+            ),
+          });
+    return { geometry, properties: props };
+  });
 }
 function properties(v: unknown): SketchProperties {
   if (
@@ -243,13 +511,47 @@ export function parseVectorAction(v: unknown): VectorAction {
     !VECTOR_TOOLS.includes(v.tool as (typeof VECTOR_TOOLS)[number])
   )
     fail();
+  if (v.tool === 'importVectorLayer') {
+    exact(v, ['tool', 'name', 'collection', 'wgs84']);
+    if (!text(v.name, 80)) fail();
+    importGeoJSON(v.collection, v.wgs84);
+    return structuredClone(v) as VectorAction;
+  }
   if (v.tool === 'createVectorLayer') {
     exact(v, ['tool', 'name']);
     if (!text(v.name, 80)) fail();
     return { tool: v.tool, name: v.name };
   }
   if (!text(v.layerId, 100)) fail();
-  if (v.tool === 'updateVectorLayer') {
+  if (v.tool === 'createFeature') {
+    exact(v, ['tool', 'layerId', 'name', 'geometry', 'style']);
+    if (!text(v.name, 80)) fail();
+    sketchGeometry(v.geometry);
+    if (v.style !== undefined) sketchStyle(v.style);
+  } else if (v.tool === 'editLayerField') {
+    exact(v, ['tool', 'layerId', 'field', 'value', 'remove']);
+    if (
+      typeof v.field !== 'string' ||
+      (v.remove !== undefined && typeof v.remove !== 'boolean')
+    )
+      fail();
+    properties({
+      name: 'Field',
+      description: '',
+      attributes: { [v.field]: v.remove ? '' : v.value },
+    });
+  } else if (v.tool === 'inspectVectorTable') exact(v, ['tool', 'layerId']);
+  else if (v.tool === 'zoomVectorFeatures') {
+    exact(v, ['tool', 'layerId', 'featureIds']);
+    if (
+      !Array.isArray(v.featureIds) ||
+      !v.featureIds.length ||
+      v.featureIds.length > 100 ||
+      !v.featureIds.every((id) => text(id, 100)) ||
+      new Set(v.featureIds).size !== v.featureIds.length
+    )
+      fail();
+  } else if (v.tool === 'updateVectorLayer') {
     exact(v, [
       'tool',
       'layerId',
@@ -400,7 +702,10 @@ export function applyVectorAction(
   action: VectorAction,
 ): void {
   const layers = (recipe.sketchLayers ??= []);
-  if (action.tool === 'createVectorLayer') {
+  if (
+    action.tool === 'createVectorLayer' ||
+    action.tool === 'importVectorLayer'
+  ) {
     layers.push({
       id: nextId(
         'local-vector-',
@@ -412,10 +717,57 @@ export function applyVectorAction(
       style: { ...DEFAULT_SKETCH_STYLE },
       data: { type: 'FeatureCollection', features: [] },
     });
+    if (action.tool === 'importVectorLayer') {
+      const target = layers.at(-1)!;
+      for (const item of importGeoJSON(action.collection, action.wgs84))
+        target.data.features.push({
+          type: 'Feature',
+          id: nextId(
+            'local-feature-',
+            layers.flatMap((l) => l.data.features.map((f) => f.id)),
+          ),
+          ...item,
+        });
+    }
     return;
   }
   const layer = layers.find((l) => l.id === action.layerId);
   if (!layer) throw new GisInputError('Layer lokal tidak dikenal');
+  if (action.tool === 'inspectVectorTable') return;
+  if (action.tool === 'zoomVectorFeatures') {
+    const points = action.featureIds.flatMap((id) => {
+      const f = layer.data.features.find((f) => f.id === id);
+      if (!f) fail();
+      return geometryPaths(f.geometry).flatMap((p) => p.coordinates);
+    });
+    const xs = points.map((p) => p[0]),
+      ys = points.map((p) => p[1]);
+    const span = Math.max(
+      Math.max(...xs) - Math.min(...xs),
+      Math.max(...ys) - Math.min(...ys),
+    );
+    recipe.viewport = {
+      center: [
+        (Math.min(...ys) + Math.max(...ys)) / 2,
+        (Math.min(...xs) + Math.max(...xs)) / 2,
+      ],
+      zoom: Math.max(
+        2,
+        Math.min(18, Math.floor(Math.log2(180 / Math.max(span, 0.001)))),
+      ),
+    };
+    return;
+  }
+  if (action.tool === 'editLayerField') {
+    for (const f of layer.data.features) {
+      const attrs = f.properties.attributes;
+      if (action.remove) delete attrs[action.field];
+      else if (action.field in attrs) {
+        if (typeof attrs[action.field] !== typeof action.value) fail();
+      } else attrs[action.field] = action.value!;
+    }
+    return;
+  }
   if (action.tool === 'updateVectorLayer') {
     if (action.remove) layers.splice(layers.indexOf(layer), 1);
     else {
@@ -428,7 +780,7 @@ export function applyVectorAction(
     }
     return;
   }
-  const add = (name: string, geometry: Point | Polygon, style?: SketchStyle) =>
+  const add = (name: string, geometry: SketchGeometry, style?: SketchStyle) =>
     layer.data.features.push({
       type: 'Feature',
       id: nextId(
@@ -443,7 +795,9 @@ export function applyVectorAction(
         ...(style ? { style } : {}),
       },
     });
-  if (action.tool === 'createPoint')
+  if (action.tool === 'createFeature')
+    add(action.name, sketchGeometry(action.geometry), action.style);
+  else if (action.tool === 'createPoint')
     add(
       action.name,
       { type: 'Point', coordinates: action.coordinates },

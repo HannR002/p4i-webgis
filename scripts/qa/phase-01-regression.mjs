@@ -47,7 +47,7 @@ import assert from 'node:assert/strict';
  await page.getByRole('button',{name:'Inspeksi piksel',exact:true}).click();await page.getByRole('button',{name:'Inspeksi titik pusat',exact:true}).click();
  await page.getByText('QA unavailable',{exact:true}).waitFor();await page.unroute('**/api/gis/pixel');console.log('PASS pixel provider error visible');
  await page.locator('.gis-tabs').getByRole('tab',{name:'Layer',exact:true}).click();
- await page.locator('input[type=file]').setInputFiles({name:'invalid.json',mimeType:'application/json',buffer:Buffer.from('{"schemaVersion":999}')});
+ await page.getByLabel('Impor MapRecipe JSON', { exact: true }).setInputFiles({name:'invalid.json',mimeType:'application/json',buffer:Buffer.from('{"schemaVersion":999}')});
  await page.getByText('MapRecipe tidak valid',{exact:true}).waitFor();await page.getByText('Layer aktif (2)').waitFor();console.log('PASS invalid recipe import preserves existing map');
  await page.locator('.gis-tabs').getByRole('tab',{name:'Analisis',exact:true}).click();
  assert.equal(await page.getByRole('button',{name:'Jalankan Analisis Banjir'}).count(),0);

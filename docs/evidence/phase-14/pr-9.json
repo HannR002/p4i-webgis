@@ -1,0 +1,9 @@
+{
+  "number": 9,
+  "draft": true,
+  "state": "open",
+  "merged": false,
+  "head": "feat/phase13-free-ai-map-creator",
+  "sha": "64d667856d37509a0355a7806c587112ccd0e54e",
+  "base": "security/phase12-gee-dependency-isolation"
+}

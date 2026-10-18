@@ -11,7 +11,6 @@ import {
   type FreeAiStatus,
 } from '../../../gis/freeAi';
 import { emptyRecipe } from '../../../gis/catalog';
-import { VECTOR_TOOLS } from '../../../gis/vectorEditing';
 import { parseMapAction, record } from '../../../gis/validation';
 import { byteSize } from '../../../gis/copilotValidation';
 import { SafeProviderError } from '../providerError';
@@ -127,7 +126,16 @@ const allowed = [
   'setMapTitle',
   'setBasemap',
   'setViewport',
-  ...VECTOR_TOOLS,
+  'createVectorLayer',
+  'updateVectorLayer',
+  'createPoint',
+  'createMultiplePoints',
+  'createPolygon',
+  'createPolygonFromSelectedPoints',
+  'updateFeatureGeometry',
+  'updateFeatureProperties',
+  'styleFeature',
+  'deleteFeature',
 ];
 // JSON schema is an output aid, not a substitute for parseMapAction and reducer preflight.
 export const GEMINI_PLAN_SCHEMA = {
@@ -342,7 +350,9 @@ export function createGeminiFreeProvider(deps: {
         if (a.tool === 'createPolygon') a.vertices.forEach(check);
         if (a.tool === 'updateFeatureGeometry') {
           if (a.geometry.type === 'Point') check(a.geometry.coordinates);
-          else a.geometry.coordinates.flat().forEach(check);
+          else if (a.geometry.type === 'Polygon')
+            a.geometry.coordinates.flat().forEach(check);
+          else throw new SafeProviderError('INVALID_PROVIDER_OUTPUT');
         }
         if (
           a.tool === 'setViewport' &&
