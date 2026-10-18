@@ -482,3 +482,5 @@ Fresh npm ci/lint/typecheck/build passed. Default application suite: 383 passed,
 The local-only proposal is outside the migration plan and gated to the synthetic fixture. Historical 006/007/008 and dependency manifests are unchanged. No external database access/migration, live GoTrue verification, paid inference, GEE, merge or deployment occurred. External schema/application is BLOCKED; actual Supabase staging auth is STAGING_VERIFICATION_PENDING; production remains NO-GO.
 
 See [full Phase 15 report](PHASE_15_VECTOR_POSTGIS_PERSISTENCE.md), [ERD](diagrams/phase15-vector-erd.puml), [save sequence](diagrams/phase15-vector-save-sequence.puml) and [verification evidence](evidence/phase-15/verification-summary.json).
+
+Delivery: [Draft PR #11](https://github.com/HannR002/p4i-webgis/pull/11) targets Phase 14; implementation commit `dc315c6`. Earlier PRs remain intact.

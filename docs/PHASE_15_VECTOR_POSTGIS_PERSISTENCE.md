@@ -1,7 +1,7 @@
 # Phase 15 — Vector PostGIS Persistence and Secure Project Storage
 
 Date: **18 October 2026 (Asia/Jakarta)**. Branch: `feat/phase15-vector-postgis-persistence`.
-Base: verified Phase 14 / draft PR #10 head `4bae236ee65b72e967b8342777498a5487ef0cda`. Draft delivery PR: pending final verification.
+Base: verified Phase 14 / draft PR #10 head `4bae236ee65b72e967b8342777498a5487ef0cda`. Delivery: [Draft PR #11](https://github.com/HannR002/p4i-webgis/pull/11) → `feat/phase14-advanced-vector-editor`. Implementation commit: `dc315c6f17b6e0dc599e418eff427ce0fbf262d6`. No merge or deployment.
 
 ## 1. Outcome and architecture
 
