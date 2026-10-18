@@ -1,0 +1,34 @@
+@startuml
+actor Analyst
+participant "Existing Vector Editor" as UI
+participant "Next route / domain repository" as API
+participant "Local PostgREST\nverified synthetic JWT" as REST
+database "PostgreSQL/PostGIS" as DB
+Analyst -> UI : edit local geometry (Undo/Redo)
+Analyst -> UI : Simpan ke Proyek + confirm target
+UI -> API : snapshot + expected layer revision + request UUID
+API -> API : same-origin, token presence, bounded body, runtime validation
+API -> REST : authenticated RPC (no service-role credential)
+REST -> REST : verify JWT signature / role switch
+REST -> DB : p4i_vector_store(save, input)
+DB -> DB : active trusted profile / project edit permission
+DB -> DB : lock project + idempotency key
+alt duplicate request with identical fingerprint
+ DB --> REST : original committed result
+else stale revision / different retry payload
+ DB --> REST : conflict (no writes)
+else valid new transaction
+ DB -> DB : PostGIS + bounded properties validation
+ DB -> DB : layer + feature changes + immutable revisions + request result
+ DB -> DB : COMMIT atomically (ROLLBACK on any error)
+ DB --> REST : database IDs / local-ID mapping / new revision
+end
+REST --> API : validated result or safe error
+API --> UI : committed snapshot / 409 / access denial / unavailable
+UI -> UI : update binding; retain any newer local edits
+note over UI,DB
+Local Undo does not mutate a committed server revision.
+A deliberate subsequent save creates a new revision.
+External Supabase/GoTrue verification remains pending.
+end note
+@enduml

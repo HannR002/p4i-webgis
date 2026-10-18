@@ -1,6 +1,12 @@
 import type { AppRole } from '../../authRoles';
-import type { FloodAnalysisResult, FloodCriteriaBreakdown } from '../../../types/flood';
-import type { GeoJsonMultiPolygon, GeoJsonPolygon } from '../../../types/geojson';
+import type {
+  FloodAnalysisResult,
+  FloodCriteriaBreakdown,
+} from '../../../types/flood';
+import type {
+  GeoJsonMultiPolygon,
+  GeoJsonPolygon,
+} from '../../../types/geojson';
 
 export interface ViewerIdentity {
   id: string;
@@ -130,7 +136,10 @@ export interface FloodResultWrite {
 }
 
 export interface ProjectRepository {
-  createWithLayers(project: NewProject, layers: NewVectorLayer[]): Promise<string>;
+  createWithLayers(
+    project: NewProject,
+    layers: NewVectorLayer[],
+  ): Promise<string>;
   deleteById(id: string): Promise<boolean>;
   exists(id: string): Promise<boolean>;
   findAccess(id: string): Promise<ProjectAccessDescriptor | null>;
@@ -139,7 +148,9 @@ export interface ProjectRepository {
 }
 
 export interface UserRepository {
-  findAuthProfile(id: string): Promise<Pick<UserProfile, 'role' | 'is_disabled'> | null>;
+  findAuthProfile(
+    id: string,
+  ): Promise<Pick<UserProfile, 'role' | 'is_disabled'> | null>;
   list(): Promise<UserProfile[]>;
   existsB2bClient(id: string): Promise<boolean>;
   update(id: string, updates: UserProfileUpdate): Promise<boolean>;
@@ -155,7 +166,11 @@ export interface EntitlementRepository {
 
 export interface DownloadRepository {
   listForUser(userId: string): Promise<DownloadRecord[]>;
-  record(userId: string, projectId: string, fileType: DownloadRecord['file_type']): Promise<void>;
+  record(
+    userId: string,
+    projectId: string,
+    fileType: DownloadRecord['file_type'],
+  ): Promise<void>;
 }
 
 export interface LeadRepository {
@@ -182,7 +197,10 @@ export interface BoundaryRepository {
 }
 
 export interface FloodRepository {
-  findValidCached(cacheKey: string, nowIso: string): Promise<CachedFloodResult | null>;
+  findValidCached(
+    cacheKey: string,
+    nowIso: string,
+  ): Promise<CachedFloodResult | null>;
   upsert(result: FloodResultWrite): Promise<void>;
 }
 
@@ -196,4 +214,25 @@ export interface DatabaseRepositories {
   dashboard: DashboardRepository;
   boundaries: BoundaryRepository;
   flood: FloodRepository;
+}
+
+/** Editable vector documents share existing spatial_projects IDs; independent of vendor SDKs. */
+export interface VectorRepository {
+  listProjects(): Promise<
+    import('../../gis/vectorPersistence').VectorProject[]
+  >;
+  listLayers(
+    projectId: string,
+  ): Promise<import('../../gis/vectorPersistence').VectorLayerSummary[]>;
+  readLayer(
+    projectId: string,
+    layerId: string,
+  ): Promise<import('../../gis/vectorPersistence').VectorLayerDocument>;
+  saveLayer(
+    input: import('../../gis/vectorPersistence').SaveVectorLayer,
+  ): Promise<import('../../gis/vectorPersistence').VectorLayerDocument>;
+  revisions(
+    projectId: string,
+    layerId: string,
+  ): Promise<{ revision: number; actorId: string; createdAt: string }[]>;
 }

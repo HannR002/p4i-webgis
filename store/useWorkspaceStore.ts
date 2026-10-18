@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import type { VectorLayerDocument } from '../lib/gis/vectorPersistence';
 import {
   editVertex,
   type LonLat,
@@ -75,6 +76,8 @@ interface VectorEditorState {
   vectorError: string | null;
 }
 interface WorkspaceState extends VectorEditorState {
+  vectorProjectBinding: VectorLayerDocument | null;
+  setVectorProjectBinding: (binding: VectorLayerDocument | null) => void;
   setVectorEditor: (value: Partial<VectorEditorState>) => void;
   beginVertexDrag: (
     layerId: string,
@@ -112,6 +115,9 @@ interface WorkspaceState extends VectorEditorState {
 }
 export const useWorkspaceStore = create<WorkspaceState>((set, get) => ({
   recipe: emptyRecipe(),
+  vectorProjectBinding: null,
+  setVectorProjectBinding: (vectorProjectBinding) =>
+    set({ vectorProjectBinding }),
   vectorMode: 'off',
   vectorEdit: null,
   vectorEpoch: 0,
@@ -261,6 +267,11 @@ export const useWorkspaceStore = create<WorkspaceState>((set, get) => ({
     syncConfiguration(s.recipe, recipe);
     set({
       recipe,
+      ...(!recipe.sketchLayers?.some(
+        (l) => l.id === s.vectorProjectBinding?.layer.id,
+      ) || ['Memuat draft lokal', 'Impor resep tervalidasi'].includes(label)
+        ? { vectorProjectBinding: null }
+        : {}),
       vectorEpoch: s.vectorEpoch + 1,
       selectedVectorIds: s.selectedVectorIds.filter((id) =>
         recipe.sketchLayers?.some((l) =>
@@ -280,6 +291,13 @@ export const useWorkspaceStore = create<WorkspaceState>((set, get) => ({
       applyMapAction(s.recipe, action, s.catalog, s.context),
       'Perubahan sesi peta',
     );
+    if (
+      typeof action === 'object' &&
+      action !== null &&
+      'tool' in action &&
+      action.tool === 'createMap'
+    )
+      set({ vectorProjectBinding: null });
   },
   undo: () => {
     get().cancelVectorEdit();

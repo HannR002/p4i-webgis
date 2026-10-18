@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import VectorAttributeTable from './VectorAttributeTable';
+import VectorProjectStorage from './VectorProjectStorage';
 import {
   VertexCoordinates,
   SnappingControls,
@@ -52,6 +53,7 @@ export default function VectorEditorPanel() {
       >
         Tambah layer vektor
       </button>
+      <VectorProjectStorage layer={layer} />
       <GeoJSONImport act={act} />
       <SnappingControls />
       <label>

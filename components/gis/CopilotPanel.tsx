@@ -231,6 +231,9 @@ export default function CopilotPanel({
         (parsed.status !== "completed" && actualChange)
       )
         throw Error("Respons perubahan sesi tidak konsisten");
+      const startsNewMap = parsed.plan.steps.some(
+        (step) => step.action.tool === "createMap",
+      );
       const removedLayers =
         latest.recipe.sketchLayers?.filter(
           (l) => !parsed.recipe.sketchLayers?.some((next) => next.id === l.id),
@@ -260,6 +263,7 @@ export default function CopilotPanel({
             selectedVectorIds: [],
           });
       }
+      if (parsed.changed && startsNewMap) latest.setVectorProjectBinding(null);
       const configuration = parsed.results.findLast(
         (r) => r.data.kind === "configuration",
       );
