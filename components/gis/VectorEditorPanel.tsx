@@ -1,5 +1,11 @@
 'use client';
 import { useState } from 'react';
+import VectorAttributeTable from './VectorAttributeTable';
+import {
+  VertexCoordinates,
+  SnappingControls,
+  GeoJSONImport,
+} from './VectorGeometryControls';
 import { useWorkspaceStore } from '../../store/useWorkspaceStore';
 import {
   DEFAULT_SKETCH_STYLE,
@@ -46,15 +52,19 @@ export default function VectorEditorPanel() {
       >
         Tambah layer vektor
       </button>
+      <GeoJSONImport act={act} />
+      <SnappingControls />
       <label>
         Layer edit
         <select
+          aria-label="Layer edit"
           value={layer?.id ?? ''}
           onChange={(e) =>
             s.setVectorEditor({
               vectorLayerId: e.target.value,
               selectedVectorIds: [],
               vectorVertices: [],
+              vectorMode: 'select',
             })
           }
         >
@@ -68,6 +78,10 @@ export default function VectorEditorPanel() {
       </label>
       {layer && (
         <>
+          <p className="gis-muted">
+            {layer.data.features.length} objek · EPSG:4326 · sesi lokal buatan
+            pengguna
+          </p>
           <label>
             Nama layer
             <input
@@ -139,33 +153,42 @@ export default function VectorEditorPanel() {
               Naikkan urutan
             </button>
           </div>
-          <StyleEditor
-            value={layer.style}
-            apply={(style) =>
-              act({ tool: 'updateVectorLayer', layerId: layer.id, style })
-            }
-            label="Style layer"
-          />
+          <details>
+            <summary>Pengaturan style layer</summary>
+            <StyleEditor
+              value={layer.style}
+              apply={(style) =>
+                act({ tool: 'updateVectorLayer', layerId: layer.id, style })
+              }
+              label="Style layer"
+            />
+          </details>
           <div className="gis-config-actions">
-            {(['select', 'point', 'polygon'] as const).map((mode) => (
-              <button
-                key={mode}
-                aria-pressed={s.vectorMode === mode}
-                onClick={() =>
-                  s.setVectorEditor({
-                    vectorMode: mode,
-                    vectorLayerId: layer.id,
-                    vectorVertices: [],
-                  })
-                }
-              >
-                {mode === 'select'
-                  ? 'Pilih objek'
-                  : mode === 'point'
-                    ? 'Tambah titik dengan klik'
-                    : 'Gambar poligon'}
-              </button>
-            ))}
+            {(['select', 'point', 'line', 'polygon', 'edit'] as const).map(
+              (mode) => (
+                <button
+                  key={mode}
+                  aria-pressed={s.vectorMode === mode}
+                  onClick={() =>
+                    s.setVectorEditor({
+                      vectorMode: mode,
+                      vectorLayerId: layer.id,
+                      vectorVertices: [],
+                    })
+                  }
+                >
+                  {mode === 'select'
+                    ? 'Pilih objek'
+                    : mode === 'point'
+                      ? 'Tambah titik dengan klik'
+                      : mode === 'line'
+                        ? 'Gambar garis'
+                        : mode === 'edit'
+                          ? 'Edit vertex'
+                          : 'Gambar poligon'}
+                </button>
+              ),
+            )}
             <button
               onClick={() =>
                 s.setVectorEditor({ vectorMode: 'off', vectorVertices: [] })
@@ -178,28 +201,25 @@ export default function VectorEditorPanel() {
             Mode: {s.vectorMode} · {s.vectorVertices.length} vertex baru ·{' '}
             {s.selectedVectorIds.length} objek dipilih
           </p>
-          {s.vectorMode === 'polygon' && (
+          <button onClick={s.cancelVectorEdit}>
+            Batalkan gambar / edit (Esc)
+          </button>
+          <p className="gis-coordinate-readout">
+            {s.vectorCursor
+              ? `Lon ${s.vectorCursor[0].toFixed(6)} · Lat ${s.vectorCursor[1].toFixed(6)}`
+              : 'Gerakkan pointer pada peta untuk koordinat.'}
+          </p>
+          {(s.vectorMode === 'polygon' || s.vectorMode === 'line') && (
             <>
               <button
-                disabled={s.vectorVertices.length < 3}
-                onClick={() => {
-                  try {
-                    s.action({
-                      tool: 'createPolygon',
-                      layerId: layer.id,
-                      name: `Poligon ${layer.data.features.length + 1}`,
-                      vertices: s.vectorVertices,
-                    });
-                    s.setVectorEditor({ vectorVertices: [] });
-                    setError('');
-                  } catch (e) {
-                    setError(
-                      e instanceof Error ? e.message : 'Poligon tidak valid',
-                    );
-                  }
-                }}
+                disabled={
+                  s.vectorVertices.length < (s.vectorMode === 'line' ? 2 : 3)
+                }
+                onClick={s.finishVectorDrawing}
               >
-                Selesaikan poligon
+                {s.vectorMode === 'line'
+                  ? 'Selesaikan garis'
+                  : 'Selesaikan poligon'}
               </button>
               <button
                 onClick={() =>
@@ -210,7 +230,28 @@ export default function VectorEditorPanel() {
               >
                 Hapus vertex terakhir
               </button>
+              <details>
+                <summary>Koordinat vertex gambar</summary>
+                <ol>
+                  {s.vectorVertices.map((p, i) => (
+                    <li key={i}>
+                      {p[0].toFixed(6)}, {p[1].toFixed(6)}
+                    </li>
+                  ))}
+                </ol>
+              </details>
             </>
+          )}
+          <button
+            aria-expanded={s.vectorTableOpen}
+            onClick={() =>
+              s.setVectorEditor({ vectorTableOpen: !s.vectorTableOpen })
+            }
+          >
+            Tabel atribut
+          </button>
+          {s.vectorTableOpen && (
+            <VectorAttributeTable layer={layer} act={act} />
           )}
           <p className="gis-muted">
             Pilih titik berurutan untuk membuat poligon. Daftar ini juga dapat
@@ -274,13 +315,18 @@ export default function VectorEditorPanel() {
             Unduh GeoJSON layer
           </button>
           <button
-            onClick={() =>
-              act({
-                tool: 'updateVectorLayer',
-                layerId: layer.id,
-                remove: true,
-              })
-            }
+            onClick={() => {
+              if (
+                window.confirm(
+                  `Hapus layer ${layer.name} beserta ${layer.data.features.length} objek? Undo dapat mengembalikan.`,
+                )
+              )
+                act({
+                  tool: 'updateVectorLayer',
+                  layerId: layer.id,
+                  remove: true,
+                });
+            }}
           >
             Hapus layer vektor
           </button>
@@ -374,9 +420,9 @@ function FeatureEditor({
     [description, setDescription] = useState(f.properties.description),
     [coords, setCoords] = useState(
       JSON.stringify(
-        f.geometry.type === 'Point'
-          ? f.geometry.coordinates
-          : f.geometry.coordinates[0],
+        f.geometry.type === 'Polygon' && f.geometry.coordinates.length === 1
+          ? f.geometry.coordinates[0]
+          : f.geometry.coordinates,
       ),
     ),
     [error, setError] = useState('');
@@ -433,9 +479,10 @@ function FeatureEditor({
               geometry: {
                 type: f.geometry.type,
                 coordinates:
-                  f.geometry.type === 'Point'
-                    ? JSON.parse(coords)
-                    : [JSON.parse(coords)],
+                  f.geometry.type === 'Polygon' &&
+                  f.geometry.coordinates.length === 1
+                    ? [JSON.parse(coords)]
+                    : JSON.parse(coords),
               },
             });
             setError('');
@@ -447,6 +494,7 @@ function FeatureEditor({
         Perbarui geometri
       </button>
       {error && <p role="alert">{error}</p>}
+      <VertexCoordinates feature={f} layerId={layer.id} act={act} />
       <StyleEditor
         label="Style objek"
         value={f.properties.style ?? layer.style ?? DEFAULT_SKETCH_STYLE}
@@ -495,6 +543,47 @@ function StyleEditor({
             })
           }
         />
+      </label>
+      <label>
+        Warna isian
+        <input
+          aria-label={`${label} warna isian`}
+          type="color"
+          value={value.fillColor}
+          onChange={(e) => apply({ ...value, fillColor: e.target.value })}
+        />
+      </label>
+      {(['weight', 'radius', 'strokeOpacity'] as const).map((key) => (
+        <label key={key}>
+          {key === 'weight'
+            ? 'Lebar garis'
+            : key === 'radius'
+              ? 'Radius titik'
+              : 'Opasitas garis'}
+          <input
+            aria-label={`${label} ${key}`}
+            type="range"
+            min={key === 'radius' ? 2 : 0}
+            max={key === 'radius' ? 20 : key === 'weight' ? 10 : 1}
+            step={key === 'strokeOpacity' ? 0.05 : 1}
+            value={value[key] ?? 1}
+            onChange={(e) => apply({ ...value, [key]: Number(e.target.value) })}
+          />
+        </label>
+      ))}
+      <label>
+        Pola garis
+        <select
+          aria-label={`${label} pola garis`}
+          value={value.dash ?? 'solid'}
+          onChange={(e) =>
+            apply({ ...value, dash: e.target.value as SketchStyle['dash'] })
+          }
+        >
+          <option value="solid">Utuh</option>
+          <option value="dash">Putus</option>
+          <option value="dot">Titik</option>
+        </select>
       </label>
       <label>
         Opasitas isian

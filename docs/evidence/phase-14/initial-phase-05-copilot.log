@@ -1,0 +1,15 @@
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+locator.scrollIntoViewIfNeeded: Element is not attached to the DOM
+Call log:
+[2m  - attempting scroll into view action[22m
+[2m    - waiting for element to be stable[22m
+
+    at capture (/workspace/p4i-webgis/scripts/qa/phase-05-copilot.mjs:57:16)
+    at /workspace/p4i-webgis/scripts/qa/phase-05-copilot.mjs:141:9 {
+  name: 'Error'
+}
+
+Node.js v22.23.3

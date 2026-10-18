@@ -155,7 +155,7 @@ try {
     mimeType: 'application/json',
     buffer: Buffer.from('{"schemaVersion":999}'),
   };
-  await page.locator('input[type=file]').setInputFiles(invalid);
+  await page.getByLabel('Impor MapRecipe JSON', { exact: true }).setInputFiles(invalid);
   await page.getByText('MapRecipe tidak valid', { exact: true }).waitFor();
   for (const [label, name] of [
     ['Ekspor resep JSON', 'map-recipe.json'],

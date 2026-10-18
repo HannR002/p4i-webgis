@@ -1,0 +1,16 @@
+PASS home search, category filters, genuine View Map action, editable title/description, local save/load and undo/redo
+PASS layer controls, AOI, resize after panel collapse, roving tabs, keyboard pixel sampling, AHP, Copilot state retained between panels/apply/undo
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+locator.setInputFiles: Error: strict mode violation: locator('input[type=file]') resolved to 2 elements:
+    1) <input disabled type="file" accept=".geojson,.json,application/geo+json"/> aka getByLabel('File GeoJSON')
+    2) <input hidden="" type="file" accept=".json,application/json"/> aka locator('section').filter({ hasText: 'Susun peta AndaJudul' }).locator('input[type="file"]')
+
+Call log:
+[2m  - waiting for locator('input[type=file]')[22m
+
+    at async file:///workspace/p4i-webgis/scripts/qa/phase-02-smoke.mjs:158:3
+
+Node.js v22.23.3

@@ -255,6 +255,10 @@ export default function MapWorkspace({
             disabled={s.mode === 'loading' || !!catalogError}
             onClick={() =>
               local(() => {
+                if (s.vectorEdit || s.vectorVertices.length)
+                  throw new Error(
+                    'Selesaikan atau batalkan gambar/edit sebelum menyimpan draft.',
+                  );
                 const value = JSON.stringify(s.recipe);
                 if (new Blob([value]).size > 65536)
                   throw new Error(
@@ -868,6 +872,7 @@ export default function MapWorkspace({
                       ref={fileInput}
                       hidden
                       type="file"
+                      aria-label="Impor MapRecipe JSON"
                       accept=".json,application/json"
                       onChange={async (e) => {
                         const file = e.target.files?.[0];

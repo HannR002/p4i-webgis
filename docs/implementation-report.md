@@ -460,3 +460,14 @@ Verification: 314 tests in 42 files; lint/typecheck/build passed; nine existing 
 See [the full Phase 13 report](PHASE_13_FREE_AI_MAP_CREATOR.md) and [verification evidence](evidence/phase-13/verification-summary.json).
 
 Delivery: [Draft PR #9](https://github.com/HannR002/p4i-webgis/pull/9) targets the Phase 12 branch; no merge or deployment.
+
+
+## Phase 14 — advanced vector digitizing (18 October 2026)
+
+The existing Leaflet/MapRecipe workspace now supports direct Point/LineString/Polygon drawing, transactional vertex dragging and keyboard editing, screen-space snapping, a typed attribute table, improved local layer management and bounded GeoJSON import/export. MultiLineString, MultiPolygon and polygon holes support conservative validation, rendering and editing; dedicated multipart/hole drawing and advanced topology remain partial. The Indonesian deterministic planner uses the existing registry; Gemini stays disabled/synthetic-only with a frozen external tool allowlist.
+
+Verification: 351 tests in 43 files, lint/typecheck/build, 11 browser suites, four new responsive/Axe checks with no violations, 12 local production API checks, three image checks and GEE dependency/build isolation passed. Production audit has zero findings; inherited development braces advisory remains for reviewer disposition. No dependency, database, deployment or external inference change.
+
+See [Phase 14 report](PHASE_14_ADVANCED_VECTOR_EDITOR.md) and [evidence](evidence/phase-14/verification-summary.json). Branch: `feat/phase14-advanced-vector-editor`, stacked on verified Phase 13 head `64d6678`.
+
+Delivery: [Draft PR #10](https://github.com/HannR002/p4i-webgis/pull/10) targets Phase 13; implementation commit `32b9119`. Existing PRs remain intact.
