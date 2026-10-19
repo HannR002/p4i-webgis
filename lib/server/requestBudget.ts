@@ -47,3 +47,9 @@ const vectorRuntime = globalThis as typeof globalThis & {
 };
 export const vectorAnalysisBudget = (vectorRuntime.p4iVectorAnalysisBudget ??=
   new RequestBudget(30, 2));
+
+const uploadRuntime = globalThis as typeof globalThis & {
+  p4iProjectUploadBudget?: RequestBudget;
+};
+export const projectUploadBudget = (uploadRuntime.p4iProjectUploadBudget ??=
+  new RequestBudget(20, 2));
