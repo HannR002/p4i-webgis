@@ -117,3 +117,7 @@ The [exact changed-file list](evidence/remediation-r3/changed-files.txt) include
 6. Production remains blocked on verified database foundations and transactions, external staging authorization, durable job/approval/process state, rate limits across replicas, real GIS data/licensing, any separately authorized commercial providers, deployment verification and human UAT. R2's legacy multi-call project persistence is not made transactional by CI. ZIP uploads remain unconditionally refused; no claim that CI solves all upload or operational security risks.
 
 This is regression and configuration verification, not a penetration test, security certification, production approval or methodology validation.
+
+## Draft delivery and observed GitHub checks
+
+Draft [PR #15](https://github.com/HannR002/p4i-webgis/pull/15) targets R2. GitHub registered [workflow run 39300299420](https://github.com/HannR002/p4i-webgis/actions/runs/39300299420) on implementation commit `b8d58d66babe8d025636b547fd69c221fab8563e`: both `application` and `dependencies` concluded **SKIPPED**, confirming the execution locks. This is not a hosted verification pass or approval to activate CI. The exact read-only API snapshot is retained in [delivery status](evidence/remediation-r3/delivery-status.json). No earlier PR was merged, retargeted or marked ready.

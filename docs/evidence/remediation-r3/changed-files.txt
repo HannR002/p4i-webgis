@@ -15,6 +15,7 @@ docs/evidence/remediation-r3/browser-runs.json
 docs/evidence/remediation-r3/build.log
 docs/evidence/remediation-r3/changed-files.txt
 docs/evidence/remediation-r3/ci-guards.log
+docs/evidence/remediation-r3/delivery-status.json
 docs/evidence/remediation-r3/environment-and-actions.json
 docs/evidence/remediation-r3/gee-isolation.log
 docs/evidence/remediation-r3/lint.log
