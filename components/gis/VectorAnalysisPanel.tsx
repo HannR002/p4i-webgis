@@ -25,6 +25,12 @@ async function api(url: string, init?: RequestInit) {
 }
 const storage = '/api/gis/vector-storage';
 export default function VectorAnalysisPanel() {
+  const mapEpoch = useWorkspaceStore((s) => s.mapEpoch);
+  // Replacement/history boundaries dispose estimates, source selection and requests
+  // in every mount (Analysis tab and Copilot), including byte-identical recipes.
+  return <VectorAnalysisSession key={mapEpoch} />;
+}
+function VectorAnalysisSession() {
   const s = useWorkspaceStore();
   const [projects, setProjects] = useState<VectorProject[]>([]),
     [project, setProject] = useState(''),
@@ -296,7 +302,7 @@ export default function VectorAnalysisPanel() {
         layer.style = { ...result.layer.style };
         layer.opacity = result.layer.opacity;
       }
-      s.replace(next, 'Salin hasil PostGIS ke layer baru', s.recipe);
+      s.replace(next, 'Salin hasil PostGIS ke layer baru', s.recipe, 'edit');
       s.setVectorProjectBinding(null);
       if (layer)
         s.setVectorEditor({

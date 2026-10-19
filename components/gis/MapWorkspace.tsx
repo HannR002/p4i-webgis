@@ -282,7 +282,6 @@ export default function MapWorkspace({
                 if (new Blob([data]).size > 65536)
                   throw new Error('Draft terlalu besar (maks 64 KB).');
                 s.replace(JSON.parse(data) as unknown, 'Memuat draft lokal');
-                s.setVectorProjectBinding(null);
                 setNotice('Draft dimuat.');
               })
             }
@@ -553,6 +552,8 @@ export default function MapWorkspace({
                               s.replace(
                                 { ...s.recipe, description },
                                 'Ubah deskripsi',
+                                undefined,
+                                'edit',
                               ),
                             );
                         }}
@@ -1005,6 +1006,8 @@ export default function MapWorkspace({
                               },
                             },
                             'Simpan bobot AHP (provisional)',
+                            undefined,
+                            'edit',
                           );
                         })
                       }

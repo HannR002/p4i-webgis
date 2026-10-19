@@ -285,6 +285,7 @@ export default function AnalysisConfigurationPanel() {
           plan.recipe,
           `Konfigurasi ${validated.name} v${validated.version}`,
           base,
+          'edit',
         );
         setMessage(
           'Konfigurasi diterapkan ke resep dan bobot sesi. Tidak ada hasil spasial yang dibuat.',
@@ -314,6 +315,7 @@ export default function AnalysisConfigurationPanel() {
         plan.recipe,
         `Analisis konfigurasi ${validated.name} v${validated.version}`,
         base,
+        'edit',
       );
       setResult(data);
       setMessage(

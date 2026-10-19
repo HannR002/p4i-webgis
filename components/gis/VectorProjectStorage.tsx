@@ -341,6 +341,8 @@ export default function VectorProjectStorage({
                         ) ?? [current!.layer],
                       },
                       'Batalkan perubahan lokal',
+                      undefined,
+                      'edit',
                     );
                   } catch (e) {
                     setFailure(true);

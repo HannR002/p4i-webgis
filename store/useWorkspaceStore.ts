@@ -81,6 +81,8 @@ interface VectorEditorState {
   vectorError: string | null;
 }
 interface WorkspaceState extends VectorEditorState {
+  // Monotonic even across Undo/Redo; transient work never travels with a recipe.
+  mapEpoch: number;
   vectorAnalysisResult: VectorAnalysisResult | null;
   vectorAnalysisProposal: VectorAnalysisProposal | null;
   setVectorAnalysisResult: (result: VectorAnalysisResult | null) => void;
@@ -103,8 +105,8 @@ interface WorkspaceState extends VectorEditorState {
   mode: 'loading' | 'demo' | 'unavailable';
   context: GisContext;
   error: string | null;
-  past: MapRecipe[];
-  future: MapRecipe[];
+  past: RecipeHistoryEntry[];
+  future: RecipeHistoryEntry[];
   log: string[];
   samples: PixelSample[];
   analysisDraft: GISAnalysisConfiguration | null;
@@ -115,14 +117,74 @@ interface WorkspaceState extends VectorEditorState {
     context: GisContext,
   ) => void;
   action: (action: unknown) => void;
-  replace: (recipe: unknown, label: string, expectedRecipe?: MapRecipe) => void;
+  replace: (
+    recipe: unknown,
+    label: string,
+    expectedRecipe?: MapRecipe,
+    lifecycle?: 'replace-map' | 'edit',
+  ) => void;
   undo: () => void;
   redo: () => void;
   setSamples: (samples: PixelSample[]) => void;
   trackViewport: (center: [number, number], zoom: number) => void;
   openTemplate: (title: string, ids: readonly string[]) => void;
 }
+interface RecipeHistoryEntry {
+  recipe: MapRecipe;
+  replacesMap: boolean;
+}
+
+/** One policy for replacement, history traversal and map-scoped UI state. */
+function recipeLifecycle(
+  s: WorkspaceState,
+  recipe: MapRecipe,
+  replacesMap: boolean,
+) {
+  // Match the editor's first-layer fallback in the previous recipe. Resolve it
+  // before replacement so reused feature IDs cannot select another layer.
+  const previousLayer = s.recipe.sketchLayers?.find((l) => l.id === s.vectorLayerId)
+    ?? s.recipe.sketchLayers?.[0];
+  const layer = recipe.sketchLayers?.find((l) => l.id === previousLayer?.id);
+  const proposal = s.vectorAnalysisProposal;
+  const proposalLayer = recipe.sketchLayers?.find(
+    (l) => l.id === proposal?.layerId,
+  );
+  return {
+    vectorEpoch: s.vectorEpoch + 1,
+    vectorEdit: null,
+    vectorVertices: [],
+    vectorCursor: null,
+    snapTarget: null,
+    vectorError: null,
+    samples: [],
+    selectedVectorIds: replacesMap
+      ? []
+      : s.selectedVectorIds.filter((id) =>
+          layer?.data.features.some((f) => f.id === id),
+        ),
+    vectorLayerId: replacesMap || !layer ? '' : layer.id,
+    ...(replacesMap
+      ? {
+          mapEpoch: s.mapEpoch + 1,
+          vectorAnalysisResult: null,
+          vectorAnalysisProposal: null,
+          vectorProjectBinding: null,
+          vectorMode: 'off' as const,
+          vectorTableOpen: false,
+        }
+      : {
+          vectorAnalysisProposal:
+            proposal && proposal.featureIds.every((id) =>
+              proposalLayer?.data.features.some((f) => f.id === id),
+            ) ? proposal : null,
+          vectorProjectBinding: recipe.sketchLayers?.some(
+            (l) => l.id === s.vectorProjectBinding?.layer.id,
+          ) ? s.vectorProjectBinding : null,
+        }),
+  };
+}
 export const useWorkspaceStore = create<WorkspaceState>((set, get) => ({
+  mapEpoch: 0,
   vectorAnalysisResult: null,
   vectorAnalysisProposal: null,
   setVectorAnalysisResult: (result) =>
@@ -274,7 +336,7 @@ export const useWorkspaceStore = create<WorkspaceState>((set, get) => ({
   setAnalysisDraft: (analysisDraft) => set({ analysisDraft }),
   error: null,
   configure: (catalog, mode, context) => set({ catalog, mode, context }),
-  replace: (input, label, expectedRecipe) => {
+  replace: (input, label, expectedRecipe, lifecycle = 'replace-map') => {
     const s = get();
     if (s.vectorEdit)
       throw new Error('Selesaikan atau batalkan drag vertex dahulu.');
@@ -286,24 +348,14 @@ export const useWorkspaceStore = create<WorkspaceState>((set, get) => ({
     assertRecipeAccess(recipe, s.catalog, s.context);
     recipe.legend = legendFor(recipe, s.catalog);
     syncConfiguration(s.recipe, recipe);
+    const replacesMap =
+      lifecycle === 'replace-map' || recipe.id !== s.recipe.id;
     set({
       recipe,
-      ...(!recipe.sketchLayers?.some(
-        (l) => l.id === s.vectorProjectBinding?.layer.id,
-      ) || ['Memuat draft lokal', 'Impor resep tervalidasi'].includes(label)
-        ? { vectorProjectBinding: null }
-        : {}),
-      vectorEpoch: s.vectorEpoch + 1,
-      selectedVectorIds: s.selectedVectorIds.filter((id) =>
-        recipe.sketchLayers?.some((l) =>
-          l.data.features.some((f) => f.id === id),
-        ),
-      ),
-      vectorVertices: [],
-      past: [...s.past, s.recipe].slice(-30),
+      ...recipeLifecycle(s, recipe, replacesMap),
+      past: [...s.past, { recipe: s.recipe, replacesMap }].slice(-30),
       future: [],
       log: [...s.log, label].slice(-50),
-      samples: [],
     });
   },
   action: (action) => {
@@ -311,36 +363,29 @@ export const useWorkspaceStore = create<WorkspaceState>((set, get) => ({
     get().replace(
       applyMapAction(s.recipe, action, s.catalog, s.context),
       'Perubahan sesi peta',
-    );
-    if (
+      undefined,
       typeof action === 'object' &&
-      action !== null &&
-      'tool' in action &&
-      action.tool === 'createMap'
-    )
-      set({
-        vectorProjectBinding: null,
-        vectorAnalysisResult: null,
-        vectorAnalysisProposal: null,
-      });
+        action !== null &&
+        'tool' in action &&
+        action.tool === 'createMap'
+        ? 'replace-map'
+        : 'edit',
+    );
   },
   undo: () => {
     get().cancelVectorEdit();
     const s = get();
     const previous = s.past.at(-1);
     if (previous) {
-      syncConfiguration(s.recipe, previous);
+      syncConfiguration(s.recipe, previous.recipe);
       set({
-        recipe: previous,
-        vectorEpoch: s.vectorEpoch + 1,
-        selectedVectorIds: s.selectedVectorIds.filter((id) =>
-          previous.sketchLayers?.some((l) =>
-            l.data.features.some((f) => f.id === id),
-          ),
-        ),
+        recipe: previous.recipe,
+        ...recipeLifecycle(s, previous.recipe, previous.replacesMap),
         past: s.past.slice(0, -1),
-        future: [s.recipe, ...s.future].slice(0, 30),
-        samples: [],
+        future: [
+          { recipe: s.recipe, replacesMap: previous.replacesMap },
+          ...s.future,
+        ].slice(0, 30),
         log: [...s.log, 'Undo'].slice(-50),
       });
     }
@@ -350,18 +395,15 @@ export const useWorkspaceStore = create<WorkspaceState>((set, get) => ({
     const s = get();
     const next = s.future[0];
     if (next) {
-      syncConfiguration(s.recipe, next);
+      syncConfiguration(s.recipe, next.recipe);
       set({
-        recipe: next,
-        vectorEpoch: s.vectorEpoch + 1,
-        selectedVectorIds: s.selectedVectorIds.filter((id) =>
-          next.sketchLayers?.some((l) =>
-            l.data.features.some((f) => f.id === id),
-          ),
-        ),
-        past: [...s.past, s.recipe].slice(-30),
+        recipe: next.recipe,
+        ...recipeLifecycle(s, next.recipe, next.replacesMap),
+        past: [
+          ...s.past,
+          { recipe: s.recipe, replacesMap: next.replacesMap },
+        ].slice(-30),
         future: s.future.slice(1),
-        samples: [],
         log: [...s.log, 'Redo'].slice(-50),
       });
     }
