@@ -1,0 +1,137 @@
+{
+  "document": {
+    "id": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+    "projectId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+    "revision": 7,
+    "canEdit": true,
+    "archived": false,
+    "createdAt": "2026-10-19T00:00:00Z",
+    "updatedAt": "2026-10-19T00:00:00Z",
+    "updatedBy": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+    "layer": {
+      "id": "local-vector-1",
+      "name": "R1 synthetic source",
+      "visible": true,
+      "opacity": 1,
+      "style": {
+        "color": "#0f766e",
+        "fillColor": "#5eead4",
+        "weight": 2,
+        "fillOpacity": 0.6,
+        "radius": 7
+      },
+      "data": {
+        "type": "FeatureCollection",
+        "features": [
+          {
+            "type": "Feature",
+            "id": "local-feature-1",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                103.61,
+                -1.61
+              ]
+            },
+            "properties": {
+              "name": "A",
+              "description": "Synthetic R1 lifecycle fixture",
+              "attributes": {}
+            }
+          }
+        ]
+      }
+    },
+    "features": [
+      {
+        "id": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+        "localId": "local-feature-1",
+        "revision": 3
+      }
+    ]
+  },
+  "result": {
+    "request": {
+      "operation": "buffer",
+      "projectId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+      "source": {
+        "layerId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        "revision": 7,
+        "featureIds": [
+          "cccccccc-cccc-4ccc-8ccc-cccccccccccc"
+        ]
+      },
+      "target": null,
+      "parameters": {
+        "distanceMetres": 500
+      }
+    },
+    "engine": "PostGIS",
+    "crs": "EPSG:4326",
+    "metric": "WGS84 spheroid / local UTM buffer",
+    "createdAt": "2026-10-19T00:00:00Z",
+    "estimate": {
+      "features": 1,
+      "vertices": 1,
+      "pairTests": 0,
+      "costClass": "LOW_COST_ANALYSIS"
+    },
+    "warnings": [
+      "SYNTHETIC QA RESPONSE. No database or GIS computation was executed."
+    ],
+    "layer": {
+      "id": "local-vector-1",
+      "name": "R1 synthetic result",
+      "visible": true,
+      "opacity": 1,
+      "style": {
+        "color": "#0f766e",
+        "fillColor": "#5eead4",
+        "weight": 2,
+        "fillOpacity": 0.6,
+        "radius": 7
+      },
+      "data": {
+        "type": "FeatureCollection",
+        "features": [
+          {
+            "type": "Feature",
+            "id": "local-feature-1",
+            "geometry": {
+              "type": "Polygon",
+              "coordinates": [
+                [
+                  [
+                    103.606,
+                    -1.614
+                  ],
+                  [
+                    103.614,
+                    -1.614
+                  ],
+                  [
+                    103.614,
+                    -1.606
+                  ],
+                  [
+                    103.606,
+                    -1.606
+                  ],
+                  [
+                    103.606,
+                    -1.614
+                  ]
+                ]
+              ]
+            },
+            "properties": {
+              "name": "R1 result overlay",
+              "description": "Synthetic R1 lifecycle fixture",
+              "attributes": {}
+            }
+          }
+        ]
+      }
+    }
+  }
+}

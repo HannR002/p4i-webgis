@@ -85,6 +85,7 @@ export default function CopilotPanel({
   } | null>(null);
   const baseSignature = useRef(""),
     permissionSignature = useRef("");
+  const baseMapEpoch = useRef(0);
   const draftSignature = useRef("");
   const approvalConsumed = useRef(false);
   const [approvalDecision, setApprovalDecision] = useState<
@@ -235,6 +236,7 @@ export default function CopilotPanel({
       const startsNewMap = parsed.plan.steps.some(
         (step) => step.action.tool === "createMap",
       );
+      const appliesNewMap = startsNewMap && parsed.status === "completed";
       const removedLayers =
         latest.recipe.sketchLayers?.filter(
           (l) => !parsed.recipe.sketchLayers?.some((next) => next.id === l.id),
@@ -247,11 +249,12 @@ export default function CopilotPanel({
         )
       )
         throw Error("Penghapusan layer dibatalkan; peta tetap utuh.");
-      if (parsed.changed)
+      if (parsed.changed || appliesNewMap)
         latest.replace(
           parsed.recipe,
           `Copilot ${parsed.plan.provider.mode === "demo" ? "DEMO" : "Gemini Free Tier"}: ${parsed.plan.steps.map((step) => step.action.tool).join(", ")}`,
           latest.recipe,
+          startsNewMap ? "replace-map" : "edit",
         );
       if (parsed.status === "completed") {
         const prepared = parsed.results.findLast(
@@ -269,7 +272,6 @@ export default function CopilotPanel({
             selectedVectorIds: [],
           });
       }
-      if (parsed.changed && startsNewMap) latest.setVectorProjectBinding(null);
       const configuration = parsed.results.findLast(
         (r) => r.data.kind === "configuration",
       );
@@ -285,6 +287,7 @@ export default function CopilotPanel({
       baseSignature.current = JSON.stringify(
         useWorkspaceStore.getState().recipe,
       );
+      baseMapEpoch.current = useWorkspaceStore.getState().mapEpoch;
       permissionSignature.current = permissions;
       draftSignature.current = JSON.stringify(
         useWorkspaceStore.getState().analysisDraft,
@@ -305,7 +308,7 @@ export default function CopilotPanel({
       setPrompt("");
       if (parsed.status === "completed")
         setNotice(
-          parsed.changed
+          parsed.changed || appliesNewMap
             ? "Perubahan otomatis diterapkan ke sesi. Undo/Redo tersedia."
             : "Pembacaan/draft selesai; tidak ada penulisan permanen otomatis.",
         );
@@ -333,6 +336,7 @@ export default function CopilotPanel({
   function applyPreview() {
     if (!response || response.status !== "preview") return;
     if (
+      useWorkspaceStore.getState().mapEpoch !== baseMapEpoch.current ||
       JSON.stringify(useWorkspaceStore.getState().recipe) !==
       baseSignature.current
     ) {
@@ -353,6 +357,7 @@ export default function CopilotPanel({
     try {
       const current = useWorkspaceStore.getState();
       if (
+        current.mapEpoch !== baseMapEpoch.current ||
         JSON.stringify(current.recipe) !== baseSignature.current ||
         JSON.stringify(current.context) !== permissionSignature.current ||
         JSON.stringify(current.analysisDraft) !== draftSignature.current

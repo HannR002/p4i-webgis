@@ -60,6 +60,7 @@ export default function ComputeJobCard({ initial }: { initial: ComputeJob }) {
       ),
       'Hasil komputasi eksperimental',
       s.recipe,
+      'edit',
     );
     base.current = JSON.stringify(useWorkspaceStore.getState().recipe);
     setNotice('Hasil diterapkan ke MapRecipe. Undo/Redo tersedia.');
