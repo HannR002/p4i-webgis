@@ -1,0 +1,173 @@
+{
+  "date": "2026-10-20 Asia/Jakarta",
+  "node": "22.23.3",
+  "npm": "10.9.9",
+  "commands": [
+    {
+      "name": "npm-ci-final",
+      "command": [
+        "npm",
+        "ci"
+      ],
+      "exitCode": 0,
+      "durationSeconds": 23.0
+    },
+    {
+      "name": "lint",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exitCode": 0,
+      "durationSeconds": 13.0
+    },
+    {
+      "name": "typecheck",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "durationSeconds": 2.5
+    },
+    {
+      "name": "ci-guards",
+      "command": [
+        "npm",
+        "run",
+        "test:ci"
+      ],
+      "exitCode": 0,
+      "durationSeconds": 0.4
+    },
+    {
+      "name": "tests",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--reporter=default",
+        "--reporter=json",
+        "--outputFile=.ci-results/tests.json"
+      ],
+      "exitCode": 0,
+      "durationSeconds": 10.1
+    },
+    {
+      "name": "test-report",
+      "command": [
+        "node",
+        "scripts/ci/test-report.mjs"
+      ],
+      "exitCode": 0,
+      "durationSeconds": 0.1
+    },
+    {
+      "name": "build",
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exitCode": 0,
+      "durationSeconds": 8.2
+    },
+    {
+      "name": "gee-isolation",
+      "command": [
+        "node",
+        "scripts/qa/phase-12-isolation.mjs"
+      ],
+      "exitCode": 0,
+      "durationSeconds": 1.0
+    },
+    {
+      "name": "dependency-tree-final",
+      "command": [
+        "npm",
+        "ls",
+        "--all",
+        "--json"
+      ],
+      "exitCode": 0,
+      "durationSeconds": 0.7
+    },
+    {
+      "name": "audit-final",
+      "command": [
+        "node",
+        "scripts/ci/dependency-audit.mjs"
+      ],
+      "exitCode": 1,
+      "durationSeconds": 2.4
+    }
+  ],
+  "application": {
+    "passed": 517,
+    "failed": 0,
+    "skipped": 37,
+    "passedFiles": 50,
+    "skippedFiles": 2
+  },
+  "ciHelperTests": {
+    "passed": 14,
+    "failed": 0
+  },
+  "browser": {
+    "distinctSuitesPassed": 11,
+    "finalBatchRuns": 12,
+    "failedFinalRuns": 0,
+    "phase06UnmodifiedBaseline": "PASS",
+    "phase06CorrectedHarnessRunsPassed": 3,
+    "initialHarnessExperiment": "FAIL: enabled-button wait was invalid because success clears prompt; corrected without sleeps or weaker assertions",
+    "historicalR2TimeoutRootCause": "UNPROVEN; residual flakiness remains"
+  },
+  "actionlint": {
+    "version": "1.7.12",
+    "exitCode": 0,
+    "archiveSha256": "8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8"
+  },
+  "database": {
+    "executed": 0,
+    "skipped": 37,
+    "reason": "No authorized fixture started; offline lifecycle tests only"
+  },
+  "hostedCI": "ACTIVATION_PENDING; literal false job gates; not VERIFIED_PASS",
+  "audit": {
+    "full": {
+      "affectedPackages": 5,
+      "severities": {
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "high": 5,
+        "critical": 0,
+        "total": 5
+      },
+      "distinctAdvisories": 1,
+      "advisories": [
+        "https://github.com/advisories/GHSA-vfj7-8cjw-p6xm"
+      ],
+      "passed": false
+    },
+    "production": {
+      "affectedPackages": 0,
+      "severities": {
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "high": 0,
+        "critical": 0,
+        "total": 0
+      },
+      "distinctAdvisories": 0,
+      "advisories": [],
+      "passed": true
+    }
+  },
+  "lockSha256": "77d91d2fbbd27ff937d13a13b398c4b9f52be2975dde636e61884a1f6c39db80",
+  "mergeReadiness": "NO-GO pending independent review and advisory disposition",
+  "productionReadiness": "NO-GO"
+}

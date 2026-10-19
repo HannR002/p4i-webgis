@@ -1,0 +1,68 @@
+[
+  {
+    "suite": "phase-06-compute",
+    "artifact": "01-phase-06-compute",
+    "exitCode": 0,
+    "durationSeconds": 11.4
+  },
+  {
+    "suite": "phase-06-compute",
+    "artifact": "02-phase-06-compute",
+    "exitCode": 0,
+    "durationSeconds": 11.3
+  },
+  {
+    "suite": "phase-01-regression",
+    "artifact": "03-phase-01-regression",
+    "exitCode": 0,
+    "durationSeconds": 17.1
+  },
+  {
+    "suite": "phase-02-smoke",
+    "artifact": "04-phase-02-smoke",
+    "exitCode": 0,
+    "durationSeconds": 28.6
+  },
+  {
+    "suite": "phase-03-raster",
+    "artifact": "05-phase-03-raster",
+    "exitCode": 0,
+    "durationSeconds": 21.5
+  },
+  {
+    "suite": "phase-04-configuration",
+    "artifact": "06-phase-04-configuration",
+    "exitCode": 0,
+    "durationSeconds": 26.3
+  },
+  {
+    "suite": "phase-05-copilot",
+    "artifact": "07-phase-05-copilot",
+    "exitCode": 0,
+    "durationSeconds": 28.8
+  },
+  {
+    "suite": "phase-07-deliverables",
+    "artifact": "08-phase-07-deliverables",
+    "exitCode": 0,
+    "durationSeconds": 10.8
+  },
+  {
+    "suite": "phase-13-vector-editor",
+    "artifact": "09-phase-13-vector-editor",
+    "exitCode": 0,
+    "durationSeconds": 13.3
+  },
+  {
+    "suite": "phase-14-vector-digitizing",
+    "artifact": "10-phase-14-vector-digitizing",
+    "exitCode": 0,
+    "durationSeconds": 13.9
+  },
+  {
+    "suite": "remediation-r1-map-lifecycle",
+    "artifact": "11-remediation-r1-map-lifecycle",
+    "exitCode": 0,
+    "durationSeconds": 33.1
+  }
+]

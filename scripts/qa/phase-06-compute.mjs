@@ -15,6 +15,7 @@ const errors = [],
   flows = [],
   audits = [];
 let externalComputeCalls = 0;
+let page;
 async function ask(page, prompt) {
   const pending = page.waitForResponse(
     (r) =>
@@ -27,9 +28,31 @@ async function ask(page, prompt) {
   const response = await pending,
     body = await response.json();
   assert.equal(response.status(), 200, JSON.stringify(body));
+  // The form clears the prompt after success, so the submit button remains
+  // disabled. Its restored label signals completion; the exact job ID/state
+  // below proves React rendered this response rather than an older card.
   await page
     .getByRole('button', { name: 'Kirim instruksi', exact: true })
     .waitFor();
+  assert.equal(
+    await page.locator('.gis-copilot .gis-error[role=alert]').count(),
+    0,
+    'Copilot rejected the response; do not conceal stale-state failures',
+  );
+  const job = body.results?.find((result) => result.data?.job)?.data.job;
+  if (job) {
+    await page.waitForFunction(
+      ({ id, state }) =>
+        [...document.querySelectorAll('.gis-compute-card')].some(
+          (card) =>
+            card.textContent?.includes(id) &&
+            [...card.querySelectorAll('[role=status] .gis-tag')].some(
+              (tag) => tag.textContent?.trim() === state,
+            ),
+        ),
+      { id: job.id, state: job.state },
+    );
+  }
   return body;
 }
 async function screenshot(page, name) {
@@ -38,7 +61,7 @@ async function screenshot(page, name) {
   await page.screenshot({ path: path.join(dir, name), fullPage: true });
 }
 try {
-  const page = await browser.newPage({
+  page = await browser.newPage({
     viewport: { width: 1480, height: 1000 },
     acceptDownloads: true,
   });
@@ -235,6 +258,31 @@ try {
     JSON.stringify({ flows, audits, errors, externalComputeCalls }, null, 2),
   );
   console.log(JSON.stringify({ flows, errors, externalComputeCalls }, null, 2));
+} catch (error) {
+  await writeFile(
+    path.join(dir, 'failure.json'),
+    JSON.stringify(
+      {
+        message: error.message,
+        flows,
+        errors,
+        externalComputeCalls,
+        copilot: page
+          ? await page
+              .locator('.gis-copilot')
+              .innerText()
+              .catch(() => 'unavailable')
+          : 'unavailable',
+      },
+      null,
+      2,
+    ),
+  );
+  if (page)
+    await page
+      .screenshot({ path: path.join(dir, 'failure.png'), fullPage: true })
+      .catch(() => {});
+  throw error;
 } finally {
   await browser.close();
 }

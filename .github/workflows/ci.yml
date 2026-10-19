@@ -1,0 +1,89 @@
+name: P4I checks (activation pending)
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: p4i-checks-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+# R3: runner execution deliberately locked. Review Actions entitlement/cost and
+# required checks before removing `false &&`. Skipped jobs are NOT verified CI.
+env:
+  NEXT_TELEMETRY_DISABLED: '1'
+  NEXT_PUBLIC_SUPABASE_URL: http://127.0.0.1:9
+  NEXT_PUBLIC_SUPABASE_ANON_KEY: local-test-only
+  SUPABASE_SERVICE_ROLE_KEY: local-test-only
+  GIS_DEMO_MODE: 'true'
+  AI_PROVIDER: demo
+  GEMINI_API_KEY: ''
+  GEMINI_FREE_ENABLED: 'false'
+  GEE_SERVICE_ACCOUNT_JSON: ''
+  GEE_SERVICE_ACCOUNT_JSON_BASE64: ''
+  GEE_PROJECT_ID: ''
+  GEE_SOIL_ASSET_ID: ''
+  VECTOR_STORAGE_MODE: disabled
+  VECTOR_STORAGE_LOCAL_ACK: ''
+  VECTOR_STORAGE_LOCAL_URL: ''
+  P4I_VECTOR_TEST_STATE: ''
+  P4I_VECTOR_ANALYSIS: ''
+jobs:
+  application:
+    if: ${{ false && github.event.repository.private == false }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22.23.3'
+          package-manager-cache: false
+      - id: install
+        run: npm ci
+      - id: lint
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: npm run lint
+      - id: types
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: npm run typecheck
+      - id: guards
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: npm run test:ci
+      - id: tests
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: |
+          mkdir -p .ci-results
+          npm test -- --reporter=default --reporter=json --outputFile=.ci-results/tests.json
+      - id: evidence
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: node scripts/ci/test-report.mjs
+      - id: build
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: npm run build
+      - name: Step outcomes (failed and skipped remain distinct)
+        if: ${{ always() }}
+        env:
+          STEP_OUTCOMES: ${{ toJSON(steps) }}
+        run: |
+          node -e 'require("fs").appendFileSync(process.env.GITHUB_STEP_SUMMARY, "## Step outcomes\n\n```json\n" + process.env.STEP_OUTCOMES + "\n```\n")'
+  dependencies:
+    if: ${{ false && github.event.repository.private == false }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22.23.3'
+          package-manager-cache: false
+      - run: npm ci
+      - run: node scripts/ci/dependency-audit.mjs
+      - name: Audit failure or installation failure
+        if: ${{ failure() }}
+        run: echo 'Dependency gate FAILED. Inspect install and both audit scopes; no waiver is applied.' >> "$GITHUB_STEP_SUMMARY"
