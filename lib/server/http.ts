@@ -59,16 +59,6 @@ export async function readJsonBody(request: Request): Promise<unknown> {
   }
 }
 
-export async function readFormDataBody(request: Request): Promise<FormData> {
-  try {
-    return await request.formData();
-  } catch {
-    throw new RequestInputError(
-      'Request body must be valid multipart form data',
-    );
-  }
-}
-
 export function isUuid(value: unknown): value is string {
   return (
     typeof value === 'string' &&

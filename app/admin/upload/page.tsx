@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { PROJECT_UPLOAD } from '../../../lib/uploadPolicy';
 
 export default function AdminUploadPage() {
   const [formData, setFormData] = useState({
@@ -16,15 +17,13 @@ export default function AdminUploadPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!file) {
-      alert('Silakan pilih file GeoJSON atau Shapefile (.zip)');
+      alert('Silakan pilih file GeoJSON (.geojson atau .json)');
       return;
     }
 
-    // OPS-01: Validasi batas ukuran file (Vercel Serverless max 4.5MB body limit)
-    // TODO: migrate large-file uploads to Supabase Storage direct upload
-    const MAX_FILE_SIZE = 4.5 * 1024 * 1024; // 4.5 MB
-    if (file.size > MAX_FILE_SIZE) {
-      alert(`Ukuran file terlalu besar (${(file.size / 1024 / 1024).toFixed(2)} MB). Batas maksimum saat ini adalah 4.5 MB.`);
+    if (!/\.(geojson|json)$/i.test(file.name) || file.size > PROJECT_UPLOAD.fileBytes) {
+      setStatus('error');
+      setErrorMessage('Gunakan GeoJSON tanpa kompresi, maksimal 256 KiB. Upload ZIP dinonaktifkan.');
       return;
     }
 
@@ -65,7 +64,7 @@ export default function AdminUploadPage() {
     <div className="min-h-screen bg-slate-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-2xl mx-auto bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
         <div className="flex items-center gap-4 mb-6">
-          <a href="/admin/dashboard" className="p-2 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors">
+          <a href="/admin/dashboard" aria-label="Kembali ke dashboard" className="p-2 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
           </a>
           <h1 className="text-2xl font-bold text-slate-800 m-0">Upload Proyek Spasial</h1>
@@ -78,15 +77,18 @@ export default function AdminUploadPage() {
         )}
         
         {status === 'error' && (
-          <div className="mb-6 p-4 bg-red-50 text-red-700 rounded-lg border border-red-200">
+          <div role="alert" className="mb-6 p-4 bg-red-50 text-red-700 rounded-lg border border-red-200">
             <strong>Gagal: </strong> {errorMessage}
           </div>
         )}
 
+        <p className="mb-6 text-sm text-slate-600">ZIP Shapefile dinonaktifkan untuk keamanan. Gunakan GeoJSON WGS84 2D tanpa deklarasi CRS, maksimal 500 fitur dan 5.000 koordinat. Geometri yang tidak didukung akan ditolak tanpa perbaikan otomatis.</p>
+
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-2">Nama Proyek</label>
+            <label htmlFor="project-title" className="block text-sm font-medium text-slate-700 mb-2">Nama Proyek</label>
             <input 
+              id="project-title"
               type="text" 
               required
               value={formData.title}
@@ -97,8 +99,9 @@ export default function AdminUploadPage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-2">Kategori</label>
+            <label htmlFor="project-category" className="block text-sm font-medium text-slate-700 mb-2">Kategori</label>
             <select 
+              id="project-category"
               value={formData.category}
               onChange={(e) => setFormData({...formData, category: e.target.value})}
               className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all bg-white"
@@ -111,8 +114,9 @@ export default function AdminUploadPage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-2">Deskripsi</label>
+            <label htmlFor="project-description" className="block text-sm font-medium text-slate-700 mb-2">Deskripsi</label>
             <textarea 
+              id="project-description"
               required
               rows={4}
               value={formData.description}
@@ -123,8 +127,9 @@ export default function AdminUploadPage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-2">Tingkat Akses</label>
+            <label htmlFor="project-access" className="block text-sm font-medium text-slate-700 mb-2">Tingkat Akses</label>
             <select 
+              id="project-access"
               value={formData.access_tier}
               onChange={(e) => setFormData({...formData, access_tier: e.target.value})}
               className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all bg-white"
@@ -135,7 +140,7 @@ export default function AdminUploadPage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-2">File GeoJSON / Shapefile (.zip)</label>
+            <label htmlFor="file-upload" className="block text-sm font-medium text-slate-700 mb-2">File GeoJSON (WGS84 longitude/latitude)</label>
             <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-slate-300 border-dashed rounded-lg hover:border-blue-500 transition-colors bg-slate-50">
               <div className="space-y-1 text-center">
                 <svg className="mx-auto h-12 w-12 text-slate-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
@@ -149,13 +154,13 @@ export default function AdminUploadPage() {
                       name="file-upload" 
                       type="file" 
                       className="sr-only" 
-                      accept=".geojson,.json,.zip,application/geo+json,application/zip"
+                      accept=".geojson,.json,application/geo+json,application/json"
                       onChange={(e) => setFile(e.target.files?.[0] || null)}
                     />
                   </label>
                 </div>
                 <p className="text-xs text-slate-500">
-                  {file ? file.name : 'GeoJSON atau Shapefile (.zip) hingga 10MB'}
+                  {file ? file.name : 'GeoJSON tanpa kompresi, maksimal 256 KiB'}
                 </p>
               </div>
             </div>
