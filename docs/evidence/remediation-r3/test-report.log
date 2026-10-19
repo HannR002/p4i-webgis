@@ -1,0 +1,16 @@
+(node:51988) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+## Application tests; database cases reported separately
+
+```json
+{
+  "passed": 517,
+  "failed": 0,
+  "skipped": 37,
+  "database": {
+    "passed": 0,
+    "failed": 0,
+    "skipped": 37
+  }
+}
+```

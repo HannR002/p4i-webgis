@@ -14,7 +14,8 @@
     "test": "vitest run",
     "import:boundaries": "node scripts/import-boundaries.mjs",
     "db:plan": "node scripts/database/plan.mjs",
-    "test:db": "node scripts/database/rehearse.mjs"
+    "test:db": "node scripts/database/rehearse.mjs",
+    "test:ci": "node --test scripts/ci/*.check.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.112.3",

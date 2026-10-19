@@ -1,0 +1,32 @@
+{
+  "head": "b8d58d66babe8d025636b547fd69c221fab8563e",
+  "draftPr": "https://github.com/HannR002/p4i-webgis/pull/15",
+  "checks": {
+    "total": 2,
+    "items": [
+      {
+        "name": "dependencies",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/HannR002/p4i-webgis/actions/runs/39300299420/job/118223508316"
+      },
+      {
+        "name": "application",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/HannR002/p4i-webgis/actions/runs/39300299420/job/118223432403"
+      }
+    ]
+  },
+  "actions": {
+    "total": 1,
+    "items": [
+      {
+        "name": "P4I checks (activation pending)",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/HannR002/p4i-webgis/actions/runs/39300299420"
+      }
+    ]
+  }
+}

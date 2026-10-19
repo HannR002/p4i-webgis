@@ -1,0 +1,169 @@
+{
+  "version": "0.1.0",
+  "name": "p4i-webgis",
+  "dependencies": {
+    "eslint-config-next": {
+      "version": "16.3.8",
+      "resolved": "https://registry.npmjs.org/eslint-config-next/-/eslint-config-next-16.3.8.tgz",
+      "overridden": false,
+      "dependencies": {
+        "@next/eslint-plugin-next": {
+          "version": "16.3.8",
+          "resolved": "https://registry.npmjs.org/@next/eslint-plugin-next/-/eslint-plugin-next-16.3.8.tgz",
+          "overridden": false,
+          "dependencies": {
+            "@eslint-community/eslint-utils": {
+              "version": "4.9.1",
+              "resolved": "https://registry.npmjs.org/@eslint-community/eslint-utils/-/eslint-utils-4.9.1.tgz",
+              "overridden": false,
+              "dependencies": {
+                "eslint": {
+                  "version": "9.39.5"
+                }
+              }
+            },
+            "fast-glob": {
+              "version": "3.3.1",
+              "resolved": "https://registry.npmjs.org/fast-glob/-/fast-glob-3.3.1.tgz",
+              "overridden": false,
+              "dependencies": {
+                "micromatch": {
+                  "version": "4.0.8",
+                  "resolved": "https://registry.npmjs.org/micromatch/-/micromatch-4.0.8.tgz",
+                  "overridden": false,
+                  "dependencies": {
+                    "braces": {
+                      "version": "3.0.3",
+                      "resolved": "https://registry.npmjs.org/braces/-/braces-3.0.3.tgz",
+                      "overridden": false
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "eslint-import-resolver-typescript": {
+          "version": "3.10.1",
+          "resolved": "https://registry.npmjs.org/eslint-import-resolver-typescript/-/eslint-import-resolver-typescript-3.10.1.tgz",
+          "overridden": false,
+          "dependencies": {
+            "eslint": {
+              "version": "9.39.5"
+            }
+          }
+        },
+        "eslint-plugin-import": {
+          "version": "2.32.0",
+          "resolved": "https://registry.npmjs.org/eslint-plugin-import/-/eslint-plugin-import-2.32.0.tgz",
+          "overridden": false,
+          "dependencies": {
+            "eslint": {
+              "version": "9.39.5"
+            }
+          }
+        },
+        "eslint-plugin-jsx-a11y": {
+          "version": "6.10.2",
+          "resolved": "https://registry.npmjs.org/eslint-plugin-jsx-a11y/-/eslint-plugin-jsx-a11y-6.10.2.tgz",
+          "overridden": false,
+          "dependencies": {
+            "eslint": {
+              "version": "9.39.5"
+            }
+          }
+        },
+        "eslint-plugin-react-hooks": {
+          "version": "7.1.1",
+          "resolved": "https://registry.npmjs.org/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-7.1.1.tgz",
+          "overridden": false,
+          "dependencies": {
+            "eslint": {
+              "version": "9.39.5"
+            }
+          }
+        },
+        "eslint-plugin-react": {
+          "version": "7.37.5",
+          "resolved": "https://registry.npmjs.org/eslint-plugin-react/-/eslint-plugin-react-7.37.5.tgz",
+          "overridden": false,
+          "dependencies": {
+            "eslint": {
+              "version": "9.39.5"
+            }
+          }
+        },
+        "eslint": {
+          "version": "9.39.5"
+        },
+        "typescript-eslint": {
+          "version": "8.67.0",
+          "resolved": "https://registry.npmjs.org/typescript-eslint/-/typescript-eslint-8.67.0.tgz",
+          "overridden": false,
+          "dependencies": {
+            "@typescript-eslint/eslint-plugin": {
+              "version": "8.67.0",
+              "resolved": "https://registry.npmjs.org/@typescript-eslint/eslint-plugin/-/eslint-plugin-8.67.0.tgz",
+              "overridden": false,
+              "dependencies": {
+                "@typescript-eslint/type-utils": {
+                  "version": "8.67.0",
+                  "resolved": "https://registry.npmjs.org/@typescript-eslint/type-utils/-/type-utils-8.67.0.tgz",
+                  "overridden": false,
+                  "dependencies": {
+                    "eslint": {
+                      "version": "9.39.5"
+                    }
+                  }
+                },
+                "eslint": {
+                  "version": "9.39.5"
+                }
+              }
+            },
+            "@typescript-eslint/parser": {
+              "version": "8.67.0",
+              "resolved": "https://registry.npmjs.org/@typescript-eslint/parser/-/parser-8.67.0.tgz",
+              "overridden": false,
+              "dependencies": {
+                "eslint": {
+                  "version": "9.39.5"
+                }
+              }
+            },
+            "@typescript-eslint/utils": {
+              "version": "8.67.0",
+              "resolved": "https://registry.npmjs.org/@typescript-eslint/utils/-/utils-8.67.0.tgz",
+              "overridden": false,
+              "dependencies": {
+                "eslint": {
+                  "version": "9.39.5"
+                }
+              }
+            },
+            "eslint": {
+              "version": "9.39.5"
+            }
+          }
+        }
+      }
+    },
+    "eslint": {
+      "version": "9.39.5",
+      "resolved": "https://registry.npmjs.org/eslint/-/eslint-9.39.5.tgz",
+      "overridden": false,
+      "dependencies": {
+        "@eslint-community/eslint-utils": {
+          "version": "4.10.1",
+          "resolved": "https://registry.npmjs.org/@eslint-community/eslint-utils/-/eslint-utils-4.10.1.tgz",
+          "overridden": false,
+          "dependencies": {
+            "eslint": {
+              "version": "9.39.5"
+            }
+          }
+        }
+      }
+    }
+  }
+}

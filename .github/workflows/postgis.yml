@@ -1,0 +1,47 @@
+name: Synthetic PostGIS (manual; activation pending)
+on:
+  workflow_dispatch:
+    inputs:
+      synthetic_only:
+        description: 'Confirm disposable synthetic data only; Actions cost/policy must also be reviewed'
+        required: true
+        type: boolean
+        default: false
+permissions:
+  contents: read
+concurrency:
+  group: p4i-postgis-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  postgis:
+    # R3: hard lock until operator verifies standard public runner entitlement.
+    if: ${{ false && inputs.synthetic_only && github.event.repository.private == false }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+      NEXT_PUBLIC_SUPABASE_URL: http://127.0.0.1:9
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: local-test-only
+      SUPABASE_SERVICE_ROLE_KEY: local-test-only
+      AI_PROVIDER: demo
+      GIS_DEMO_MODE: 'true'
+      GEMINI_FREE_ENABLED: 'false'
+      GEMINI_API_KEY: ''
+      GEE_SERVICE_ACCOUNT_JSON: ''
+      GEE_SERVICE_ACCOUNT_JSON_BASE64: ''
+      GEE_PROJECT_ID: ''
+      GEE_SOIL_ASSET_ID: ''
+      VECTOR_STORAGE_MODE: disabled
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22.23.3'
+          package-manager-cache: false
+      - run: npm ci
+      - run: node scripts/ci/postgis.mjs --run-synthetic-only
+      - name: Failure is not a skipped pass
+        if: ${{ failure() }}
+        run: echo 'PostGIS FAILED or UNAVAILABLE. Inspect the fixture summary; do not count skipped cases as passed.' >> "$GITHUB_STEP_SUMMARY"

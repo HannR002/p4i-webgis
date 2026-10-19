@@ -1,0 +1,29 @@
+[
+  {
+    "number": 12,
+    "state": "open",
+    "draft": true,
+    "merged": false,
+    "head": "086f13f8d95b8cdd6afd0ac85ac5d7fb5a2bd8a1",
+    "headRef": "feat/phase16-vector-spatial-analysis",
+    "base": "feat/phase15-vector-postgis-persistence"
+  },
+  {
+    "number": 13,
+    "state": "open",
+    "draft": true,
+    "merged": false,
+    "head": "940e41069bc90289c50b0d6d7688e95ec9f03766",
+    "headRef": "fix/phase16-map-analysis-state-integrity",
+    "base": "feat/phase16-vector-spatial-analysis"
+  },
+  {
+    "number": 14,
+    "state": "open",
+    "draft": true,
+    "merged": false,
+    "head": "cb3e20f79b245cb6ceedde4a61a13fcac2b16033",
+    "headRef": "fix/post-audit-r2-secure-geospatial-upload",
+    "base": "fix/phase16-map-analysis-state-integrity"
+  }
+]

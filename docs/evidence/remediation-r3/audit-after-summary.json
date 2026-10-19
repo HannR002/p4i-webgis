@@ -1,0 +1,32 @@
+{
+  "full": {
+    "affectedPackages": 5,
+    "severities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 5,
+      "critical": 0,
+      "total": 5
+    },
+    "distinctAdvisories": 1,
+    "advisories": [
+      "https://github.com/advisories/GHSA-vfj7-8cjw-p6xm"
+    ],
+    "passed": false
+  },
+  "production": {
+    "affectedPackages": 0,
+    "severities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "distinctAdvisories": 0,
+    "advisories": [],
+    "passed": true
+  }
+}
