@@ -1,0 +1,427 @@
+{
+  "date": "2026-10-24 Asia/Jakarta",
+  "baseSha": "063b61f1dcf0208cc1d428d14b1383425d54a635",
+  "branch": "fix/post-audit-r5-nextjs-critical-security",
+  "node": "22.23.3",
+  "npm": "10.9.9",
+  "commands": [
+    {
+      "name": "before-audit-full",
+      "command": [
+        "npm",
+        "audit",
+        "--json"
+      ],
+      "exitCode": 1,
+      "seconds": 3.19
+    },
+    {
+      "name": "before-audit-production",
+      "command": [
+        "npm",
+        "audit",
+        "--omit=dev",
+        "--json"
+      ],
+      "exitCode": 1,
+      "seconds": 1.02
+    },
+    {
+      "name": "before-tree",
+      "command": [
+        "npm",
+        "ls",
+        "--all",
+        "--json"
+      ],
+      "exitCode": 0,
+      "seconds": 0.78
+    },
+    {
+      "name": "lock-update",
+      "command": [
+        "npm",
+        "install",
+        "--package-lock-only",
+        "--ignore-scripts"
+      ],
+      "exitCode": 0,
+      "seconds": 8.98
+    },
+    {
+      "name": "fresh-install",
+      "command": [
+        "npm",
+        "ci"
+      ],
+      "exitCode": 0,
+      "seconds": 18.01
+    },
+    {
+      "name": "zod-chain",
+      "command": [
+        "npm",
+        "explain",
+        "zod"
+      ],
+      "exitCode": 0,
+      "seconds": 0.42
+    },
+    {
+      "name": "zod-security-update",
+      "command": [
+        "npm",
+        "update",
+        "zod",
+        "--package-lock-only",
+        "--ignore-scripts"
+      ],
+      "exitCode": 0,
+      "seconds": 0.87
+    },
+    {
+      "name": "final-fresh-install",
+      "command": [
+        "npm",
+        "ci"
+      ],
+      "exitCode": 0,
+      "seconds": 17.49
+    },
+    {
+      "name": "lint",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exitCode": 0,
+      "seconds": 10.39
+    },
+    {
+      "name": "typecheck",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "seconds": 8.49
+    },
+    {
+      "name": "application-tests",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--reporter=default",
+        "--reporter=json",
+        "--outputFile=/workspace/artifacts/remediation-r5/application-tests.json"
+      ],
+      "exitCode": 0,
+      "seconds": 7.09
+    },
+    {
+      "name": "ci-helper-tests",
+      "command": [
+        "npm",
+        "run",
+        "test:ci"
+      ],
+      "exitCode": 0,
+      "seconds": 0.42
+    },
+    {
+      "name": "build",
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exitCode": 0,
+      "seconds": 27.86
+    },
+    {
+      "name": "gee-isolation",
+      "command": [
+        "/workspace/.toolchains/node-v22.23.3-linux-x64/bin/node",
+        "scripts/qa/phase-12-isolation.mjs"
+      ],
+      "exitCode": 0,
+      "seconds": 0.72
+    },
+    {
+      "name": "final-audit-full",
+      "command": [
+        "npm",
+        "audit",
+        "--json"
+      ],
+      "exitCode": 0,
+      "seconds": 0.57
+    },
+    {
+      "name": "final-audit-production",
+      "command": [
+        "npm",
+        "audit",
+        "--omit=dev",
+        "--json"
+      ],
+      "exitCode": 0,
+      "seconds": 0.57
+    },
+    {
+      "name": "final-tree",
+      "command": [
+        "npm",
+        "ls",
+        "--all",
+        "--json"
+      ],
+      "exitCode": 0,
+      "seconds": 0.57
+    },
+    {
+      "name": "dependency-gate",
+      "command": [
+        "/workspace/.toolchains/node-v22.23.3-linux-x64/bin/node",
+        "scripts/ci/dependency-audit.mjs"
+      ],
+      "exitCode": 0,
+      "seconds": 1.12
+    },
+    {
+      "name": "compiled-exposure",
+      "command": [
+        "/workspace/.toolchains/node-v22.23.3-linux-x64/bin/node",
+        "/workspace/artifacts/remediation-r5/exposure.cjs"
+      ],
+      "exitCode": 0,
+      "seconds": 0.72
+    },
+    {
+      "name": "actionlint",
+      "command": [
+        "/workspace/artifacts/remediation-r3/actionlint/actionlint",
+        ".github/workflows/ci.yml",
+        ".github/workflows/postgis.yml"
+      ],
+      "exitCode": 0,
+      "seconds": 0.12
+    },
+    {
+      "name": "phase15-runner-syntax",
+      "command": [
+        "/workspace/.toolchains/node-v22.23.3-linux-x64/bin/node",
+        "--check",
+        "scripts/qa/phase-15-vector-persistence.mjs"
+      ],
+      "exitCode": 0,
+      "seconds": 0.12
+    },
+    {
+      "name": "phase16-runner-syntax",
+      "command": [
+        "/workspace/.toolchains/node-v22.23.3-linux-x64/bin/node",
+        "--check",
+        "scripts/qa/phase-16-vector-analysis.mjs"
+      ],
+      "exitCode": 0,
+      "seconds": 0.6
+    }
+  ],
+  "applicationTests": {
+    "passed": 517,
+    "failed": 0,
+    "skipped": 37,
+    "skipReason": "37 opt-in PostGIS cases; no new fixture authorization"
+  },
+  "ciHelpers": {
+    "passed": 14,
+    "failed": 0
+  },
+  "browserAndLocalProductionCommands": [
+    {
+      "name": "phase-09-readiness",
+      "command": [
+        "/workspace/.toolchains/node-v22.23.3-linux-x64/bin/node",
+        "scripts/qa/phase-09-readiness.mjs"
+      ],
+      "exitCode": 0,
+      "seconds": 0.57
+    },
+    {
+      "name": "phase-11-framework",
+      "command": [
+        "/workspace/.toolchains/node-v22.23.3-linux-x64/bin/node",
+        "scripts/qa/phase-11-framework.mjs"
+      ],
+      "exitCode": 0,
+      "seconds": 0.22
+    },
+    {
+      "name": "phase-15-production-boundary",
+      "command": [
+        "/workspace/.toolchains/node-v22.23.3-linux-x64/bin/node",
+        "scripts/qa/phase-15-production-boundary.mjs"
+      ],
+      "exitCode": 0,
+      "seconds": 0.16
+    },
+    {
+      "name": "phase-01-regression",
+      "command": [
+        "/workspace/.toolchains/node-v22.23.3-linux-x64/bin/node",
+        "scripts/qa/phase-01-regression.mjs"
+      ],
+      "exitCode": 0,
+      "seconds": 42.38
+    },
+    {
+      "name": "phase-02-smoke",
+      "command": [
+        "/workspace/.toolchains/node-v22.23.3-linux-x64/bin/node",
+        "scripts/qa/phase-02-smoke.mjs"
+      ],
+      "exitCode": 0,
+      "seconds": 32.84
+    },
+    {
+      "name": "phase-03-raster",
+      "command": [
+        "/workspace/.toolchains/node-v22.23.3-linux-x64/bin/node",
+        "scripts/qa/phase-03-raster.mjs"
+      ],
+      "exitCode": 0,
+      "seconds": 29.18
+    },
+    {
+      "name": "phase-04-configuration",
+      "command": [
+        "/workspace/.toolchains/node-v22.23.3-linux-x64/bin/node",
+        "scripts/qa/phase-04-configuration.mjs"
+      ],
+      "exitCode": 0,
+      "seconds": 21.99
+    },
+    {
+      "name": "phase-05-copilot",
+      "command": [
+        "/workspace/.toolchains/node-v22.23.3-linux-x64/bin/node",
+        "scripts/qa/phase-05-copilot.mjs"
+      ],
+      "exitCode": 0,
+      "seconds": 16.94
+    },
+    {
+      "name": "phase-06-compute",
+      "command": [
+        "/workspace/.toolchains/node-v22.23.3-linux-x64/bin/node",
+        "scripts/qa/phase-06-compute.mjs"
+      ],
+      "exitCode": 0,
+      "seconds": 14.73
+    },
+    {
+      "name": "phase-07-deliverables",
+      "command": [
+        "/workspace/.toolchains/node-v22.23.3-linux-x64/bin/node",
+        "scripts/qa/phase-07-deliverables.mjs"
+      ],
+      "exitCode": 0,
+      "seconds": 9.37
+    },
+    {
+      "name": "phase-13-vector-editor",
+      "command": [
+        "/workspace/.toolchains/node-v22.23.3-linux-x64/bin/node",
+        "scripts/qa/phase-13-vector-editor.mjs"
+      ],
+      "exitCode": 0,
+      "seconds": 9.72
+    },
+    {
+      "name": "phase-14-vector-digitizing",
+      "command": [
+        "/workspace/.toolchains/node-v22.23.3-linux-x64/bin/node",
+        "scripts/qa/phase-14-vector-digitizing.mjs"
+      ],
+      "exitCode": 0,
+      "seconds": 9.83
+    },
+    {
+      "name": "remediation-r1-map-lifecycle",
+      "command": [
+        "/workspace/.toolchains/node-v22.23.3-linux-x64/bin/node",
+        "scripts/qa/remediation-r1-map-lifecycle.mjs"
+      ],
+      "exitCode": 0,
+      "seconds": 23.8
+    },
+    {
+      "name": "remediation-r2-upload",
+      "command": [
+        "/workspace/.toolchains/node-v22.23.3-linux-x64/bin/node",
+        "scripts/qa/remediation-r2-upload.mjs"
+      ],
+      "exitCode": 0,
+      "seconds": 9.7
+    }
+  ],
+  "browserSuites": {
+    "passed": 11,
+    "failed": 0,
+    "actualPostgis": false,
+    "mode": "Local DEMO; R1 synthetic result fixtures; R2 loopback Auth/REST double"
+  },
+  "productionLocal": {
+    "apiIsolationChecks": 12,
+    "imageChecks": 3,
+    "vectorBoundaryChecks": 7,
+    "GIS_DEMO_MODE": false,
+    "VECTOR_STORAGE_MODE": "disabled"
+  },
+  "audits": {
+    "before-audit-full": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 2,
+      "critical": 1,
+      "total": 3
+    },
+    "before-audit-production": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 1,
+      "total": 1
+    },
+    "final-audit-full": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "final-audit-production": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    }
+  },
+  "hostedCI": "ACTIVATION_PENDING; locks unchanged; no hosted PASS claimed",
+  "actualPostgisR5": "NOT_RUN / AUTHORIZATION_REQUIRED",
+  "dockerMutations": 0,
+  "newApplicationSourceChanges": false,
+  "lockfileSha256": "aca2e837d530006d5946692111e4e7200b2b0262fc03714540550a770a4c2a20",
+  "lockUnchangedDuringChecks": true,
+  "mergeReadiness": "NO-GO pending independent review, required checks and security disposition",
+  "productionReadiness": "NO-GO"
+}

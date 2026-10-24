@@ -1,0 +1,36 @@
+(node:6575) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+## Dependency gates (no advisory waivers)
+
+```json
+{
+  "full": {
+    "affectedPackages": 0,
+    "severities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "distinctAdvisories": 0,
+    "advisories": [],
+    "passed": true
+  },
+  "production": {
+    "affectedPackages": 0,
+    "severities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "distinctAdvisories": 0,
+    "advisories": [],
+    "passed": true
+  }
+}
+```

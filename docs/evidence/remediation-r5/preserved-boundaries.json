@@ -1,0 +1,30 @@
+{
+  ".github/workflows/ci.yml": {
+    "sha256": "638fa6eddd2e4c837d42a23a61712c34767008e21d79d534af378aab17f0f058",
+    "unchangedFromR3": true
+  },
+  ".github/workflows/postgis.yml": {
+    "sha256": "8665d599de5aaf5c103731d9a76d87b1e6d99a5835762407b3dfeaf8d9542c4a",
+    "unchangedFromR3": true
+  },
+  "scripts/ci/dependency-audit.mjs": {
+    "sha256": "fdc86349601078898182f580b976bd03b14be34db6b2f07db21557dca610a587",
+    "unchangedFromR3": true
+  },
+  "scripts/ci/report.mjs": {
+    "sha256": "a025f20c93ecf8fbd0662e95b5f552039b6e082990d8dd200cac0d9def8f8b63",
+    "unchangedFromR3": true
+  },
+  "scripts/qa/phase-15-vector-persistence.mjs": {
+    "sha256": "20b4d21531095c69efda30b6493e7646b89b0bcc8a113ed4a93b892c80cddf31",
+    "unchangedFromR3": true
+  },
+  "scripts/qa/phase-16-vector-analysis.mjs": {
+    "sha256": "649cb0fdb28a8701629573d3ca094c7921309b4dc1f9b5cff5e79a2440a22dd2",
+    "unchangedFromR3": true
+  },
+  "R4 report": {
+    "sha256": "320e80a8327480631bd29c32206099cae01a7836a7fb80322d809c8bd9a6b01f",
+    "unchanged": true
+  }
+}

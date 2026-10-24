@@ -1,0 +1,414 @@
+{
+  "phase-02-smoke/flows.json": {
+    "pageErrors": [],
+    "viewports": [
+      320,
+      390,
+      768,
+      1024,
+      1480
+    ],
+    "result": "passed"
+  },
+  "phase-03-raster/browser-summary.json": {
+    "pageErrors": [],
+    "audits": [
+      {
+        "width": 1480,
+        "panel": "Pixel",
+        "violations": []
+      },
+      {
+        "width": 1480,
+        "panel": "Analisis",
+        "violations": []
+      },
+      {
+        "width": 390,
+        "panel": "Pixel",
+        "violations": []
+      },
+      {
+        "width": 390,
+        "panel": "Analisis",
+        "violations": []
+      }
+    ]
+  },
+  "phase-04-configuration/browser-summary.json": {
+    "pageErrors": [],
+    "geeCalls": 0,
+    "audits": [
+      {
+        "width": 1480,
+        "type": "ahp-smce",
+        "violations": []
+      },
+      {
+        "width": 1480,
+        "type": "wlc",
+        "violations": []
+      },
+      {
+        "width": 1480,
+        "type": "flood-susceptibility",
+        "violations": []
+      },
+      {
+        "width": 1480,
+        "type": "zonal-statistics",
+        "violations": []
+      },
+      {
+        "width": 390,
+        "type": "ahp-smce",
+        "violations": []
+      },
+      {
+        "width": 390,
+        "type": "wlc",
+        "violations": []
+      },
+      {
+        "width": 390,
+        "type": "flood-susceptibility",
+        "violations": []
+      },
+      {
+        "width": 390,
+        "type": "zonal-statistics",
+        "violations": []
+      }
+    ]
+  },
+  "phase-05-copilot/browser-summary.json": {
+    "pageErrors": [],
+    "geeCalls": 0,
+    "analysisCalls": 1,
+    "flows": [
+      "automatic authorized map generation, existing renderer, AOI, legend and atomic Undo/Redo",
+      "opacity/style/order, actual catalog metadata/provider pixels/NoData and no silent real-AOI substitution",
+      "optional preview, exact reviewed-plan execution and tab persistence",
+      "Phase 04 config create/select/fork/undo/prepare/apply and explicit local save approval, no automatic persistence",
+      "analysis preparation does not compute; explicit existing Analysis panel executes native DEMO statistics",
+      "request abort and stale-response rejection keep human map changes"
+    ],
+    "audits": [
+      {
+        "width": 1480,
+        "state": "automatic-map",
+        "violations": []
+      },
+      {
+        "width": 1480,
+        "state": "pixel",
+        "violations": []
+      },
+      {
+        "width": 1480,
+        "state": "approval",
+        "violations": []
+      },
+      {
+        "width": 1480,
+        "state": "unavailable",
+        "violations": []
+      },
+      {
+        "width": 390,
+        "state": "automatic-map",
+        "violations": []
+      },
+      {
+        "width": 390,
+        "state": "pixel",
+        "violations": []
+      },
+      {
+        "width": 390,
+        "state": "approval",
+        "violations": []
+      },
+      {
+        "width": 390,
+        "state": "unavailable",
+        "violations": []
+      }
+    ]
+  },
+  "phase-06-compute/browser-summary.json": {
+    "flows": [
+      "Automatic area job, MapRecipe result, undo/redo, actual Markdown download",
+      "Distance operation from explicit [longitude,latitude] inputs",
+      "1600-cell job blocked before explicit approval",
+      "Human approval bound to snapshot; categorical native zonal statistics; result applied to workspace",
+      "Job cannot be read from another anonymous browser session",
+      "Computed result retained in JSON; existing PDF and PNG downloads complete",
+      "390px/768px responsive overflow and WCAG AA automated checks",
+      "Cancelled approval job retries with fresh approval requirement",
+      "Unresolved real AOI refusal with no fabricated flood result",
+      "Unavailable flood adapter displays UNKNOWN external cost and disabled approval"
+    ],
+    "audits": [
+      {
+        "width": 390,
+        "violations": []
+      },
+      {
+        "width": 768,
+        "violations": []
+      }
+    ],
+    "errors": [],
+    "externalComputeCalls": 0
+  },
+  "phase-07-deliverables/browser-summary.json": {
+    "flows": [
+      "Existing map \u2192 Copilot draft \u2192 isolated project report; owned real compute result attached",
+      "Entitled client cannot see unpublished draft",
+      "Request changes, new immutable revision, resubmission and explicit four-check human review",
+      "Admin persona receives no implicit reviewer or publisher grant",
+      "Explicit simulated release, published revision-only client DTO and actual PDF/JSON downloads; internal notes redacted",
+      "New draft preserves released revision; other-client project cannot access report",
+      "Separate development session has no access to first session reports"
+    ],
+    "audits": [
+      {
+        "width": 1480,
+        "violations": []
+      },
+      {
+        "width": 390,
+        "violations": []
+      },
+      {
+        "width": 768,
+        "violations": []
+      }
+    ],
+    "errors": [],
+    "geeCalls": 0
+  },
+  "phase-13-vector-editor/results.json": {
+    "flows": [
+      "Indonesian map/points/polygon appear in actual Leaflet pane",
+      "Manual rename, coordinates, style, delete, Undo/Redo",
+      "Explicit save and reload GeoJSON in existing local MapRecipe draft",
+      "Click-to-add point and polygon vertices",
+      "Ekspor PNG download",
+      "Ekspor PDF download"
+    ],
+    "audits": [
+      {
+        "width": 1480,
+        "violations": []
+      },
+      {
+        "width": 768,
+        "violations": []
+      },
+      {
+        "width": 390,
+        "violations": []
+      },
+      {
+        "width": 320,
+        "violations": []
+      }
+    ],
+    "errors": [],
+    "externalAI": 0,
+    "result": "passed"
+  },
+  "phase-14-vector-digitizing/results.json": {
+    "flows": [
+      "Real map clicks draw a three-vertex LineString; unfinished geometry excluded from export",
+      "Actual draggable Leaflet handles: one Undo for drag, Redo, Escape cancellation",
+      "Keyboard vertex insertion/removal and real typed attribute table editing/filtering/selection",
+      "Screen-space vertex snap matches the existing endpoint exactly",
+      "Existing Copilot applies validated line styling and opens actual attribute table",
+      "Validated local import renders holes/multipart; layer reorder, cancelled deletion, faithful GeoJSON export and explicit save"
+    ],
+    "audits": [
+      {
+        "width": 1480,
+        "violations": []
+      },
+      {
+        "width": 768,
+        "violations": []
+      },
+      {
+        "width": 390,
+        "violations": []
+      },
+      {
+        "width": 320,
+        "violations": []
+      }
+    ],
+    "errors": [],
+    "external": 0,
+    "result": "passed"
+  },
+  "remediation-r1-map-lifecycle/results.json": {
+    "flows": [
+      "Copilot new map, Undo/Redo and a result created in the new context",
+      "Reviewed Copilot createMap clears overlay only when applied",
+      "Catalog client-side navigation replaces map without retaining overlay",
+      "Old preview cannot cross a byte-identical draft replacement",
+      "Opening identical local draft clears result and estimate",
+      "Validated MapRecipe import clears prior overlay even with identical local IDs",
+      "Reopening project layer invalidates result without writing revisions",
+      "Harmless presentation changes preserve existing result",
+      "Delayed analysis response cannot restore state after replacement"
+    ],
+    "audits": [
+      {
+        "width": 1480,
+        "violations": []
+      },
+      {
+        "width": 390,
+        "violations": []
+      }
+    ],
+    "errors": [],
+    "forbiddenCalls": 0,
+    "storageWrites": 0,
+    "dataMode": "SYNTHETIC_BROWSER_MOCK_NO_DATABASE",
+    "result": "passed"
+  },
+  "remediation-r2-upload/results.json": {
+    "result": "passed",
+    "dataMode": "LOOPBACK_AUTH_REST_DOUBLE_NO_DATABASE",
+    "syntheticWrites": 4,
+    "flows": [
+      "ZIP/oversize UI refusal",
+      "Analyst GeoJSON upload preserves coordinates and restricted tier",
+      "Unauthorized and client-metadata escalation refusal",
+      "ZIP and invalid geometry rejected before persistence",
+      "Super admin upload",
+      "Desktop/mobile upload form"
+    ],
+    "errors": [],
+    "audits": [
+      {
+        "width": 1480,
+        "violations": []
+      },
+      {
+        "width": 390,
+        "violations": []
+      }
+    ]
+  },
+  "phase-09-readiness/production-isolation.json": {
+    "mode": "LOCAL_NEXT_START_WITH_DEMO_FLAGS_SET",
+    "results": [
+      {
+        "route": "/api/consulting",
+        "status": 403
+      },
+      {
+        "route": "/api/consulting/download?id=unknown&format=pdf",
+        "status": 403
+      },
+      {
+        "route": "/api/gis/compute",
+        "status": 403
+      },
+      {
+        "route": "/api/gis/copilot",
+        "status": 503
+      },
+      {
+        "route": "/api/gis/pixel",
+        "status": 503
+      },
+      {
+        "route": "/api/gis/vector/demo-boundaries",
+        "status": 503
+      },
+      {
+        "route": "/api/gis/tiles/demo-rainfall/2/0/0",
+        "status": 503
+      },
+      {
+        "route": "/api/gee/flood-analysis",
+        "status": 401
+      },
+      {
+        "route": "/api/admin/users",
+        "status": 401
+      },
+      {
+        "route": "/api/gis/catalog",
+        "mode": "unavailable",
+        "status": 200
+      },
+      {
+        "route": "/api/boundaries",
+        "status": 429,
+        "processRateLimit": true
+      },
+      {
+        "route": "/api/gis/copilot",
+        "status": 429,
+        "processRateLimit": true
+      }
+    ],
+    "externalAnalysisExecuted": false
+  },
+  "phase-11-framework/framework-checks.json": {
+    "mode": "LOCAL_NEXT_START",
+    "results": [
+      {
+        "check": "local image optimization",
+        "status": 200,
+        "width": 640
+      },
+      {
+        "check": "disallowed remote image",
+        "status": 400
+      },
+      {
+        "check": "invalid image width",
+        "status": 400
+      }
+    ]
+  },
+  "phase-15-production-boundary/results.json": {
+    "mode": "LOCAL_NEXT_START_ONLY",
+    "results": [
+      {
+        "check": "production refuses acknowledged local capability",
+        "status": 200
+      },
+      {
+        "check": "no authenticated session",
+        "status": 401
+      },
+      {
+        "check": "cross-origin denial",
+        "status": 403
+      },
+      {
+        "check": "production write capability disabled",
+        "status": 503
+      },
+      {
+        "check": "client-supplied authority refused",
+        "status": 400
+      },
+      {
+        "check": "streamed upload budget",
+        "status": 400
+      },
+      {
+        "check": "production project load disabled",
+        "status": 503
+      }
+    ]
+  }
+}

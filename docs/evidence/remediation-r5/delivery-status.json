@@ -1,0 +1,31 @@
+{
+  "baseRefName": "fix/post-audit-r3-ci-security-gates",
+  "headRefName": "fix/post-audit-r5-nextjs-critical-security",
+  "headRefOid": "271c0d93683051aca5e698e4d7d1ac969c27f08a",
+  "isDraft": true,
+  "number": 16,
+  "state": "OPEN",
+  "statusCheckRollup": [
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-24T09:36:10Z",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/HannR002/p4i-webgis/actions/runs/40082603302/job/120839058283",
+      "name": "application",
+      "startedAt": "2026-10-24T09:36:10Z",
+      "status": "COMPLETED",
+      "workflowName": "P4I checks (activation pending)"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-24T09:36:10Z",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/HannR002/p4i-webgis/actions/runs/40082603302/job/120839057855",
+      "name": "dependencies",
+      "startedAt": "2026-10-24T09:36:10Z",
+      "status": "COMPLETED",
+      "workflowName": "P4I checks (activation pending)"
+    }
+  ],
+  "url": "https://github.com/HannR002/p4i-webgis/pull/16"
+}
