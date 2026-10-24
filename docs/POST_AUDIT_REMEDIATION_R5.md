@@ -149,3 +149,7 @@ Independent review must check dependency diffs/official disposition, preserved G
 One focused Draft PR targets R3; no earlier PR is changed or merged. Relevant tracked files are `package.json`, `package-lock.json`, the generated one-line AGENTS.md heading, this report and sanitized evidence under `docs/evidence/remediation-r5/`. Source compatibility changes and new test-framework abstractions were unnecessary. Screenshots, full dependency trees and raw local logs stay outside the repository; no credentials or fixture state are published.
 
 **Technical security remediation: supported by the recorded local checks. Cumulative merge: NO-GO pending independent review and required verification. Production: NO-GO.** Reviewers may reconsider the former Next.js blocker on the new patched candidate; they must not treat that as approval to merge or deploy.
+
+## Draft delivery
+
+Draft [PR #16](https://github.com/HannR002/p4i-webgis/pull/16) targets R3 (`fix/post-audit-r3-ci-security-gates`). The remediation implementation commit is `271c0d9`; later evidence-only delivery updates do not alter tested dependencies. No earlier PR was merged or retargeted. Hosted checks remain separately reported; see [delivery snapshot](evidence/remediation-r5/delivery-status.json). No hosted PASS is claimed.
