@@ -1,0 +1,83 @@
+[
+  {
+    "ghsa_id": "GHSA-673q-mjm6-r5xr",
+    "cve_id": null,
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-673q-mjm6-r5xr",
+    "summary": "Unauthenticated Remote Code Execution in `use cache` functions returning typed arrays",
+    "severity": "critical",
+    "description": "## Impact\r\n\r\nA vulnerability in applications using App router with Cache Component can lead to remote code execution. The application needs to have a `use cache` function that returns multiple typed arrays.\r\n\r\n## Workaround\r\n\r\nThere is no known workaround for affected applications with such `use cache` functions. You should upgrade immediately even if your application does not have similar functions.",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">=16.0.0 <= 16.4.0",
+        "patched_versions": "16.4.1",
+        "vulnerable_functions": []
+      }
+    ],
+    "published_at": "2026-10-14T17:47:07Z",
+    "updated_at": "2026-10-14T17:47:07Z"
+  },
+  {
+    "ghsa_id": "GHSA-2464-fhr4-w9xw",
+    "cve_id": "CVE-2026-96889",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-2464-fhr4-w9xw",
+    "summary": "Unauthenticated Remote Code Execution in Image Optimization API when SVG files are used",
+    "severity": "critical",
+    "description": "<!-- https://linear.app/vercel/issue/NSEC-386 -->\r\n\r\n## Impact\r\n\r\nA memory-related vulnerability has been discovered in an upstream library used for Image Optimization can lead to possible remote code execution (RCE) when Next.js runs on glibc-based Linux.\r\n\r\n## Workaround\r\n\r\nEnsure the version of `sharp` used by Next.js is greater than or equal to `0.35.5`. Fresh installs automatically get a fixed version fo `sharp`.\r\nUpgrading Next.js to the patched versions will ensure package managers automatically provide a fixed version of `sharp` to Next.js.",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 10.0.0  <= 15.5.27",
+        "patched_versions": "15.5.28",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "> 16.0.0 <= 16.4.0",
+        "patched_versions": "16.4.1",
+        "vulnerable_functions": []
+      }
+    ],
+    "published_at": "2026-10-14T17:46:48Z",
+    "updated_at": "2026-10-14T17:46:48Z"
+  },
+  {
+    "ghsa_id": "GHSA-p3m5-59mp-jv5r",
+    "cve_id": null,
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-p3m5-59mp-jv5r",
+    "summary": "Denial of Service in App Router using Server Actions",
+    "severity": "high",
+    "description": "<!-- https://linear.app/vercel/issue/NSEC-359 -->\r\n\r\n## Impact\r\n\r\nCrafted requests targeting Next.js applications using App Router with at least one Server Action can lead to excessive CPU usage blocking processing of further requests in the same process.\r\n\r\n## Workarounds\r\n\r\nNo workaround exists besides upgrading. Applications using Pages Router or not using Server Actions are not vulnerable.\r\n\r\n",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">=13.0.0 <= 15.5.27",
+        "patched_versions": "15.5.28",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 16.0.0 <= 16.4.0",
+        "patched_versions": "16.4.1",
+        "vulnerable_functions": []
+      }
+    ],
+    "published_at": "2026-10-14T17:47:43Z",
+    "updated_at": "2026-10-14T17:47:43Z"
+  }
+]

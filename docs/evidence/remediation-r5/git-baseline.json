@@ -1,0 +1,72 @@
+{
+  "remoteHeads": [
+    "086f13f8d95b8cdd6afd0ac85ac5d7fb5a2bd8a1\trefs/heads/feat/phase16-vector-spatial-analysis",
+    "940e41069bc90289c50b0d6d7688e95ec9f03766\trefs/heads/fix/phase16-map-analysis-state-integrity",
+    "cb3e20f79b245cb6ceedde4a61a13fcac2b16033\trefs/heads/fix/post-audit-r2-secure-geospatial-upload",
+    "063b61f1dcf0208cc1d428d14b1383425d54a635\trefs/heads/fix/post-audit-r3-ci-security-gates",
+    "dfe412c81c1254707cbd16083791dc009cf90643\trefs/heads/main"
+  ],
+  "pullRequests": [
+    {
+      "number": 12,
+      "state": "open",
+      "draft": true,
+      "merged": false,
+      "html_url": "https://github.com/HannR002/p4i-webgis/pull/12",
+      "base": {
+        "ref": "feat/phase15-vector-postgis-persistence",
+        "sha": "f163af6c2593bc0ef58ce0c6d3be331dc4823c96"
+      },
+      "head": {
+        "ref": "feat/phase16-vector-spatial-analysis",
+        "sha": "086f13f8d95b8cdd6afd0ac85ac5d7fb5a2bd8a1"
+      }
+    },
+    {
+      "number": 13,
+      "state": "open",
+      "draft": true,
+      "merged": false,
+      "html_url": "https://github.com/HannR002/p4i-webgis/pull/13",
+      "base": {
+        "ref": "feat/phase16-vector-spatial-analysis",
+        "sha": "086f13f8d95b8cdd6afd0ac85ac5d7fb5a2bd8a1"
+      },
+      "head": {
+        "ref": "fix/phase16-map-analysis-state-integrity",
+        "sha": "940e41069bc90289c50b0d6d7688e95ec9f03766"
+      }
+    },
+    {
+      "number": 14,
+      "state": "open",
+      "draft": true,
+      "merged": false,
+      "html_url": "https://github.com/HannR002/p4i-webgis/pull/14",
+      "base": {
+        "ref": "fix/phase16-map-analysis-state-integrity",
+        "sha": "940e41069bc90289c50b0d6d7688e95ec9f03766"
+      },
+      "head": {
+        "ref": "fix/post-audit-r2-secure-geospatial-upload",
+        "sha": "cb3e20f79b245cb6ceedde4a61a13fcac2b16033"
+      }
+    },
+    {
+      "number": 15,
+      "state": "open",
+      "draft": true,
+      "merged": false,
+      "html_url": "https://github.com/HannR002/p4i-webgis/pull/15",
+      "base": {
+        "ref": "fix/post-audit-r2-secure-geospatial-upload",
+        "sha": "cb3e20f79b245cb6ceedde4a61a13fcac2b16033"
+      },
+      "head": {
+        "ref": "fix/post-audit-r3-ci-security-gates",
+        "sha": "063b61f1dcf0208cc1d428d14b1383425d54a635"
+      }
+    }
+  ],
+  "ancestry": "Each PR head verified ancestor of next; R5 based on latest verified R3"
+}

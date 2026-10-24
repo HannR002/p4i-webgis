@@ -1,0 +1,104 @@
+(node:6365) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+> p4i-webgis@0.1.0 test:ci
+> node --test scripts/ci/*.check.mjs
+
+(node:6378) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAP version 13
+# (node:6385) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: Default test summary reports skipped database cases separately
+ok 1 - Default test summary reports skipped database cases separately
+  ---
+  duration_ms: 1.688934
+  type: 'test'
+  ...
+# Subtest: Missing, failed, unknown and default-CI executed database tests fail closed
+ok 2 - Missing, failed, unknown and default-CI executed database tests fail closed
+  ---
+  duration_ms: 0.40096
+  type: 'test'
+  ...
+# Subtest: Opt-in database summary requires execution and rejects skips
+ok 3 - Opt-in database summary requires execution and rejects skips
+  ---
+  duration_ms: 0.159421
+  type: 'test'
+  ...
+# Subtest: Audit distinguishes packages from advisory count, with no waiver
+ok 4 - Audit distinguishes packages from advisory count, with no waiver
+  ---
+  duration_ms: 0.30199
+  type: 'test'
+  ...
+# Subtest: Audit network errors, incomplete and inconsistent data fail closed
+ok 5 - Audit network errors, incomplete and inconsistent data fail closed
+  ---
+  duration_ms: 0.259318
+  type: 'test'
+  ...
+# Subtest: Fixture ownership rejects external addresses, redirects and foreign resource names
+ok 6 - Fixture ownership rejects external addresses, redirects and foreign resource names
+  ---
+  duration_ms: 0.584992
+  type: 'test'
+  ...
+# Subtest: Fixture lifecycle success cleans up and preserves failure category
+ok 7 - Fixture lifecycle success cleans up and preserves failure category
+  ---
+  duration_ms: 0.315524
+  type: 'test'
+  ...
+# Subtest: Fixture lifecycle start cleans up and preserves failure category
+ok 8 - Fixture lifecycle start cleans up and preserves failure category
+  ---
+  duration_ms: 0.125335
+  type: 'test'
+  ...
+# Subtest: Fixture lifecycle ready cleans up and preserves failure category
+ok 9 - Fixture lifecycle ready cleans up and preserves failure category
+  ---
+  duration_ms: 0.39142
+  type: 'test'
+  ...
+# Subtest: Fixture lifecycle test cleans up and preserves failure category
+ok 10 - Fixture lifecycle test cleans up and preserves failure category
+  ---
+  duration_ms: 0.424731
+  type: 'test'
+  ...
+# Subtest: Fixture lifecycle cleanup cleans up and preserves failure category
+ok 11 - Fixture lifecycle cleanup cleans up and preserves failure category
+  ---
+  duration_ms: 0.489234
+  type: 'test'
+  ...
+# Subtest: Workflow policies: locked, immutable actions, read-only, no credentials or paid resources
+ok 12 - Workflow policies: locked, immutable actions, read-only, no credentials or paid resources
+  ---
+  duration_ms: 0.669912
+  type: 'test'
+  ...
+# Subtest: Startup cleanup uncertainty is reported, never promoted to a pass
+ok 13 - Startup cleanup uncertainty is reported, never promoted to a pass
+  ---
+  duration_ms: 0.208966
+  type: 'test'
+  ...
+# Subtest: Inconsistent severity totals cannot produce a green dependency gate
+ok 14 - Inconsistent severity totals cannot produce a green dependency gate
+  ---
+  duration_ms: 0.225859
+  type: 'test'
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 14
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 106.386263
