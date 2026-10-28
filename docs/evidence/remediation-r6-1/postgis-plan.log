@@ -1,0 +1,20 @@
+(node:131341) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+## PostGIS plan; NOT EXECUTED
+
+```json
+{
+  "suites": [
+    "tests/vectorPostgis.integration.test.ts",
+    "tests/vectorAnalysis.integration.test.ts"
+  ],
+  "expectedCoverage": {
+    "tests/vectorPostgis.integration.test.ts": 14,
+    "tests/vectorAnalysis.integration.test.ts": 23
+  },
+  "expectedAssertions": 37,
+  "fixture": "owned local Docker, synthetic identities only",
+  "activation": "explicit --run-synthetic-only; hosted workflow locked pending review"
+}
+```
+

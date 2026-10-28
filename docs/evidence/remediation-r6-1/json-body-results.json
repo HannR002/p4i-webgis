@@ -1,0 +1,161 @@
+{
+  "source": "npm test actual Vitest JSON",
+  "assertions": [
+    {
+      "name": "'HTTP' bounded ingestion accepts valid JSON and releases its reader/timer/listener",
+      "status": "passed"
+    },
+    {
+      "name": "'HTTP' bounded ingestion rejects empty/invalid input null",
+      "status": "passed"
+    },
+    {
+      "name": "'HTTP' bounded ingestion rejects empty/invalid input \"\"",
+      "status": "passed"
+    },
+    {
+      "name": "'HTTP' bounded ingestion rejects empty/invalid input \"{\"",
+      "status": "passed"
+    },
+    {
+      "name": "'HTTP' bounded ingestion rejects empty/invalid input \"null trailing\"",
+      "status": "passed"
+    },
+    {
+      "name": "'HTTP' bounded ingestion decodes split UTF8 across multiple chunks",
+      "status": "passed"
+    },
+    {
+      "name": "'HTTP' bounded ingestion accepts a 65535-byte boundary payload",
+      "status": "passed"
+    },
+    {
+      "name": "'HTTP' bounded ingestion accepts a 65536-byte boundary payload",
+      "status": "passed"
+    },
+    {
+      "name": "'HTTP' bounded ingestion counts bytes, ignores false Content-Length, cancels oversize and unlocks",
+      "status": "passed"
+    },
+    {
+      "name": "'HTTP' bounded ingestion rejects cumulative oversize across individually small chunks",
+      "status": "passed"
+    },
+    {
+      "name": "'HTTP' bounded ingestion enforces a total deadline on a stalled read, including after progress",
+      "status": "passed"
+    },
+    {
+      "name": "'HTTP' bounded ingestion respects client cancellation before reading",
+      "status": "passed"
+    },
+    {
+      "name": "'HTTP' bounded ingestion respects client cancellation during reading",
+      "status": "passed"
+    },
+    {
+      "name": "'HTTP' bounded ingestion does not await or leak a reject cancellation hook",
+      "status": "passed"
+    },
+    {
+      "name": "'HTTP' bounded ingestion does not await or leak a never cancellation hook",
+      "status": "passed"
+    },
+    {
+      "name": "'HTTP' bounded ingestion does not await or leak a throw cancellation hook",
+      "status": "passed"
+    },
+    {
+      "name": "'HTTP' bounded ingestion does not wait on failed cleanup after oversize rejection",
+      "status": "passed"
+    },
+    {
+      "name": "'HTTP' bounded ingestion sanitizes a stream failure and releases resources",
+      "status": "passed"
+    },
+    {
+      "name": "'HTTP' bounded ingestion checks monotonic deadline even if ready chunks prevent timer dispatch",
+      "status": "passed"
+    },
+    {
+      "name": "'GIS' bounded ingestion accepts valid JSON and releases its reader/timer/listener",
+      "status": "passed"
+    },
+    {
+      "name": "'GIS' bounded ingestion rejects empty/invalid input null",
+      "status": "passed"
+    },
+    {
+      "name": "'GIS' bounded ingestion rejects empty/invalid input \"\"",
+      "status": "passed"
+    },
+    {
+      "name": "'GIS' bounded ingestion rejects empty/invalid input \"{\"",
+      "status": "passed"
+    },
+    {
+      "name": "'GIS' bounded ingestion rejects empty/invalid input \"null trailing\"",
+      "status": "passed"
+    },
+    {
+      "name": "'GIS' bounded ingestion decodes split UTF8 across multiple chunks",
+      "status": "passed"
+    },
+    {
+      "name": "'GIS' bounded ingestion accepts a 65535-byte boundary payload",
+      "status": "passed"
+    },
+    {
+      "name": "'GIS' bounded ingestion accepts a 65536-byte boundary payload",
+      "status": "passed"
+    },
+    {
+      "name": "'GIS' bounded ingestion counts bytes, ignores false Content-Length, cancels oversize and unlocks",
+      "status": "passed"
+    },
+    {
+      "name": "'GIS' bounded ingestion rejects cumulative oversize across individually small chunks",
+      "status": "passed"
+    },
+    {
+      "name": "'GIS' bounded ingestion enforces a total deadline on a stalled read, including after progress",
+      "status": "passed"
+    },
+    {
+      "name": "'GIS' bounded ingestion respects client cancellation before reading",
+      "status": "passed"
+    },
+    {
+      "name": "'GIS' bounded ingestion respects client cancellation during reading",
+      "status": "passed"
+    },
+    {
+      "name": "'GIS' bounded ingestion does not await or leak a reject cancellation hook",
+      "status": "passed"
+    },
+    {
+      "name": "'GIS' bounded ingestion does not await or leak a never cancellation hook",
+      "status": "passed"
+    },
+    {
+      "name": "'GIS' bounded ingestion does not await or leak a throw cancellation hook",
+      "status": "passed"
+    },
+    {
+      "name": "'GIS' bounded ingestion does not wait on failed cleanup after oversize rejection",
+      "status": "passed"
+    },
+    {
+      "name": "'GIS' bounded ingestion sanitizes a stream failure and releases resources",
+      "status": "passed"
+    },
+    {
+      "name": "'GIS' bounded ingestion checks monotonic deadline even if ready chunks prevent timer dispatch",
+      "status": "passed"
+    },
+    {
+      "name": "Copilot timeout releases all four real request-budget slots",
+      "status": "passed"
+    }
+  ]
+}
