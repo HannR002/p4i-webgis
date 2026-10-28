@@ -4,12 +4,11 @@ import { mkdtempSync, readFileSync, existsSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { summarizeTests, publishSummary } from './report.mjs';
+import { summarizeTests, summarizeDatabaseRun, TestEvidenceError, publishSummary } from './report.mjs';
+import { DATABASE_SUITES, DATABASE_COVERAGE, DATABASE_ASSERTIONS } from './database-coverage.mjs';
 
-export const suites = [
-  'tests/vectorPostgis.integration.test.ts',
-  'tests/vectorAnalysis.integration.test.ts',
-];
+export const suites = DATABASE_SUITES;
+export class TestInfrastructureError extends Error {}
 export function validateFixture(state) {
   if (
     !/^p4i-vector15-[a-f0-9]+$/.test(state.network) ||
@@ -40,7 +39,9 @@ export async function runFixture(ops) {
     result.evidence = await ops.test();
     result.status = 'PASSED';
     result.exitCode = 0;
-  } catch {
+  } catch (error) {
+    if (error instanceof TestEvidenceError) result = { ...result, status: 'INCONCLUSIVE', exitCode: 1 };
+    if (error instanceof TestInfrastructureError) result = { ...result, status: 'INFRASTRUCTURE_UNAVAILABLE', exitCode: 2 };
     // Never print raw Docker, SQL, fixture-state or parser error objects.
   } finally {
     try {
@@ -56,6 +57,8 @@ async function main() {
   if (process.argv[2] !== '--run-synthetic-only') {
     publishSummary('PostGIS plan; NOT EXECUTED', {
       suites,
+      expectedCoverage: DATABASE_COVERAGE,
+      expectedAssertions: DATABASE_ASSERTIONS,
       fixture: 'owned local Docker, synthetic identities only',
       activation:
         'explicit --run-synthetic-only; hosted workflow locked pending review',
@@ -145,10 +148,14 @@ async function main() {
           '--reporter=json',
           `--outputFile=${reportPath}`,
         ]);
-        if (tested.status !== 0) throw Error('Database tests failed');
-        return summarizeTests(JSON.parse(readFileSync(reportPath, 'utf8')), {
-          databaseOnly: true,
-        });
+        if (tested.error || tested.signal || tested.status === null)
+          throw new TestInfrastructureError('Database test process unavailable');
+        let report;
+        try { report = JSON.parse(readFileSync(reportPath, 'utf8')); }
+        catch { throw new TestEvidenceError('Database assertion report unavailable'); }
+        const evidence = summarizeTests(report, { databaseOnly: true, databaseSuite: suite });
+        if (tested.status !== 0) throw new TestEvidenceError('Exit status contradicts assertion evidence');
+        return evidence;
       },
       cleanup() {
         if (existsSync(statePath)) {
@@ -193,6 +200,12 @@ async function main() {
     'Disposable PostGIS (unavailable is not a test pass)',
     reports,
   );
+  try {
+    publishSummary('Complete PostGIS coverage', summarizeDatabaseRun(reports));
+  } catch {
+    publishSummary('Complete PostGIS coverage', { status: 'INCOMPLETE', note: 'Both reviewed suites and verified cleanup are required; partial results are not full PASS.' });
+    process.exitCode ||= 1;
+  }
 }
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href)
   await main();

@@ -2,7 +2,7 @@ import 'server-only';
 import { NextResponse } from 'next/server';
 import { GisInputError } from '../../gis/validation';
 import { GisPermissionError } from '../../gis/recipe';
-import { apiErrorResponse } from '../http';
+import { apiErrorResponse, readJsonBody, RequestInputError } from '../http';
 import { RasterProviderError } from './rasterProvider';
 export function gisError(error: unknown): NextResponse {
   if (error instanceof RasterProviderError)
@@ -17,26 +17,14 @@ export function gisError(error: unknown): NextResponse {
   return apiErrorResponse(error, 'GIS request');
 }
 export async function readGisBody(request: Request): Promise<unknown> {
-  const reader = request.body?.getReader();
-  const decoder = new TextDecoder();
-  let body = '';
-  let bytes = 0;
-  if (reader) {
-    while (true) {
-      const { value, done } = await reader.read();
-      if (done) break;
-      bytes += value.byteLength;
-      if (bytes > 65536) {
-        await reader.cancel();
-        throw new GisInputError('Permintaan GIS terlalu besar');
-      }
-      body += decoder.decode(value, { stream: true });
-    }
-    body += decoder.decode();
-  }
   try {
-    return JSON.parse(body) as unknown;
-  } catch {
-    throw new GisInputError('JSON tidak valid');
+    return await readJsonBody(request);
+  } catch (error) {
+    // Preserve existing GIS validation messages; timeout/abort use shared HTTP errors.
+    if (error instanceof RequestInputError) {
+      if (error.code === 'size') throw new GisInputError('Permintaan GIS terlalu besar');
+      if (error.code === 'invalid') throw new GisInputError('JSON tidak valid');
+    }
+    throw error;
   }
 }
