@@ -1,3 +1,5 @@
+import { academicRequested } from '../../../../lib/academicPreview';
+import { GIS_TOOL_REGISTRY } from '../../../../lib/gis/copilotRegistry';
 import { freeAiStatus } from '../../../../lib/server/ai/providers/geminiFree';
 import { SafeProviderError } from '../../../../lib/server/ai/providerError';
 import {
@@ -135,6 +137,8 @@ export async function POST(request: Request) {
       body.plan === undefined
         ? await planWithProvider(provider, input, request.signal)
         : parseGISExecutionPlan(body.plan, provider);
+    if (academicRequested(process.env) && plan.steps.some((step) => !['read', 'map-session'].includes(GIS_TOOL_REGISTRY[step.action.tool].level) || ['prepareVectorAnalysis', 'prepareClientDeliverableDraft', 'runConfiguredAnalysis', 'calculateArea', 'calculateDistance', 'spatialSelection'].includes(step.action.tool)))
+      return NextResponse.json({ error: 'Operasi backend tidak tersedia dalam preview akademik.' }, { status: 503 });
     const isCompute = plan.steps.some((s) =>
       (COMPUTE_TOOLS as readonly string[]).includes(s.action.tool),
     );

@@ -1,0 +1,340 @@
+{
+  "date": "2026-10-30",
+  "timezone": "Asia/Jakarta",
+  "base": "8adbe5498dbea1f2946df94e96ca3bef52b0d6ad",
+  "branch": "feat/r7-academic-preview-deployment-readiness",
+  "runtime": "Node22.23.3 / Next16.4.3",
+  "application": {
+    "passed": 596,
+    "failed": 0,
+    "skipped": 37,
+    "command": "npm test -- --maxWorkers=2 --reporter=default --reporter=json"
+  },
+  "academicUnitCases": 40,
+  "ciHelpers": {
+    "passed": 52,
+    "failed": 0,
+    "skipped": 0
+  },
+  "parallelRunFailure": {
+    "passed": 595,
+    "failed": 1,
+    "skipped": 37,
+    "failure": "Unchanged computeRoutes case exceeded existing 5000ms timeout",
+    "reproduction": "targeted suite passed; bounded-worker full suite passed; no assertion/timeouts changed"
+  },
+  "browserSuites": {
+    "productionLocalAcademic": 3,
+    "baselineProductionApiScripts": 3,
+    "allExitCodes": 0,
+    "mode": "Compiled Next start; no database; academic explicit fixture provider, no fake successful API responses"
+  },
+  "browserCommands": [
+    {
+      "name": "phase-09-readiness",
+      "exitCode": 0
+    },
+    {
+      "name": "phase-11-framework",
+      "exitCode": 0
+    },
+    {
+      "name": "phase-15-production-boundary",
+      "exitCode": 0
+    },
+    {
+      "name": "r7-academic-preview",
+      "exitCode": 0
+    },
+    {
+      "name": "phase-13-vector-editor",
+      "exitCode": 0
+    },
+    {
+      "name": "phase-03-raster",
+      "exitCode": 0
+    }
+  ],
+  "academicHttpChecks": 22,
+  "baselineProductionChecks": 22,
+  "negativeConfigPolicy": {
+    "startupTimeoutAttemptRetained": true,
+    "policies": [
+      {
+        "case": "valid",
+        "exitCode": 0,
+        "expected": 0
+      },
+      {
+        "case": "production-target",
+        "exitCode": 1,
+        "expected": 1
+      },
+      {
+        "case": "wrong-project",
+        "exitCode": 1,
+        "expected": 1
+      },
+      {
+        "case": "secret-binding",
+        "exitCode": 1,
+        "expected": 1
+      }
+    ],
+    "runtimeInvalidStatus": 503,
+    "status": "PASS"
+  },
+  "browserStartupFailure": "One invalid-config harness wait timed out before response with a 1s startup probe. Preserved; bounded readiness probe subsequently observed actual 503. No application assertion weakened.",
+  "database": "NOT_RUN_NO_FIXTURE_AUTHORIZATION",
+  "supabaseMetadata": {
+    "project": "adrbrvnoejqxemrdwuwr",
+    "observedUtc": "2026-10-29T23:29:25.289816+00:00",
+    "scope": "Anon REST OpenAPI metadata only. No table rows, auth users, storage objects, RPC or service-role requests.",
+    "status": 401,
+    "result": "OPENAPI_UNAVAILABLE"
+  },
+  "vercelAccount": "UNVERIFIED_NO_ACCESS",
+  "hostinger": "CURRENT_OFFICIAL_PAGE_FETCHES_UNAVAILABLE_HTTP_ERRORS",
+  "deployment": "NOT_EXECUTED_NO_GO",
+  "production": "NO_GO",
+  "merge": "NO_GO",
+  "immutableHashes": {
+    "package.json": "fc9b1c9059b73de6daa99d79ee55cf2b3a51916e64c38496c66ad5c284cdc9aa",
+    "package-lock.json": "aca2e837d530006d5946692111e4e7200b2b0262fc03714540550a770a4c2a20",
+    "lib/server/http.ts": "6005ccfc40fe4bec06ef0c74dce22dc8b837c6cd04633af42a05d26b13e1d7d3",
+    "lib/server/gis/http.ts": "b47f1e11a3a773d96dad6501302edd1b365b60c677a81df4f939c312e136712a",
+    "scripts/ci/report.mjs": "8c666e4109f4cd2af64acd043b123e624ee10f514bb0a0468f550da2461fee6c",
+    "scripts/ci/postgis.mjs": "8579a67dee7927f085e6a64f2a349a3fccdc38c7c9598d781c7a97c0663f3e87",
+    "scripts/ci/gates.check.mjs": "98043bfc30e35d009f5b570369ea34874bf1f54d57c7207bf810a2d66bb0a97e",
+    ".github/workflows/ci.yml": "638fa6eddd2e4c837d42a23a61712c34767008e21d79d534af378aab17f0f058",
+    ".github/workflows/postgis.yml": "8665d599de5aaf5c103731d9a76d87b1e6d99a5835762407b3dfeaf8d9542c4a",
+    "scripts/database/vector-local.mjs": "c760ef6c85a2cd076960c0278efce4b830459205406ac925fe43c606aaea0a5a",
+    "database/proposals/009_vector_persistence.LOCAL_ONLY.sql": "3b0b5d516748b8d0aa927d82ffed0f57e7e3acdeade14af7f8a6ea481bd536b4",
+    "database/proposals/010_vector_analysis.LOCAL_ONLY.sql": "33e3b66c0515088ed2c9d23f0e0a81ff164490f2726e62b254ee58ec56cbc1da"
+  },
+  "commands": [
+    {
+      "name": "npm-ci",
+      "command": [
+        "npm",
+        "ci"
+      ],
+      "exitCode": 0,
+      "seconds": 22.71
+    },
+    {
+      "name": "typecheck",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "seconds": 6.08
+    },
+    {
+      "name": "academic-tests",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "tests/academicPreview.test.ts"
+      ],
+      "exitCode": 0,
+      "seconds": 2.04
+    },
+    {
+      "name": "lint",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exitCode": 0,
+      "seconds": 19.31
+    },
+    {
+      "name": "typecheck",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "seconds": 3.38
+    },
+    {
+      "name": "lint",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exitCode": 0,
+      "seconds": 14.0
+    },
+    {
+      "name": "typecheck",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "seconds": 3.25
+    },
+    {
+      "name": "application-tests",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--reporter=default",
+        "--reporter=json",
+        "--outputFile=/workspace/artifacts/r7/application-tests.json"
+      ],
+      "exitCode": 0,
+      "seconds": 10.84
+    },
+    {
+      "name": "ci-helpers",
+      "command": [
+        "npm",
+        "run",
+        "test:ci"
+      ],
+      "exitCode": 0,
+      "seconds": 0.67
+    },
+    {
+      "name": "build",
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exitCode": 0,
+      "seconds": 23.22
+    },
+    {
+      "name": "audit-full",
+      "command": [
+        "npm",
+        "audit",
+        "--json"
+      ],
+      "exitCode": 0,
+      "seconds": 0.67
+    },
+    {
+      "name": "audit-production",
+      "command": [
+        "npm",
+        "audit",
+        "--omit=dev",
+        "--json"
+      ],
+      "exitCode": 0,
+      "seconds": 0.67
+    },
+    {
+      "name": "lint",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exitCode": 0,
+      "seconds": 15.71
+    },
+    {
+      "name": "typecheck",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "seconds": 11.08
+    },
+    {
+      "name": "application-tests",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--reporter=default",
+        "--reporter=json",
+        "--outputFile=/workspace/artifacts/r7/application-tests.json"
+      ],
+      "exitCode": 1,
+      "seconds": 65.38
+    },
+    {
+      "name": "compute-reproduction",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "tests/computeRoutes.test.ts"
+      ],
+      "exitCode": 0,
+      "seconds": 2.44
+    },
+    {
+      "name": "application-tests",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--maxWorkers=2",
+        "--reporter=default",
+        "--reporter=json",
+        "--outputFile=/workspace/artifacts/r7/application-tests.json"
+      ],
+      "exitCode": 0,
+      "seconds": 19.58
+    },
+    {
+      "name": "ci-helpers",
+      "command": [
+        "npm",
+        "run",
+        "test:ci"
+      ],
+      "exitCode": 0,
+      "seconds": 0.72
+    },
+    {
+      "name": "build",
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exitCode": 0,
+      "seconds": 9.74
+    },
+    {
+      "name": "audit-full",
+      "command": [
+        "npm",
+        "audit",
+        "--json"
+      ],
+      "exitCode": 0,
+      "seconds": 1.02
+    },
+    {
+      "name": "audit-production",
+      "command": [
+        "npm",
+        "audit",
+        "--omit=dev",
+        "--json"
+      ],
+      "exitCode": 0,
+      "seconds": 0.87
+    }
+  ]
+}

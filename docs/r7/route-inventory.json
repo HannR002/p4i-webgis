@@ -1,0 +1,309 @@
+[
+  {
+    "route": "/api/academic/status",
+    "source": "app/api/academic/status/route.ts",
+    "methods": [
+      "GET"
+    ],
+    "academicPreview": "GET only; guest/status metadata",
+    "normalAuthentication": "None; preview capability metadata",
+    "backend": "No database or provider",
+    "dataClassification": "deployment status only"
+  },
+  {
+    "route": "/api/admin/audit-logs",
+    "source": "app/api/admin/audit-logs/route.ts",
+    "methods": [
+      "GET"
+    ],
+    "academicPreview": "UNAVAILABLE (503)",
+    "normalAuthentication": "Trusted administrative role",
+    "backend": "Supabase users/entitlements/audit/metrics",
+    "dataClassification": "private backend; unverified live schema"
+  },
+  {
+    "route": "/api/admin/dashboard/metrics",
+    "source": "app/api/admin/dashboard/metrics/route.ts",
+    "methods": [
+      "GET"
+    ],
+    "academicPreview": "UNAVAILABLE (503)",
+    "normalAuthentication": "Trusted administrative role",
+    "backend": "Supabase users/entitlements/audit/metrics",
+    "dataClassification": "private backend; unverified live schema"
+  },
+  {
+    "route": "/api/admin/entitlements",
+    "source": "app/api/admin/entitlements/route.ts",
+    "methods": [
+      "POST",
+      "DELETE"
+    ],
+    "academicPreview": "UNAVAILABLE (503)",
+    "normalAuthentication": "Trusted administrative role",
+    "backend": "Supabase users/entitlements/audit/metrics",
+    "dataClassification": "private backend; unverified live schema"
+  },
+  {
+    "route": "/api/admin/users",
+    "source": "app/api/admin/users/route.ts",
+    "methods": [
+      "GET",
+      "PATCH"
+    ],
+    "academicPreview": "UNAVAILABLE (503)",
+    "normalAuthentication": "Trusted administrative role",
+    "backend": "Supabase users/entitlements/audit/metrics",
+    "dataClassification": "private backend; unverified live schema"
+  },
+  {
+    "route": "/api/ai-recommendation",
+    "source": "app/api/ai-recommendation/route.ts",
+    "methods": [
+      "POST"
+    ],
+    "academicPreview": "UNAVAILABLE (503)",
+    "normalAuthentication": "Development DEMO gate",
+    "backend": "Legacy deterministic fixture response; no live LLM",
+    "dataClassification": "synthetic only"
+  },
+  {
+    "route": "/api/auth/session",
+    "source": "app/api/auth/session/route.ts",
+    "methods": [
+      "GET",
+      "POST",
+      "DELETE"
+    ],
+    "academicPreview": "GET only; guest/status metadata",
+    "normalAuthentication": "Verify actual provider token for session creation",
+    "backend": "Supabase Auth + trusted profile",
+    "dataClassification": "private real identity; preview always guest"
+  },
+  {
+    "route": "/api/boundaries",
+    "source": "app/api/boundaries/route.ts",
+    "methods": [
+      "GET"
+    ],
+    "academicPreview": "UNAVAILABLE (503)",
+    "normalAuthentication": "Public bounded viewport",
+    "backend": "Supabase boundary repository",
+    "dataClassification": "actual dataset contents/provenance unverified"
+  },
+  {
+    "route": "/api/consulting/download",
+    "source": "app/api/consulting/download/route.ts",
+    "methods": [
+      "GET"
+    ],
+    "academicPreview": "UNAVAILABLE (503)",
+    "normalAuthentication": "Development synthetic persona/review authorization",
+    "backend": "Development in-memory workflow/reports",
+    "dataClassification": "local synthetic only"
+  },
+  {
+    "route": "/api/consulting",
+    "source": "app/api/consulting/route.ts",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "academicPreview": "UNAVAILABLE (503)",
+    "normalAuthentication": "Development synthetic persona/review authorization",
+    "backend": "Development in-memory workflow/reports",
+    "dataClassification": "local synthetic only"
+  },
+  {
+    "route": "/api/downloads",
+    "source": "app/api/downloads/route.ts",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "academicPreview": "UNAVAILABLE (503)",
+    "normalAuthentication": "Verified user + current project access recheck",
+    "backend": "Supabase download history/project entitlement",
+    "dataClassification": "private history"
+  },
+  {
+    "route": "/api/gee/flood-analysis",
+    "source": "app/api/gee/flood-analysis/route.ts",
+    "methods": [
+      "POST"
+    ],
+    "academicPreview": "UNAVAILABLE (503)",
+    "normalAuthentication": "Governed external execution unavailable",
+    "backend": "GEE future adapter; SDK isolated/unavailable",
+    "dataClassification": "No current official output"
+  },
+  {
+    "route": "/api/gis/actions",
+    "source": "app/api/gis/actions/route.ts",
+    "methods": [
+      "POST"
+    ],
+    "academicPreview": "Allowlisted methods + synthetic public IDs only",
+    "normalAuthentication": "GisContext dataset access; academic always guest/public",
+    "backend": "Provider-neutral GIS/raster or deterministic/structured Copilot according to endpoint",
+    "dataClassification": "synthetic fixture if explicitly academic/dev; real providers pending"
+  },
+  {
+    "route": "/api/gis/catalog",
+    "source": "app/api/gis/catalog/route.ts",
+    "methods": [
+      "GET"
+    ],
+    "academicPreview": "Allowlisted methods + synthetic public IDs only",
+    "normalAuthentication": "GisContext dataset access; academic always guest/public",
+    "backend": "Provider-neutral GIS/raster or deterministic/structured Copilot according to endpoint",
+    "dataClassification": "synthetic fixture if explicitly academic/dev; real providers pending"
+  },
+  {
+    "route": "/api/gis/compute",
+    "source": "app/api/gis/compute/route.ts",
+    "methods": [
+      "POST"
+    ],
+    "academicPreview": "UNAVAILABLE (503)",
+    "normalAuthentication": "Development session + same actor/human origin + approval policy",
+    "backend": "Development in-memory job engine + GIS adapter",
+    "dataClassification": "synthetic local; no durable production job state"
+  },
+  {
+    "route": "/api/gis/copilot",
+    "source": "app/api/gis/copilot/route.ts",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "academicPreview": "Allowlisted methods + synthetic public IDs only",
+    "normalAuthentication": "GisContext dataset access; academic always guest/public",
+    "backend": "Provider-neutral GIS/raster or deterministic/structured Copilot according to endpoint",
+    "dataClassification": "synthetic fixture if explicitly academic/dev; real providers pending"
+  },
+  {
+    "route": "/api/gis/pixel",
+    "source": "app/api/gis/pixel/route.ts",
+    "methods": [
+      "POST"
+    ],
+    "academicPreview": "Allowlisted methods + synthetic public IDs only",
+    "normalAuthentication": "GisContext dataset access; academic always guest/public",
+    "backend": "Provider-neutral GIS/raster or deterministic/structured Copilot according to endpoint",
+    "dataClassification": "synthetic fixture if explicitly academic/dev; real providers pending"
+  },
+  {
+    "route": "/api/gis/process",
+    "source": "app/api/gis/process/route.ts",
+    "methods": [
+      "POST"
+    ],
+    "academicPreview": "Allowlisted methods + synthetic public IDs only",
+    "normalAuthentication": "GisContext dataset access; academic always guest/public",
+    "backend": "Provider-neutral GIS/raster or deterministic/structured Copilot according to endpoint",
+    "dataClassification": "synthetic fixture if explicitly academic/dev; real providers pending"
+  },
+  {
+    "route": "/api/gis/tiles/[id]/[z]/[x]/[y]",
+    "source": "app/api/gis/tiles/[id]/[z]/[x]/[y]/route.ts",
+    "methods": [
+      "GET"
+    ],
+    "academicPreview": "Allowlisted methods + synthetic public IDs only",
+    "normalAuthentication": "GisContext dataset access; academic always guest/public",
+    "backend": "Provider-neutral GIS/raster or deterministic/structured Copilot according to endpoint",
+    "dataClassification": "synthetic fixture if explicitly academic/dev; real providers pending"
+  },
+  {
+    "route": "/api/gis/vector/[id]",
+    "source": "app/api/gis/vector/[id]/route.ts",
+    "methods": [
+      "GET"
+    ],
+    "academicPreview": "Allowlisted methods + synthetic public IDs only",
+    "normalAuthentication": "GisContext dataset access; academic always guest/public",
+    "backend": "Provider-neutral GIS/raster or deterministic/structured Copilot according to endpoint",
+    "dataClassification": "synthetic fixture if explicitly academic/dev; real providers pending"
+  },
+  {
+    "route": "/api/gis/vector-analysis",
+    "source": "app/api/gis/vector-analysis/route.ts",
+    "methods": [
+      "POST"
+    ],
+    "academicPreview": "UNAVAILABLE (503)",
+    "normalAuthentication": "Local synthetic JWT, project role/entitlement/revision checks",
+    "backend": "Opt-in loopback PostgREST / PostGIS; refuses production",
+    "dataClassification": "real local SQL using synthetic input; not Supabase"
+  },
+  {
+    "route": "/api/gis/vector-storage",
+    "source": "app/api/gis/vector-storage/route.ts",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "academicPreview": "UNAVAILABLE (503)",
+    "normalAuthentication": "Local synthetic JWT, project role/entitlement/revision checks",
+    "backend": "Opt-in loopback PostgREST / PostGIS; refuses production",
+    "dataClassification": "real local SQL using synthetic input; not Supabase"
+  },
+  {
+    "route": "/api/leads",
+    "source": "app/api/leads/route.ts",
+    "methods": [
+      "POST"
+    ],
+    "academicPreview": "UNAVAILABLE (503)",
+    "normalAuthentication": "Public validated input",
+    "backend": "Supabase sales lead repository",
+    "dataClassification": "personal submitted data; blocked in preview"
+  },
+  {
+    "route": "/api/onboarding",
+    "source": "app/api/onboarding/route.ts",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "academicPreview": "UNAVAILABLE (503)",
+    "normalAuthentication": "Verified application role",
+    "backend": "Supabase profile/onboarding",
+    "dataClassification": "private profile state"
+  },
+  {
+    "route": "/api/projects/[id]/layers",
+    "source": "app/api/projects/[id]/layers/route.ts",
+    "methods": [
+      "GET"
+    ],
+    "academicPreview": "UNAVAILABLE (503)",
+    "normalAuthentication": "Trusted creator roles or current project entitlement; see method",
+    "backend": "Supabase project/layer repository",
+    "dataClassification": "live contents not inspected; creation nontransactional legacy compensation"
+  },
+  {
+    "route": "/api/projects/list",
+    "source": "app/api/projects/list/route.ts",
+    "methods": [
+      "GET"
+    ],
+    "academicPreview": "UNAVAILABLE (503)",
+    "normalAuthentication": "Guest public, client entitled, administrative role visibility",
+    "backend": "Supabase project repository",
+    "dataClassification": "live contents not inspected"
+  },
+  {
+    "route": "/api/projects",
+    "source": "app/api/projects/route.ts",
+    "methods": [
+      "POST",
+      "DELETE"
+    ],
+    "academicPreview": "UNAVAILABLE (503)",
+    "normalAuthentication": "Trusted creator roles or current project entitlement; see method",
+    "backend": "Supabase project/layer repository",
+    "dataClassification": "live contents not inspected; creation nontransactional legacy compensation"
+  }
+]

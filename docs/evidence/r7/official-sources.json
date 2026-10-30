@@ -1,0 +1,49 @@
+[
+  {
+    "name": "hostinger-node",
+    "url": "https://www.hostinger.com/support/1583661-is-node-js-supported-at-hostinger/",
+    "status": "UNAVAILABLE",
+    "errorType": "HTTPError"
+  },
+  {
+    "name": "hostinger-node-product",
+    "url": "https://www.hostinger.com/nodejs-hosting",
+    "status": "UNAVAILABLE",
+    "errorType": "HTTPError"
+  },
+  {
+    "name": "vercel-node",
+    "url": "https://vercel.com/docs/functions/runtimes/node-js/node-js-versions",
+    "finalUrl": "https://vercel.com/docs/functions/runtimes/node-js/node-js-versions",
+    "status": 200,
+    "snippets": [
+      "--- title: Supported Node.js versions product: vercel url: /docs/functions/runtimes/node-js/node-js-versions canonical_url: \"https://vercel.com/docs/functions/runtimes/node-js/node-js-versions\" last_updated: 2026-02-27 type: reference prerequisites: - /docs/functions/run",
+      ": - /docs/functions/runtimes/node-js/advanced-node-configuration summary: Learn about the supported Node.js versions on Vercel. install_vercel_plugin: npx plugins add vercel/vercel-plugin --- # Supported Node.js versions ## Default and available versions By default, a new project uses the latest Node.js LTS version available on Vercel. ## Related p",
+      ".js versions on Vercel. install_vercel_plugin: npx plugins add vercel/vercel-plugin --- # Supported Node.js versions ## Default and available versions By default, a new project uses the latest Node.js LTS version available on Vercel. ## Related pages > **For AI agents:** Follow these links to understand how this page connects to the rest of the Ver",
+      "e-js/node-js-versions.graph.md) Current available versions are: - **26.x** (default) - **24.x** - **22.x** Only major versions are available. Vercel automatically rolls out minor and patch updates when needed, such as to fix a security issue. These updates apply to builds and Vercel Functions. The exact minor version can differ between the build an",
+      " `^26.0.0` `>=22.0.0` | latest **26.x** version | | `24.x` `^24.0.0` | latest **24.x** version | | `22.x` `^22.0.0` | latest **22.x** version | For Node.js 26 `fetch` behavior and the HTTP/1.1 opt-out, see [Advanced Node.js Usage](/docs/functions/runtimes/node-js/advanced-node-configuration). ## Checking your deployment's Node.js version To check t",
+      "est **26.x** version | | `24.x` `^24.0.0` | latest **24.x** version | | `22.x` `^22.0.0` | latest **22.x** version | For Node.js 26 `fetch` behavior and the HTTP/1.1 opt-out, see [Advanced Node.js Usage](/docs/functions/runtimes/node-js/advanced-node-configuration). ## Checking your deployment's Node.js version To check the build's Node.js version,"
+    ]
+  },
+  {
+    "name": "vercel-protection",
+    "url": "https://vercel.com/docs/deployment-protection",
+    "finalUrl": "https://vercel.com/docs/deployment-protection",
+    "status": 200,
+    "snippets": [
+      "ow the noindex header works, how to confirm it, and the cus - [The Complete Guide to Bring Your Own Cloud](https://vercel.com/kb/guide/byoc) \u2014 Use Bring Your Own Cloud \\\\(BYOC\\\\) to run Vercel Functions as AWS Lambda functions in your own AWS account, from setup to - [Can I get a fixed IP address for my Vercel deployments?](https://vercel.com/kb/gu",
+      "[The Complete Guide to Bring Your Own Cloud](https://vercel.com/kb/guide/byoc) \u2014 Use Bring Your Own Cloud \\\\(BYOC\\\\) to run Vercel Functions as AWS Lambda functions in your own AWS account, from setup to - [Can I get a fixed IP address for my Vercel deployments?](https://vercel.com/kb/guide/can-i-get-a-fixed-ip-address) \u2014 Vercel deployments use dyn"
+    ]
+  },
+  {
+    "name": "vercel-hobby",
+    "url": "https://vercel.com/docs/plans/hobby",
+    "finalUrl": "https://vercel.com/docs/plans/hobby",
+    "status": 200,
+    "snippets": [
+      "and can resume after 7 days As stated in the [fair use guidelines](/docs/limits/fair-use-guidelines#commercial-usage), the Hobby plan restricts users to non-commercial, personal use only. When your personal account gets converted to a Hobby team, your usage and activity log will be reset. To learn more about this change, read the [changelog](/chang",
+      "idelines](/docs/limits/fair-use-guidelines#commercial-usage), the Hobby plan restricts users to non-commercial, personal use only. When your personal account gets converted to a Hobby team, your usage and activity log will be reset. To learn more about this change, read the [changelog](/changelog/2024-01-account-changes). ## Comparing Hobby and Pro",
+      "e guidelines](/docs/limits/fair-use-guidelines#commercial-usage), the Hobby plan restricts users to non-commercial, personal use only. When your personal account gets converted to a Hobby team, your usage and activity log will be reset. To learn more about this change, read the [changelog](/changelog/2024-01-account-changes). ## Comparing Hobby and"
+    ]
+  }
+]

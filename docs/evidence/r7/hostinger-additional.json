@@ -1,0 +1,22 @@
+[
+  {
+    "url": "https://www.hostinger.com/hosting/nodejs-hosting",
+    "status": "UNAVAILABLE",
+    "type": "HTTPError"
+  },
+  {
+    "url": "https://www.hostinger.com/tutorials/how-to-deploy-node-js",
+    "status": "UNAVAILABLE",
+    "type": "HTTPError"
+  },
+  {
+    "url": "https://www.hostinger.com/cloud-hosting",
+    "status": "UNAVAILABLE",
+    "type": "HTTPError"
+  },
+  {
+    "url": "https://www.hostinger.com/vps-hosting",
+    "status": "UNAVAILABLE",
+    "type": "HTTPError"
+  }
+]

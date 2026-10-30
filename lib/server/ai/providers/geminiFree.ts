@@ -1,3 +1,4 @@
+import { academicStatus, academicRequested } from '../../../academicPreview';
 import 'server-only';
 import { createHash } from 'node:crypto';
 import type {
@@ -43,6 +44,7 @@ export function verifyFreePolicy(env: Environment, now = Date.now()): string {
   return env.GEMINI_API_KEY;
 }
 export function freeAiStatus(env: Environment): FreeAiStatus {
+  if (academicRequested(env)) return { provider: academicStatus(env) === 'active' ? 'demo' : 'unavailable', liveStatus: 'LIVE_INTEGRATION_PENDING', externalEnabled: false, reason: 'Preview akademik: planner deterministik, tanpa LLM atau layanan eksternal.' };
   if (
     (!env.AI_PROVIDER || env.AI_PROVIDER === 'demo') &&
     env.NODE_ENV !== 'production' &&
