@@ -1,3 +1,4 @@
+import { academicRequested } from '../../academicPreview';
 import 'server-only';
 
 import { hasRequiredRole, type AppRole } from '../../authRoles';
@@ -54,6 +55,7 @@ export function getRequestAccessToken(request: Request): string | null {
 }
 
 export function getIdentityFromAccessToken(accessToken: string): Promise<RequestIdentity | null> {
+  if (academicRequested(process.env)) return Promise.resolve(null);
   return resolveIdentityWith(
     accessToken,
     getAuthProvider(),

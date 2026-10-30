@@ -1,0 +1,72 @@
+[
+  {
+    "baseRefName": "main",
+    "headRefName": "integration/p4i-webgis-phase01-09",
+    "headRefOid": "d1400a2ab363a908d49e468b51786ca5c60ce85b",
+    "isDraft": true,
+    "number": 6,
+    "state": "OPEN",
+    "url": "https://github.com/HannR002/p4i-webgis/pull/6",
+    "ancestorOfBase": true
+  },
+  {
+    "baseRefName": "feat/phase15-vector-postgis-persistence",
+    "headRefName": "feat/phase16-vector-spatial-analysis",
+    "headRefOid": "086f13f8d95b8cdd6afd0ac85ac5d7fb5a2bd8a1",
+    "isDraft": true,
+    "number": 12,
+    "state": "OPEN",
+    "url": "https://github.com/HannR002/p4i-webgis/pull/12",
+    "ancestorOfBase": true
+  },
+  {
+    "baseRefName": "feat/phase16-vector-spatial-analysis",
+    "headRefName": "fix/phase16-map-analysis-state-integrity",
+    "headRefOid": "940e41069bc90289c50b0d6d7688e95ec9f03766",
+    "isDraft": true,
+    "number": 13,
+    "state": "OPEN",
+    "url": "https://github.com/HannR002/p4i-webgis/pull/13",
+    "ancestorOfBase": true
+  },
+  {
+    "baseRefName": "fix/phase16-map-analysis-state-integrity",
+    "headRefName": "fix/post-audit-r2-secure-geospatial-upload",
+    "headRefOid": "cb3e20f79b245cb6ceedde4a61a13fcac2b16033",
+    "isDraft": true,
+    "number": 14,
+    "state": "OPEN",
+    "url": "https://github.com/HannR002/p4i-webgis/pull/14",
+    "ancestorOfBase": true
+  },
+  {
+    "baseRefName": "fix/post-audit-r2-secure-geospatial-upload",
+    "headRefName": "fix/post-audit-r3-ci-security-gates",
+    "headRefOid": "063b61f1dcf0208cc1d428d14b1383425d54a635",
+    "isDraft": true,
+    "number": 15,
+    "state": "OPEN",
+    "url": "https://github.com/HannR002/p4i-webgis/pull/15",
+    "ancestorOfBase": true
+  },
+  {
+    "baseRefName": "fix/post-audit-r3-ci-security-gates",
+    "headRefName": "fix/post-audit-r5-nextjs-critical-security",
+    "headRefOid": "e633e30d3831849c71702168dadfd60d5356e707",
+    "isDraft": true,
+    "number": 16,
+    "state": "OPEN",
+    "url": "https://github.com/HannR002/p4i-webgis/pull/16",
+    "ancestorOfBase": true
+  },
+  {
+    "baseRefName": "fix/post-audit-r5-nextjs-critical-security",
+    "headRefName": "fix/post-audit-r6-integration-gate-hardening",
+    "headRefOid": "8adbe5498dbea1f2946df94e96ca3bef52b0d6ad",
+    "isDraft": true,
+    "number": 17,
+    "state": "OPEN",
+    "url": "https://github.com/HannR002/p4i-webgis/pull/17",
+    "ancestorOfBase": true
+  }
+]

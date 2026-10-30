@@ -1,3 +1,4 @@
+import { academicRequested } from '../../academicPreview';
 import 'server-only';
 import type { Dataset, GisContext } from '../../gis/contracts';
 import { getRequestIdentity } from '../auth';
@@ -7,6 +8,7 @@ export async function getGisContext(
   request: Request,
   catalog: readonly Dataset[],
 ): Promise<GisContext> {
+  if (academicRequested(process.env)) return { role: 'guest', entitledProjectIds: [] };
   const identity = await getRequestIdentity(request);
   if (!identity) return { role: 'guest', entitledProjectIds: [] };
   const ids: string[] = [];

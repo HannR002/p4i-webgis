@@ -1,0 +1,220 @@
+(node:84438) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+> p4i-webgis@0.1.0 test
+> vitest run --reporter=default --reporter=json --outputFile=/workspace/artifacts/r7/application-tests.json
+
+(node:84451) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ RUN  v4.1.12 /workspace/p4i-webgis
+
+(node:84464) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:84463) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:84465) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:84503) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/databasePlan.test.ts (4 tests) 355ms
+(node:84509) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:84537) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/boundaryImport.test.ts (6 tests) 453ms
+     ✓ CLI dry-run writes provenance evidence without credentials or network writes  414ms
+(node:84551) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/geeIsolation.test.ts (5 tests) 600ms
+     ✓ keeps the real anonymous legacy endpoint unauthorized without provider side effects  389ms
+ ✓ tests/projectUpload.test.ts (91 tests) 583ms
+(node:84559) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/computeGovernance.test.ts (17 tests) 858ms
+     ✓ limits full native grids, job count, concurrent work and input complexity  368ms
+(node:84565) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:84575) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/copilotExecution.test.ts (12 tests) 3246ms
+     ✓ preflights all access before reads or reducer commits  506ms
+     ✓ selects, forks and prepares experimental configs without overwriting library objects  358ms
+     ✓ prepares native raster/flood requests but does not execute analysis  1901ms
+ ✓ tests/academicPreview.test.ts (40 tests) 2782ms
+   ✓ fails closed for GIS_DEMO_MODE  411ms
+   ✓ fails closed for VECTOR_STORAGE_MODE  833ms
+   ✓ fails closed for NEXT_PUBLIC_SUPABASE_URL  552ms
+   ✓ exposes only allowed synthetic public datasets and refuses unknown real sources  502ms
+(node:84590) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:84583) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ❯ tests/computeRoutes.test.ts (4 tests | 1 failed) 6470ms
+     ✓ uses the browser Host authority when Next normalizes its internal URL and rejects forwarded-host spoofing 174ms
+     × sets opaque HttpOnly session and requires same actor, human origin and exact ceiling 5080ms
+     ✓ does not execute or expose the development adapter in production 150ms
+     ✓ rejects AI-provided self approval and unauthenticated cross-origin compute submission  907ms
+(node:84599) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/vectorEditing.test.ts (23 tests) 3441ms
+     ✓ creates a map and multiple GeoJSON points without modifying its input  865ms
+     ✓ bounds object and layer counts, rejects layer spoofing  375ms
+ ✓ tests/rasterProvider.test.ts (14 tests) 12343ms
+     ✓ preserves async provider-returned values and physical band encoding  399ms
+     ✓ returns categorical histograms without meaningless min/max/mean of codes  487ms
+     ✓ fails safely for rejected, malformed, mislocated and timed-out providers  5499ms
+     ✓ rejects incorrect provider class labels and contradictory coverage masks  2213ms
+(node:84639) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:84655) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/consultingRoutes.test.ts (5 tests) 177ms
+(node:84696) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/jsonBody.test.ts (39 tests) 250ms
+ ✓ tests/consultingWorkflow.test.ts (12 tests) 589ms
+ ✓ tests/vectorAnalysis.test.ts (19 tests) 98ms
+(node:84704) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:84719) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:84728) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/copilotRoutes.test.ts (5 tests) 83ms
+ ✓ tests/analysisApplication.test.ts (6 tests) 99ms
+(node:84739) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:84741) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/advancedVector.test.ts (37 tests) 135ms
+(node:84763) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/analysisConfiguration.test.ts (21 tests) 78ms
+(node:84774) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/rasterRoutes.test.ts (7 tests) 66ms
+(node:84782) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/copilotPlan.test.ts (17 tests) 46ms
+ ✓ tests/vectorCopilotRoutes.test.ts (4 tests) 65ms
+ ✓ tests/structuredAIProvider.test.ts (5 tests) 28ms
+(node:84790) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:84797) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:84813) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/geminiFree.test.ts (18 tests) 159ms
+ ✓ tests/analysisRepository.test.ts (4 tests) 336ms
+ ✓ tests/gisRoutes.test.ts (4 tests) 42ms
+(node:84832) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:84844) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:84825) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/vectorAnalysisRoutes.test.ts (5 tests) 56ms
+ ✓ tests/readinessSecurity.test.ts (13 tests) 42ms
+(node:84860) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/gisPortalUi.test.tsx (3 tests) 35ms
+(node:84868) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:84875) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/workspaceStore.test.ts (8 tests) 29ms
+(node:84885) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/mapLifecycle.test.ts (15 tests) 78ms
+ ✓ tests/vectorPersistence.test.ts (27 tests) 95ms
+ ✓ tests/vectorStorageRoutes.test.ts (5 tests) 31ms
+(node:84893) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:84895) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:84916) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/downloadAuthorization.test.ts (5 tests) 19ms
+ ✓ tests/gisRecipe.test.ts (9 tests) 34ms
+ ✓ tests/gisCopilot.test.ts (4 tests) 29ms
+(node:84941) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:84947) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:84956) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/rasterEngine.test.ts (21 tests) 29ms
+ ✓ tests/legacyRecommendation.test.ts (2 tests) 33ms
+ ✓ tests/dependencyRuntime.test.ts (2 tests) 24ms
+(node:84966) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:84979) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:84990) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/gisRaster.test.ts (5 tests) 13ms
+ ✓ tests/floodAnalysisRoute.test.ts (4 tests) 23ms
+(node:85003) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:85004) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/ahpPanel.test.tsx (2 tests) 20ms
+ ✓ tests/securityMigration.test.ts (7 tests) 9ms
+(node:85038) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:85032) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/spatialMapIsolation.test.tsx (3 tests) 18ms
+(node:85059) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/projectPersistenceFailure.test.ts (4 tests) 17ms
+(node:85069) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/gisPresentation.test.ts (3 tests) 15ms
+ ✓ tests/floodRiskModel.test.ts (12 tests) 76ms
+(node:85079) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:85078) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/projectAccess.test.ts (4 tests) 8ms
+(node:85096) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/authProvider.test.ts (2 tests) 8ms
+ ✓ tests/boundaryViewport.test.ts (6 tests) 6ms
+(node:85118) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:85112) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/mapStore.test.ts (1 test) 5ms
+(node:85130) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/authRoles.test.ts (3 tests) 4ms
+ ✓ tests/providerSelection.test.ts (2 tests) 6ms
+(node:85140) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ↓ tests/vectorAnalysis.integration.test.ts (23 tests | 23 skipped)
+ ↓ tests/vectorPostgis.integration.test.ts (14 tests | 14 skipped)
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/computeRoutes.test.ts > compute HTTP boundary > sets opaque HttpOnly session and requires same actor, human origin and exact ceiling
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/computeRoutes.test.ts:87:3
+     85|     ).toThrow();
+     86|   });
+     87|   it('sets opaque HttpOnly session and requires same actor, human orig…
+       |   ^
+     88|     const c = config();
+     89|     const r = await copilot(
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 51 passed | 2 skipped (54)
+      Tests  1 failed | 595 passed | 37 skipped (633)
+   Start at  23:28:30
+   Duration  64.78s (transform 27.24s, setup 0ms, import 70.12s, tests 34.15s, environment 176ms)
+
+JSON report written to /workspace/artifacts/r7/application-tests.json
