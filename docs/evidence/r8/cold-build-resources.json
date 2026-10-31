@@ -1,0 +1,13 @@
+{
+  "command": [
+    "npm",
+    "run",
+    "build:hostinger"
+  ],
+  "exit": 0,
+  "wallSeconds": 66.51,
+  "peakSumRssMiB": 1353.55,
+  "peakThreads": 52,
+  "peakProcesses": 6,
+  "scope": "Local process-tree sampling, including npm/launcher; RSS may count shared pages more than once; not Hostinger accounting."
+}

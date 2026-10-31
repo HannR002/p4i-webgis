@@ -1,0 +1,70 @@
+COMMAND clean npm test -- --maxWorkers=2
+
+> p4i-webgis@0.1.0 test
+> vitest run --maxWorkers=2
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.12 [39m[90m/workspace/work/r8/repo[39m
+
+ [32m✓[39m tests/boundaryImport.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 309[2mms[22m[39m
+ [32m✓[39m tests/computeGovernance.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 206[2mms[22m[39m
+ [32m✓[39m tests/hostingerPreview.test.ts [2m([22m[2m47 tests[22m[2m)[22m[32m 263[2mms[22m[39m
+ [32m✓[39m tests/databasePlan.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 134[2mms[22m[39m
+ [32m✓[39m tests/projectUpload.test.ts [2m([22m[2m91 tests[22m[2m)[22m[32m 167[2mms[22m[39m
+ [32m✓[39m tests/geeIsolation.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 155[2mms[22m[39m
+ [32m✓[39m tests/computeRoutes.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 183[2mms[22m[39m
+ [32m✓[39m tests/rasterProvider.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 121[2mms[22m[39m
+ [32m✓[39m tests/copilotRoutes.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 60[2mms[22m[39m
+ [32m✓[39m tests/copilotExecution.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 64[2mms[22m[39m
+ [32m✓[39m tests/consultingWorkflow.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 76[2mms[22m[39m
+ [32m✓[39m tests/consultingRoutes.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 83[2mms[22m[39m
+ [32m✓[39m tests/advancedVector.test.ts [2m([22m[2m37 tests[22m[2m)[22m[32m 81[2mms[22m[39m
+ [32m✓[39m tests/analysisConfiguration.test.ts [2m([22m[2m21 tests[22m[2m)[22m[32m 38[2mms[22m[39m
+ [32m✓[39m tests/geminiFree.test.ts [2m([22m[2m18 tests[22m[2m)[22m[32m 46[2mms[22m[39m
+ [32m✓[39m tests/vectorCopilotRoutes.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 38[2mms[22m[39m
+ [32m✓[39m tests/vectorPersistence.test.ts [2m([22m[2m27 tests[22m[2m)[22m[32m 42[2mms[22m[39m
+ [32m✓[39m tests/vectorAnalysis.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 75[2mms[22m[39m
+ [32m✓[39m tests/vectorEditing.test.ts [2m([22m[2m23 tests[22m[2m)[22m[32m 74[2mms[22m[39m
+ [32m✓[39m tests/jsonBody.test.ts [2m([22m[2m39 tests[22m[2m)[22m[32m 54[2mms[22m[39m
+ [32m✓[39m tests/rasterRoutes.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 57[2mms[22m[39m
+ [32m✓[39m tests/academicPreview.test.ts [2m([22m[2m41 tests[22m[2m)[22m[32m 75[2mms[22m[39m
+ [32m✓[39m tests/mapLifecycle.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 30[2mms[22m[39m
+ [32m✓[39m tests/gisRoutes.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 30[2mms[22m[39m
+ [32m✓[39m tests/vectorAnalysisRoutes.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 25[2mms[22m[39m
+ [32m✓[39m tests/copilotPlan.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 31[2mms[22m[39m
+ [32m✓[39m tests/vectorStorageRoutes.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 48[2mms[22m[39m
+ [32m✓[39m tests/legacyRecommendation.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 17[2mms[22m[39m
+ [32m✓[39m tests/analysisRepository.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 35[2mms[22m[39m
+ [32m✓[39m tests/analysisApplication.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 58[2mms[22m[39m
+ [32m✓[39m tests/workspaceStore.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+ [32m✓[39m tests/gisRecipe.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m tests/dependencyRuntime.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m tests/downloadAuthorization.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+ [32m✓[39m tests/structuredAIProvider.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+ [32m✓[39m tests/projectPersistenceFailure.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m tests/gisCopilot.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+ [32m✓[39m tests/readinessSecurity.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 27[2mms[22m[39m
+ [32m✓[39m tests/spatialMapIsolation.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+ [32m✓[39m tests/gisPortalUi.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 24[2mms[22m[39m
+ [32m✓[39m tests/gisRaster.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m tests/ahpPanel.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m tests/floodAnalysisRoute.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m tests/securityMigration.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m tests/rasterEngine.test.ts [2m([22m[2m21 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m tests/mapStore.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m tests/floodRiskModel.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m tests/gisPresentation.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m tests/projectAccess.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m tests/authRoles.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m tests/authProvider.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m tests/providerSelection.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m tests/boundaryViewport.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [2m[90m↓[39m[22m tests/vectorAnalysis.integration.test.ts [2m([22m[2m23 tests[22m[2m | [22m[33m23 skipped[39m[2m)[22m
+ [2m[90m↓[39m[22m tests/vectorPostgis.integration.test.ts [2m([22m[2m14 tests[22m[2m | [22m[33m14 skipped[39m[2m)[22m
+
+[2m Test Files [22m [1m[32m53 passed[39m[22m[2m | [22m[33m2 skipped[39m[90m (55)[39m
+[2m      Tests [22m [1m[32m644 passed[39m[22m[2m | [22m[33m37 skipped[39m[90m (681)[39m
+[2m   Start at [22m 19:57:53
+[2m   Duration [22m 8.87s[2m (transform 2.34s, setup 0ms, import 7.35s, tests 2.94s, environment 5ms)[22m
+
+EXIT 0

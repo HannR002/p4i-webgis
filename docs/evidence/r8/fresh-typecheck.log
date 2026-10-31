@@ -1,0 +1,8 @@
+COMMAND clean node -e const {spawnSync}=require('node:child_process');const r=spawnSync('npm',['run','typecheck'],{cwd:'/workspace/work/r8/fresh-check',env:process.env,stdio:'inherit'});process.exit(r.status??1)
+
+> p4i-webgis@0.1.0 typecheck
+> next typegen && tsc --noEmit
+
+Generating route types...
+✓ Types generated successfully
+EXIT 0

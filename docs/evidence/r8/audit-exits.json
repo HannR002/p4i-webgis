@@ -1,0 +1,14 @@
+[
+  {
+    "name": "full",
+    "exit": 1
+  },
+  {
+    "name": "production",
+    "exit": 0
+  },
+  {
+    "name": "gate",
+    "exit": 1
+  }
+]

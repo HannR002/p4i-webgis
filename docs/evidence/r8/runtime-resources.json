@@ -1,0 +1,9 @@
+{
+  "windowSeconds": 15,
+  "peak": {
+    "rssMiB": 230.46,
+    "threads": 26,
+    "processes": 4
+  },
+  "scope": "Local Next/npm/launcher process tree during browser acceptance; not Hostinger accounting or a load test."
+}

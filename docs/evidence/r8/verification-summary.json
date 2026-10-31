@@ -1,0 +1,57 @@
+{
+  "baseSha": "120d0e09cc6e75bf224ae853f35e74b0a2292d3c",
+  "testedSourceSha": "1571ebb549656a9b21d8c0161c7d520475fb1970",
+  "lockfileChanged": false,
+  "lockfileSha256": "aca2e837d530006d5946692111e4e7200b2b0262fc03714540550a770a4c2a20",
+  "application": {
+    "passed": 644,
+    "failed": 0,
+    "postgisSkipped": 37
+  },
+  "newHostingerUnitCases": 47,
+  "ciHelpersPassed": 52,
+  "hostingerHttpChecks": 207,
+  "publicAssetFilesScanned": 91,
+  "originalVercelHttpChecks": 206,
+  "originalVercelConfigChecks": 38,
+  "normalProductionBoundaryChecks": 7,
+  "actualInvalidRuntimeChecks": 10,
+  "preflightRefusals": 8,
+  "browserSuites": [
+    "point/polygon editor and exports",
+    "line/vertex/attributes/import/export"
+  ],
+  "fullAudit": {
+    "exit": 1,
+    "moderateEntries": 16,
+    "distinctAdvisories": 1
+  },
+  "productionAudit": {
+    "exit": 0,
+    "findings": 0
+  },
+  "dependencyGateExit": 1,
+  "liveHostingerBuild": "NOT RUN",
+  "liveHostingerRuntime": "NOT RUN",
+  "liveUrl": null,
+  "approvedHostname": null,
+  "hostingerAccess": "UNAVAILABLE",
+  "ownerRiskApproval": "NOT GRANTED",
+  "previewRelease": "NO-GO until owner-controlled setup and explicit approval",
+  "production": "NO-GO",
+  "existingSitesModified": false,
+  "newVercelAssetRegressionCases": 1,
+  "normalBuild": "PASS after complete dev install and fresh cache",
+  "buildInstallRequirement": "npm ci --include=dev when NODE_ENV=production",
+  "sourcePackage": {
+    "sourceSha": "1571ebb549656a9b21d8c0161c7d520475fb1970",
+    "releaseBranch": "release/r8-hostinger-academic-1571ebb",
+    "archive": "p4i-webgis-r8-1571ebb.zip",
+    "bytes": 9267365,
+    "sha256": "7b731913bdf929d4f37b3155558c5bb6efbab72a7eda8fe0cb42b7037ce19328",
+    "entries": 1195,
+    "externalDeploymentPerformed": false,
+    "hostnameAssigned": false,
+    "riskExceptionApproved": false
+  }
+}

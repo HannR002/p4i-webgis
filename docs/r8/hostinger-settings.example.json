@@ -1,0 +1,46 @@
+{
+  "releaseState": "BLOCKED_OWNER_SETUP_AND_APPROVAL",
+  "sourceSha": "1571ebb549656a9b21d8c0161c7d520475fb1970",
+  "repository": "HannR002/p4i-webgis",
+  "releaseBranch": "release/r8-hostinger-academic-1571ebb",
+  "framework": "Next.js backend",
+  "rootDirectory": ".",
+  "installCommand": "npm ci --include=dev",
+  "buildCommand": "npm run build:hostinger",
+  "startCommand": "npm run start:hostinger",
+  "outputDirectory": ".next",
+  "customEntryFile": null,
+  "nodeMajor": "22.x",
+  "minimumNode": "22.23.3",
+  "hostname": null,
+  "riskApproval": null,
+  "preferredDelivery": "manual ZIP if GitHub PR auto-build isolation cannot be verified",
+  "environment": {
+    "NODE_ENV": "production",
+    "P4I_ACADEMIC_PREVIEW": "true",
+    "P4I_PREVIEW_ID": "p4i-webgis-academic-v1",
+    "P4I_PREVIEW_PROVIDER": "hostinger",
+    "P4I_HOSTINGER_APP_ID": "p4i-webgis-academic-hostinger-v1",
+    "P4I_HOSTINGER_ENV": "academic-preview",
+    "P4I_HOSTINGER_HOSTNAME": null,
+    "P4I_SOURCE_REVISION": "1571ebb549656a9b21d8c0161c7d520475fb1970",
+    "P4I_HOSTINGER_ACCESS_USER": null,
+    "P4I_HOSTINGER_PASSWORD_SHA256": null,
+    "GIS_DEMO_MODE": "false",
+    "AI_PROVIDER": "academic-demo",
+    "VECTOR_STORAGE_MODE": "disabled",
+    "GEMINI_FREE_ENABLED": "false"
+  },
+  "ownerMustFill": [
+    "hostname",
+    "environment.P4I_HOSTINGER_HOSTNAME",
+    "environment.P4I_HOSTINGER_ACCESS_USER",
+    "environment.P4I_HOSTINGER_PASSWORD_SHA256"
+  ],
+  "existingSitesExcluded": [
+    "p4ijournal.org",
+    "journal.p4ijournal.org",
+    "publisher.p4ijournal.org"
+  ],
+  "noDeploymentPerformed": true
+}

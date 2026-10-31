@@ -1,0 +1,57 @@
+COMMAND clean node --input-type=module -
+{
+  "result": "PASS",
+  "rows": [
+    {
+      "port": 3101,
+      "path": "/api/academic/status",
+      "status": 503
+    },
+    {
+      "port": 3101,
+      "path": "/api/gis/catalog",
+      "status": 503
+    },
+    {
+      "port": 3101,
+      "path": "/spatial/viewer",
+      "status": 503
+    },
+    {
+      "port": 3101,
+      "path": "/_next/static/fixture.js",
+      "status": 503
+    },
+    {
+      "port": 3101,
+      "path": "/favicon.ico",
+      "status": 503
+    },
+    {
+      "port": 3104,
+      "path": "/api/academic/status",
+      "status": 503
+    },
+    {
+      "port": 3104,
+      "path": "/api/gis/catalog",
+      "status": 503
+    },
+    {
+      "port": 3104,
+      "path": "/spatial/viewer",
+      "status": 503
+    },
+    {
+      "port": 3104,
+      "path": "/_next/static/fixture.js",
+      "status": 503
+    },
+    {
+      "port": 3104,
+      "path": "/favicon.ico",
+      "status": 503
+    }
+  ]
+}
+EXIT 0

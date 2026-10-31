@@ -1,0 +1,3 @@
+COMMAND normal node --input-type=module -e process.env.P4I_QA_PRODUCTION_BASE_URL='http://127.0.0.1:3103';await import('./scripts/qa/phase-15-production-boundary.mjs')
+7 local vector production-boundary checks passed
+EXIT 0

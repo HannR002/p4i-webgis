@@ -1,0 +1,118 @@
+{
+  "sourceSha": "1571ebb549656a9b21d8c0161c7d520475fb1970",
+  "artifacts": [
+    {
+      "file": "release-vector/P4I_Analisis_local-ma_1793476869703.pdf",
+      "bytes": 7856157,
+      "sha256": "78b304f7ff00a769985960f0c7614d8649993dc66da88fa49b278e6229b84b62",
+      "signature": "PDF",
+      "eof": true,
+      "demoLabel": true,
+      "provisionalLabel": true
+    },
+    {
+      "file": "release-vector/P4I_Peta_local-ma_1793476867763.png",
+      "bytes": 123321,
+      "sha256": "98ccdf74fe5b6d25fbcd7a81079b9da8a24077f236a3181e937731609078be9d",
+      "signature": "PNG",
+      "dimensions": [
+        1802,
+        1450
+      ]
+    },
+    {
+      "file": "release-vector/editor-1480.png",
+      "bytes": 136392,
+      "sha256": "b89e4dad280168b74e60b9911e288eecd32a3472414f1bc5427d215c5da4f095",
+      "signature": "PNG",
+      "dimensions": [
+        1480,
+        1066
+      ]
+    },
+    {
+      "file": "release-vector/editor-320.png",
+      "bytes": 93277,
+      "sha256": "96c0fb46204526524bb2dbc316851cef03239de4b91a0bbc209b409a47dc81e3",
+      "signature": "PNG",
+      "dimensions": [
+        320,
+        1795
+      ]
+    },
+    {
+      "file": "release-vector/editor-390.png",
+      "bytes": 95335,
+      "sha256": "ca3fc4471e7c68fc9fea2afb16a3d4f863c1908cbf1a115b665546bada60244f",
+      "signature": "PNG",
+      "dimensions": [
+        390,
+        1767
+      ]
+    },
+    {
+      "file": "release-vector/editor-768.png",
+      "bytes": 106851,
+      "sha256": "729a06a6d8a590c1024becdabae916413e4617d697459236a67b8bd60a5685e8",
+      "signature": "PNG",
+      "dimensions": [
+        768,
+        1638
+      ]
+    },
+    {
+      "file": "release-vector/synthetic-vector.geojson",
+      "bytes": 3143,
+      "sha256": "a6227657a0fe7f6fb8576e59c8fb48def5dc387c612465449c1df2be46f64091",
+      "type": "FeatureCollection",
+      "features": 7
+    },
+    {
+      "file": "release-digitizing/digitizing-1480.png",
+      "bytes": 141461,
+      "sha256": "4edb46851a3fa7e4e68f17a0beadbceff74737afa9ef9547fe9329d4709e7151",
+      "signature": "PNG",
+      "dimensions": [
+        1480,
+        1066
+      ]
+    },
+    {
+      "file": "release-digitizing/digitizing-320.png",
+      "bytes": 88701,
+      "sha256": "97456b2e78e867fdfdfdaf6cea7c8d5bd0264909ec8eec6d646c5516acfbceac",
+      "signature": "PNG",
+      "dimensions": [
+        320,
+        1795
+      ]
+    },
+    {
+      "file": "release-digitizing/digitizing-390.png",
+      "bytes": 93236,
+      "sha256": "73414117d6f9ef3f181259379889eac22e379c923eab79d7147bfe784174a424",
+      "signature": "PNG",
+      "dimensions": [
+        390,
+        1767
+      ]
+    },
+    {
+      "file": "release-digitizing/digitizing-768.png",
+      "bytes": 102824,
+      "sha256": "e9bffabd5592c670e87e9d0c7c5e79c1105b79b469e0486275809628fc2757ad",
+      "signature": "PNG",
+      "dimensions": [
+        768,
+        1638
+      ]
+    },
+    {
+      "file": "release-digitizing/synthetic-multipart.geojson",
+      "bytes": 2732,
+      "sha256": "2a1f42827e90633762ebd771c3a3e781337c1ab9168b65d6509897d67a6cf29c",
+      "type": "FeatureCollection",
+      "features": 3
+    }
+  ]
+}
