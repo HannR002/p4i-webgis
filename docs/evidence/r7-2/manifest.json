@@ -63,8 +63,8 @@
     },
     {
       "file": "build.log",
-      "bytes": 2472,
-      "sha256": "1be8f4356e6d941312e7badc947596ed3d646de38a96e576e6113136a9277f85"
+      "bytes": 2466,
+      "sha256": "9b3a53e0bedb58c39123f9f2c325635b06318c5e914dd608146d1c0147286747"
     },
     {
       "file": "ci-helpers.log",
