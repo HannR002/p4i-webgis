@@ -1,0 +1,6 @@
+COMMAND clean npm run typecheck
+
+> p4i-webgis@0.1.0 typecheck
+> tsc --noEmit
+
+EXIT 0

@@ -1,0 +1,2 @@
+Warning: Due to "engines": { "node": ">=22.23.3 <23" } in your `package.json` file, the Node.js Version defined in your Project Settings ("24.x") will not apply, Node.js Version "22.x" will be used instead. Learn More: https://vercel.link/node-version
+{"projectDefault":"24.x","engines":">=22.23.3 <23","selectedRange":"22.x","runtime":"nodejs22.x"}

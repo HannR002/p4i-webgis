@@ -1,0 +1,7 @@
+COMMAND academic node /workspace/work/r7-1/security-review.mjs
+(node:4387) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///workspace/work/r7-1/repo/lib/academicPreview.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /workspace/work/r7-1/repo/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+{"httpChecks":206,"flagChecks":38,"result":"PASS"}
+EXIT 0

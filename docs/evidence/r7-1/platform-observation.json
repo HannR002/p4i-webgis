@@ -1,0 +1,44 @@
+{
+  "reviewTarget": "HannR002/p4i-webgis#18",
+  "originalSha": "180b8669bee37c8119f43f53cd1c2b94dcfb6307",
+  "baseSha": "8adbe5498dbea1f2946df94e96ca3bef52b0d6ad",
+  "verifiedSourceCandidate": "656813ed0325d2cfd85d603824e8434aac0ac90b",
+  "project": {
+    "id": "prj_h1FFQnXyMpUL2qg0Hw77PBWSp3Hb",
+    "name": "p4i-webgis",
+    "accountId": "team_FjboY4JHoWxq0U3C6artFavI",
+    "teamSlug": "farhan-dd58",
+    "nodeVersion": "24.x",
+    "latestDeployment": null,
+    "live": false,
+    "domains": [],
+    "ssoProtection": {
+      "enabled": true,
+      "deploymentType": "all_except_custom_domains"
+    },
+    "passwordProtection": {
+      "enabled": false
+    },
+    "trustedIps": {
+      "enabled": false
+    }
+  },
+  "envs": [],
+  "deployments": [],
+  "unexposedByConnector": [
+    "autoExposeSystemEnvs",
+    "git linkage/settings",
+    "complete build/install/root settings",
+    "team shared environment attachments",
+    "project-level routing rules"
+  ],
+  "tools": [
+    "github_get_pr_info",
+    "vercel_get_project",
+    "vercel_list_teams",
+    "vercel_filter_project_envs(decrypt=false)",
+    "vercel_list_deployments"
+  ],
+  "changesToVercel": false,
+  "supabaseOperations": false
+}

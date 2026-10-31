@@ -1,0 +1,75 @@
+{
+  "rows": [
+    {
+      "mode": "invalid",
+      "path": "/spatial/viewer",
+      "status": 503
+    },
+    {
+      "mode": "invalid",
+      "path": "/api/academic/status",
+      "status": 503
+    },
+    {
+      "mode": "invalid",
+      "path": "/api/auth/session",
+      "status": 503
+    },
+    {
+      "mode": "invalid",
+      "path": "/api/projects/list",
+      "status": 503
+    },
+    {
+      "mode": "invalid",
+      "path": "/api/gis/catalog",
+      "status": 503
+    },
+    {
+      "mode": "normal-production",
+      "path": "/api/gis/compute",
+      "status": 403
+    },
+    {
+      "mode": "normal-production",
+      "path": "/api/gis/vector-storage",
+      "status": 403
+    },
+    {
+      "mode": "normal-production",
+      "path": "/api/gis/vector-analysis",
+      "status": 403
+    },
+    {
+      "mode": "normal-production",
+      "path": "/api/consulting",
+      "status": 403
+    },
+    {
+      "mode": "normal-production",
+      "path": "/api/ai-recommendation",
+      "status": 503
+    },
+    {
+      "mode": "normal-production",
+      "path": "/api/gee/flood-analysis",
+      "status": 401
+    },
+    {
+      "mode": "normal-production",
+      "path": "/api/gis/catalog",
+      "provider": "unavailable"
+    },
+    {
+      "mode": "academic-image-optimizer",
+      "url": "https://adrbrvnoejqxemrdwuwr.supabase.co/rest/v1/",
+      "status": 400
+    },
+    {
+      "mode": "academic-image-optimizer",
+      "url": "/api/projects/list",
+      "status": 503
+    }
+  ],
+  "result": "PASS"
+}

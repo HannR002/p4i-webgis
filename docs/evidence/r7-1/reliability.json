@@ -1,0 +1,44 @@
+[
+  {
+    "label": "default-full",
+    "exit": 0,
+    "wallMs": 13239,
+    "before": "usage_usec 277329804\nuser_usec 247879484\nsystem_usec 29450320\nnice_usec 0\nnr_periods 2765\nnr_throttled 636\nthrottled_usec 36342418\nnr_bursts 0\nburst_usec 0\n",
+    "after": "usage_usec 294155206\nuser_usec 262748246\nsystem_usec 31406959\nnice_usec 0\nnr_periods 2897\nnr_throttled 636\nthrottled_usec 36342418\nnr_bursts 0\nburst_usec 0\n"
+  },
+  {
+    "label": "focused-0",
+    "exit": 0,
+    "wallMs": 1289,
+    "before": "usage_usec 294155206\nuser_usec 262748246\nsystem_usec 31406959\nnice_usec 0\nnr_periods 2897\nnr_throttled 636\nthrottled_usec 36342418\nnr_bursts 0\nburst_usec 0\n",
+    "after": "usage_usec 295924556\nuser_usec 264303868\nsystem_usec 31620687\nnice_usec 0\nnr_periods 2910\nnr_throttled 636\nthrottled_usec 36342418\nnr_bursts 0\nburst_usec 0\n"
+  },
+  {
+    "label": "focused-1",
+    "exit": 0,
+    "wallMs": 1224,
+    "before": "usage_usec 295924556\nuser_usec 264303868\nsystem_usec 31620687\nnice_usec 0\nnr_periods 2910\nnr_throttled 636\nthrottled_usec 36342418\nnr_bursts 0\nburst_usec 0\n",
+    "after": "usage_usec 297583128\nuser_usec 265759193\nsystem_usec 31823934\nnice_usec 0\nnr_periods 2922\nnr_throttled 636\nthrottled_usec 36342418\nnr_bursts 0\nburst_usec 0\n"
+  },
+  {
+    "label": "focused-2",
+    "exit": 0,
+    "wallMs": 1215,
+    "before": "usage_usec 297583128\nuser_usec 265759193\nsystem_usec 31823934\nnice_usec 0\nnr_periods 2922\nnr_throttled 636\nthrottled_usec 36342418\nnr_bursts 0\nburst_usec 0\n",
+    "after": "usage_usec 299200352\nuser_usec 267215674\nsystem_usec 31984678\nnice_usec 0\nnr_periods 2934\nnr_throttled 636\nthrottled_usec 36342418\nnr_bursts 0\nburst_usec 0\n"
+  },
+  {
+    "label": "focused-3",
+    "exit": 0,
+    "wallMs": 1247,
+    "before": "usage_usec 299200352\nuser_usec 267215674\nsystem_usec 31984678\nnice_usec 0\nnr_periods 2934\nnr_throttled 636\nthrottled_usec 36342418\nnr_bursts 0\nburst_usec 0\n",
+    "after": "usage_usec 300865394\nuser_usec 268665299\nsystem_usec 32200094\nnice_usec 0\nnr_periods 2947\nnr_throttled 636\nthrottled_usec 36342418\nnr_bursts 0\nburst_usec 0\n"
+  },
+  {
+    "label": "focused-4",
+    "exit": 0,
+    "wallMs": 1256,
+    "before": "usage_usec 300865394\nuser_usec 268665299\nsystem_usec 32200094\nnice_usec 0\nnr_periods 2947\nnr_throttled 636\nthrottled_usec 36342418\nnr_bursts 0\nburst_usec 0\n",
+    "after": "usage_usec 302579233\nuser_usec 270160230\nsystem_usec 32419003\nnice_usec 0\nnr_periods 2959\nnr_throttled 636\nthrottled_usec 36342418\nnr_bursts 0\nburst_usec 0\n"
+  }
+]

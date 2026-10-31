@@ -1,0 +1,77 @@
+
+> p4i-webgis@0.1.0 test
+> vitest run --maxWorkers=16
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.12 [39m[90m/workspace/work/r7-1/repo[39m
+
+ [32m✓[39m tests/databasePlan.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 481[2mms[22m[39m
+ [32m✓[39m tests/boundaryImport.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 756[2mms[22m[39m
+     [33m[2m✓[22m[39m CLI dry-run writes provenance evidence without credentials or network writes [33m 656[2mms[22m[39m
+ [32m✓[39m tests/geeIsolation.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 854[2mms[22m[39m
+     [33m[2m✓[22m[39m keeps the real anonymous legacy endpoint unauthorized without provider side effects [33m 517[2mms[22m[39m
+ [32m✓[39m tests/rasterProvider.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 614[2mms[22m[39m
+     [33m[2m✓[22m[39m returns categorical histograms without meaningless min/max/mean of codes [33m 416[2mms[22m[39m
+ [32m✓[39m tests/projectUpload.test.ts [2m([22m[2m91 tests[22m[2m)[22m[33m 853[2mms[22m[39m
+ [32m✓[39m tests/consultingRoutes.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 270[2mms[22m[39m
+ [32m✓[39m tests/vectorAnalysis.test.ts [2m([22m[2m19 tests[22m[2m)[22m[33m 759[2mms[22m[39m
+   [33m[2m✓[22m[39m runs the existing planner/executor/response validation chain for spatial preparation without compute or mutation [33m 585[2mms[22m[39m
+ [32m✓[39m tests/jsonBody.test.ts [2m([22m[2m39 tests[22m[2m)[22m[33m 379[2mms[22m[39m
+ [32m✓[39m tests/advancedVector.test.ts [2m([22m[2m37 tests[22m[2m)[22m[33m 355[2mms[22m[39m
+ [32m✓[39m tests/geminiFree.test.ts [2m([22m[2m18 tests[22m[2m)[22m[33m 597[2mms[22m[39m
+ [32m✓[39m tests/copilotExecution.test.ts [2m([22m[2m12 tests[22m[2m)[22m[33m 620[2mms[22m[39m
+ [32m✓[39m tests/vectorEditing.test.ts [2m([22m[2m23 tests[22m[2m)[22m[33m 686[2mms[22m[39m
+ [32m✓[39m tests/consultingWorkflow.test.ts [2m([22m[2m12 tests[22m[2m)[22m[33m 623[2mms[22m[39m
+ [32m✓[39m tests/computeRoutes.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 825[2mms[22m[39m
+     [33m[2m✓[22m[39m sets opaque HttpOnly session and requires same actor, human origin and exact ceiling [33m 773[2mms[22m[39m
+ [32m✓[39m tests/vectorPersistence.test.ts [2m([22m[2m27 tests[22m[2m)[22m[32m 290[2mms[22m[39m
+ [32m✓[39m tests/copilotRoutes.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 429[2mms[22m[39m
+     [33m[2m✓[22m[39m automatically returns a validated updated recipe and trace [33m 333[2mms[22m[39m
+ [32m✓[39m tests/academicPreview.test.ts [2m([22m[2m40 tests[22m[2m)[22m[33m 445[2mms[22m[39m
+ [32m✓[39m tests/analysisConfiguration.test.ts [2m([22m[2m21 tests[22m[2m)[22m[32m 96[2mms[22m[39m
+ [32m✓[39m tests/computeGovernance.test.ts [2m([22m[2m17 tests[22m[2m)[22m[33m 2310[2mms[22m[39m
+     [33m[2m✓[22m[39m runs each existing configured local raster operation and annotates actual point values [33m 646[2mms[22m[39m
+     [33m[2m✓[22m[39m requires human approval above automatic grid limit, with no AI bypass tool [33m 732[2mms[22m[39m
+ [32m✓[39m tests/analysisApplication.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 368[2mms[22m[39m
+ [32m✓[39m tests/analysisRepository.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 598[2mms[22m[39m
+     [33m[2m✓[22m[39m bounds library size and retains imported historical revision [33m 480[2mms[22m[39m
+ [32m✓[39m tests/gisCopilot.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 252[2mms[22m[39m
+ [32m✓[39m tests/mapLifecycle.test.ts [2m([22m[2m15 tests[22m[2m)[22m[33m 397[2mms[22m[39m
+ [32m✓[39m tests/structuredAIProvider.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 285[2mms[22m[39m
+ [32m✓[39m tests/copilotPlan.test.ts [2m([22m[2m17 tests[22m[2m)[22m[33m 575[2mms[22m[39m
+ [32m✓[39m tests/spatialMapIsolation.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 140[2mms[22m[39m
+ [32m✓[39m tests/vectorStorageRoutes.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 99[2mms[22m[39m
+ [32m✓[39m tests/legacyRecommendation.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 114[2mms[22m[39m
+ [32m✓[39m tests/vectorCopilotRoutes.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 540[2mms[22m[39m
+     [33m[2m✓[22m[39m commits validated GeoJSON and rejects forged selected IDs/authority [33m 325[2mms[22m[39m
+ [32m✓[39m tests/gisRoutes.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 383[2mms[22m[39m
+ [32m✓[39m tests/rasterRoutes.test.ts [2m([22m[2m7 tests[22m[2m)[22m[33m 553[2mms[22m[39m
+ [32m✓[39m tests/readinessSecurity.test.ts [2m([22m[2m13 tests[22m[2m)[22m[33m 352[2mms[22m[39m
+ [32m✓[39m tests/rasterEngine.test.ts [2m([22m[2m21 tests[22m[2m)[22m[32m 181[2mms[22m[39m
+ [32m✓[39m tests/workspaceStore.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 111[2mms[22m[39m
+ [32m✓[39m tests/vectorAnalysisRoutes.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 335[2mms[22m[39m
+ [32m✓[39m tests/downloadAuthorization.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 186[2mms[22m[39m
+ [32m✓[39m tests/floodAnalysisRoute.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 89[2mms[22m[39m
+ [32m✓[39m tests/gisRecipe.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 133[2mms[22m[39m
+ [32m✓[39m tests/ahpPanel.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[32m 106[2mms[22m[39m
+ [32m✓[39m tests/dependencyRuntime.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 113[2mms[22m[39m
+ [32m✓[39m tests/floodRiskModel.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 91[2mms[22m[39m
+ [32m✓[39m tests/gisPortalUi.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 269[2mms[22m[39m
+ [32m✓[39m tests/securityMigration.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 53[2mms[22m[39m
+ [32m✓[39m tests/projectPersistenceFailure.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 21[2mms[22m[39m
+ [32m✓[39m tests/projectAccess.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m tests/mapStore.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 81[2mms[22m[39m
+ [32m✓[39m tests/gisRaster.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 50[2mms[22m[39m
+ [32m✓[39m tests/boundaryViewport.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m tests/providerSelection.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+ [32m✓[39m tests/authProvider.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+ [32m✓[39m tests/gisPresentation.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [2m[90m↓[39m[22m tests/vectorPostgis.integration.test.ts [2m([22m[2m14 tests[22m[2m | [22m[33m14 skipped[39m[2m)[22m
+ [32m✓[39m tests/authRoles.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [2m[90m↓[39m[22m tests/vectorAnalysis.integration.test.ts [2m([22m[2m23 tests[22m[2m | [22m[33m23 skipped[39m[2m)[22m
+
+[2m Test Files [22m [1m[32m52 passed[39m[22m[2m | [22m[33m2 skipped[39m[90m (54)[39m
+[2m      Tests [22m [1m[32m596 passed[39m[22m[2m | [22m[33m37 skipped[39m[90m (633)[39m
+[2m   Start at [22m 17:06:46
+[2m   Duration [22m 9.77s[2m (transform 26.51s, setup 0ms, import 77.31s, tests 18.78s, environment 47ms)[22m
+
