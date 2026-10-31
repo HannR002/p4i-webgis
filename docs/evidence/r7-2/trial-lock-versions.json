@@ -1,0 +1,33 @@
+{
+  "repo": {
+    "node_modules/@typescript-eslint/typescript-estree": "8.67.0",
+    "node_modules/@typescript-eslint/typescript-estree/node_modules/minimatch": "10.2.6",
+    "node_modules/eslint": "9.39.5",
+    "node_modules/eslint-config-next": "16.4.3",
+    "node_modules/minimatch": "3.1.5",
+    "node_modules/typescript-eslint": "8.67.0"
+  },
+  "upstream-trial": {
+    "node_modules/@typescript-eslint/typescript-estree": "8.67.0",
+    "node_modules/@typescript-eslint/typescript-estree/node_modules/minimatch": "10.2.6",
+    "node_modules/eslint": "9.39.5",
+    "node_modules/eslint-config-next": "16.4.3",
+    "node_modules/minimatch": "3.1.5",
+    "node_modules/typescript-eslint": "8.67.0"
+  },
+  "eslint10-trial": {
+    "node_modules/@typescript-eslint/typescript-estree": "8.67.0",
+    "node_modules/eslint": "10.14.0",
+    "node_modules/eslint-config-next": "16.4.3",
+    "node_modules/eslint-config-next/node_modules/minimatch": "3.1.5",
+    "node_modules/minimatch": "10.2.6",
+    "node_modules/typescript-eslint": "8.67.0"
+  },
+  "override-trial": {
+    "node_modules/@typescript-eslint/typescript-estree": "8.67.0",
+    "node_modules/eslint": "9.39.5",
+    "node_modules/eslint-config-next": "16.4.3",
+    "node_modules/minimatch": "11.0.3",
+    "node_modules/typescript-eslint": "8.67.0"
+  }
+}

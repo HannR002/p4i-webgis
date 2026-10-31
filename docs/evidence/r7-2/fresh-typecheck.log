@@ -1,0 +1,8 @@
+COMMAND clean npm run typecheck
+
+> p4i-webgis@0.1.0 typecheck
+> next typegen && tsc --noEmit
+
+Generating route types...
+✓ Types generated successfully
+EXIT 0

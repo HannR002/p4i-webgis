@@ -1,0 +1,12 @@
+COMMAND clean npm run lint
+
+> p4i-webgis@0.1.0 lint
+> eslint
+
+
+/workspace/work/r7-2/repo/tests/academicPreview.test.ts
+  1:33  warning  'describe' is defined but never used  @typescript-eslint/no-unused-vars
+
+✖ 1 problem (0 errors, 1 warning)
+
+EXIT 0

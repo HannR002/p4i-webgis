@@ -1,0 +1,48 @@
+{
+  "basePr": 19,
+  "baseSha": "73d86c06ec4f3dc7a31b029bd77733dd858707d1",
+  "exactTestedSha": "73d86c06ec4f3dc7a31b029bd77733dd858707d1",
+  "priorApplicationCandidate": "656813ed0325d2cfd85d603824e8434aac0ac90b",
+  "sourceAndLockfileChanges": false,
+  "lockfileSha256": "aca2e837d530006d5946692111e4e7200b2b0262fc03714540550a770a4c2a20",
+  "before": {
+    "npmCiExit": 0,
+    "fullAuditExit": 1,
+    "fullAffectedPackages": 16,
+    "distinctAdvisories": 1,
+    "productionAuditExit": 0,
+    "productionAffectedPackages": 0,
+    "dependencyGateExit": 1
+  },
+  "after": {
+    "fullAuditExit": 1,
+    "fullAffectedPackages": 16,
+    "distinctAdvisories": 1,
+    "productionAuditExit": 0,
+    "productionAffectedPackages": 0,
+    "dependencyGateExit": 1
+  },
+  "regression": {
+    "lintExit": 0,
+    "lintWarnings": 1,
+    "freshTypecheckExit": 0,
+    "buildExit": 0,
+    "applicationPassed": 596,
+    "applicationFailed": 0,
+    "postgisSkipped": 37,
+    "ciHelperPassed": 52,
+    "httpChecks": 206,
+    "environmentChecks": 38,
+    "browserSuites": [
+      "boundary",
+      "vector",
+      "raster",
+      "failure"
+    ],
+    "serverOutboundFetchAttempts": 0,
+    "documentationLintExit": 0
+  },
+  "preview": "NO-GO",
+  "production": "NO-GO",
+  "deployableShaCertified": null
+}

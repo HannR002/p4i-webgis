@@ -1,0 +1,328 @@
+COMMAND clean npm run test:ci
+
+> p4i-webgis@0.1.0 test:ci
+> node --test scripts/ci/*.check.mjs
+
+TAP version 13
+# Subtest: Default test summary reports all 37 skipped database cases separately
+ok 1 - Default test summary reports all 37 skipped database cases separately
+  ---
+  duration_ms: 3.053842
+  type: 'test'
+  ...
+# Subtest: Missing, failed, unknown and default-CI executed database tests fail closed
+ok 2 - Missing, failed, unknown and default-CI executed database tests fail closed
+  ---
+  duration_ms: 49.244363
+  type: 'test'
+  ...
+# Subtest: Opt-in database summary requires both suites and 37 actual assertions
+ok 3 - Opt-in database summary requires both suites and 37 actual assertions
+  ---
+  duration_ms: 0.403487
+  type: 'test'
+  ...
+# Subtest: Audit distinguishes packages from advisory count, with no waiver
+ok 4 - Audit distinguishes packages from advisory count, with no waiver
+  ---
+  duration_ms: 0.260465
+  type: 'test'
+  ...
+# Subtest: Audit network errors, incomplete and inconsistent data fail closed
+ok 5 - Audit network errors, incomplete and inconsistent data fail closed
+  ---
+  duration_ms: 0.320443
+  type: 'test'
+  ...
+# Subtest: Fixture ownership rejects external addresses, redirects and foreign resource names
+ok 6 - Fixture ownership rejects external addresses, redirects and foreign resource names
+  ---
+  duration_ms: 0.327835
+  type: 'test'
+  ...
+# Subtest: Fixture lifecycle success cleans up and preserves failure category
+ok 7 - Fixture lifecycle success cleans up and preserves failure category
+  ---
+  duration_ms: 0.429765
+  type: 'test'
+  ...
+# Subtest: Fixture lifecycle start cleans up and preserves failure category
+ok 8 - Fixture lifecycle start cleans up and preserves failure category
+  ---
+  duration_ms: 0.12877
+  type: 'test'
+  ...
+# Subtest: Fixture lifecycle ready cleans up and preserves failure category
+ok 9 - Fixture lifecycle ready cleans up and preserves failure category
+  ---
+  duration_ms: 0.251081
+  type: 'test'
+  ...
+# Subtest: Fixture lifecycle test cleans up and preserves failure category
+ok 10 - Fixture lifecycle test cleans up and preserves failure category
+  ---
+  duration_ms: 0.293764
+  type: 'test'
+  ...
+# Subtest: Fixture lifecycle cleanup cleans up and preserves failure category
+ok 11 - Fixture lifecycle cleanup cleans up and preserves failure category
+  ---
+  duration_ms: 0.166887
+  type: 'test'
+  ...
+# Subtest: Workflow policies: locked, immutable actions, read-only, no credentials or paid resources
+ok 12 - Workflow policies: locked, immutable actions, read-only, no credentials or paid resources
+  ---
+  duration_ms: 4.534189
+  type: 'test'
+  ...
+# Subtest: Startup cleanup uncertainty is reported, never promoted to a pass
+ok 13 - Startup cleanup uncertainty is reported, never promoted to a pass
+  ---
+  duration_ms: 0.150993
+  type: 'test'
+  ...
+# Subtest: Inconsistent severity totals cannot produce a green dependency gate
+ok 14 - Inconsistent severity totals cannot produce a green dependency gate
+  ---
+  duration_ms: 0.105586
+  type: 'test'
+  ...
+# Subtest: Phase15 count 1 cannot replace required 14
+ok 15 - Phase15 count 1 cannot replace required 14
+  ---
+  duration_ms: 0.295116
+  type: 'test'
+  ...
+# Subtest: Phase15 count 13 cannot replace required 14
+ok 16 - Phase15 count 13 cannot replace required 14
+  ---
+  duration_ms: 0.09436
+  type: 'test'
+  ...
+# Subtest: Phase15 count 15 cannot replace required 14
+ok 17 - Phase15 count 15 cannot replace required 14
+  ---
+  duration_ms: 0.068852
+  type: 'test'
+  ...
+# Subtest: Phase16 count 1 cannot replace required 23
+ok 18 - Phase16 count 1 cannot replace required 23
+  ---
+  duration_ms: 0.107439
+  type: 'test'
+  ...
+# Subtest: Phase16 count 22 cannot replace required 23
+ok 19 - Phase16 count 22 cannot replace required 23
+  ---
+  duration_ms: 0.070153
+  type: 'test'
+  ...
+# Subtest: Phase16 count 24 cannot replace required 23
+ok 20 - Phase16 count 24 cannot replace required 23
+  ---
+  duration_ms: 0.070684
+  type: 'test'
+  ...
+# Subtest: Database evidence rejects missing suite
+ok 21 - Database evidence rejects missing suite
+  ---
+  duration_ms: 0.138134
+  type: 'test'
+  ...
+# Subtest: Database evidence rejects duplicate suite
+ok 22 - Database evidence rejects duplicate suite
+  ---
+  duration_ms: 0.190141
+  type: 'test'
+  ...
+# Subtest: Database evidence rejects absolute duplicate identity
+ok 23 - Database evidence rejects absolute duplicate identity
+  ---
+  duration_ms: 0.140407
+  type: 'test'
+  ...
+# Subtest: Database evidence rejects wrong directory identity
+ok 24 - Database evidence rejects wrong directory identity
+  ---
+  duration_ms: 0.09444
+  type: 'test'
+  ...
+# Subtest: Database evidence rejects traversal identity
+ok 25 - Database evidence rejects traversal identity
+  ---
+  duration_ms: 0.083753
+  type: 'test'
+  ...
+# Subtest: Database evidence rejects unexpected application suite
+ok 26 - Database evidence rejects unexpected application suite
+  ---
+  duration_ms: 2.537219
+  type: 'test'
+  ...
+# Subtest: Database evidence rejects duplicate assertion
+ok 27 - Database evidence rejects duplicate assertion
+  ---
+  duration_ms: 0.120007
+  type: 'test'
+  ...
+# Subtest: Database evidence rejects missing assertion name
+ok 28 - Database evidence rejects missing assertion name
+  ---
+  duration_ms: 0.094289
+  type: 'test'
+  ...
+# Subtest: Database evidence rejects unknown status
+ok 29 - Database evidence rejects unknown status
+  ---
+  duration_ms: 0.138415
+  type: 'test'
+  ...
+# Subtest: Database evidence rejects skipped case
+ok 30 - Database evidence rejects skipped case
+  ---
+  duration_ms: 0.119457
+  type: 'test'
+  ...
+# Subtest: Database evidence rejects failed case
+ok 31 - Database evidence rejects failed case
+  ---
+  duration_ms: 0.113407
+  type: 'test'
+  ...
+# Subtest: Database evidence rejects contradictory suite status
+ok 32 - Database evidence rejects contradictory suite status
+  ---
+  duration_ms: 0.084325
+  type: 'test'
+  ...
+# Subtest: Database evidence rejects false success
+ok 33 - Database evidence rejects false success
+  ---
+  duration_ms: 0.085707
+  type: 'test'
+  ...
+# Subtest: Database evidence rejects missing success
+ok 34 - Database evidence rejects missing success
+  ---
+  duration_ms: 0.091525
+  type: 'test'
+  ...
+# Subtest: Database evidence rejects missing counters
+ok 35 - Database evidence rejects missing counters
+  ---
+  duration_ms: 0.105817
+  type: 'test'
+  ...
+# Subtest: Database evidence rejects counter type
+ok 36 - Database evidence rejects counter type
+  ---
+  duration_ms: 0.098355
+  type: 'test'
+  ...
+# Subtest: Database evidence rejects counter contradiction
+ok 37 - Database evidence rejects counter contradiction
+  ---
+  duration_ms: 0.08781
+  type: 'test'
+  ...
+# Subtest: Database evidence rejects failed-suite counter
+ok 38 - Database evidence rejects failed-suite counter
+  ---
+  duration_ms: 0.096693
+  type: 'test'
+  ...
+# Subtest: Database evidence rejects runtime-error counter
+ok 39 - Database evidence rejects runtime-error counter
+  ---
+  duration_ms: 0.207307
+  type: 'test'
+  ...
+# Subtest: Database evidence rejects snapshot failure
+ok 40 - Database evidence rejects snapshot failure
+  ---
+  duration_ms: 0.124895
+  type: 'test'
+  ...
+# Subtest: Database evidence rejects unhandled errors
+ok 41 - Database evidence rejects unhandled errors
+  ---
+  duration_ms: 0.10171
+  type: 'test'
+  ...
+# Subtest: Database evidence rejects malformed file
+ok 42 - Database evidence rejects malformed file
+  ---
+  duration_ms: 0.119146
+  type: 'test'
+  ...
+# Subtest: Database evidence rejects malformed assertions
+ok 43 - Database evidence rejects malformed assertions
+  ---
+  duration_ms: 0.080308
+  type: 'test'
+  ...
+# Subtest: Vitest absolute paths normalize to reviewed identities
+ok 44 - Vitest absolute paths normalize to reviewed identities
+  ---
+  duration_ms: 9.301403
+  type: 'test'
+  ...
+# Subtest: Per-fixture scope cannot accept a different or arbitrary suite
+ok 45 - Per-fixture scope cannot accept a different or arbitrary suite
+  ---
+  duration_ms: 0.189079
+  type: 'test'
+  ...
+# Subtest: Combined completion requires both checked suites and cleanup
+ok 46 - Combined completion requires both checked suites and cleanup
+  ---
+  duration_ms: 0.950514
+  type: 'test'
+  ...
+# Subtest: Fixture preserves INCONCLUSIVE rather than declaring assertion PASS
+ok 47 - Fixture preserves INCONCLUSIVE rather than declaring assertion PASS
+  ---
+  duration_ms: 0.168449
+  type: 'test'
+  ...
+# Subtest: Fixture preserves INFRASTRUCTURE_UNAVAILABLE rather than declaring assertion PASS
+ok 48 - Fixture preserves INFRASTRUCTURE_UNAVAILABLE rather than declaring assertion PASS
+  ---
+  duration_ms: 0.066989
+  type: 'test'
+  ...
+# Subtest: Application report CLI handles complete-default without Docker
+ok 49 - Application report CLI handles complete-default without Docker
+  ---
+  duration_ms: 317.585213
+  type: 'test'
+  ...
+# Subtest: Application report CLI handles partial-default without Docker
+ok 50 - Application report CLI handles partial-default without Docker
+  ---
+  duration_ms: 111.863438
+  type: 'test'
+  ...
+# Subtest: Application report CLI handles invalid-json without Docker
+ok 51 - Application report CLI handles invalid-json without Docker
+  ---
+  duration_ms: 186.838404
+  type: 'test'
+  ...
+# Subtest: A real failed assertion remains TESTS_FAILED with Vitest failed-suite metadata
+ok 52 - A real failed assertion remains TESTS_FAILED with Vitest failed-suite metadata
+  ---
+  duration_ms: 0.50752
+  type: 'test'
+  ...
+1..52
+# tests 52
+# suites 0
+# pass 52
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1249.826932
+EXIT 0

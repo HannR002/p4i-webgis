@@ -1,0 +1,36 @@
+{
+  "projectId": "prj_h1FFQnXyMpUL2qg0Hw77PBWSp3Hb",
+  "name": "p4i-webgis",
+  "teamId": "team_FjboY4JHoWxq0U3C6artFavI",
+  "teamSlug": "farhan-dd58",
+  "framework": "nextjs",
+  "nodeVersion": "22.x",
+  "live": false,
+  "latestDeployment": null,
+  "domains": [],
+  "ssoProtection": {
+    "enabled": true,
+    "deploymentType": "all_except_custom_domains"
+  },
+  "passwordProtection": {
+    "enabled": false
+  },
+  "trustedIps": {
+    "enabled": false
+  },
+  "projectEnvEntries": [],
+  "deployments": [],
+  "unverified": [
+    "build/function patch",
+    "autoExposeSystemEnvs and actual injection",
+    "git repository linkage",
+    "complete build/root settings",
+    "project routing rules and bypass exceptions",
+    "shared environment attachments",
+    "supervisor access"
+  ],
+  "sourceGitDeploymentEnabled": false,
+  "managementChangesPerformed": false,
+  "localVercelLinkPresent": false,
+  "cliCredentialVariablesPresent": false
+}

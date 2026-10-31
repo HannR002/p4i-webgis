@@ -1,0 +1,47 @@
+[
+  {
+    "path": "node_modules/@eslint/config-array",
+    "version": "0.21.2",
+    "minimatchRange": "^3.1.5"
+  },
+  {
+    "path": "node_modules/@eslint/eslintrc",
+    "version": "3.3.6",
+    "minimatchRange": "^3.1.5"
+  },
+  {
+    "path": "node_modules/@typescript-eslint/typescript-estree",
+    "version": "8.67.0",
+    "minimatchRange": "^10.2.2"
+  },
+  {
+    "path": "node_modules/@typescript-eslint/typescript-estree/node_modules/minimatch",
+    "version": "10.2.6",
+    "minimatchRange": null
+  },
+  {
+    "path": "node_modules/eslint",
+    "version": "9.39.5",
+    "minimatchRange": "^3.1.5"
+  },
+  {
+    "path": "node_modules/eslint-plugin-import",
+    "version": "2.32.0",
+    "minimatchRange": "^3.1.2"
+  },
+  {
+    "path": "node_modules/eslint-plugin-jsx-a11y",
+    "version": "6.10.2",
+    "minimatchRange": "^3.1.2"
+  },
+  {
+    "path": "node_modules/eslint-plugin-react",
+    "version": "7.37.5",
+    "minimatchRange": "^3.1.2"
+  },
+  {
+    "path": "node_modules/minimatch",
+    "version": "3.1.5",
+    "minimatchRange": null
+  }
+]
