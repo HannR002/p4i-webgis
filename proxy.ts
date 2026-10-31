@@ -19,6 +19,9 @@ export async function proxy(request: NextRequest) {
     const headers: Record<string, string> = { 'Cache-Control': 'private, no-store', 'X-Robots-Tag': 'noindex, nofollow' };
     if (academicStatus(process.env) !== 'active')
       return NextResponse.json({ error: 'Konfigurasi preview akademik tidak valid.' }, { status: 503, headers });
+    // Keep Vercel's original asset bypass/cache behavior; Hostinger authenticates every path.
+    if (academicProvider(process.env) === 'vercel' && /^\/(?:_next\/(?:static|image)|favicon\.ico)/.test(path))
+      return NextResponse.next();
     if (academicProvider(process.env) === 'hostinger') {
       headers['Referrer-Policy'] = 'no-referrer';
       headers['X-Frame-Options'] = 'DENY';

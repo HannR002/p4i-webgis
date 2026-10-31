@@ -83,6 +83,13 @@ it('redirects private pages and legacy landing to accurate preview pages', async
   expect((await proxy(request('/admin/dashboard'))).headers.get('location')).toContain('/academic-unavailable');
   expect((await proxy(request('/'))).headers.get('location')).toContain('/spatial/home');
 });
+it('preserves Vercel asset handling while the shared matcher covers Hostinger assets', async () => {
+  for (const path of ['/_next/static/chunks/example.js', '/_next/image', '/favicon.ico']) {
+    const response = await proxy(request(path));
+    expect(response.headers.get('x-middleware-next')).toBe('1');
+    expect(response.headers.get('cache-control')).toBeNull();
+  }
+});
 it('uses a deterministic planner for actual validated session edits, never an LLM', async () => {
   expect(freeAiStatus(process.env)).toMatchObject({ provider: 'demo', externalEnabled: false });
   const response = await copilotPOST(request('/api/gis/copilot', 'POST', { prompt: 'Buatkan peta baru bernama Survei Akademik dan gunakan tanpa basemap.', recipe: emptyRecipe(), configurations: [] }));
