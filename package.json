@@ -8,7 +8,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:hostinger": "node scripts/deployment/hostinger-preflight.mjs && next build --webpack",
     "start": "next start",
+    "start:hostinger": "node scripts/deployment/hostinger-preflight.mjs && next start --hostname 0.0.0.0",
     "lint": "eslint",
     "typecheck": "next typegen && tsc --noEmit",
     "test": "vitest run",
