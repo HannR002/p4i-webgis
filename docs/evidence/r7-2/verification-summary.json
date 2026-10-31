@@ -39,7 +39,8 @@
       "raster",
       "failure"
     ],
-    "serverOutboundFetchAttempts": 0
+    "serverOutboundFetchAttempts": 0,
+    "documentationLintExit": 0
   },
   "preview": "NO-GO",
   "production": "NO-GO",

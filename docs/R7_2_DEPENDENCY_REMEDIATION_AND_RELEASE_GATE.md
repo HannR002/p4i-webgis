@@ -53,7 +53,7 @@ The compatibility probe uses ESLint's real `Linter` with the installed a11y plug
 const Example = () => <label><CustomControl /></label>;
 ```
 
-It enables `jsx-a11y/label-has-associated-control` with supported `controlComponents: ['Custom*']` and `depth: 3`. Baseline returns “A form label must have accessible text.” The override crashes during `mayContainChildComponent`. Older consumers expect a callable CommonJS/default minimatch export; version 11 exposes a named `minimatch` function and a different module shape. Existing repository lint happens not to exercise that option path, illustrating why its green result cannot justify the override. [Actual comparison output](evidence/r7-2/override-compatibility.log) retains the stack. The read-only [reproduction script](evidence/r7-2/reproduce-override.cjs) accepts the two installed worktree roots; its exit 0 means the expected incompatibility was confirmed, not that the override is acceptable.
+It enables `jsx-a11y/label-has-associated-control` with supported `controlComponents: ['Custom*']` and `depth: 3`. Baseline returns “A form label must have accessible text.” The override crashes during `mayContainChildComponent`. Older consumers expect a callable CommonJS/default minimatch export; version 11 exposes a named `minimatch` function and a different module shape. Existing repository lint happens not to exercise that option path, illustrating why its green result cannot justify the override. [Actual comparison output](evidence/r7-2/override-compatibility.log) retains the stack. The read-only [reproduction script](evidence/r7-2/reproduce-override.mjs) accepts the two installed worktree roots; its exit 0 means the expected incompatibility was confirmed, not that the override is acceptable.
 
 No safe supported fix was demonstrated. No override, shim, vendored patch, forced downgrade from npm's misleading audit suggestion, peer suppression, audit exclusion, dev-dependency removal or lint-rule removal is proposed. Replacing lint tooling or patching third-party consumers would require a larger compatibility review. The next focused remediation should use maintained consumer updates/backports that accept a patched minimatch version, or a reviewed upstream advisory correction; neither is established here. Re-run the unchanged full gate when such releases exist.
 
@@ -95,7 +95,7 @@ The actual exported GeoJSON has 7 features. Both PNGs have valid signatures and 
 
 PostGIS remains **SKIPPED**, never PASS: no fresh fixture was authorized, created or used. Local status/identity environment fixtures are explicitly test simulation, not Vercel injection evidence. No fabricated system variables were configured remotely. The raster harness changed only its hardcoded local origin in a scratch copy. The initial scratch build wrapper contained an extra brace and exited 1 before repository code ran; correcting that harness produced the recorded successful preflight/build. No application fix or timeout change was needed.
 
-Remaining warnings: the full audit failure; unsupported/deprecated ESLint 9 notice; the existing unused import; and Node's harmless `MODULE_TYPELESS_PACKAGE_JSON` warning when importing the erasable TypeScript policy. No warning was suppressed.
+Remaining warnings: the full audit failure; unsupported/deprecated ESLint 9 notice; the existing unused import; and Node's harmless `MODULE_TYPELESS_PACKAGE_JSON` warning when importing the erasable TypeScript policy. No warning was suppressed. The documentation reproduction helper uses ESM imports; final lint was repeated with that helper present and passed with the same single existing warning.
 
 ## 6. Observed Vercel configuration and required settings
 
@@ -185,6 +185,7 @@ docs/evidence/r7-2/build.log
 docs/evidence/r7-2/ci-helpers.log
 docs/evidence/r7-2/exports.json
 docs/evidence/r7-2/failure-review.json
+docs/evidence/r7-2/final-docs-lint.log
 docs/evidence/r7-2/fresh-typecheck.log
 docs/evidence/r7-2/http-security.json
 docs/evidence/r7-2/http-security.log
@@ -193,7 +194,7 @@ docs/evidence/r7-2/manifest.json
 docs/evidence/r7-2/minimatch-lock-edges.json
 docs/evidence/r7-2/override-compatibility.log
 docs/evidence/r7-2/platform.json
-docs/evidence/r7-2/reproduce-override.cjs
+docs/evidence/r7-2/reproduce-override.mjs
 docs/evidence/r7-2/runtime-boundary.json
 docs/evidence/r7-2/server-outbound.jsonl
 docs/evidence/r7-2/trial-eslint10-audit.log

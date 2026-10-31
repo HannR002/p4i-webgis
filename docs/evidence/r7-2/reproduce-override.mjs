@@ -1,8 +1,8 @@
 // Read-only compatibility comparison. Exit 0 confirms the trial is incompatible.
-// Usage: node reproduce-override.cjs /absolute/baseline /absolute/override-trial
-const assert = require('node:assert/strict');
-const path = require('node:path');
-const { createRequire } = require('node:module');
+// Usage: node reproduce-override.mjs /absolute/baseline /absolute/override-trial
+import assert from 'node:assert/strict';
+import path from 'node:path';
+import { createRequire } from 'node:module';
 const roots = process.argv.slice(2);
 assert.equal(roots.length, 2, 'Pass clean baseline and minimatch-11 trial roots');
 const results = roots.map((root, index) => {
