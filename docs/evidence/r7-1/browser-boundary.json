@@ -1,0 +1,135 @@
+{
+  "checks": [
+    {
+      "path": "/api/gis/catalog",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/auth/session",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/auth/session",
+      "method": "POST",
+      "status": 503
+    },
+    {
+      "path": "/api/projects/list",
+      "method": "GET",
+      "status": 503
+    },
+    {
+      "path": "/api/admin/users",
+      "method": "GET",
+      "status": 503
+    },
+    {
+      "path": "/api/downloads",
+      "method": "GET",
+      "status": 503
+    },
+    {
+      "path": "/api/gis/vector-storage",
+      "method": "GET",
+      "status": 503
+    },
+    {
+      "path": "/api/gis/vector-analysis",
+      "method": "GET",
+      "status": 503
+    },
+    {
+      "path": "/api/gis/compute",
+      "method": "GET",
+      "status": 503
+    },
+    {
+      "path": "/api/consulting",
+      "method": "GET",
+      "status": 503
+    },
+    {
+      "path": "/api/gee/flood-analysis",
+      "method": "GET",
+      "status": 503
+    },
+    {
+      "path": "/api/projects",
+      "method": "POST",
+      "status": 503
+    },
+    {
+      "path": "/api/gis/pixel",
+      "method": "POST",
+      "status": 400
+    },
+    {
+      "path": "/api/gis/copilot",
+      "method": "POST",
+      "status": 400
+    },
+    {
+      "path": "/spatial/home",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/spatial/webmap",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/spatial/data",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/spatial/help",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/admin/dashboard",
+      "method": "GET",
+      "status": 307
+    },
+    {
+      "path": "/portal",
+      "method": "GET",
+      "status": 307
+    },
+    {
+      "path": "/login",
+      "method": "GET",
+      "status": 307
+    },
+    {
+      "path": "/spatial/consulting",
+      "method": "GET",
+      "status": 307
+    }
+  ],
+  "audits": [
+    {
+      "width": 1480,
+      "overflow": false,
+      "axeViolations": 0
+    },
+    {
+      "width": 390,
+      "overflow": false,
+      "axeViolations": 0
+    },
+    {
+      "width": 320,
+      "overflow": false,
+      "axeViolations": 0
+    }
+  ],
+  "errors": [],
+  "result": "passed",
+  "mode": "PRODUCTION_LOCAL_ACADEMIC_SYNTHETIC",
+  "database": "NOT_CONNECTED"
+}

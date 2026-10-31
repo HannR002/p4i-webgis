@@ -1,0 +1,7 @@
+COMMAND clean npm run typecheck
+
+> p4i-webgis@0.1.0 typecheck
+> tsc --noEmit
+
+app/layout.tsx(10,50): error TS2304: Cannot find name 'LayoutProps'.
+EXIT 2

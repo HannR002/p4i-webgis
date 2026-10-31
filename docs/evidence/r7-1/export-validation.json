@@ -1,0 +1,126 @@
+[
+  {
+    "file": "vector/P4I_Peta_local-ma_1793466190787.png",
+    "bytes": 123321,
+    "sha256": "98ccdf74fe5b6d25fbcd7a81079b9da8a24077f236a3181e937731609078be9d",
+    "dimensions": [
+      1802,
+      1450
+    ]
+  },
+  {
+    "file": "vector/editor-768.png",
+    "bytes": 106851,
+    "sha256": "729a06a6d8a590c1024becdabae916413e4617d697459236a67b8bd60a5685e8",
+    "dimensions": [
+      768,
+      1638
+    ]
+  },
+  {
+    "file": "vector/synthetic-vector.geojson",
+    "bytes": 3143,
+    "sha256": "a6227657a0fe7f6fb8576e59c8fb48def5dc387c612465449c1df2be46f64091",
+    "features": 7
+  },
+  {
+    "file": "vector/editor-1480.png",
+    "bytes": 136392,
+    "sha256": "b89e4dad280168b74e60b9911e288eecd32a3472414f1bc5427d215c5da4f095",
+    "dimensions": [
+      1480,
+      1066
+    ]
+  },
+  {
+    "file": "vector/editor-320.png",
+    "bytes": 93277,
+    "sha256": "96c0fb46204526524bb2dbc316851cef03239de4b91a0bbc209b409a47dc81e3",
+    "dimensions": [
+      320,
+      1795
+    ]
+  },
+  {
+    "file": "vector/editor-390.png",
+    "bytes": 95335,
+    "sha256": "ca3fc4471e7c68fc9fea2afb16a3d4f863c1908cbf1a115b665546bada60244f",
+    "dimensions": [
+      390,
+      1767
+    ]
+  },
+  {
+    "file": "vector/P4I_Analisis_local-ma_1793466192266.pdf",
+    "bytes": 7856157,
+    "sha256": "7247a105c6d72cbdb999cd3dbed0837fe5910657a4e2b47ed84cf92e1e233eae"
+  },
+  {
+    "file": "raster/raster-map.png",
+    "bytes": 117362,
+    "sha256": "9d0d7a2fdc6100359561c006ffd569eb8c47618b9adddd19da46ea7845fd9ec1",
+    "dimensions": [
+      1802,
+      1450
+    ]
+  },
+  {
+    "file": "raster/pixel-1480.png",
+    "bytes": 144857,
+    "sha256": "0c7d301b8d2c858deabbdf73855201ed3e3ab38a6ac8665a4b534150f8d7715b",
+    "dimensions": [
+      1480,
+      1026
+    ]
+  },
+  {
+    "file": "raster/analisis-1480.png",
+    "bytes": 144683,
+    "sha256": "21054d347d50a6c54679c6951ad1f1fa2ed0733262d663e161fc213f9fadabae",
+    "dimensions": [
+      1480,
+      1026
+    ]
+  },
+  {
+    "file": "raster/pixel-band-desktop.png",
+    "bytes": 132084,
+    "sha256": "401777a931a5880b95506472237612c7813b49fa0b90346dc1565746e7b15ec2",
+    "dimensions": [
+      1480,
+      1066
+    ]
+  },
+  {
+    "file": "raster/zonal-desktop.png",
+    "bytes": 144688,
+    "sha256": "f8117674e6142856305c9a8a10190655866541fb5fd1997d13b854f3833761ff",
+    "dimensions": [
+      1480,
+      1066
+    ]
+  },
+  {
+    "file": "raster/analisis-390.png",
+    "bytes": 96039,
+    "sha256": "2e07b3bc1fb32d2db0e78fa5bb086ac2228011dc6e71664e3400f5bf0f19871c",
+    "dimensions": [
+      390,
+      1672
+    ]
+  },
+  {
+    "file": "raster/pixel-390.png",
+    "bytes": 94631,
+    "sha256": "e1584251d9f729d74bbc53b9b4dd126d90a6eb73f292d6488e58c00e00eae627",
+    "dimensions": [
+      390,
+      1672
+    ]
+  },
+  {
+    "file": "raster/raster-report.pdf",
+    "bytes": 7856587,
+    "sha256": "38cfb1ad34baf5be04b621cc1794fed97216e3798604244e2d2eb7f81d389136"
+  }
+]

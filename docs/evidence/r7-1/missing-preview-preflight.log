@@ -1,0 +1,3 @@
+COMMAND clean node scripts/deployment/academic-preflight.mjs
+Academic preview configuration rejected. Review deployment identity, target and disabled-provider policy.
+EXIT 1

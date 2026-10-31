@@ -1,0 +1,1420 @@
+{
+  "rows": [
+    {
+      "path": "/api/academic/status",
+      "method": "HEAD",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/academic/status",
+      "method": "POST",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/academic/status",
+      "method": "PUT",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/academic/status",
+      "method": "PATCH",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/academic/status",
+      "method": "DELETE",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/academic/status",
+      "method": "OPTIONS",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/admin/audit-logs",
+      "method": "GET",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/admin/audit-logs",
+      "method": "HEAD",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/admin/audit-logs",
+      "method": "POST",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/admin/audit-logs",
+      "method": "PUT",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/admin/audit-logs",
+      "method": "PATCH",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/admin/audit-logs",
+      "method": "DELETE",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/admin/audit-logs",
+      "method": "OPTIONS",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/admin/dashboard/metrics",
+      "method": "GET",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/admin/dashboard/metrics",
+      "method": "HEAD",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/admin/dashboard/metrics",
+      "method": "POST",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/admin/dashboard/metrics",
+      "method": "PUT",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/admin/dashboard/metrics",
+      "method": "PATCH",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/admin/dashboard/metrics",
+      "method": "DELETE",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/admin/dashboard/metrics",
+      "method": "OPTIONS",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/admin/entitlements",
+      "method": "GET",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/admin/entitlements",
+      "method": "HEAD",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/admin/entitlements",
+      "method": "POST",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/admin/entitlements",
+      "method": "PUT",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/admin/entitlements",
+      "method": "PATCH",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/admin/entitlements",
+      "method": "DELETE",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/admin/entitlements",
+      "method": "OPTIONS",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/admin/users",
+      "method": "GET",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/admin/users",
+      "method": "HEAD",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/admin/users",
+      "method": "POST",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/admin/users",
+      "method": "PUT",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/admin/users",
+      "method": "PATCH",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/admin/users",
+      "method": "DELETE",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/admin/users",
+      "method": "OPTIONS",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/ai-recommendation",
+      "method": "GET",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/ai-recommendation",
+      "method": "HEAD",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/ai-recommendation",
+      "method": "POST",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/ai-recommendation",
+      "method": "PUT",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/ai-recommendation",
+      "method": "PATCH",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/ai-recommendation",
+      "method": "DELETE",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/ai-recommendation",
+      "method": "OPTIONS",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/auth/session",
+      "method": "HEAD",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/auth/session",
+      "method": "POST",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/auth/session",
+      "method": "PUT",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/auth/session",
+      "method": "PATCH",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/auth/session",
+      "method": "DELETE",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/auth/session",
+      "method": "OPTIONS",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/boundaries",
+      "method": "GET",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/boundaries",
+      "method": "HEAD",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/boundaries",
+      "method": "POST",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/boundaries",
+      "method": "PUT",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/boundaries",
+      "method": "PATCH",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/boundaries",
+      "method": "DELETE",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/boundaries",
+      "method": "OPTIONS",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/consulting/download",
+      "method": "GET",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/consulting/download",
+      "method": "HEAD",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/consulting/download",
+      "method": "POST",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/consulting/download",
+      "method": "PUT",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/consulting/download",
+      "method": "PATCH",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/consulting/download",
+      "method": "DELETE",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/consulting/download",
+      "method": "OPTIONS",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/consulting",
+      "method": "GET",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/consulting",
+      "method": "HEAD",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/consulting",
+      "method": "POST",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/consulting",
+      "method": "PUT",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/consulting",
+      "method": "PATCH",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/consulting",
+      "method": "DELETE",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/consulting",
+      "method": "OPTIONS",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/downloads",
+      "method": "GET",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/downloads",
+      "method": "HEAD",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/downloads",
+      "method": "POST",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/downloads",
+      "method": "PUT",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/downloads",
+      "method": "PATCH",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/downloads",
+      "method": "DELETE",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/downloads",
+      "method": "OPTIONS",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gee/flood-analysis",
+      "method": "GET",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gee/flood-analysis",
+      "method": "HEAD",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gee/flood-analysis",
+      "method": "POST",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gee/flood-analysis",
+      "method": "PUT",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gee/flood-analysis",
+      "method": "PATCH",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gee/flood-analysis",
+      "method": "DELETE",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gee/flood-analysis",
+      "method": "OPTIONS",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/actions",
+      "method": "GET",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/actions",
+      "method": "HEAD",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/actions",
+      "method": "PUT",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/actions",
+      "method": "PATCH",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/actions",
+      "method": "DELETE",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/actions",
+      "method": "OPTIONS",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/catalog",
+      "method": "HEAD",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/catalog",
+      "method": "POST",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/catalog",
+      "method": "PUT",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/catalog",
+      "method": "PATCH",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/catalog",
+      "method": "DELETE",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/catalog",
+      "method": "OPTIONS",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/compute",
+      "method": "GET",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/compute",
+      "method": "HEAD",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/compute",
+      "method": "POST",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/compute",
+      "method": "PUT",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/compute",
+      "method": "PATCH",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/compute",
+      "method": "DELETE",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/compute",
+      "method": "OPTIONS",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/copilot",
+      "method": "HEAD",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/copilot",
+      "method": "PUT",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/copilot",
+      "method": "PATCH",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/copilot",
+      "method": "DELETE",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/copilot",
+      "method": "OPTIONS",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/pixel",
+      "method": "GET",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/pixel",
+      "method": "HEAD",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/pixel",
+      "method": "PUT",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/pixel",
+      "method": "PATCH",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/pixel",
+      "method": "DELETE",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/pixel",
+      "method": "OPTIONS",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/process",
+      "method": "GET",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/process",
+      "method": "HEAD",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/process",
+      "method": "PUT",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/process",
+      "method": "PATCH",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/process",
+      "method": "DELETE",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/process",
+      "method": "OPTIONS",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/tiles/demo-boundaries/2/0/0",
+      "method": "HEAD",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/tiles/demo-boundaries/2/0/0",
+      "method": "POST",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/tiles/demo-boundaries/2/0/0",
+      "method": "PUT",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/tiles/demo-boundaries/2/0/0",
+      "method": "PATCH",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/tiles/demo-boundaries/2/0/0",
+      "method": "DELETE",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/tiles/demo-boundaries/2/0/0",
+      "method": "OPTIONS",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/vector/demo-boundaries",
+      "method": "HEAD",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/vector/demo-boundaries",
+      "method": "POST",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/vector/demo-boundaries",
+      "method": "PUT",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/vector/demo-boundaries",
+      "method": "PATCH",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/vector/demo-boundaries",
+      "method": "DELETE",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/vector/demo-boundaries",
+      "method": "OPTIONS",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/vector-analysis",
+      "method": "GET",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/vector-analysis",
+      "method": "HEAD",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/vector-analysis",
+      "method": "POST",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/vector-analysis",
+      "method": "PUT",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/vector-analysis",
+      "method": "PATCH",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/vector-analysis",
+      "method": "DELETE",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/vector-analysis",
+      "method": "OPTIONS",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/vector-storage",
+      "method": "GET",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/vector-storage",
+      "method": "HEAD",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/vector-storage",
+      "method": "POST",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/vector-storage",
+      "method": "PUT",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/vector-storage",
+      "method": "PATCH",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/vector-storage",
+      "method": "DELETE",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/vector-storage",
+      "method": "OPTIONS",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/leads",
+      "method": "GET",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/leads",
+      "method": "HEAD",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/leads",
+      "method": "POST",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/leads",
+      "method": "PUT",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/leads",
+      "method": "PATCH",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/leads",
+      "method": "DELETE",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/leads",
+      "method": "OPTIONS",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/onboarding",
+      "method": "GET",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/onboarding",
+      "method": "HEAD",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/onboarding",
+      "method": "POST",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/onboarding",
+      "method": "PUT",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/onboarding",
+      "method": "PATCH",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/onboarding",
+      "method": "DELETE",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/onboarding",
+      "method": "OPTIONS",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/projects/demo-boundaries/layers",
+      "method": "GET",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/projects/demo-boundaries/layers",
+      "method": "HEAD",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/projects/demo-boundaries/layers",
+      "method": "POST",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/projects/demo-boundaries/layers",
+      "method": "PUT",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/projects/demo-boundaries/layers",
+      "method": "PATCH",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/projects/demo-boundaries/layers",
+      "method": "DELETE",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/projects/demo-boundaries/layers",
+      "method": "OPTIONS",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/projects/list",
+      "method": "GET",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/projects/list",
+      "method": "HEAD",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/projects/list",
+      "method": "POST",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/projects/list",
+      "method": "PUT",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/projects/list",
+      "method": "PATCH",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/projects/list",
+      "method": "DELETE",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/projects/list",
+      "method": "OPTIONS",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/projects",
+      "method": "GET",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/projects",
+      "method": "HEAD",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/projects",
+      "method": "POST",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/projects",
+      "method": "PUT",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/projects",
+      "method": "PATCH",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/projects",
+      "method": "DELETE",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/projects",
+      "method": "OPTIONS",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/projects/list",
+      "method": "GET",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/projects/list",
+      "method": "GET",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/projects/list",
+      "method": "GET",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/projects/list",
+      "method": "GET",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/projects/list",
+      "method": "GET",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/projects/list",
+      "method": "GET",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/projects/list?P4I_ACADEMIC_PREVIEW=false&role=super_admin",
+      "method": "GET",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/projects/list.json",
+      "method": "GET",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/projects/list.png",
+      "method": "GET",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/projects%2flist",
+      "method": "GET",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/vector/real-private-layer",
+      "method": "GET",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/gis/tiles/private/2/0/0",
+      "method": "GET",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/projects/list/",
+      "method": "GET",
+      "status": 308,
+      "expected": 308
+    },
+    {
+      "path": "//api/projects/list",
+      "method": "GET",
+      "status": 308,
+      "expected": 308
+    },
+    {
+      "path": "/_next/static/../../api/projects/list",
+      "method": "GET",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/_next/image/../../api/projects/list",
+      "method": "GET",
+      "status": 503,
+      "expected": 503
+    },
+    {
+      "path": "/api/auth/session",
+      "method": "GET",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/api/gis/catalog",
+      "method": "GET",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/api/gis/vector/demo-boundaries",
+      "method": "GET",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/api/gis/vector/demo-unknown",
+      "method": "GET",
+      "status": 400,
+      "expected": 400
+    },
+    {
+      "path": "/api/gis/tiles/demo-rainfall/2/0/0?palette=%3Cscript%3E",
+      "method": "GET",
+      "status": 400,
+      "expected": 400
+    },
+    {
+      "path": "/api/gis/actions",
+      "method": "POST",
+      "status": 400,
+      "expected": 400
+    },
+    {
+      "path": "/api/gis/actions",
+      "method": "POST",
+      "status": 400,
+      "expected": 400
+    },
+    {
+      "path": "/api/gis/pixel",
+      "method": "POST",
+      "status": 400,
+      "expected": 400
+    },
+    {
+      "path": "/api/gis/process",
+      "method": "POST",
+      "status": 400,
+      "expected": 400
+    },
+    {
+      "path": "/api/gis/copilot",
+      "method": "POST",
+      "status": 400,
+      "expected": 400
+    },
+    {
+      "path": "/api/gis/pixel",
+      "method": "POST",
+      "status": 200,
+      "expected": 200
+    }
+  ],
+  "flags": [
+    {
+      "name": "P4I_ACADEMIC_PREVIEW",
+      "value": "",
+      "status": "invalid"
+    },
+    {
+      "name": "P4I_ACADEMIC_PREVIEW",
+      "value": "TRUE",
+      "status": "invalid"
+    },
+    {
+      "name": "P4I_ACADEMIC_PREVIEW",
+      "value": "False",
+      "status": "invalid"
+    },
+    {
+      "name": "P4I_ACADEMIC_PREVIEW",
+      "value": "0",
+      "status": "invalid"
+    },
+    {
+      "name": "P4I_ACADEMIC_PREVIEW",
+      "value": "1",
+      "status": "invalid"
+    },
+    {
+      "name": "P4I_ACADEMIC_PREVIEW",
+      "value": " true",
+      "status": "invalid"
+    },
+    {
+      "name": "P4I_ACADEMIC_PREVIEW",
+      "value": "true ",
+      "status": "invalid"
+    },
+    {
+      "name": "P4I_ACADEMIC_PREVIEW",
+      "value": "null",
+      "status": "invalid"
+    },
+    {
+      "name": "VERCEL",
+      "value": "ABSENT",
+      "status": "invalid"
+    },
+    {
+      "name": "VERCEL",
+      "value": "spoofed",
+      "status": "invalid"
+    },
+    {
+      "name": "VERCEL_ENV",
+      "value": "ABSENT",
+      "status": "invalid"
+    },
+    {
+      "name": "VERCEL_ENV",
+      "value": "spoofed",
+      "status": "invalid"
+    },
+    {
+      "name": "VERCEL_PROJECT_ID",
+      "value": "ABSENT",
+      "status": "invalid"
+    },
+    {
+      "name": "VERCEL_PROJECT_ID",
+      "value": "spoofed",
+      "status": "invalid"
+    },
+    {
+      "name": "VERCEL_URL",
+      "value": "ABSENT",
+      "status": "invalid"
+    },
+    {
+      "name": "VERCEL_URL",
+      "value": "spoofed",
+      "status": "invalid"
+    },
+    {
+      "name": "P4I_PREVIEW_ID",
+      "value": "ABSENT",
+      "status": "invalid"
+    },
+    {
+      "name": "P4I_PREVIEW_ID",
+      "value": "spoofed",
+      "status": "invalid"
+    },
+    {
+      "name": "AI_PROVIDER",
+      "value": "ABSENT",
+      "status": "invalid"
+    },
+    {
+      "name": "AI_PROVIDER",
+      "value": "spoofed",
+      "status": "invalid"
+    },
+    {
+      "name": "VECTOR_STORAGE_MODE",
+      "value": "ABSENT",
+      "status": "invalid"
+    },
+    {
+      "name": "VECTOR_STORAGE_MODE",
+      "value": "spoofed",
+      "status": "invalid"
+    },
+    {
+      "name": "GEMINI_FREE_ENABLED",
+      "value": "ABSENT",
+      "status": "invalid"
+    },
+    {
+      "name": "GEMINI_FREE_ENABLED",
+      "value": "spoofed",
+      "status": "invalid"
+    },
+    {
+      "name": "SUPABASE_SERVICE_ROLE_KEY",
+      "status": "invalid"
+    },
+    {
+      "name": "GEMINI_API_KEY",
+      "status": "invalid"
+    },
+    {
+      "name": "DATABASE_URL",
+      "status": "invalid"
+    },
+    {
+      "name": "SUPABASE_DB_URL",
+      "status": "invalid"
+    },
+    {
+      "name": "GEE_PROJECT_ID",
+      "status": "invalid"
+    },
+    {
+      "name": "GEE_SOIL_ASSET_ID",
+      "status": "invalid"
+    },
+    {
+      "name": "GEE_SERVICE_ACCOUNT_JSON",
+      "status": "invalid"
+    },
+    {
+      "name": "GEE_SERVICE_ACCOUNT_JSON_BASE64",
+      "status": "invalid"
+    },
+    {
+      "name": "VECTOR_STORAGE_LOCAL_URL",
+      "status": "invalid"
+    },
+    {
+      "name": "VECTOR_STORAGE_LOCAL_ACK",
+      "status": "invalid"
+    },
+    {
+      "preflightMissing": "VERCEL",
+      "exit": 1
+    },
+    {
+      "preflightMissing": "VERCEL_ENV",
+      "exit": 1
+    },
+    {
+      "preflightMissing": "VERCEL_PROJECT_ID",
+      "exit": 1
+    },
+    {
+      "preflightMissing": "VERCEL_URL",
+      "exit": 1
+    }
+  ],
+  "operatorIdentitySpoof": "Fully operator-controlled matching identity accepted; not platform attestation",
+  "result": "PASS"
+}

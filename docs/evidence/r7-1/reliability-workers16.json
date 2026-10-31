@@ -1,0 +1,8 @@
+{
+  "workers": 16,
+  "cpuQuota": "2 CPUs",
+  "exit": 0,
+  "wallMs": 10165,
+  "before": "usage_usec 320123408\nuser_usec 286644680\nsystem_usec 33478728\nnice_usec 0\nnr_periods 3244\nnr_throttled 685\nthrottled_usec 38300346\nnr_bursts 0\nburst_usec 0\n",
+  "after": "usage_usec 340069806\nuser_usec 304381671\nsystem_usec 35688135\nnice_usec 0\nnr_periods 3346\nnr_throttled 781\nthrottled_usec 47164834\nnr_bursts 0\nburst_usec 0\n"
+}
