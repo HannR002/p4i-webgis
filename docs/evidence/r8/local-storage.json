@@ -1,0 +1,14 @@
+{
+  "node_modules": {
+    "files": 42546,
+    "directories": 3413
+  },
+  ".next": {
+    "files": 492,
+    "directories": 292
+  },
+  "public": {
+    "files": 11,
+    "directories": 2
+  }
+}

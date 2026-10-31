@@ -1,4 +1,5 @@
-import { academicRequested, academicStatus, academicApiAllowed } from './lib/academicPreview';
+import { academicRequested, academicStatus, academicApiAllowed, academicProvider } from './lib/academicPreview';
+import { hostingerAccessAllowed, hostingerRequestHostAllowed } from './lib/server/hostingerPreviewAccess';
 import { NextResponse, type NextRequest } from 'next/server';
 import { ADMIN_ROLES, hasRequiredRole } from './lib/authRoles';
 import { getIdentityFromAccessToken } from './lib/server/auth';
@@ -15,9 +16,22 @@ function redirectToLogin(request: NextRequest, reason?: string) {
 export async function proxy(request: NextRequest) {
   if (academicRequested(process.env)) {
     const path = request.nextUrl.pathname;
-    const headers = { 'Cache-Control': 'private, no-store', 'X-Robots-Tag': 'noindex, nofollow' };
+    const headers: Record<string, string> = { 'Cache-Control': 'private, no-store', 'X-Robots-Tag': 'noindex, nofollow' };
     if (academicStatus(process.env) !== 'active')
       return NextResponse.json({ error: 'Konfigurasi preview akademik tidak valid.' }, { status: 503, headers });
+    // Keep Vercel's original asset bypass/cache behavior; Hostinger authenticates every path.
+    if (academicProvider(process.env) === 'vercel' && /^\/(?:_next\/(?:static|image)|favicon\.ico)/.test(path))
+      return NextResponse.next();
+    if (academicProvider(process.env) === 'hostinger') {
+      headers['Referrer-Policy'] = 'no-referrer';
+      headers['X-Frame-Options'] = 'DENY';
+      if (!hostingerRequestHostAllowed(request.headers.get('host'), process.env))
+        return NextResponse.json({ error: 'Host preview akademik tidak diizinkan.' }, { status: 503, headers });
+      if (!hostingerAccessAllowed(request.headers.get('authorization'), process.env))
+        return new NextResponse('Akses preview memerlukan autentikasi.', { status: 401, headers: {
+          ...headers, 'WWW-Authenticate': 'Basic realm="P4I Academic Preview", charset="UTF-8"',
+        } });
+    }
     if (path.startsWith('/api/')) {
       if (!academicApiAllowed(path, request.method))
         return NextResponse.json({ error: 'Backend ini tidak tersedia dalam preview akademik.' }, { status: 503, headers });
@@ -50,5 +64,6 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!_next/static|_next/image|favicon.ico).*)'],
+  // Hostinger has no external protection boundary: authenticate assets as well.
+  matcher: ['/:path*'],
 };

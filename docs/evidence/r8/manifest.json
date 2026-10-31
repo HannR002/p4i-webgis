@@ -1,0 +1,166 @@
+{
+  "testedSourceSha": "1571ebb549656a9b21d8c0161c7d520475fb1970",
+  "evidenceContext": "Local tests only; no Hostinger website or deployment exists. Earlier intermediate negative/resource logs are identified in the report.",
+  "files": [
+    {
+      "path": "application-tests.log",
+      "bytes": 6417,
+      "sha256": "ae35bb51bafac5fd0ec642aa69f397fb05b83325b60db341e0092e245a3999be"
+    },
+    {
+      "path": "audit-exits.json",
+      "bytes": 138,
+      "sha256": "d47f784aa2677059cd1a26670d38b522ec0e421e7165e83dca83e1bfee93c765"
+    },
+    {
+      "path": "audit-full.json",
+      "bytes": 9382,
+      "sha256": "cac8ba97e63d51f5a49994baefc941af511c2e7feb5d6c12ca34ba4d1cf3ed16"
+    },
+    {
+      "path": "audit-production.json",
+      "bytes": 366,
+      "sha256": "cc94641330c3a239ecc597938ba18b8ae053275dd54a64c14deba67b780b8554"
+    },
+    {
+      "path": "ci-helpers.log",
+      "bytes": 9592,
+      "sha256": "164f7b3c5cbcac3c440dc36de847388dfae5ef06583977b10c1d559a8369c6ed"
+    },
+    {
+      "path": "cold-build-resources.json",
+      "bytes": 311,
+      "sha256": "d07b9c4f6a575f4e9039b3bed3e9c131ecea189594bfa8374120409572cab791"
+    },
+    {
+      "path": "dependency-gate.log",
+      "bytes": 631,
+      "sha256": "0cd3998fa7f4300ce5f8b1b8f9d9570f90e48c8e1cd222609d318eec38214493"
+    },
+    {
+      "path": "editor-1480.png",
+      "bytes": 136392,
+      "sha256": "b89e4dad280168b74e60b9911e288eecd32a3472414f1bc5427d215c5da4f095"
+    },
+    {
+      "path": "editor-390.png",
+      "bytes": 95335,
+      "sha256": "ca3fc4471e7c68fc9fea2afb16a3d4f863c1908cbf1a115b665546bada60244f"
+    },
+    {
+      "path": "export-validation.json",
+      "bytes": 3139,
+      "sha256": "e42925801bd2205bb23b03a554198e4d1e30e677c26231a6d6dd05d8127b5684"
+    },
+    {
+      "path": "fresh-typecheck.log",
+      "bytes": 340,
+      "sha256": "d0963f4460a226b8444440df96b079dc991fd1a237843f42999c15e6983b2728"
+    },
+    {
+      "path": "hostinger-http.log",
+      "bytes": 549,
+      "sha256": "3acce94ac632e8f45a194566850c862667775ec52160257d19e57fc62d20fc99"
+    },
+    {
+      "path": "invalid-runtime-checks.log",
+      "bytes": 971,
+      "sha256": "224728aa32fd06d83456a123f437cb891515b194a14af462944477366055e544"
+    },
+    {
+      "path": "lint.log",
+      "bytes": 251,
+      "sha256": "271e1eb425414d3a9b62b4461dfe8390092f50d0e55d4b30978e1af43051891a"
+    },
+    {
+      "path": "local-storage.json",
+      "bytes": 188,
+      "sha256": "d0c19f30d58938bf795c84d0c87b43d86103dfa4b5594e11c02d0e8136d1fea4"
+    },
+    {
+      "path": "normal-build.log",
+      "bytes": 2480,
+      "sha256": "5967ce281be07f68185cf877fe87ba1562529f050bc4d987f7188a71558b5a85"
+    },
+    {
+      "path": "preflight-refusals.log",
+      "bytes": 627,
+      "sha256": "187231639fe542696a46009e3f19f55a0a881126a225fd066a1ce9327685b0be"
+    },
+    {
+      "path": "production-boundary.json",
+      "bytes": 635,
+      "sha256": "91f34e46b43fa54d342e03b150cf4eabffded79fe1d2e448442c1c8b0ecb8e84"
+    },
+    {
+      "path": "production-boundary.log",
+      "bytes": 224,
+      "sha256": "b584d903e3497be332e2d3fc97c76fe0b7289db91fc92b914a0abd0164751f11"
+    },
+    {
+      "path": "release-digitizing.json",
+      "bytes": 890,
+      "sha256": "1a9499fbda987a923d976003dbd125c70a968f94e097d5aafd672472fe9e4494"
+    },
+    {
+      "path": "release-digitizing.log",
+      "bytes": 801,
+      "sha256": "f420c5977c23b6f0810feba00be4efa7e9bf93d654f4b859af83781c316346e1"
+    },
+    {
+      "path": "release-http.json",
+      "bytes": 25065,
+      "sha256": "544d8aaecbb2520558364851fd40630442a9b597db1abf71168f3c907f3d2eef"
+    },
+    {
+      "path": "release-vector.json",
+      "bytes": 622,
+      "sha256": "5df18d8d339e67e8f7b553406880a0d306b57359495c87921e607a79abe6194c"
+    },
+    {
+      "path": "release-vector.log",
+      "bytes": 529,
+      "sha256": "892f18745c4df919307ee91b48fbeb7d6ecf3e2127d9c24ea9ef90af9113492f"
+    },
+    {
+      "path": "runtime-resources.json",
+      "bytes": 222,
+      "sha256": "4f9ac7313184c860675744668db4e79ab5a3502cc92d9d3b62d9b2370a419539"
+    },
+    {
+      "path": "source-package.json",
+      "bytes": 386,
+      "sha256": "e9b5c9e1aa7c2f40c42525e1be04f8a19774cdcc21cb6d7b3fe1fb8826cc4248"
+    },
+    {
+      "path": "vercel-http.log",
+      "bytes": 548,
+      "sha256": "1d4eb53499d265bb9a5358d73f86f02d289e76ec3edc5927981b82925b952d63"
+    },
+    {
+      "path": "verification-summary.json",
+      "bytes": 1848,
+      "sha256": "30b114edbdafb13e4f60e8c67c8e4a188ade3e4c3972a0101733925b35ac96fa"
+    },
+    {
+      "path": "visible-failure.json",
+      "bytes": 152,
+      "sha256": "5068c00ed2395ff43513964278e857bbfa7d3aa64baa6479072995dda78d019a"
+    },
+    {
+      "path": "visible-failure.log",
+      "bytes": 145,
+      "sha256": "bac6bbf7a0dfb565b490e5148af712a472036526fd783ecbf9183b7ea511249d"
+    },
+    {
+      "path": "webpack-build.log",
+      "bytes": 2502,
+      "sha256": "39362c27e0e2540031895d649fa446473fd1d6d579862fbd55b5f8cdcbe0bba3"
+    },
+    {
+      "path": "webpack-resources.json",
+      "bytes": 310,
+      "sha256": "bdca2a428891adbb54ae0346aad94f3793b0e8d55c79c364138f6a9b673c713a"
+    }
+  ]
+}

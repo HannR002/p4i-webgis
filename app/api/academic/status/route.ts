@@ -1,10 +1,13 @@
-import { academicStatus } from '../../../../lib/academicPreview';
+import { academicStatus, academicProvider } from '../../../../lib/academicPreview';
 export async function GET() {
   const status = academicStatus(process.env);
+  const provider = academicProvider(process.env);
+  const revision = provider === 'hostinger' ? process.env.P4I_SOURCE_REVISION : process.env.VERCEL_GIT_COMMIT_SHA;
   return Response.json({
     enabled: status === 'active',
     runtime: process.versions.node,
-    sourceRevision: /^[a-f0-9]{40}$/.test(process.env.VERCEL_GIT_COMMIT_SHA ?? '') ? process.env.VERCEL_GIT_COMMIT_SHA : null,
+    sourceRevision: /^[a-f0-9]{40}$/.test(revision ?? '') ? revision : null,
+    deploymentProvider: provider,
     synthetic: true,
     identity: 'guest',
     planner: 'deterministic-demo',

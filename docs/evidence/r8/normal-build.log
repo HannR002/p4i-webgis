@@ -1,0 +1,80 @@
+COMMAND academic node --input-type=module -
+COMMAND node scripts/deployment/academic-preflight.mjs
+Academic preview configuration valid; synthetic guest-only adapter. Release approval remains separate.
+(node:17551) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///workspace/work/r8/fresh-check/lib/academicPreview.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /workspace/work/r8/fresh-check/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+COMMAND npm run build
+
+> p4i-webgis@0.1.0 build
+> next build
+
+▲ Next.js 16.4.3 (Turbopack)
+✓ Running next.config.ts took 24ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 32.7s
+  Running TypeScript ...
+  Finished TypeScript in 17.1s ...
+  Collecting page data using 2 workers ...
+  Generating static pages using 2 workers (0/43) ...
+  Generating static pages using 2 workers (10/43)
+  Generating static pages using 2 workers (21/43)
+  Generating static pages using 2 workers (32/43)
+✓ Generating static pages using 2 workers (43/43) in 555ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /academic-unavailable
+├ ○ /admin/dashboard
+├ ○ /admin/upload
+├ ○ /admin/users
+├ ƒ /api/academic/status
+├ ƒ /api/admin/audit-logs
+├ ƒ /api/admin/dashboard/metrics
+├ ƒ /api/admin/entitlements
+├ ƒ /api/admin/users
+├ ƒ /api/ai-recommendation
+├ ƒ /api/auth/session
+├ ƒ /api/boundaries
+├ ƒ /api/consulting
+├ ƒ /api/consulting/download
+├ ƒ /api/downloads
+├ ƒ /api/gee/flood-analysis
+├ ƒ /api/gis/actions
+├ ƒ /api/gis/catalog
+├ ƒ /api/gis/compute
+├ ƒ /api/gis/copilot
+├ ƒ /api/gis/pixel
+├ ƒ /api/gis/process
+├ ƒ /api/gis/tiles/[id]/[z]/[x]/[y]
+├ ƒ /api/gis/vector-analysis
+├ ƒ /api/gis/vector-storage
+├ ƒ /api/gis/vector/[id]
+├ ƒ /api/leads
+├ ƒ /api/onboarding
+├ ƒ /api/projects
+├ ƒ /api/projects/[id]/layers
+├ ƒ /api/projects/list
+├ ○ /login
+├ ○ /portal
+├ ○ /spatial
+├ ○ /spatial/ai
+├ ○ /spatial/analysis
+├ ○ /spatial/consulting
+├ ○ /spatial/data
+├ ○ /spatial/help
+├ ○ /spatial/home
+├ ƒ /spatial/viewer
+└ ƒ /spatial/webmap
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+EXIT 0

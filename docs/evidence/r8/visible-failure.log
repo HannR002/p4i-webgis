@@ -1,0 +1,3 @@
+COMMAND hostinger node /workspace/work/r8/failure-review.mjs
+PASS failed Copilot request leaves recipe unchanged; no uncaught page errors
+EXIT 0

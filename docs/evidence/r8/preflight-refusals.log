@@ -1,0 +1,39 @@
+COMMAND hostinger node --input-type=module -
+{
+  "result": "PASS",
+  "cases": [
+    {
+      "name": "P4I_HOSTINGER_HOSTNAME",
+      "exit": 1
+    },
+    {
+      "name": "P4I_PREVIEW_PROVIDER",
+      "exit": 1
+    },
+    {
+      "name": "P4I_ACADEMIC_PREVIEW",
+      "exit": 1
+    },
+    {
+      "name": "P4I_HOSTINGER_ENV",
+      "exit": 1
+    },
+    {
+      "name": "P4I_HOSTINGER_PASSWORD_SHA256",
+      "exit": 1
+    },
+    {
+      "name": "P4I_SOURCE_REVISION",
+      "exit": 1
+    },
+    {
+      "name": "SUPABASE_SERVICE_ROLE_KEY",
+      "exit": 1
+    },
+    {
+      "node": "24.19.0",
+      "exit": 1
+    }
+  ]
+}
+EXIT 0
