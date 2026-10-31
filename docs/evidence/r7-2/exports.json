@@ -1,0 +1,38 @@
+[
+  {
+    "file": "browser-vector/P4I_Analisis_local-ma_1793470525920.pdf",
+    "bytes": 7856157,
+    "sha256": "33d48bbbcc9c13e02ae08d9b4764ca0882c3efb47903f2e5c0a646dc2888f32b",
+    "demoProvisionalLabel": true
+  },
+  {
+    "file": "browser-vector/P4I_Peta_local-ma_1793470524504.png",
+    "bytes": 123321,
+    "sha256": "98ccdf74fe5b6d25fbcd7a81079b9da8a24077f236a3181e937731609078be9d",
+    "dimensions": [
+      1802,
+      1450
+    ]
+  },
+  {
+    "file": "browser-vector/synthetic-vector.geojson",
+    "bytes": 3143,
+    "sha256": "a6227657a0fe7f6fb8576e59c8fb48def5dc387c612465449c1df2be46f64091",
+    "features": 7
+  },
+  {
+    "file": "browser-raster/raster-map.png",
+    "bytes": 117362,
+    "sha256": "9d0d7a2fdc6100359561c006ffd569eb8c47618b9adddd19da46ea7845fd9ec1",
+    "dimensions": [
+      1802,
+      1450
+    ]
+  },
+  {
+    "file": "browser-raster/raster-report.pdf",
+    "bytes": 7856587,
+    "sha256": "8a333473af3b8b7e7894cc9e850ef5a42a1bada5eaa9e79553b13005319c6bb9",
+    "demoProvisionalLabel": true
+  }
+]

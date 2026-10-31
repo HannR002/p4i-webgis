@@ -1,0 +1,57 @@
+COMMAND clean node -
+TRIAL npm install --package-lock-only --ignore-scripts
+
+up to date, audited 539 packages in 1s
+
+172 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+TRIAL_EXIT 0
+TRIAL npm ci
+
+added 538 packages, and audited 539 packages in 12s
+
+172 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+TRIAL_EXIT 0
+TRIAL npm audit --json
+{
+  "auditReportVersion": 2,
+  "vulnerabilities": {},
+  "metadata": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "dependencies": {
+      "prod": 155,
+      "dev": 461,
+      "optional": 158,
+      "peer": 0,
+      "peerOptional": 0,
+      "total": 664
+    }
+  }
+}
+TRIAL_EXIT 0
+TRIAL npm run lint
+
+> p4i-webgis@0.1.0 lint
+> eslint
+
+
+/workspace/work/r7-2/override-trial/tests/academicPreview.test.ts
+  1:33  warning  'describe' is defined but never used  @typescript-eslint/no-unused-vars
+
+✖ 1 problem (0 errors, 1 warning)
+
+TRIAL_EXIT 0
+EXIT 0

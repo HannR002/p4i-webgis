@@ -1,0 +1,28 @@
+COMMAND clean node -
+[
+  {
+    "name": "baseline",
+    "completed": true,
+    "messages": [
+      {
+        "ruleId": "jsx-a11y/label-has-associated-control",
+        "message": "A form label must have accessible text."
+      }
+    ]
+  },
+  {
+    "name": "override",
+    "completed": false,
+    "error": "(0 , _minimatch.default) is not a function\nOccurred while linting <input>:1\nRule: \"jsx-a11y/label-has-associated-control\"",
+    "stack": [
+      "TypeError: (0 , _minimatch.default) is not a function",
+      "Occurred while linting <input>:1",
+      "Rule: \"jsx-a11y/label-has-associated-control\"",
+      "    at traverseChildren (/workspace/work/r7-2/override-trial/node_modules/eslint-plugin-jsx-a11y/lib/util/mayContainChildComponent.js:38:102)",
+      "    at mayContainChildComponent (/workspace/work/r7-2/override-trial/node_modules/eslint-plugin-jsx-a11y/lib/util/mayContainChildComponent.js:48:10)",
+      "    at /workspace/work/r7-2/override-trial/node_modules/eslint-plugin-jsx-a11y/lib/rules/label-has-associated-control.js:79:57",
+      "    at Array.some (<anonymous>)"
+    ]
+  }
+]
+EXIT 0

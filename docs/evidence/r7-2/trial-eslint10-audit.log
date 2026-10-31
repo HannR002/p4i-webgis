@@ -1,0 +1,570 @@
+COMMAND clean node -
+TRIAL npm audit --json
+{
+  "auditReportVersion": 2,
+  "vulnerabilities": {
+    "@eslint-community/eslint-utils": {
+      "name": "@eslint-community/eslint-utils",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "eslint"
+      ],
+      "effects": [
+        "@next/eslint-plugin-next",
+        "@typescript-eslint/utils",
+        "eslint"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/@eslint-community/eslint-utils",
+        "node_modules/@next/eslint-plugin-next/node_modules/@eslint-community/eslint-utils"
+      ],
+      "fixAvailable": {
+        "name": "eslint",
+        "version": "4.0.0",
+        "isSemVerMajor": true
+      }
+    },
+    "@eslint/config-array": {
+      "name": "@eslint/config-array",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "minimatch"
+      ],
+      "effects": [
+        "eslint"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/@eslint/config-array"
+      ],
+      "fixAvailable": {
+        "name": "eslint",
+        "version": "4.0.0",
+        "isSemVerMajor": true
+      }
+    },
+    "@next/eslint-plugin-next": {
+      "name": "@next/eslint-plugin-next",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "@eslint-community/eslint-utils"
+      ],
+      "effects": [
+        "eslint-config-next"
+      ],
+      "range": ">=16.3.0-canary.0",
+      "nodes": [
+        "node_modules/@next/eslint-plugin-next"
+      ],
+      "fixAvailable": {
+        "name": "eslint-config-next",
+        "version": "12.0.4",
+        "isSemVerMajor": true
+      }
+    },
+    "@typescript-eslint/eslint-plugin": {
+      "name": "@typescript-eslint/eslint-plugin",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "@typescript-eslint/parser",
+        "@typescript-eslint/type-utils",
+        "@typescript-eslint/utils",
+        "eslint"
+      ],
+      "effects": [],
+      "range": "*",
+      "nodes": [
+        "node_modules/@typescript-eslint/eslint-plugin"
+      ],
+      "fixAvailable": true
+    },
+    "@typescript-eslint/parser": {
+      "name": "@typescript-eslint/parser",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "@typescript-eslint/typescript-estree",
+        "eslint"
+      ],
+      "effects": [
+        "@typescript-eslint/eslint-plugin",
+        "typescript-eslint"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/@typescript-eslint/parser"
+      ],
+      "fixAvailable": {
+        "name": "eslint-config-next",
+        "version": "12.0.4",
+        "isSemVerMajor": true
+      }
+    },
+    "@typescript-eslint/type-utils": {
+      "name": "@typescript-eslint/type-utils",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "@typescript-eslint/typescript-estree",
+        "@typescript-eslint/utils",
+        "eslint"
+      ],
+      "effects": [
+        "@typescript-eslint/eslint-plugin"
+      ],
+      "range": ">=5.9.2-alpha.0",
+      "nodes": [
+        "node_modules/@typescript-eslint/type-utils"
+      ],
+      "fixAvailable": true
+    },
+    "@typescript-eslint/typescript-estree": {
+      "name": "@typescript-eslint/typescript-estree",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "minimatch"
+      ],
+      "effects": [
+        "@typescript-eslint/parser",
+        "@typescript-eslint/type-utils",
+        "@typescript-eslint/utils",
+        "typescript-eslint"
+      ],
+      "range": ">=6.16.0",
+      "nodes": [
+        "node_modules/@typescript-eslint/typescript-estree"
+      ],
+      "fixAvailable": {
+        "name": "eslint-config-next",
+        "version": "12.0.4",
+        "isSemVerMajor": true
+      }
+    },
+    "@typescript-eslint/utils": {
+      "name": "@typescript-eslint/utils",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "@eslint-community/eslint-utils",
+        "@typescript-eslint/typescript-estree",
+        "eslint"
+      ],
+      "effects": [
+        "@typescript-eslint/eslint-plugin",
+        "@typescript-eslint/type-utils",
+        "typescript-eslint"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/@typescript-eslint/utils"
+      ],
+      "fixAvailable": {
+        "name": "eslint-config-next",
+        "version": "12.0.4",
+        "isSemVerMajor": true
+      }
+    },
+    "eslint": {
+      "name": "eslint",
+      "severity": "moderate",
+      "isDirect": true,
+      "via": [
+        "@eslint-community/eslint-utils",
+        "@eslint/config-array",
+        "minimatch"
+      ],
+      "effects": [
+        "@eslint-community/eslint-utils",
+        "@typescript-eslint/eslint-plugin",
+        "@typescript-eslint/parser",
+        "@typescript-eslint/type-utils",
+        "@typescript-eslint/utils",
+        "typescript-eslint"
+      ],
+      "range": "0.7.1 - 2.0.0-rc.1 || >=4.1.0",
+      "nodes": [
+        "node_modules/eslint"
+      ],
+      "fixAvailable": {
+        "name": "eslint",
+        "version": "4.0.0",
+        "isSemVerMajor": true
+      }
+    },
+    "eslint-config-next": {
+      "name": "eslint-config-next",
+      "severity": "moderate",
+      "isDirect": true,
+      "via": [
+        "@next/eslint-plugin-next",
+        "eslint",
+        "eslint-plugin-import",
+        "eslint-plugin-jsx-a11y",
+        "eslint-plugin-react",
+        "typescript-eslint"
+      ],
+      "effects": [],
+      "range": ">=10.2.1-canary.2",
+      "nodes": [
+        "node_modules/eslint-config-next"
+      ],
+      "fixAvailable": {
+        "name": "eslint-config-next",
+        "version": "12.0.4",
+        "isSemVerMajor": true
+      }
+    },
+    "eslint-plugin-import": {
+      "name": "eslint-plugin-import",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "minimatch"
+      ],
+      "effects": [],
+      "range": ">=1.15.0",
+      "nodes": [
+        "node_modules/eslint-config-next/node_modules/eslint-plugin-import"
+      ],
+      "fixAvailable": true
+    },
+    "eslint-plugin-jsx-a11y": {
+      "name": "eslint-plugin-jsx-a11y",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "minimatch"
+      ],
+      "effects": [
+        "eslint-config-next"
+      ],
+      "range": ">=6.5.0",
+      "nodes": [
+        "node_modules/eslint-config-next/node_modules/eslint-plugin-jsx-a11y"
+      ],
+      "fixAvailable": {
+        "name": "eslint-config-next",
+        "version": "12.0.4",
+        "isSemVerMajor": true
+      }
+    },
+    "eslint-plugin-react": {
+      "name": "eslint-plugin-react",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "minimatch"
+      ],
+      "effects": [
+        "eslint-config-next"
+      ],
+      "range": ">=7.23.0",
+      "nodes": [
+        "node_modules/eslint-config-next/node_modules/eslint-plugin-react"
+      ],
+      "fixAvailable": {
+        "name": "eslint-config-next",
+        "version": "12.0.4",
+        "isSemVerMajor": true
+      }
+    },
+    "minimatch": {
+      "name": "minimatch",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1244012,
+          "name": "minimatch",
+          "dependency": "minimatch",
+          "title": "minimatch has potential denial of service via globparts amplification",
+          "url": "https://github.com/advisories/GHSA-g3hv-75wg-m249",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-405"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          },
+          "range": "<11.0.1"
+        }
+      ],
+      "effects": [
+        "@eslint/config-array",
+        "@typescript-eslint/typescript-estree",
+        "eslint",
+        "eslint-plugin-import",
+        "eslint-plugin-jsx-a11y",
+        "eslint-plugin-react"
+      ],
+      "range": "<11.0.1",
+      "nodes": [
+        "node_modules/eslint-config-next/node_modules/minimatch",
+        "node_modules/minimatch"
+      ],
+      "fixAvailable": {
+        "name": "eslint",
+        "version": "4.0.0",
+        "isSemVerMajor": true
+      }
+    },
+    "typescript-eslint": {
+      "name": "typescript-eslint",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "@typescript-eslint/eslint-plugin",
+        "@typescript-eslint/parser",
+        "@typescript-eslint/typescript-estree",
+        "@typescript-eslint/utils",
+        "eslint"
+      ],
+      "effects": [
+        "eslint-config-next"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/typescript-eslint"
+      ],
+      "fixAvailable": {
+        "name": "eslint-config-next",
+        "version": "12.0.4",
+        "isSemVerMajor": true
+      }
+    }
+  },
+  "metadata": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 15,
+      "high": 0,
+      "critical": 0,
+      "total": 15
+    },
+    "dependencies": {
+      "prod": 155,
+      "dev": 455,
+      "optional": 158,
+      "peer": 0,
+      "peerOptional": 0,
+      "total": 658
+    }
+  }
+}
+TRIAL_EXIT 1
+TRIAL npm ls eslint --all --package-lock-only --json
+{
+  "version": "0.1.0",
+  "name": "p4i-webgis",
+  "problems": [
+    "invalid: eslint@10.14.0 /workspace/work/r7-2/eslint10-trial/node_modules/eslint"
+  ],
+  "dependencies": {
+    "eslint-config-next": {
+      "version": "16.4.3",
+      "resolved": "https://registry.npmjs.org/eslint-config-next/-/eslint-config-next-16.4.3.tgz",
+      "overridden": false,
+      "dependencies": {
+        "@next/eslint-plugin-next": {
+          "version": "16.4.3",
+          "resolved": "https://registry.npmjs.org/@next/eslint-plugin-next/-/eslint-plugin-next-16.4.3.tgz",
+          "overridden": false,
+          "dependencies": {
+            "@eslint-community/eslint-utils": {
+              "version": "4.9.1",
+              "resolved": "https://registry.npmjs.org/@eslint-community/eslint-utils/-/eslint-utils-4.9.1.tgz",
+              "overridden": false,
+              "dependencies": {
+                "eslint": {
+                  "version": "10.14.0",
+                  "invalid": "\"^2 || ^3 || ^4 || ^5 || ^6 || ^7.2.0 || ^8 || ^9\" from node_modules/eslint-config-next/node_modules/eslint-plugin-import, \"^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9\" from node_modules/eslint-config-next/node_modules/eslint-plugin-jsx-a11y, \"^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9.7\" from node_modules/eslint-config-next/node_modules/eslint-plugin-react",
+                  "problems": [
+                    "invalid: eslint@10.14.0 /workspace/work/r7-2/eslint10-trial/node_modules/eslint"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "eslint-import-resolver-typescript": {
+          "version": "3.10.1",
+          "resolved": "https://registry.npmjs.org/eslint-import-resolver-typescript/-/eslint-import-resolver-typescript-3.10.1.tgz",
+          "overridden": false,
+          "dependencies": {
+            "eslint": {
+              "version": "10.14.0"
+            }
+          }
+        },
+        "eslint-plugin-import": {
+          "version": "2.32.0",
+          "resolved": "https://registry.npmjs.org/eslint-plugin-import/-/eslint-plugin-import-2.32.0.tgz",
+          "overridden": false,
+          "dependencies": {
+            "eslint": {
+              "version": "10.14.0",
+              "invalid": "\"^2 || ^3 || ^4 || ^5 || ^6 || ^7.2.0 || ^8 || ^9\" from node_modules/eslint-config-next/node_modules/eslint-plugin-import",
+              "problems": [
+                "invalid: eslint@10.14.0 /workspace/work/r7-2/eslint10-trial/node_modules/eslint"
+              ]
+            }
+          }
+        },
+        "eslint-plugin-jsx-a11y": {
+          "version": "6.10.2",
+          "resolved": "https://registry.npmjs.org/eslint-plugin-jsx-a11y/-/eslint-plugin-jsx-a11y-6.10.2.tgz",
+          "overridden": false,
+          "dependencies": {
+            "eslint": {
+              "version": "10.14.0",
+              "invalid": "\"^2 || ^3 || ^4 || ^5 || ^6 || ^7.2.0 || ^8 || ^9\" from node_modules/eslint-config-next/node_modules/eslint-plugin-import, \"^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9\" from node_modules/eslint-config-next/node_modules/eslint-plugin-jsx-a11y",
+              "problems": [
+                "invalid: eslint@10.14.0 /workspace/work/r7-2/eslint10-trial/node_modules/eslint"
+              ]
+            }
+          }
+        },
+        "eslint-plugin-react-hooks": {
+          "version": "7.1.1",
+          "resolved": "https://registry.npmjs.org/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-7.1.1.tgz",
+          "overridden": false,
+          "dependencies": {
+            "eslint": {
+              "version": "10.14.0",
+              "invalid": "\"^2 || ^3 || ^4 || ^5 || ^6 || ^7.2.0 || ^8 || ^9\" from node_modules/eslint-config-next/node_modules/eslint-plugin-import, \"^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9\" from node_modules/eslint-config-next/node_modules/eslint-plugin-jsx-a11y",
+              "problems": [
+                "invalid: eslint@10.14.0 /workspace/work/r7-2/eslint10-trial/node_modules/eslint"
+              ]
+            }
+          }
+        },
+        "eslint-plugin-react": {
+          "version": "7.37.5",
+          "resolved": "https://registry.npmjs.org/eslint-plugin-react/-/eslint-plugin-react-7.37.5.tgz",
+          "overridden": false,
+          "dependencies": {
+            "eslint": {
+              "version": "10.14.0",
+              "invalid": "\"^2 || ^3 || ^4 || ^5 || ^6 || ^7.2.0 || ^8 || ^9\" from node_modules/eslint-config-next/node_modules/eslint-plugin-import, \"^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9\" from node_modules/eslint-config-next/node_modules/eslint-plugin-jsx-a11y, \"^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9.7\" from node_modules/eslint-config-next/node_modules/eslint-plugin-react",
+              "problems": [
+                "invalid: eslint@10.14.0 /workspace/work/r7-2/eslint10-trial/node_modules/eslint"
+              ]
+            }
+          }
+        },
+        "eslint": {
+          "version": "10.14.0"
+        },
+        "typescript-eslint": {
+          "version": "8.67.0",
+          "resolved": "https://registry.npmjs.org/typescript-eslint/-/typescript-eslint-8.67.0.tgz",
+          "overridden": false,
+          "dependencies": {
+            "@typescript-eslint/eslint-plugin": {
+              "version": "8.67.0",
+              "resolved": "https://registry.npmjs.org/@typescript-eslint/eslint-plugin/-/eslint-plugin-8.67.0.tgz",
+              "overridden": false,
+              "dependencies": {
+                "@typescript-eslint/type-utils": {
+                  "version": "8.67.0",
+                  "resolved": "https://registry.npmjs.org/@typescript-eslint/type-utils/-/type-utils-8.67.0.tgz",
+                  "overridden": false,
+                  "dependencies": {
+                    "eslint": {
+                      "version": "10.14.0",
+                      "invalid": "\"^2 || ^3 || ^4 || ^5 || ^6 || ^7.2.0 || ^8 || ^9\" from node_modules/eslint-config-next/node_modules/eslint-plugin-import, \"^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9\" from node_modules/eslint-config-next/node_modules/eslint-plugin-jsx-a11y, \"^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9.7\" from node_modules/eslint-config-next/node_modules/eslint-plugin-react",
+                      "problems": [
+                        "invalid: eslint@10.14.0 /workspace/work/r7-2/eslint10-trial/node_modules/eslint"
+                      ]
+                    }
+                  }
+                },
+                "eslint": {
+                  "version": "10.14.0",
+                  "invalid": "\"^2 || ^3 || ^4 || ^5 || ^6 || ^7.2.0 || ^8 || ^9\" from node_modules/eslint-config-next/node_modules/eslint-plugin-import, \"^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9\" from node_modules/eslint-config-next/node_modules/eslint-plugin-jsx-a11y, \"^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9.7\" from node_modules/eslint-config-next/node_modules/eslint-plugin-react",
+                  "problems": [
+                    "invalid: eslint@10.14.0 /workspace/work/r7-2/eslint10-trial/node_modules/eslint"
+                  ]
+                }
+              }
+            },
+            "@typescript-eslint/parser": {
+              "version": "8.67.0",
+              "resolved": "https://registry.npmjs.org/@typescript-eslint/parser/-/parser-8.67.0.tgz",
+              "overridden": false,
+              "dependencies": {
+                "eslint": {
+                  "version": "10.14.0",
+                  "invalid": "\"^2 || ^3 || ^4 || ^5 || ^6 || ^7.2.0 || ^8 || ^9\" from node_modules/eslint-config-next/node_modules/eslint-plugin-import, \"^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9\" from node_modules/eslint-config-next/node_modules/eslint-plugin-jsx-a11y, \"^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9.7\" from node_modules/eslint-config-next/node_modules/eslint-plugin-react",
+                  "problems": [
+                    "invalid: eslint@10.14.0 /workspace/work/r7-2/eslint10-trial/node_modules/eslint"
+                  ]
+                }
+              }
+            },
+            "@typescript-eslint/utils": {
+              "version": "8.67.0",
+              "resolved": "https://registry.npmjs.org/@typescript-eslint/utils/-/utils-8.67.0.tgz",
+              "overridden": false,
+              "dependencies": {
+                "eslint": {
+                  "version": "10.14.0",
+                  "invalid": "\"^2 || ^3 || ^4 || ^5 || ^6 || ^7.2.0 || ^8 || ^9\" from node_modules/eslint-config-next/node_modules/eslint-plugin-import, \"^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9\" from node_modules/eslint-config-next/node_modules/eslint-plugin-jsx-a11y, \"^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9.7\" from node_modules/eslint-config-next/node_modules/eslint-plugin-react",
+                  "problems": [
+                    "invalid: eslint@10.14.0 /workspace/work/r7-2/eslint10-trial/node_modules/eslint"
+                  ]
+                }
+              }
+            },
+            "eslint": {
+              "version": "10.14.0",
+              "invalid": "\"^2 || ^3 || ^4 || ^5 || ^6 || ^7.2.0 || ^8 || ^9\" from node_modules/eslint-config-next/node_modules/eslint-plugin-import, \"^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9\" from node_modules/eslint-config-next/node_modules/eslint-plugin-jsx-a11y, \"^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9.7\" from node_modules/eslint-config-next/node_modules/eslint-plugin-react",
+              "problems": [
+                "invalid: eslint@10.14.0 /workspace/work/r7-2/eslint10-trial/node_modules/eslint"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "eslint": {
+      "version": "10.14.0",
+      "resolved": "https://registry.npmjs.org/eslint/-/eslint-10.14.0.tgz",
+      "overridden": false,
+      "dependencies": {
+        "@eslint-community/eslint-utils": {
+          "version": "4.10.1",
+          "resolved": "https://registry.npmjs.org/@eslint-community/eslint-utils/-/eslint-utils-4.10.1.tgz",
+          "overridden": false,
+          "dependencies": {
+            "eslint": {
+              "version": "10.14.0",
+              "invalid": "\"^2 || ^3 || ^4 || ^5 || ^6 || ^7.2.0 || ^8 || ^9\" from node_modules/eslint-config-next/node_modules/eslint-plugin-import, \"^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9\" from node_modules/eslint-config-next/node_modules/eslint-plugin-jsx-a11y, \"^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9.7\" from node_modules/eslint-config-next/node_modules/eslint-plugin-react",
+              "problems": [
+                "invalid: eslint@10.14.0 /workspace/work/r7-2/eslint10-trial/node_modules/eslint"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "error": {
+    "code": "ELSPROBLEMS",
+    "summary": "invalid: eslint@10.14.0 /workspace/work/r7-2/eslint10-trial/node_modules/eslint",
+    "detail": ""
+  }
+}
+npm error code ELSPROBLEMS
+npm error invalid: eslint@10.14.0 /workspace/work/r7-2/eslint10-trial/node_modules/eslint
+npm error A complete log of this run can be found in: /home/agent/.npm/_logs/2026-10-31T18_13_46_922Z-debug-0.log
+TRIAL_EXIT 1
+EXIT 0
