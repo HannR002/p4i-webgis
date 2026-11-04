@@ -19,6 +19,7 @@ import {
   UserRound,
 } from 'lucide-react';
 const links = [
+  { href: '/spatial/studio', label: 'Studio Vektor', icon: Map },
   { href: '/spatial/home', label: 'Beranda', icon: Compass },
   { href: '/spatial/webmap', label: 'Webmap', icon: Map },
   { href: '/spatial/data', label: 'Data & metadata', icon: Database },
@@ -32,7 +33,7 @@ const links = [
   },
   { href: '/spatial/help', label: 'Pusat bantuan', icon: BookOpen },
 ];
-function Navigation({ path, close }: { path: string; close?: () => void }) {
+function Navigation({ path, close, vectorStudioEnabled }: { path: string; close?: () => void; vectorStudioEnabled: boolean }) {
   return (
     <>
       <Link href="/spatial/home" className="gis-brand" onClick={close}>
@@ -46,7 +47,7 @@ function Navigation({ path, close }: { path: string; close?: () => void }) {
       </Link>
       <div className="gis-nav-label">JELAJAHI WILAYAH</div>
       <nav aria-label="Navigasi portal">
-        {links.map(({ href, label, icon: Icon }) => (
+        {links.filter(l => vectorStudioEnabled || l.href !== '/spatial/studio').map(({ href, label, icon: Icon }) => (
           <Link
             onClick={close}
             key={href}
@@ -92,7 +93,7 @@ async function sessionStatus(): Promise<boolean> {
     body.authenticated === true
   );
 }
-export default function PortalShell({ children }: { children: ReactNode }) {
+export default function PortalShell({ children, vectorStudioEnabled = false }: { children: ReactNode; vectorStudioEnabled?: boolean }) {
   const path = usePathname();
   const dialog = useRef<HTMLDialogElement>(null);
   const [open, setOpen] = useState(false);
@@ -127,7 +128,7 @@ export default function PortalShell({ children }: { children: ReactNode }) {
         Lewati navigasi ke konten
       </a>
       <aside className="gis-nav gis-desktop-nav">
-        <Navigation path={path} />
+        <Navigation path={path} vectorStudioEnabled={vectorStudioEnabled} />
       </aside>
       <dialog
         className="gis-mobile-nav"
@@ -146,7 +147,7 @@ export default function PortalShell({ children }: { children: ReactNode }) {
             <X size={20} />
           </button>
         </div>
-        <Navigation path={path} close={close} />
+        <Navigation path={path} close={close} vectorStudioEnabled={vectorStudioEnabled} />
       </dialog>
       <div className="gis-main">
         <header className="gis-topbar">
